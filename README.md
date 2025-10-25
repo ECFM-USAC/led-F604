@@ -75,3 +75,10 @@ PASSWORD=MiClaveSegura HOST_PORT=9000 make run
 
 ```
 
+---
+
+### Notas de permisos y persistencia
+
+La configuración de VS Code (extensiones, settings) se guardan en `./.code_config` (mapeado a `/config`).
+
+El código del repo se monta en `/config/workspace` → tus archivos siguen locales, listos para Git.
