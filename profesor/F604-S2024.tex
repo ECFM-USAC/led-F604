@@ -1,0 +1,233 @@
+%------------------------------------------------
+%--Nombre de archivo código, Semestre, año--------- 
+%---------------"F702-P2015"------Primer Semestre---
+%---------------"F702-S2015"------Segundo Semestre---
+%--------------------------------------------------
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc} 
+%\pagestyle{fancyplain}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\setcounter{section}{0}
+
+\oddsidemargin=0.5cm
+\setlength{\textwidth}{6.5in}
+\textheight 9.0in 
+\addtolength{\voffset}{-0.8in}
+\lhead{{\bf ECFM USAC} }
+
+% Macros para automatizar contenidos de las unidades
+\newcommand{\unidades}[4]{%
+\begin{description}
+	\item[Descripción:] #1
+	\item[Duración:] #2
+	\item[Metodología:] #3	
+	\item[Evaluación:] #4
+\end{description}	
+}
+
+\begin{document}
+%---------------------------------------------------------------------
+\noindent{\large Universidad de San Carlos de Guatemala\\
+Escuela de Ciencias Físicas y Matemáticas\\
+Programas de Licenciatura}
+\bigskip
+
+\bigskip
+\centerline{\Large Programa Laboratorio de Electrónica Digital}
+%---------------------------------------------------------------------
+\section{Descripción del Curso}
+\begin{tabular}{ll}
+{\bf Nombre:} Laboratorio de electrónica digital & {\bf Código:} F604\\
+{\bf Prerrequisitos:} F503  & {\bf Créditos:} 5\\
+{\bf Profesor:} Erick Díaz & {\bf Semestre:} Segundo, 2026\\
+\end{tabular}
+\bigskip
+
+Es un curso introductorio que se ocupa del diseño de circuitos electrónicos digitales. Los circuitos digitales
+se emplean en el diseño y construcción de sistemas como computadoras digitales, comunicación de datos, grabación digital, instrumentación
+física y muchas otras aplicaciones que requieren hardware digital. Se finaliza el curso con una introducción a programación en lenguaje C.
+%-------------------------------------------------------------------
+\section{Competencias}
+\subsection{Competencias generales} % AQUI SE UTILIZA ENUMERATE
+\begin{enumerate}[2.{1}.1]
+\item Utilizar o elaborar programas o sistemas de computación para el procesamiento de información, cálculo numérico, simulación de procesos físicos o control de experimentos.
+
+\item Construir modelos simplificados que describan una situación compleja, identificando sus elementos esenciales y efectuando las aproximaciones necesarias.
+
+\item Verificar y evaluar el ajuste de modelos a la realidad, identificando su dominio de validez.
+
+\item Aplicar el conocimiento teórico de la física en la realización e interpretación de experimentos.
+
+\item Desarrollar argumentaciones válidas en el ámbito de la física, identificando hipótesis y conclusiones.
+
+\item Estimar el orden de magnitud de cantidades mensurables para interpretar fenómenos diversos.
+
+
+ 
+
+\end{enumerate}
+
+
+\subsection{Competencias específicas}
+\begin{enumerate}[\hspace{3ex}a)]
+\item Demostrar destrezas experimentales y uso de métodos adecuados de trabajo en el laboratorio.
+\item Describir y explicar fenómenos naturales y procesos tecnológicos en términos de conceptos, principios y teorías físicas.
+\item Percibir las analogías entre situaciones aparentemente diversas, utilizando soluciones conocidas en la resolución de problemas nuevos.
+\item Demostrar hábitos de trabajo necesarios para el desarrollo de la profesión tales como el trabajo en equipo, el rigor científico, el auto-aprendizaje y la persistencia. 
+
+\end{enumerate}
+%-----------------------------------------------------------
+\section{Unidades}
+
+
+\subsection{Sistemas binarios}
+
+\unidades{Números binarios y decimales, Conversión decimal-binario, Números hexadecimales, Códigos binarios, Lógica binaria.}{4 periodos de 50 minutos}{Los períodos de clase son magistrales, con la solución de algunos ejercicios guías, para que el estudiante demuestre su aprendizaje con la resolución de los ejercicios propuestos.}{Se evaluará por medio de examen teórico}
+
+\subsection{Álgebra booleana y compuertas lógicas}
+\unidades{Definiciones básicas, Propiedades del álgebra booleana, Teoremas del álgebra booleana, Funciones booleana, Formas canónicas y estandar, Operadores NOT, Operación OR, Operación AND, Otras operaciones básicas, Mapas de Karnough}{12 períodos de 50 minutos}{Los períodos de clase son magistrales, con la solución de algunos ejercicios guías, para que el estudiante demuestre su aprendizaje con la resolución de los ejercicios propuestos y practicas de laboratorio planificadas.}{Se evaluará por medio de examen teórico e informes de las prácticas de laboratorio realizadas.}
+
+\subsection{Lógica Combinacional}
+\unidades{Procedimiento de Diseño, Sumadores, Conversión de códigos, Multiplexores.}{8 períodos de 50 minutos}{Los períodos de clase son magistrales, con la solución de algunos ejercicios guías, para que el estudiante demuestre su aprendizaje con la resolución de los ejercicios propuestos y desarrollo de mini-proyectos.}{Se evaluará por medio de examen teórico e informes de mini-proyectos.}
+
+\subsection{Lógica Secuencial}
+\unidades{Flip-Flops, Procedimiento de Diseño, Sincronización, Contadores, Registros, Secuencias temporizadas.}{8 períodos de 50 minutos}{Los períodos de clase son magistrales, con la solución de algunos ejercicios guías, para que el estudiante demuestre su aprendizaje con la resolución de los ejercicios propuestos y desarrollo de mini-proyectos.}{Se evaluará por medio de examen teórico e informes de mini-proyectos.}
+
+
+\subsection{Introducción a los microprocesadores}
+\unidades{Compomentes de un microprosesador. Tipos de microprocesadores. Lenguaje máquina. Sistemas operativos}
+{4 períodos de 50 minutos}{Los períodos de clase son magistrales, con la solución de algunos ejercicios guías, para que el estudiante demuestre su aprendizaje con la resolución de los ejercicios propuestos.}{Se evaluará por medio de una tarea.}
+
+\subsection{Programación en C}
+\unidades{Compilador. Tipos de variables. Estructuras condicionales. Estructuras de bucle. Funciones. Manejo de memoria.}
+{24 períodos de 50 minutos}{Los períodos de clase son magistrales, con la solución de algunos ejercicios guías, para que el estudiante demuestre su aprendizaje con la resolución de los ejercicios propuestos y practicas de laboratorio planificadas.}{Se evaluará por medio de examen teórico y tareas.}
+
+\subsection{Introducción a FPGA}
+\unidades{Conceptos básicos de FPGA. Flujo de diseño en FPGA. Hardware Description Language (HDL). Síntesis y programación. Aplicaciones de FPGA.}{6 períodos de 50 minutos}{Los períodos de clase son magistrales con demostraciones de herramientas CAD, combinados con prácticas de laboratorio guiadas para la implementación de circuitos digitales en FPGA.}{Se evaluará por medio de informes de prácticas de laboratorio.}
+
+%----------------------------------------------------------------
+
+\section{Evaluación del curso}
+Los porcentajes asignados a cada uno de los elementos de la evaluación están de acuerdo con el Reglamento General de Evaluación y Promoción del Estudiante de la Universidad de San Carlos de Guatemala 
+\bigskip
+
+\begin{tabular}{lr}
+	 Examenes parciales & 40 puntos\\
+	 Practicas Laboratorio & 20 puntos\\
+	 Tareas & 15 puntos\\
+	Evaluación final & 25 puntos\\\hline
+	Total & 100 puntos\\
+\end{tabular}
+%--El reglamento establece que la zona debe estar entre el 70% y el 85% 
+%--de la nota del curso
+%-------------------------------------------------------------------
+
+\section{Bibliografía}
+\begin{enumerate}
+\item M. Morris Mano, Diseño Digital, Pearson, 2003, Tercera edición, México.
+\item P. J. Deitel, H. M. Deitel, C++ Como Programar, Pearson, 2008, Sexta Edición, México.
+
+\end{enumerate}
+\bigskip
+\flushright{http://ecfm.usac.edu.gt/programas}
+\end{document}
+
+---------------------------------------------------------------
+
+COMPETENCIAS 
+
+COMPETENCIAS GENERALES
+En el programa usted debe poner todas las competencias que aparecen en el Diseño Curricular que aplican al curso, en orden de importancia en el curso, no es necesario que incluya todas
+---------------------------------------------------------------------
+COMPETENCIAS PRESENTES EN EL DISEÑO CURRICULAR
+Los estudiantes al graduarse de la licenciatura en Física deben poseer las
+siguientes competencias:
+
+a) Plantear, analizar y resolver problemas físicos, tanto teóricos como
+experimentales, mediante la utilización de métodos analíticos,
+experimentales o numéricos.
+
+b) Utilizar o elaborar programas o sistemas de computación para el
+procesamiento de información, cálculo numérico, simulación de
+procesos físicos o control de experimentos.
+
+c) Construir modelos simplificados que describan una situación
+compleja, identificando sus elementos esenciales y efectuando las
+aproximaciones necesarias.
+
+d) Verificar y evaluar el ajuste de modelos a la realidad, identificando su
+dominio de validez.
+
+e) Aplicar el conocimiento teórico de la física en la realización e
+interpretación de experimentos.
+
+f) Demostrar una comprensión profunda de los conceptos y principios
+fundamentales, tanto de la física clásica como de la física moderna.
+
+g) Describir y explicar fenómenos naturales y procesos tecnológicos en
+términos de conceptos, principios y teorías físicas.
+
+h) Desarrollar argumentaciones válidas en el ámbito de la física,
+identificando hipótesis y conclusiones.
+
+i) Sintetizar soluciones particulares, extendiéndolas hacia principios,
+leyes o teorías más generales.
+
+j) Percibir las analogías entre situaciones aparentemente diversas,
+utilizando soluciones conocidas en la resolución de problemas
+nuevos.
+
+k) Estimar el orden de magnitud de cantidades mensurables para
+interpretar fenómenos diversos.
+
+l) Demostrar destrezas experimentales y uso de métodos adecuados
+de trabajo en el laboratorio.
+
+m) Participar en actividades profesionales relacionadas con tecnologías
+de alto nivel, sea en el laboratorio o en la industria.
+
+n) Participar en asesorías y elaboración de propuestas en ciencia y
+tecnología en temas con impacto económico y social en el ámbito
+nacional.
+
+o) Actuar con responsabilidad y ética profesional, manifestando
+conciencia social de solidaridad, justicia, y respeto por el ambiente.
+
+p) Demostrar hábitos de trabajo necesarios para el desarrollo de la
+profesión tales como el trabajo en equipo, el rigor científico, el auto-
+aprendizaje y la persistencia.
+
+q) Buscar, interpretar y utilizar información científica.
+
+r) Comunicar conceptos y resultados científicos en lenguaje oral y
+escrito ante sus pares, y en situaciones de enseñanza y de
+divulgación.
+
+s) Participar en la elaboración y desarrollo de proyectos de
+investigación en física interdisciplinarios.
+
+t) Demostrar disposición para enfrentar nuevos problemas en otros
+campos, utilizando sus habilidades y conocimientos específicos.
+
+u) Conocer y comprender el desarrollo conceptual de la física en
+términos históricos y epistemológicos.
+
+v) Conocer los aspectos relevantes del proceso de enseñanza-
+aprendizaje de la física, demostrando disposición para colaborar en
+la formación de científicos.
+-----------------------------------------------------------------
+COMPETENCIAS ESPECIFICAS
+Usted puede agregar competencias específicas del curso que esten contenidas en las Competencias Generales
+------------------------------------------------------------------------
+
+
+
+
