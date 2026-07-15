@@ -3,3 +3,6 @@
 build/
 # editor
 .vscode/
+
+# carpeta de trabajo del profesor, no se versiona
+profesor/

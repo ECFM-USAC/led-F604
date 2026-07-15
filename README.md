@@ -42,8 +42,6 @@ El curso se desarrollará mediante clases teórico-prácticas combinadas con tra
 
 ```text
 .
-├── profesor/               # Documentos del programa del curso
-│   └── F604-S2024.tex      # Programa oficial del curso
 ├── ejemplos/               # Ejemplos organizados por tema
 │   ├── sistemas_binarios/
 │   ├── algebra_booleana/
