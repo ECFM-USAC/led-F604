@@ -1,0 +1,211 @@
+{
+ "slug": "clase-00-introduccion",
+ "source": "Clase 1/Clase 1 - Electronica Digital.pptx",
+ "slide_range": [
+  1,
+  6
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Electrónica Digital",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Sistema Físico",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Grupo de objetos o elementos que realizan una función"
+      },
+      {
+       "level": 0,
+       "text": "Un grupo de señales de entrada"
+      },
+      {
+       "level": 0,
+       "text": "Un grupo de señales de salida"
+      },
+      {
+       "level": 0,
+       "text": "Una relación entre las señales de entrada y salida"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Tipo: Voltaje, fuerza, Temperatura"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Sistema Físico",
+   "body": [],
+   "images": [
+    "sistema-fisico-diagrama.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Aspectos de las Señales: Analógicas y Digitales",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Señales como la posición y la temperatura, que pueden tomar cualquier valor dentro de un rango continuo, se llaman…."
+      },
+      {
+       "level": 0,
+       "text": "Señales Análogas"
+      },
+      {
+       "level": 0,
+       "text": "Ejemplos: voltaje de un micrófono, temperatura ambiente, velocidad de un motor."
+      },
+      {
+       "level": 0,
+       "text": "Señales como el on/off cuyos valores pertenecen a un conjunto finito son llamadas.."
+      },
+      {
+       "level": 0,
+       "text": "Señales Digitales"
+      },
+      {
+       "level": 0,
+       "text": "Ejemplos: 0 V/5 V (niveles TTL), bit 0 y bit 1."
+      },
+      {
+       "level": 0,
+       "text": "Una señal analógica puede convertirse a digital con un ADC (convertidor analógico-digital), y una señal digital puede convertirse a analógica con un DAC (convertidor digital-analógico)."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "analog-vs-digital-signal.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Sistemas analógicos vs. Digitales",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Las señales analogicas, son señales que pueden ser mecánicas, eléctricas o de cualquier tipo que sean continuas en el tiempo."
+      },
+      {
+       "level": 0,
+       "text": "Los sistemas analogicos, se encargan de procesar, almacenar y transmitir estas señales continuas."
+      },
+      {
+       "level": 0,
+       "text": "Características:"
+      },
+      {
+       "level": 0,
+       "text": "Requieren mayor capacidad de almacenamiento"
+      },
+      {
+       "level": 0,
+       "text": "Millones de valores en el tiempo"
+      },
+      {
+       "level": 0,
+       "text": "Difícil de separar el ruido en la señal"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Sistemas analógicos vs. Digitales",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Las señales digitales son aquellas que sólo poseen 2 voltajes únicos (0 V y 5 V, o dos voltajes simétricos dependiendo del sistema) y que son representados por 2 valores en el tiempo (0 y 1)."
+      },
+      {
+       "level": 0,
+       "text": "Pueden ser señales generadas por una analógica y convertida a digital."
+      },
+      {
+       "level": 0,
+       "text": "Los sistemas digitales, son el conjunto de dispositivos destinados a la generación, transmisión, procesamiento o almacenamiento de señales digitales."
+      },
+      {
+       "level": 0,
+       "text": "Características:"
+      },
+      {
+       "level": 0,
+       "text": "Requieren de menor capacidad para almacenamiento."
+      },
+      {
+       "level": 0,
+       "text": "Tienen sólo 2 valores en el tiempo."
+      },
+      {
+       "level": 0,
+       "text": "Más fácil de separar del ruido."
+      },
+      {
+       "level": 0,
+       "text": "No requieren de gran potencia para su amplificación y transmisión."
+      },
+      {
+       "level": 0,
+       "text": "Algoritmos de detección de errores."
+      },
+      {
+       "level": 0,
+       "text": "Algoritmos de encriptamiento."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  }
+ ]
+}

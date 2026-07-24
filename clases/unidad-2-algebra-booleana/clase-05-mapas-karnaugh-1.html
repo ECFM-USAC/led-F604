@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapas de Karnaugh: 2 y 3 Variables — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u2); --u-soft: var(--u2-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-2">Álgebra Booleana y Compuertas Lógicas</a><span class="sep">/</span>
+      Mapas de Karnaugh: 2 y 3 Variables
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 2 · Álgebra Booleana y Compuertas Lógicas</div>
+    <h1>Mapas de Karnaugh: 2 y 3 Variables</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Mapa de Karnaugh</a></li>
+      <li><a href="#s2">Mapa de dos Variables</a></li>
+      <li><a href="#s3">Mapa de tres variables</a></li>
+      <li><a href="#s4">Ejemplo</a></li>
+      <li><a href="#s5">Ejemplo</a></li>
+      <li><a href="#s6">Ejemplo</a></li>
+      <li><a href="#s7">Ejemplo</a></li>
+      <li><a href="#s8">Ejemplo</a></li>
+      <li><a href="#s9">Hoja de Trabajo</a></li>
+      <li><a href="#s10">Hoja de Trabajo</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Mapa de Karnaugh</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un mapa de Karnaugh es una representación gráfica de una función booleana. Organiza los valores de verdad en una tabla especial, basada en el código Gray, donde cada celda representa un minitérmino.</li>
+<li>Facilita la simplificación lógica al permitir agrupar unos (1s) o ceros (0s) adyacentes.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Mapa de dos Variables</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-05-mapas-karnaugh-1/47904a28b0.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-05-mapas-karnaugh-1/1a9dd10912.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Mapa de tres variables</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Hay ocho minitérminos para tres variables binarias; por tanto, el mapa consta de ocho cuadrados.</li>
+<li>Los minitérminos no están acomodados en sucesión binaria, sino en una sucesión similar al código Gray, la característica de esta sucesión es que sólo un bit cambia de valor entre dos columnas adyacentes.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-05-mapas-karnaugh-1/848c239f3f.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Ejemplo</h2></div>
+    <div class="slide-body">
+      <table class="data-table">
+<tr><th>C</th><th>B</th><th>A</th><th>F</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+</table>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Ejemplo</h2></div>
+    <div class="slide-body">
+      <table class="data-table">
+<tr><th>C</th><th>B</th><th>A</th><th>F</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+</table>
+<table class="data-table">
+<tr><th>C\AB</th><th>0 0</th><th>0 1</th><th>1 1</th><th>1 0</th></tr>
+<tr><td>0</td><td>1</td><td></td><td></td><td>1</td></tr>
+<tr><td>1</td><td></td><td>1</td><td>1</td><td>1</td></tr>
+</table>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Ejemplo</h2></div>
+    <div class="slide-body">
+      <table class="data-table">
+<tr><th>C</th><th>B</th><th>A</th><th>F</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+</table>
+<table class="data-table">
+<tr><th>C\AB</th><th>0 0</th><th>0 1</th><th>1 1</th><th>1 0</th></tr>
+<tr><td>0</td><td>1</td><td></td><td></td><td>1</td></tr>
+<tr><td>1</td><td></td><td>1</td><td>1</td><td>1</td></tr>
+</table>
+<ul>
+<li>F = C̅ B̅ + CB + CA</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Ejemplo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-05-mapas-karnaugh-1/f6b5fdac5c.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-05-mapas-karnaugh-1/848c239f3f.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Ejemplo</h2></div>
+    <div class="slide-body">
+      <table class="data-table">
+<tr><th>x\yz</th><th>0 0</th><th>0 1</th><th>1 1</th><th>1 0</th></tr>
+<tr><td>0</td><td>1</td><td></td><td></td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td></td><td>1</td></tr>
+</table>
+<ul>
+<li>F = z̅ + xy̅</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-05-mapas-karnaugh-1/f6b5fdac5c.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-05-mapas-karnaugh-1/e17815358d.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Hoja de Trabajo</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Dada la función booleana</li>
+<li>F(A,B,C) = Σ(1,2,3,5,7)</li>
+<li>Expresar como la suma de miniterminos</li>
+<li>Usar k-maps para minimizar la función</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-05-mapas-karnaugh-1/848c239f3f.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Hoja de Trabajo</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Dada la función booleana</li>
+<li>F(A,B,C) = Σ(1,2,3,5,7)</li>
+</ul>
+<ul>
+<li>F = C + A̅B</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-05-mapas-karnaugh-1/c9141bc64b.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-2-algebra-booleana/clase-03-algebra-booleana.html"><span class="lbl">← Anterior</span>Definiciones, Teoremas y Funciones Booleanas</a>
+    <a class="next" href="../unidad-2-algebra-booleana/clase-06-mapas-karnaugh-2.html"><span class="lbl">Siguiente →</span>Mapas de Karnaugh: 4 y 5 Variables, Condiciones de Indiferencia</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

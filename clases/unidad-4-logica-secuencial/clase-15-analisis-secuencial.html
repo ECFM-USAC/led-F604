@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Análisis y Procedimiento de Diseño de Circuitos Secuenciales — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u4); --u-soft: var(--u4-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-4">Lógica Secuencial</a><span class="sep">/</span>
+      Análisis y Procedimiento de Diseño de Circuitos Secuenciales
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 4 · Lógica Secuencial</div>
+    <h1>Análisis y Procedimiento de Diseño de Circuitos Secuenciales</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">T - Latch</a></li>
+      <li><a href="#s2">Análisis de circuitos Secuenciales</a></li>
+      <li><a href="#s3">Ecuaciones de estado</a></li>
+      <li><a href="#s4">Ecuaciones de estado</a></li>
+      <li><a href="#s5">Tabla de estados</a></li>
+      <li><a href="#s6">Tabla de Estados</a></li>
+      <li><a href="#s7">Diagrama de estados</a></li>
+      <li><a href="#s8">Diagrama de estados</a></li>
+      <li><a href="#s9">Procedimiento de Diseño</a></li>
+      <li><a href="#s10">Procedimiento de Diseño</a></li>
+      <li><a href="#s11">Ejemplo 1, Contador sincrónico 2 bits</a></li>
+      <li><a href="#s12">Ejemplo 1, Contador sincrónico 2 bits</a></li>
+      <li><a href="#s13">Ejemplo 1, Contador sincrónico 2 bits</a></li>
+      <li><a href="#s14">Ejemplo 1, Contador sincrónico 2 bits</a></li>
+      <li><a href="#s15">Contador sincrónico 3 bits???</a></li>
+      <li><a href="#s16">Contador sincrónico 3 bits</a></li>
+      <li><a href="#s17">Contador sincrónico 3 bits</a></li>
+      <li><a href="#s18">Contador sincrónico 3 bits</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>T - Latch</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-15-analisis-secuencial/c51a7fc2bf.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-15-analisis-secuencial/e565579662.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-15-analisis-secuencial/dd58fafe28.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Análisis de circuitos Secuenciales</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El comportamiento de un circuito secuencial con reloj está determinado por las entradas, las salidas y el estado de sus flip-flops.</li>
+<li>Las salidas y el siguiente estado son función de las entradas y del estado actual.</li>
+<li>El análisis de un circuito secuencial consiste en obtener una tabla o diagrama para la sucesión temporal de entradas, salidas y estados internos.</li>
+<li>Es posible escribir expresiones booleanas que describen el comportamiento del circuito secuencial.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Ecuaciones de estado</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El comportamiento de los circuitos secuenciales con reloj se describe algebraicamente con ecuaciones de estado.</li>
+<li>Una ecuación de estado (también llamada ecuación de transición) especifica el siguiente estado en función del estado actual y las entradas</li>
+<li>En el caso del flip-flop D, tenemos la ecuación característica:</li>
+<li>Q(t+1)=D</li>
+<li>Ecuación de estado para el flip-flop T ?</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Ecuaciones de estado</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El comportamiento de los circuitos secuenciales con reloj se describe algebraicamente con ecuaciones de estado.</li>
+<li>Una ecuación de estado (también llamada ecuación de transición) especifica el siguiente estado en función del estado actual y las entradas</li>
+<li>En el caso del flip-flop D, tenemos la ecuación característica:</li>
+<li>Q(t+1)=D</li>
+<li>Ecuación de estado para el flip-flop T</li>
+<li>Q(t+1)= T⊕Q</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Tabla de estados</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La sucesión temporal de entradas, salidas y estados de flip-flop se puede presentar de forma compacta en una tabla de estados (también llamada tabla de transición).</li>
+<li>La tabla consta de cuatro secciones rotuladas estado actual, entrada, siguiente estado y salida.</li>
+<li>La sección de estado actual muestra los estados de los flip-flops en cualquier instante dado t.</li>
+<li>La sección de entrada da un valor de x para cada posible estado actual.</li>
+<li>La sección de siguiente estado muestra los estados de los flip-flops un ciclo de reloj después, en el tiempo t+1.</li>
+<li>La sección de salida da el valor de y en el tiempo t para cada estado actual y condición de entrada.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Tabla de Estados</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-15-analisis-secuencial/968977332a.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-15-analisis-secuencial/893d23ddd6.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Diagrama de estados</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La información contenida en una tabla de estados se representa gráficamente en forma de diagrama de estados.</li>
+<li>En este tipo de diagramas, un estado se representa con un círculo, y las transiciones entre estados se indican con flechas que conectan a los círculos.</li>
+<li>El diagrama de estados proporciona la misma información que la tabla de estados.</li>
+<li>La tabla de estados se deduce más fácilmente de un diagrama lógico dado y la ecuación de estado.</li>
+<li>El diagrama de estados se sigue directamente de la tabla de estados.</li>
+<li>El diagrama de estados muestra una perspectiva gráfica de las transiciones de estado y es la forma más apropiada para interpretar el funcionamiento del circuito</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Diagrama de estados</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-15-analisis-secuencial/893d23ddd6.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-15-analisis-secuencial/8d9206e1ed.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Procedimiento de Diseño</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El diseño de un circuito secuencial con reloj parte de un conjunto de especificaciones y culmina en un diagrama lógico o una lista de funciones booleanas de la cual puede obtenerse el diagrama lógico.</li>
+<li>Un circuito secuencial sincrónico consta de flip-flops y compuertas combinacionales.</li>
+<li>El diseño del circuito consiste en escoger los flip-flops y luego encontrar una estructura de compuertas combinacionales que, junto con los flip-flops, produzca un circuito que satisfaga las especificaciones planteadas.</li>
+<li>El número de flip-flops se deduce del número de estados que se requieren en el circuito.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Procedimiento de Diseño</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Deduzca, de la descripción textual y las especificaciones del funcionamiento deseado, un diagrama de estados para el circuito.</li>
+<li>Reduzca el número de estados si es necesario.</li>
+<li>Asigne valores binarios a los estados.</li>
+<li>Obtenga la tabla de estados codificada en binario.</li>
+<li>Escoja el tipo de flip-flops que se usarán.</li>
+<li>Deduzca las ecuaciones simplificadas de entrada y de salida de los flip-flops.</li>
+<li>Dibuje el diagrama lógico.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Ejemplo 1, Contador sincrónico 2 bits</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Ejemplo 1, Contador sincrónico 2 bits</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>2 Flip-Flop T</li>
+<li>Tabla activación Flip Flop</li>
+<li>.</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-15-analisis-secuencial/4b84265757.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Ejemplo 1, Contador sincrónico 2 bits</h2></div>
+    <div class="slide-body">
+      <table class="data-table">
+<tr><th>Estado actual Q1 Q0</th><th>Estado siguiente Q1⁺ Q0⁺</th><th>T0</th><th>T1</th></tr>
+<tr><td>0 0</td><td>0 1</td><td>1</td><td>0</td></tr>
+<tr><td>0 1</td><td>1 0</td><td>1</td><td>1</td></tr>
+<tr><td>1 0</td><td>1 1</td><td>1</td><td>0</td></tr>
+<tr><td>1 1</td><td>0 0</td><td>1</td><td>1</td></tr>
+</table>
+<ul>
+<li>00</li>
+</ul>
+<ul>
+<li>01</li>
+</ul>
+<ul>
+<li>10</li>
+</ul>
+<ul>
+<li>11</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s14" style="--reveal-delay: 0.65s;">
+    <div class="slide-head"><h2>Ejemplo 1, Contador sincrónico 2 bits</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Q0+ = Q´0</li>
+<li>Q1+ = Q0 ⊕Q1</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s15" style="--reveal-delay: 0.70s;">
+    <div class="slide-head"><h2>Contador sincrónico 3 bits???</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/4b84265757.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s16" style="--reveal-delay: 0.75s;">
+    <div class="slide-head"><h2>Contador sincrónico 3 bits</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-15-analisis-secuencial/2161a43168.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-15-analisis-secuencial/8520ea3984.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s17" style="--reveal-delay: 0.80s;">
+    <div class="slide-head"><h2>Contador sincrónico 3 bits</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Ejercicio:</li>
+<li>Encontrar Ecuaciones del próximo estado y dibujar el diagrama del circuito</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s18" style="--reveal-delay: 0.85s;">
+    <div class="slide-head"><h2>Contador sincrónico 3 bits</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/076eb1c518.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-4-logica-secuencial/clase-14-registros-contadores.html"><span class="lbl">← Anterior</span>Registros de Desplazamiento y Contadores de Rizo</a>
+    <a class="next" href="../unidad-6-programacion-c/clase-c-programacion.html"><span class="lbl">Siguiente →</span>Fundamentos del Lenguaje C</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

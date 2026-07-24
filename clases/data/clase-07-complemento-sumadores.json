@@ -1,0 +1,283 @@
+{
+ "slug": "clase-07-complemento-sumadores",
+ "source": "Clase 7.pptx",
+ "slide_range": [
+  1,
+  14
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Lógica Combinacional",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Complemento de una función",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "El complemento de una función F es F’ y se obtiene intercambiando ceros por unos y unos por ceros en el valor de F."
+      },
+      {
+       "level": 0,
+       "text": "El complemento de una función podría deducirse algebraicamente empleando el teorema de DeMorgan."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Encontrar el complemento de las funciones:"
+      },
+      {
+       "level": 0,
+       "text": "F1=x´yz´+x´y´z"
+      },
+      {
+       "level": 0,
+       "text": "F2=x(y´z´+yz)"
+      },
+      {
+       "level": 0,
+       "text": "Aplicando el teorema de DeMorgan"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "25b4de5900.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Encontrar el complemento de las funciones:"
+      },
+      {
+       "level": 0,
+       "text": "F1=x´yz´+x´y´z"
+      },
+      {
+       "level": 0,
+       "text": "F’1. = (x + y’ + z)(x + y + z’)"
+      },
+      {
+       "level": 0,
+       "text": "F2=x(y´z´+yz)"
+      },
+      {
+       "level": 0,
+       "text": "F’2. =x’ + (y + z)(y’ + z’)"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un procedimiento más sencillo para deducir el complemento de una función consiste en obtener el dual de la función y complementar cada literal."
+      },
+      {
+       "level": 0,
+       "text": "Este método es consecuencia del teorema generalizado de DeMorgan. Recuerde que el dual de una función se obtiene intercambiando operadores AND y OR, y unos y ceros."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "670cc13fa7.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "a)"
+      },
+      {
+       "level": 0,
+       "text": "F’ = AB + CD + BD’"
+      },
+      {
+       "level": 0,
+       "text": "F = (A’ + B’)(C’ + D’)(B’+ D)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "068df56c79.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Implementación con NAND y NOR",
+   "body": [],
+   "images": [
+    "ff352ac21c.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Lógica Combinacional",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Los circuitos lógicos para sistemas digitales pueden ser combinacionales o secuenciales."
+      },
+      {
+       "level": 0,
+       "text": "Un circuito combinacional consiste en compuertas lógicas cuyas salidas en cualquier momento están determinadas por la combinación actual de entradas."
+      },
+      {
+       "level": 0,
+       "text": "Un circuito combinacional realiza una operación que se puede especificar lógicamente con un conjunto de funciones booleanas."
+      },
+      {
+       "level": 0,
+       "text": "Los circuitos secuenciales usan elementos de almacenamiento además de compuertas lógicas, y sus salidas son función de las entradas y del estado de los elementos de almacenamiento."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "20b1c23e90.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Procedimiento de diseño",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "De las especificaciones del circuito, deduzca el número requerido de entradas y salidas; asigne un símbolo a cada una."
+      },
+      {
+       "level": 0,
+       "text": "Deduzca la tabla de verdad que define la relación requerida entre las entradas y las salidas."
+      },
+      {
+       "level": 0,
+       "text": "Obtenga las funciones booleanas simplificadas para cada salida en función de las variables de entrada."
+      },
+      {
+       "level": 0,
+       "text": "Dibuje el diagrama lógico y verifique que el diseño sea correcto."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Ejemplo",
+   "body": [],
+   "images": [
+    "eb35f6f122.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Semisumador",
+   "body": [],
+   "images": [
+    "eb35f6f122.png",
+    "f7a1a7e258.png",
+    "395cbf5196.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Sumador Completo",
+   "body": [],
+   "images": [
+    "0d0cdbe058.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "Sumador Completo",
+   "body": [],
+   "images": [
+    "0d0cdbe058.png",
+    "6fc0b0131c.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Sumador Completo",
+   "body": [],
+   "images": [
+    "c8637b20a5.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

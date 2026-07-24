@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registros de Desplazamiento y Contadores de Rizo — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u4); --u-soft: var(--u4-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-4">Lógica Secuencial</a><span class="sep">/</span>
+      Registros de Desplazamiento y Contadores de Rizo
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 4 · Lógica Secuencial</div>
+    <h1>Registros de Desplazamiento y Contadores de Rizo</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Registros y Contadores</a></li>
+      <li><a href="#s2">Registros</a></li>
+      <li><a href="#s3">Diapositiva 4</a></li>
+      <li><a href="#s4">Diapositiva 5</a></li>
+      <li><a href="#s5">Diapositiva 6</a></li>
+      <li><a href="#s6">Registros de Desplazamiento</a></li>
+      <li><a href="#s7">Registros de Desplazamiento</a></li>
+      <li><a href="#s8">Transferencia en serie</a></li>
+      <li><a href="#s9">Transferencia en serie</a></li>
+      <li><a href="#s10">Suma en Serie</a></li>
+      <li><a href="#s11">Contadores</a></li>
+      <li><a href="#s12">Contador de rizo</a></li>
+      <li><a href="#s13">Contador de rizo 2 - bits UP</a></li>
+      <li><a href="#s14">Contador de rizo 2 - bits DOWN</a></li>
+      <li><a href="#s15">Contador de 3 Bit</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Registros y Contadores</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un registro es un grupo de flip-flops, cada flip-flop puede almacenar un bit de información.</li>
+<li>Un registro de n bits consiste en un grupo de n flip-flops capaces de almacenar n bits de información binaria. Además de los flip-flops, un registro puede tener compuertas combinacionales que realizan ciertas tareas de procesamiento de datos.</li>
+<li>Un registro consiste en un grupo de flip-flops y compuertas que efectúan su transición. Los flip-flops contienen la información binaria y las compuertas determinan cómo esa información se transfiere al registro.</li>
+<li>Un contador es básicamente un registro que pasa por una sucesión predeterminada de estados. Las compuertas del contador están conectadas de tal manera que producen la sucesión prescrita de estados binarios. Aunque los contadores son un tipo especial de registros, es común distinguirlos dándoles otro nombre</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Registros</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Hay diversos tipos de registros el más sencillo consiste únicamente en flip-flops, sin compuertas.</li>
+<li>La entrada de reloj, común a todos los flip-flops, los dispara en el flanco positivo de cada pulso, y los datos binarios disponibles en las cuatro entradas se transfieren en el registro de cuatro bits.</li>
+<li>Es posible muestrear las cuatro salidas en cualquier momento para obtener la información binaria almacenada en el registro. La entrada de despeje (clear) se conecta a la entrada R (reset) de los cuatro flip-flops.</li>
+<li>Cuando esta entrada cambia a 0, todos los flip-flops se restablecen asincrónicamente. La entrada clear sirve para poner en ceros el registro antes de que comience a funcionar con reloj.</li>
+<li>Las entradas R se deben mantener en 1 lógico durante el funcionamiento normal con reloj. Se utiliza tanto clear como reset para indicar la transferencia del registro al estado de ceros.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/323f5c87fa.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 4</span></h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Los sistemas digitales sincrónicos tienen un generador maestro de reloj que suministra un tren continuo de pulsos de reloj, estos pulsos se aplican a todos los flip-flops y registros del sistema</li>
+<li>Se requiere una señal de control aparte para decidir qué pulso de reloj específico tendrá efecto sobre un registro dado.</li>
+<li>La transferencia de información nueva a un registro se describe como carga del registro. Si todos los bits del registro se cargan simultáneamente, con un pulso de reloj común, se dice que la carga se efectúa en paralelo.</li>
+<li>Un borde de reloj aplicado a las entradas C del registro carga las cuatro entradas en paralelo. En esta configuración, el reloj deberá inhibirse del circuito cuando se desee que el registro conserve intacto su contenido.</li>
+<li>Esto se hace controlando la señal de entrada del reloj con una compuerta habilitadora.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/01f36e97d6.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 5</span></h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La inserción de compuertas en la trayectoria del reloj implica que la lógica se efectúa con pulsos de reloj.</li>
+<li>La inserción de compuertas lógicas produce retardos de propagación desiguales entre el reloj maestro y las entradas de los flip-flops.</li>
+<li>Para sincronizar plenamente el sistema, hay que cerciorarse de que todos los pulsos de reloj lleguen al mismo tiempo a todos los puntos del sistema, para que todos los flip-flops se disparan en forma simultánea.</li>
+<li>Hay que controlar el funcionamiento del registro con las entradas D, en vez de controlar el reloj en las entradas C de los flip-flops.</li>
+<li>La entrada de carga del registro determina la acción que se realizará en cada pulso de reloj.</li>
+<li>Si la entrada de carga es 1, los datos de las cuatro entradas se transfieren al registro en el siguiente borde positivo del reloj.</li>
+<li>Si la entrada de carga es 0, las salidas de los flip-flops se conectan a sus respectivas entradas.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/01f36e97d6.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 6</span></h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La entrada de carga determina si el siguiente pulso va a aceptar nueva información o va a dejar intacta la información que está en el registro.</li>
+<li>La transferencia de información de las entradas de datos o las salidas del registro se efectúa simultáneamente con los cuatro bits, en respuesta a un borde de reloj.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/01f36e97d6.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Registros de Desplazamiento</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un registro capaz de desplazar su información binaria en una dirección o en la otra se llama registro de desplazamiento.</li>
+<li>La configuración lógica de un registro de desplazamiento consiste en una cadena de flip-flops en cascada, con la salida de un flip-flop conectada a la entrada del siguiente flip-flop.</li>
+<li>Todos los flip-flops reciben pulsos de reloj comunes, que activan el desplazamiento de una etapa a la siguiente.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/e1e55a2dad.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Registros de Desplazamiento</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Cada pulso de reloj desplaza el contenido del registro una posición de bit a la derecha. La entrada en serie determina qué sucede en el flip-flop de la extrema izquierda durante el desplazamiento</li>
+<li>El tiempo requerido para transferir N Bits de datos es 2N - 1 ciclos del Reloj</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/e1e55a2dad.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Transferencia en serie</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un sistema digital opera en modo en serie cuando la información se transfiere y manipula bit por bit.</li>
+<li>La información se transfiere bit por bit desplazando los bits del registro de origen hacia el registro de destino.</li>
+<li>La transferencia en serie de información del registro A al registro B se efectúa con registros de desplazamiento,</li>
+<li>La salida en serie (SO) del registro A se conecta a la entrada en serie (SI) del registro B.</li>
+<li>Para evitar la pérdida de información almacenada en el registro de origen, se hace que la información del registro A circule conectando la salida en serie con la entrada en serie.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/e9602fc4a3.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Transferencia en serie</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-14-registros-contadores/603b7f56de.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-14-registros-contadores/4499b0c746.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Suma en Serie</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Los dos números binarios que se sumarán en serie se almacenan en dos registros de desplazamiento.</li>
+<li>Los bits se suman par por par utilizando un solo circuito de sumador completo (SC)</li>
+<li>El acarreo de salida del sumador completo se transfiere a un flip-flop D. La salida de este flip-flop se utiliza entonces como acarreo de entrada para el siguiente par de bits significativos.</li>
+<li>El bit de suma de la salida S del sumador completo podría transferirse a un tercer registro de desplazamiento</li>
+<li>Al desplazar la suma a A mientras se desplazan hacia afuera los bits de A, es posible utilizar un solo registro para almacenar los bits tanto de un sumando como de la suma</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/7988bb55b2.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Contadores</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un registro que pasa por una sucesión prescrita de estados cuando se aplican pulsos de entrada se denomina contador.</li>
+<li>Los pulsos de entrada podrían ser pulsos de reloj u originarse en alguna fuente externa, y podrían presentarse a intervalos fijos de tiempo o al azar.</li>
+<li>La sucesión de estados podría seguir la sucesión numérica binaria o cualquier otro orden.</li>
+<li>Un contador que sigue la sucesión numérica binaria es un contador binario. Un contador binario de n bits consiste en n flip-flops y puede contar en binario desde 0 hasta 2n-1.</li>
+<li>Los contadores se dividen en dos categorías: contadores de rizo y contadores sincrónicos.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Contador de rizo</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La transición de salida del flip-flop sirve como disparador de otros flip-flops. Dicho de otro modo, la entrada C de algunos flip-flops, o de todos, se dispara, no con los pulsos del reloj común, sino con la transición que se da en otras salidas de flip-flop.</li>
+<li>En un contador sincrónico, las salidas C de todos los flip-flops reciben el reloj común</li>
+<li>El flip-flop que contiene el bit menos significativo recibe los pulsos de conteo que llegan.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/2058520fa1.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Contador de rizo 2 - bits UP</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/f0ab4117f5.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s14" style="--reveal-delay: 0.65s;">
+    <div class="slide-head"><h2>Contador de rizo 2 - bits DOWN</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/893b44596e.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s15" style="--reveal-delay: 0.70s;">
+    <div class="slide-head"><h2>Contador de 3 Bit</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-14-registros-contadores/df4850133c.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-4-logica-secuencial/clase-13-flip-flops.html"><span class="lbl">← Anterior</span>Flip-Flops JK, Configuración Maestro-Esclavo</a>
+    <a class="next" href="../unidad-4-logica-secuencial/clase-15-analisis-secuencial.html"><span class="lbl">Siguiente →</span>Análisis y Procedimiento de Diseño de Circuitos Secuenciales</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

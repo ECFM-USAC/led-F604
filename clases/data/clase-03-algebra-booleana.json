@@ -1,0 +1,592 @@
+{
+ "slug": "clase-03-algebra-booleana",
+ "source": "Clase 3.pptx",
+ "slide_range": [
+  1,
+  21
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Algebra booleana y compuertas lógicas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Definiciones básicas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un álgebra booleana de dos valores se define sobre un conjunto de dos elementos, B={1, 0},"
+      },
+      {
+       "level": 0,
+       "text": "con las reglas para los dos operadores binarios: AND(*) y OR(+)."
+      },
+      {
+       "level": 0,
+       "text": "También existe el operador complemento."
+      },
+      {
+       "level": 0,
+       "text": "La precedencia de operadores para evaluar expresiones booleanas es"
+      },
+      {
+       "level": 0,
+       "text": "1) paréntesis, 2) NOT, 3) AND y 4) OR"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "5bd5f52a41.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Definiciones básicas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "- Literal: una variable booleana o su complemento."
+      },
+      {
+       "level": 0,
+       "text": "x, x'"
+      },
+      {
+       "level": 0,
+       "text": "- Término: combinación de literales con la operación AND."
+      },
+      {
+       "level": 0,
+       "text": "x⋅y⋅z'"
+      },
+      {
+       "level": 0,
+       "text": "Expresión: combinación de términos unidos con OR."
+      },
+      {
+       "level": 0,
+       "text": "x⋅y + x⋅z'"
+      },
+      {
+       "level": 0,
+       "text": "Estos conceptos son la base de las expresiones booleanas usadas para representar funciones lógicas."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Definiciones básicas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Una tabla de verdad es una lista de combinaciones de unos y ceros asignados a las variables binarias y una columna que muestra el valor de la función para cada combinación binaria."
+      },
+      {
+       "level": 0,
+       "text": "El número de filas de la tabla es 2n, donde n es el número de variables de la función"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "3c91d9aa62.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Teoremas y propiedades básicos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Conmutativa, Asociativa, Distributiva, Leyes de De Morgan."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "5bd5f52a41.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Teoremas y propiedades básicos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Ley Conmutativa:"
+      },
+      {
+       "level": 0,
+       "text": "El orden de los operandos no afecta el resultado.A+B=B+A"
+      },
+      {
+       "level": 0,
+       "text": "A⋅B=B⋅A"
+      },
+      {
+       "level": 0,
+       "text": "Ley Asociativa"
+      },
+      {
+       "level": 0,
+       "text": "El agrupamiento de los operandos no altera el resultado."
+      },
+      {
+       "level": 0,
+       "text": "A+(B+C)=(A+B)+C"
+      },
+      {
+       "level": 0,
+       "text": "A⋅(B⋅C)=(A⋅B)⋅C"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Teoremas y propiedades básicos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Ley Distributiva:"
+      },
+      {
+       "level": 0,
+       "text": "Una variable puede \"distribuirse\" sobre una operación entre otras dos."
+      },
+      {
+       "level": 0,
+       "text": "A⋅(B+C)=A⋅B+A⋅C"
+      },
+      {
+       "level": 0,
+       "text": "A+(B⋅C)=(A+B)⋅(A+C)"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Teoremas y propiedades básicos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Ley Distributiva:"
+      },
+      {
+       "level": 0,
+       "text": "x ⋅(y+z)=(x ⋅y)+(x ⋅z)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "21de59452b.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Teoremas y propiedades básicos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Ley de Absorción"
+      },
+      {
+       "level": 0,
+       "text": "Ciertas combinaciones de operaciones se \"absorben\" y simplifican."
+      },
+      {
+       "level": 0,
+       "text": "A+A⋅B=A"
+      },
+      {
+       "level": 0,
+       "text": "A⋅(A+B)=A"
+      },
+      {
+       "level": 0,
+       "text": "Teoremas de DeMorgan"
+      },
+      {
+       "level": 0,
+       "text": "Permiten transformar expresiones negadas:"
+      },
+      {
+       "level": 0,
+       "text": "(A * B)' = A' + B'"
+      },
+      {
+       "level": 0,
+       "text": "(A + B)' = A' * B'"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Teoremas y propiedades básicos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Teoremas de DeMorgan"
+      },
+      {
+       "level": 0,
+       "text": "(A ⋅ B)' = A' + B'"
+      },
+      {
+       "level": 0,
+       "text": "(A + B)' = A' ⋅ B'"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "7effedae32.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Dualidad",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "El principio de dualidad  establece que toda expresión algebraica que pueda deducirse de los postulados del álgebra booleana y seguirá siendo válida si se intercambian los operadores y los elementos de identidad."
+      },
+      {
+       "level": 0,
+       "text": "En un álgebra booleana de dos valores, los elementos de identidad y los elementos del conjunto, B, son los mismos: 1 y 0."
+      },
+      {
+       "level": 0,
+       "text": "El principio de dualidad tiene muchas aplicaciones. Si queremos el dual de una expresión algebraica, simplemente intercambiamos los operadores OR y AND y sustituimos los unos por ceros y los ceros por unos."
+      },
+      {
+       "level": 0,
+       "text": "X + X = X"
+      },
+      {
+       "level": 0,
+       "text": "X ⋅ X = X"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Teoremas y propiedades básicos",
+   "body": [],
+   "images": [
+    "1672f599c2.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "Teoremas y propiedades básicos",
+   "body": [],
+   "images": [
+    "b8e729841f.png",
+    "1672f599c2.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Teoremas y propiedades básicos",
+   "body": [],
+   "images": [
+    "d9e65eca55.png",
+    "1672f599c2.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 15,
+   "title": "Teoremas y propiedades básicos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "El teorema 1b) es el dual del teorema 1a) y que cada uno de los pasos de la demostración en la parte b) es el dual de la parte a). Cualquier teorema dual se puede deducir de forma similar, partiendo de la demostración de su par correspondiente."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "1838a05953.png",
+    "a1be7a81cd.png",
+    "6076837796.png",
+    "f2fb77dc38.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 16,
+   "title": "Ley del Consenso",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La Ley del Consenso permite eliminar términos redundantes en expresiones booleanas."
+      },
+      {
+       "level": 0,
+       "text": "AB+BC+C’A=AB+C’A"
+      },
+      {
+       "level": 0,
+       "text": "Demostración:"
+      },
+      {
+       "level": 0,
+       "text": "=AB+C’A+BC⋅1"
+      },
+      {
+       "level": 0,
+       "text": "=AB+C’A+BC(A+A’)"
+      },
+      {
+       "level": 0,
+       "text": "=AB+C’A+BCA+BCA’"
+      },
+      {
+       "level": 0,
+       "text": "=AB(1+C)+C’A(1+B)"
+      },
+      {
+       "level": 0,
+       "text": "=AB+C’A"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 17,
+   "title": "Funciones booleanas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Una función booleana descrita por una expresión algebraica consta de variables binarias, las constantes 0 y 1, y los símbolos lógicos de operación."
+      },
+      {
+       "level": 0,
+       "text": "F1 = x + y⋅z"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "3dd64f81de.png",
+    "d6e36b8e82.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 18,
+   "title": "Funciones booleanas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Una función booleana se puede transformar de una expresión algebraica a un diagrama de circuitos hecho con compuertas lógicas."
+      },
+      {
+       "level": 0,
+       "text": "En los diagramas de circuitos lógicos, las variables de la función son las entradas del circuito, y la variable binaria F es la salida del circuito."
+      },
+      {
+       "level": 0,
+       "text": "Sólo hay una forma de representar una función booleana en una tabla de verdad, en cambio, cuando la función está en forma algebraica, puede expresarse de varias maneras. La expresión específica empleada para designar la función también determinará la interconexión de compuertas en el diagrama de circuito lógico."
+      },
+      {
+       "level": 0,
+       "text": "Manipulando una expresión booleana según las reglas del álgebra booleana, a veces es posible obtener una expresión más simple para la misma función y así reducir el número de compuertas del circuito y el número de entradas de las compuertas"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "d6e36b8e82.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 19,
+   "title": "Funciones booleanas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "F2 = x’y’z + x’yz + xy’"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "74375d5cee.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 20,
+   "title": "Funciones booleanas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "F2 = x’y’z + x’yz + xy’ = x’z(y + ’y) + xy’ = x’z + xy’"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "F2 = x’y’z + x’yz + xy’"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "F2 = x’z + xy’"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "62695c792f.png",
+    "772b524bf3.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 21,
+   "title": "Hoja de trabajo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Validar que la tabla de verdad para"
+      },
+      {
+       "level": 0,
+       "text": "F2 = x’y’z + x’yz + xy’"
+      },
+      {
+       "level": 0,
+       "text": "F2  = x’z + xy’"
+      },
+      {
+       "level": 0,
+       "text": "Simplificar las siguientes funciones"
+      },
+      {
+       "level": 0,
+       "text": "x(x’+y)"
+      },
+      {
+       "level": 0,
+       "text": "x+x’y"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  }
+ ]
+}

@@ -1,0 +1,137 @@
+{
+ "slug": "clase-12-latches",
+ "source": "Clase 12.pptx",
+ "slide_range": [
+  1,
+  9
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Lógica Secuencial",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Lógica Secuencial",
+   "body": [],
+   "images": [
+    "2820c5e6b0.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Elementos de Memoria",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Elementos base de los circuitos secuenciales:"
+      },
+      {
+       "level": 0,
+       "text": "Latches"
+      },
+      {
+       "level": 0,
+       "text": "Flip Flops"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "af352a66fe.png",
+    "85e92cdefe.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Tipos de Latches",
+   "body": [],
+   "images": [
+    "8c2df65c83.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Latches SR",
+   "body": [],
+   "images": [
+    "d02eab57c9.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Latches SR (nand)",
+   "body": [],
+   "images": [
+    "764a40b5bd.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Latch SR con entrada de control",
+   "body": [],
+   "images": [
+    "c1f6494d71.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Latch D",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Una forma de eliminar la condición indeseable del estado indeterminado en el latch SR es garantizar que las entradas S y R nunca sean 1 al mismo tiempo"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "a817310b43.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Reloj",
+   "body": [],
+   "images": [
+    "77bc6b509b.png",
+    "67276d617c.png",
+    "32d1383639.png",
+    "06c1566f80.png",
+    "2edff57d17.png",
+    "6cedcf9f9c.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

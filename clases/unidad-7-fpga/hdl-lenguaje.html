@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lenguaje de Descripción de Hardware (HDL) y Verilog — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u7); --u-soft: var(--u7-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-7">Introducción a FPGA</a><span class="sep">/</span>
+      Lenguaje de Descripción de Hardware (HDL) y Verilog
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 7 · Introducción a FPGA</div>
+    <h1>Lenguaje de Descripción de Hardware (HDL) y Verilog</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Hardware Description Language (HDL)</a></li>
+      <li><a href="#s2">HDL Simulación lógica</a></li>
+      <li><a href="#s3">HDL Síntesis lógica</a></li>
+      <li><a href="#s4">Verilog</a></li>
+      <li><a href="#s5">Diapositiva 6</a></li>
+      <li><a href="#s6">Expresiones Booleanas</a></li>
+      <li><a href="#s7">Hoja de Trabajo</a></li>
+      <li><a href="#s8">Diapositiva 9</a></li>
+      <li><a href="#s9">Tarea 3</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Hardware Description Language (HDL)</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Describen el hardware de los sistemas digitales en forma textual</li>
+<li>Representan diagramas lógicos, expresiones booleanas y otros circuitos digitales más complejos</li>
+<li>Hay dos aplicaciones del procesamiento de HDL: simulación y síntesis</li>
+<li>Hay muchos HDL exclusivos en la industria, desarrollados por empresas que diseñan o ayudan a diseñar circuitos integrados. El IEEE (apoya dos HDL estándar: VHDL y Verilog HDL.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>HDL Simulación lógica</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Es la representación de la estructura y el comportamiento de un sistema lógico digital empleando una computadora.</li>
+<li>El simulador interpreta la descripción en HDL y produce una salida comprensible, digamos un diagrama de temporización, que predice la forma en que se comportará el hardware antes de que se fabrique físicamente.</li>
+<li>La simulación permite detectar errores funcionales de un diseño sin tener que crear el circuito físico.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/hdl-lenguaje/d0ab4ec1e7.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>HDL Síntesis lógica</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La síntesis lógica es el proceso de deducir una lista de componentes y sus interconexiones (lo que se conoce como lista del circuito) a partir del modelo de un sistema digital descrito en HDL.</li>
+<li>La lista del circuito en el nivel de compuertas sirve para fabricar un circuito integrado o</li>
+<li>para diagramar una tarjeta de circuitos impresos.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/hdl-lenguaje/fc9e0866d8.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Verilog</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Verilog utiliza cerca de 100 palabras clave: identificadores predefinidos, en minúsculas, que definen las construcciones del lenguaje.</li>
+<li>Como ejemplos de palabras clave podemos citar module, endmodule, input, output, wire, and, or, not.</li>
+<li>Declaramos un módulo con la palabra clave module y marcamos su final con la palabra clave endmodule</li>
+<li>Los identificadores son nombres que se dan a las variables para poder referirse a ellas en el diseño. Constan de caracteres alfanuméricos y el carácter de subraya (_), y hay distinción entre mayúsculas y minúsculas. Los identificadores deben iniciar con un carácter alfabético o subraya; no pueden iniciar con un número</li>
+<li>Las conexiones internas se declaran como alambres. El circuito tiene una conexión interna en la terminal e, la cual se declara con la palabra clave wire.</li>
+<li>La estructura del circuito se especifica empleando las compuertas primitivas predefinidas como palabras clave.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 6</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/hdl-lenguaje/b3277cdfe5.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Expresiones Booleanas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Las expresiones booleanas se especifican en Verilog HDL con un enunciado de asignación continuo que consiste en la palabra clave assign seguida de una expresión booleana.</li>
+<li>Para distinguir el más aritmético del OR lógico, Verilog HDL usa los símbolos:</li>
+<ul>
+<li>&amp;  para AND</li>
+<li>|   para OR</li>
+<li>~  para NOT (complemento)</li>
+</ul>
+</ul>
+<pre class="code-block">assign x = (A &amp; B) | ~C);</pre>
+      <div class="slide-images single"><figure><img src="../img/hdl-lenguaje/0256b1b913.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Hoja de Trabajo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/hdl-lenguaje/e53fa52feb.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 9</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/hdl-lenguaje/5d58c980ba.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/hdl-lenguaje/e53fa52feb.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Tarea 3</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Implementar en Verilog un sumador completo.</li>
+<li>Realizar el circuito de un sumador binario de 4 bits, como en el gráfico.</li>
+<li>En verilog utilizar expresiones booleanas.</li>
+<li>Se debe relizar en https://circuitverse.org/</li>
+<li>En la sección de test bench realizar un test con los valores de la suma en esta diapositiva.</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/hdl-lenguaje/d28e522660.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/hdl-lenguaje/4e53b39c09.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/hdl-lenguaje/c970f680e4.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/hdl-lenguaje/dd6d7bb42d.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-7-fpga/clase-11b-hdl-psoc.html"><span class="lbl">← Anterior</span>HDL y Diseño con PSoC (Charla invitada — Cristian Sisterna, ICTP-MLAB)</a>
+    
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

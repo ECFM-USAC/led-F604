@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multiplexores y Funciones Booleanas — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u3); --u-soft: var(--u3-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-3">Lógica Combinacional</a><span class="sep">/</span>
+      Multiplexores y Funciones Booleanas
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 3 · Lógica Combinacional</div>
+    <h1>Multiplexores y Funciones Booleanas</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Multiplexores</a></li>
+      <li><a href="#s2">Multiplexores</a></li>
+      <li><a href="#s3">Diapositiva 4</a></li>
+      <li><a href="#s4">Multiplexor y funciones booleanas</a></li>
+      <li><a href="#s5">Diapositiva 6</a></li>
+      <li><a href="#s6">Multiplexor</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Multiplexores</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un multiplexor es un circuito combinacional que selecciona información binaria de una de muchas líneas de entrada y la envía a una sola línea de salida.</li>
+<li>La selección de una línea de entrada dada se controla con un conjunto de líneas de selección.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-11a-multiplexores/0675131aac.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Multiplexores</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-11a-multiplexores/a983df4ef6.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 4</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-11a-multiplexores/ddc5aa9368.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Multiplexor y funciones booleanas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un multiplexor es básicamente es un decodificador con una compuerta OR incluida en la unidad</li>
+<li>Los minitérminos individuales se pueden seleccionar con las entradas de datos.</li>
+<li>Esto ofrece un método para implementar una función booleana de n variables con un multiplexor que tiene n entradas de selección y 2n entradas de datos, una para cada minitérmino.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 6</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-11a-multiplexores/4fc596c1e1.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-11a-multiplexores/d7fe8c6911.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Multiplexor</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-11a-multiplexores/35405f3197.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-3-logica-combinacional/clase-10-decodificadores.html"><span class="lbl">← Anterior</span>Suma BCD, Decodificadores y Codificadores</a>
+    <a class="next" href="../unidad-4-logica-secuencial/clase-11c-intro-secuencial.html"><span class="lbl">Siguiente →</span>Introducción a la Lógica Secuencial</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

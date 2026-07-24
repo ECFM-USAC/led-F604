@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suma BCD, Decodificadores y Codificadores — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u3); --u-soft: var(--u3-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-3">Lógica Combinacional</a><span class="sep">/</span>
+      Suma BCD, Decodificadores y Codificadores
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 3 · Lógica Combinacional</div>
+    <h1>Suma BCD, Decodificadores y Codificadores</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Desbordamiento</a></li>
+      <li><a href="#s2">Desbordamiento</a></li>
+      <li><a href="#s3">Sumador BCD</a></li>
+      <li><a href="#s4">Suma BCD</a></li>
+      <li><a href="#s5">Sumador BCD</a></li>
+      <li><a href="#s6">Sumador BCD</a></li>
+      <li><a href="#s7">Multiplicador Binario</a></li>
+      <li><a href="#s8">Multiplicador Binario  4 x 3 bits</a></li>
+      <li><a href="#s9">Decodificador</a></li>
+      <li><a href="#s10">Diapositiva 11</a></li>
+      <li><a href="#s11">Decodificador</a></li>
+      <li><a href="#s12">Decodificador en lógica combinacional</a></li>
+      <li><a href="#s13">Decodificador</a></li>
+      <li><a href="#s14">Aplicación decodificador</a></li>
+      <li><a href="#s15">Codificador</a></li>
+      <li><a href="#s16">Codificador</a></li>
+      <li><a href="#s17">Codificador</a></li>
+      <li><a href="#s18">Codificador con Prioridad</a></li>
+      <li><a href="#s19">Codificador con Prioridad</a></li>
+      <li><a href="#s20">Multiplexores</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Desbordamiento</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Cuando dos números de n dígitos cada uno se suman y la suma ocupa n+1 dígitos, decimos que hubo un desbordamiento. Esto se cumple con los números binarios y decimales, con y sin signo.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Desbordamiento</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Si se considera que los números tienen signo, el bit V detectará un desbordamiento.</li>
+<li>Si V=0 después de una suma o resta, querrá decir que no hubo desbordamiento y que el resultado de n bits es correcto.</li>
+<li>Si V=1, el resultado de la operación tiene n+1 bits,</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/e9e8222594.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Sumador BCD</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/1f50e445a0.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Suma BCD</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Suma los dígitos BCD como si fueran números binarios de 4 bits</li>
+<ul>
+<li>Haz una suma binaria normal entre cada grupo de 4 bits (dígitos decimales).</li>
+</ul>
+<li>Verifica si el resultado es un número decimal válido (0–9)</li>
+<ul>
+<li>Si el resultado es menor o igual a 9 (es decir, ≤ 1001), no necesitas corrección.</li>
+<li>Si el resultado es mayor a 9 (es decir, &gt; 1001) o hay acarreo, necesitas corregir.</li>
+</ul>
+<li>Corrige sumando 6 (0110)</li>
+<ul>
+<li>Si el resultado es inválido (por ser &gt;9), súmale 0110 (decimal 6) al grupo de 4 bits.</li>
+<li>Esto genera un acarreo que se suma al siguiente dígito decimal en la suma.</li>
+</ul>
+<li>Propaga el acarreo al siguiente dígito si es necesario</li>
+<ul>
+<li>Aplica el mismo proceso para los dígitos siguientes.</li>
+</ul>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/e3007273c9.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Sumador BCD</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/a94375c0ad.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Sumador BCD</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/6641c80643.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Multiplicador Binario</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/66377789cd.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Multiplicador Binario  4 x 3 bits</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/dfbe3a1bf8.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Decodificador</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un código binario de n bits puede representar hasta 2n elementos distintos de información codificada.</li>
+<li>Un decodificador es un circuito combinacional que convierte información binaria de n líneas de entrada a un máximo de 2n líneas de salida distintas.</li>
+<li>Si la información codificada en n bits tiene combinaciones que no se usan, el decodificador podría tener menos de 2n salidas.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 11</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/8238a44ba1.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Decodificador</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Decodificador de 2 a 4 líneas con entrada habilitadora</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/6f8d88a60a.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Decodificador en lógica combinacional</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un decodificador produce los 2n minitérminos de n variables de entrada. Puesto que cualquier función booleana es susceptible de expresarse como suma de minitérminos, es posible utilizar un decodificador para generar los minitérminos y una compuerta OR externa para formar la suma lógica.</li>
+<li>De la tabla de verdad del sumador completo , obtenemos las funciones para el circuito combinacional en forma de suma de minitérminos:</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/f574c4b651.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Decodificador</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Implementación de un sumador con un decodificador</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-10-decodificadores/3e5ecdaf7e.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-10-decodificadores/eac725f54d.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s14" style="--reveal-delay: 0.65s;">
+    <div class="slide-head"><h2>Aplicación decodificador</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/cb1c04df87.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s15" style="--reveal-delay: 0.70s;">
+    <div class="slide-head"><h2>Codificador</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un codificador es un circuito digital que efectúa la operación inversa de la que efectúa un decodificador.</li>
+<li>El codificador tiene 2n (o menos) líneas de entrada y n líneas de salida.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s16" style="--reveal-delay: 0.75s;">
+    <div class="slide-head"><h2>Codificador</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Codificador de octal a binario</li>
+<li>Tiene ocho entradas (una para cada uno de los dígitos octales) y tres salidas que generan el número binario correspondiente</li>
+<li>El codificador se puede implementar con compuertas OR cuyas salidas se determinan directamente de la tabla de verdad</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/2ea9b47abb.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s17" style="--reveal-delay: 0.80s;">
+    <div class="slide-head"><h2>Codificador</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La salida z es 1 cuando el dígito octal de entrada es 1, 3, 5 o 7.</li>
+<li>La salida y es 1 para los dígitos octales 2, 3, 6 o 7,</li>
+<li>La salida x es 1 para los dígitos 4, 5, 6 o 7. Estas condiciones se expresan con las funciones booleanas de salida siguientes:</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/4361a1ff69.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s18" style="--reveal-delay: 0.85s;">
+    <div class="slide-head"><h2>Codificador con Prioridad</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un codificador con prioridad es un circuito codificador que incluye la función de prioridad.</li>
+<li>Su funcionamiento es tal que, si dos o más entradas son 1 al mismo tiempo, la salida prioritaria tendrá precedencia</li>
+<li>Además de las dos salidas, x y y, el circuito tiene una tercera salida designada V</li>
+<li>V es un indicador de bit válido que adquiere el valor 1 cuando una o más entradas son 1.</li>
+<li>Si todas las entradas son 0, la entrada no será válida y V será 0</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s19" style="--reveal-delay: 0.90s;">
+    <div class="slide-head"><h2>Codificador con Prioridad</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-10-decodificadores/578c6edcf4.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-10-decodificadores/3cd835a5e5.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s20" style="--reveal-delay: 0.95s;">
+    <div class="slide-head"><h2>Multiplexores</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un multiplexor es un circuito combinacional que selecciona información binaria de una de muchas líneas de entrada y la envía a una sola línea de salida.</li>
+<li>La selección de una línea de entrada dada se controla con un conjunto de líneas de selección.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-10-decodificadores/0675131aac.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-3-logica-combinacional/clase-09-restador-binario.html"><span class="lbl">← Anterior</span>Complementos y Restador Binario</a>
+    <a class="next" href="../unidad-3-logica-combinacional/clase-11a-multiplexores.html"><span class="lbl">Siguiente →</span>Multiplexores y Funciones Booleanas</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

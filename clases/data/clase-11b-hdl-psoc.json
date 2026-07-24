@@ -1,0 +1,278 @@
+{
+ "slug": "clase-11b-hdl-psoc",
+ "source": "Clase 11.pptx",
+ "slide_range": [
+  8,
+  21
+ ],
+ "slides": [
+  {
+   "num": 8,
+   "title": "HDL para Circuitos Combinacionales",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "• Modelado en el nivel de compuertas creando ejemplares de compuertas primitivas y módulos definidos por el usuario."
+      },
+      {
+       "level": 0,
+       "text": "• Modelado de flujo de datos empleando enunciados de asignación continua con la palabra clave assign."
+      },
+      {
+       "level": 0,
+       "text": "• Modelado de comportamiento utilizando enunciados de asignación procedimentales conla palabra clave always."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": null,
+   "body": [],
+   "images": [
+    "f46d6bc745.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Hoja de Trabajo",
+   "body": [],
+   "images": [
+    "aac0e878d0.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Caso de Uso",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Design Methodology for"
+      },
+      {
+       "level": 0,
+       "text": "Programable Systems on Chip (PSoC)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "8a25fc20a8.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Design Methodology for"
+      },
+      {
+       "level": 0,
+       "text": "Programable Systems on Chip (PSoC)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "7177471edd.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Design Methodology for"
+      },
+      {
+       "level": 0,
+       "text": "Programable Systems on Chip (PSoC)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "7031103d6f.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Design Methodology for"
+      },
+      {
+       "level": 0,
+       "text": "Programable Systems on Chip (PSoC)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "c63790bf04.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 15,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Hardware Description Language (HDL) for Reconfigurable Instrumentation"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "2d335f1fc7.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 16,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Hardware Description Language (HDL) for Reconfigurable Instrumentation"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "5953eb253e.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 17,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Hardware Description Language (HDL) for Reconfigurable Instrumentation"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "0a59ff5004.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 18,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Hardware Description Language (HDL) for Reconfigurable Instrumentation"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "5fa5dce612.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 19,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Hardware Description Language (HDL) for Reconfigurable Instrumentation"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "669557a046.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 20,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Hardware Description Language (HDL) for Reconfigurable Instrumentation"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "96a9659ee0.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 21,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cristian Sisterna Senior Associate , ICTP - MLAB, Hardware Description Language (HDL) for Reconfigurable Instrumentation"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "4cf5787e92.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

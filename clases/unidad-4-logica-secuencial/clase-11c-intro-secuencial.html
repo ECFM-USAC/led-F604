@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introducción a la Lógica Secuencial — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u4); --u-soft: var(--u4-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-4">Lógica Secuencial</a><span class="sep">/</span>
+      Introducción a la Lógica Secuencial
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 4 · Lógica Secuencial</div>
+    <h1>Introducción a la Lógica Secuencial</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Lógica Secuencial</a></li>
+      <li><a href="#s2">Lógica Secuencial</a></li>
+      <li><a href="#s3">Lógica Secuencial - Circuitos Asincrónico</a></li>
+      <li><a href="#s4">Lógica Secuencial - Circuitos Sincronico</a></li>
+      <li><a href="#s5">Diapositiva 26</a></li>
+      <li><a href="#s6">Diapositiva 27</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Lógica Secuencial</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>En la práctica los sistemas digitales también incluyen elementos de almacenamiento, que requieren que el sistema se describa en términos de lógica secuencial.</li>
+<li>Un circuito secuencial consiste en un circuito combinacional al que se conectan elementos de almacenamiento para formar una trayectoria de retroalimentación.</li>
+<li>Los elementos de almacenamiento son dispositivos capaces de guardar información binaria. La información almacenada en estos elementos en cualquier momento dado define el estado del circuito secuencial en ese momento.</li>
+<li>El circuito secuencial recibe información binaria de entradas externas. Esas entradas, junto con el estado actual de los elementos de almacenamiento, determinan el valor binario de las salidas</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-11c-intro-secuencial/6ae9031813.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Lógica Secuencial</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Hay dos tipos principales de circuitos secuenciales, y su clasificación depende de los tiempos de sus señales. Un circuito secuencial sincrónico es un sistema cuyo comportamiento se define conociendo sus señales en instantes discretos.</li>
+<li>El comportamiento de un circuito secuencial asincrónico depende de las señales de entrada en cualquier instante dado y del orden en que cambian las entradas.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Lógica Secuencial - Circuitos Asincrónico</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Los elementos de almacenamiento que suelen usarse en los circuitos secuenciales asincrónicos son dispositivos de retardo de tiempo. La capacidad de almacenamiento de un dispositivo de retardo de tiempo se debe al tiempo que la señal tarda en propagarse por el dispositivo.</li>
+<li>En la práctica, el retardo interno de propagación de las compuertas lógicas tiene la suficiente duración como para producir el retardo requerido, de modo que podrían no ser necesarias unidades de retardo adicionales.</li>
+<li>En los sistemas asincrónicos tipo compuerta, los elementos de almacenamiento consisten en compuertas lógicas cuyo retardo de propagación hace posible el almacenamiento requerido.</li>
+<li>Un circuito secuencial asincrónico podría considerarse como un circuito combinacional con retroalimentación. Gracias a la retroalimentación entre compuertas lógicas, el circuito secuencial asincrónico podría volverse inestable ocasionalmente. El problema de inestabilidad impone muchas dificultades al diseñador.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Lógica Secuencial - Circuitos Sincronico</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un circuito secuencial sincrónico utiliza señales que afectan a los elementos de almacenamiento únicamente en instantes discretos.</li>
+<li>La sincronización se logra con un dispositivo de temporización llamado generador de reloj, el cual produce un tren periódico de pulsos de reloj.</li>
+<li>Los pulsos de reloj se distribuyen por todo el sistema de modo que los elementos de almacenamiento sólo se vean afectados al llegar cada pulso.</li>
+<li>En la práctica, los pulsos de reloj se aplican con otras señales que especifican el cambio requerido en los elementos de almacenamiento.</li>
+<li>Los circuitos secuenciales sincrónicos que usan pulsos de reloj en las entradas de sus elementos de almacenamiento se denominan circuitos secuenciales con reloj, y son el tipo que se usa más comúnmente en la práctica. Casi nunca manifiestan problemas de estabilidad y es fácil dividir su temporización en pasos discretos independientes, cada uno de los cuales se puede considerar por separado.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 26</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-11c-intro-secuencial/e67111a2ad.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 27</span></h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Los elementos de almacenamiento empleados en los circuitos secuenciales con reloj se llaman flip-flops.</li>
+<li>Un flip-flop es un dispositivo binario de almacenamiento que puede almacenar un bit de información.</li>
+<li>Los flip-flops reciben sus entradas del circuito combinacional y también de una señal de reloj cuyos pulsos se presentan a intervalos fijos de tiempo,</li>
+<li>El estado del flip-flop sólo puede cambiar durante una transición de pulso de reloj.</li>
+<li>Cuando el pulso de reloj no está activo, el ciclo de retroalimentación se rompe porque las salidas del flip-flop no pueden cambiar aunque cambie el valor de las salidas del circuito combinacional que alimenta sus entradas.</li>
+<li>Por tanto, la transición de un estado al siguiente se da únicamente a intervalos de tiempo preestablecidos, dictados por los pulsos de reloj.</li>
+</ul>
+<ul>
+<li>Lógica Secuencial - Flip-Flops</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-11c-intro-secuencial/af352a66fe.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-3-logica-combinacional/clase-11a-multiplexores.html"><span class="lbl">← Anterior</span>Multiplexores y Funciones Booleanas</a>
+    <a class="next" href="../unidad-4-logica-secuencial/clase-12-latches.html"><span class="lbl">Siguiente →</span>Elementos de Memoria: Latches SR y D</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

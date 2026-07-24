@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hexadecimal, Códigos Binarios (BCD, Gray, ASCII) y Lógica Binaria — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u1); --u-soft: var(--u1-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-1">Sistemas Binarios</a><span class="sep">/</span>
+      Hexadecimal, Códigos Binarios (BCD, Gray, ASCII) y Lógica Binaria
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 1 · Sistemas Binarios</div>
+    <h1>Hexadecimal, Códigos Binarios (BCD, Gray, ASCII) y Lógica Binaria</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Sistema Hexadecimal</a></li>
+      <li><a href="#s2">Conversión a Hexadecimal</a></li>
+      <li><a href="#s3">Conversión Binario &lt;-&gt; Hexadecimal</a></li>
+      <li><a href="#s4">Convertir de Decimal a Hexadecimal</a></li>
+      <li><a href="#s5">Códigos Binarios</a></li>
+      <li><a href="#s6">Binary-Coded Decimal Code (BCD) o Decimal Codificado en Binario</a></li>
+      <li><a href="#s7">Suma BCD</a></li>
+      <li><a href="#s8">Suma BCD</a></li>
+      <li><a href="#s9">Código Gray</a></li>
+      <li><a href="#s10">Código Gray</a></li>
+      <li><a href="#s11">ASCII</a></li>
+      <li><a href="#s12">ACII</a></li>
+      <li><a href="#s13">ACII</a></li>
+      <li><a href="#s14">Lógica Binaria</a></li>
+      <li><a href="#s15">Lógica Binaria</a></li>
+      <li><a href="#s16">Operaciones Lógicas</a></li>
+      <li><a href="#s17">Ejercicio en Clase</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Sistema Hexadecimal</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Base 16: usa 0-9 y A-F</li>
+<li>1 dígito hexadecimal = 4 bits binarios</li>
+<li>Hex se usa en registros, direcciones y puertos</li>
+<li>Ejemplo: Decimal 175 -&gt; Hex: AF</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-02-codigos-binarios/082c214089.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Conversión a Hexadecimal</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Para convertir a decimal sumamos los dígitos multiplicados por sus pesos correspondientes.</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-02-codigos-binarios/7b77101257.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/acef52f508.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Conversión Binario &lt;-&gt; Hexadecimal</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Hexadecimal a binario: 1 dígito hexadecimal —&gt; 4 bits</li>
+</ul>
+<ul>
+<li>Binario a Hexadecimal: 4 bits —&gt; 1 dígito hexadecimal</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-02-codigos-binarios/376e444a90.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/daa77e924d.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Convertir de Decimal a Hexadecimal</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Número decimal: 254</li>
+<li>Divide entre 16:</li>
+<li>254 ÷ 16 = 15 → residuo 14</li>
+<li>15 en hexadecimal = F</li>
+<li>14 en hexadecimal = E</li>
+<li>254₁₀ = FE</li>
+<li>250 ₁₀ = ????</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Códigos Binarios</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>BCD: Binario por dígito decimal (4 bits)</li>
+<li>Gray: Solo cambia un bit entre números consecutivos</li>
+<li>ASCII: Representa caracteres (7/8 bits)</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Binary-Coded Decimal Code (BCD) o Decimal Codificado en Binario</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Es un sistema de representación de números decimales donde cada dígito decimal (0 a 9) se representa por su equivalente en binario de 4 bits.</li>
+<li>A diferencia del binario puro, BCD no representa todos los números de 0 a 15 con 4 bits, solo del 0 al 9.</li>
+</ul>
+<ul>
+<li>Tabla basada en Mano, M. M. (2003). Diseño digital (3ª ed.). Pearson Educación.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-02-codigos-binarios/fa1883047e.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Suma BCD</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Suma los dígitos BCD como si fueran números binarios de 4 bits</li>
+<ul>
+<li>Haz una suma binaria normal entre cada grupo de 4 bits (dígitos decimales).</li>
+</ul>
+<li>Verifica si el resultado es un número decimal válido (0–9)</li>
+<ul>
+<li>Si el resultado es menor o igual a 9 (es decir, ≤ 1001), no necesitas corrección.</li>
+<li>Si el resultado es mayor a 9 (es decir, &gt; 1001) o hay acarreo, necesitas corregir.</li>
+</ul>
+<li>Corrige sumando 6 (0110)</li>
+<ul>
+<li>Si el resultado es inválido (por ser &gt;9), súmale 0110 (decimal 6) al grupo de 4 bits.</li>
+<li>Esto genera un acarreo que se suma al siguiente dígito decimal en la suma.</li>
+</ul>
+<li>Propaga el acarreo al siguiente dígito si es necesario</li>
+<ul>
+<li>Aplica el mismo proceso para los dígitos siguientes.</li>
+</ul>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-02-codigos-binarios/e3007273c9.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Suma BCD</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-02-codigos-binarios/cec34a1229.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Código Gray</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Es un tipo de código binario en el que dos números consecutivos difieren solo en un bit. Esto lo hace muy útil en aplicaciones donde se desea minimizar errores en la transición entre valores, como en:</li>
+<li>Sensores rotatorios</li>
+<li>Codificadores de posición</li>
+<li>Transmisión de datos digitales</li>
+<li>El código Gray se emplea en aplicaciones en las que la sucesión normal de números binarios podría generar un error o ambigüedad durante la transición de un número al siguiente. Si se usan números binarios, un cambio de 0111 a 1000 podría producir un número intermedio erróneo, como 1001, si el bit de la extrema derecha tarda más en cambiar su valor que los otros tres bits.</li>
+</ul>
+<ul>
+<li>Tabla basada en Mano, M. M. (2003). Diseño digital (3ª ed.). Pearson Educación.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-02-codigos-binarios/4b8bd8265d.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Código Gray</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Pasos para obtener el Código Gray a partir de un número binario:</li>
+<li>Se baja el dígito de la izquierda</li>
+<li>Se hace la suma del primer dígito con el segundo dígito en forma horizontal</li>
+<li>Se hace la suma del segundo dígito con el tercero, etc.</li>
+<li>Los acarreos no se consideran</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-02-codigos-binarios/a7b6f56c49.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/43d384a950.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>ASCII</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Es un estándar de codificación que asigna un valor numérico a cada carácter, número, símbolo o instrucción de control usado en computadoras y dispositivos electrónicos.</li>
+<li>Utiliza 7 bits para representar cada carácter (aunque comúnmente se usa en un byte de 8 bits).</li>
+<li>Puede representar 128 caracteres (del 0 al 127).</li>
+<li>Incluye:</li>
+<ul>
+<li>Letras mayúsculas y minúsculas (A–Z, a–z)</li>
+<li>Dígitos (0–9)</li>
+<li>Signos de puntuación y símbolos especiales</li>
+<li>Caracteres de control (como ENTER, TAB, ESC)</li>
+</ul>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>ACII</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Tabla basada en Mano, M. M. (2003). Diseño digital (3ª ed.). Pearson Educación.</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-02-codigos-binarios/918e856ba9.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/a1ad9789e2.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>ACII</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>ASCII es un código de siete bits, pero casi todas las computadoras manipulan una cantidad de ocho bits como una unidad llamada byte.</li>
+<li>Cuando se desea detectar errores en la comunicación y en el procesamiento de datos, se añade un octavo bit al carácter ASCII para indicar su paridad. El bit de paridad es un bit adicional que se incluye en un mensaje de modo que el número total de unos sea par o impar</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-02-codigos-binarios/01c8eb7081.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s14" style="--reveal-delay: 0.65s;">
+    <div class="slide-head"><h2>Lógica Binaria</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Bloque de construcción básico de los sistemas digitales.</li>
+<li>La lógica binaria consiste en variables binarias y operaciones lógicas</li>
+<li>Las variables se designan con letras del alfabeto, como A, B, C, x, y, z, etcétera, y cada variable tiene dos y sólo dos posibles valores: 1 y 0.</li>
+<li>Hay tres operaciones lógicas básicas: AND, OR y NOT.</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-02-codigos-binarios/50a046b632.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/15efe994fa.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/91a364ff88.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s15" style="--reveal-delay: 0.70s;">
+    <div class="slide-head"><h2>Lógica Binaria</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>AND</h3>
+          <p>Se representa con un punto u omitiendo el operador. Por ejemplo, x·y=z o xy=z se lee “x AND y es igual a z”: z=1 si y sólo si x=1 y y=1; de lo contrario, z=0.</p>
+          <figure><img src="../img/clase-02-codigos-binarios/50a046b632.png" loading="lazy" alt="Compuerta AND"></figure>
+        </div>
+        <div class="compare-item">
+          <h3>OR</h3>
+          <p>Se representa con un signo más. Por ejemplo, x+y=z se lee “x OR y es igual a z”: z=1 si x=1 o si y=1 o si ambas lo son. Si x=0 y y=0, entonces z=0.</p>
+          <figure><img src="../img/clase-02-codigos-binarios/15efe994fa.png" loading="lazy" alt="Compuerta OR"></figure>
+        </div>
+        <div class="compare-item">
+          <h3>NOT</h3>
+          <p>Se representa como x’=z y se lee “no x es igual a z”: z es lo contrario de x. Si x=1, entonces z=0; si x=0, entonces z=1.</p>
+          <figure><img src="../img/clase-02-codigos-binarios/91a364ff88.png" loading="lazy" alt="Compuerta NOT"></figure>
+        </div>
+      </div>
+      <p class="note">Recordemos que x, y y z son variables binarias y sólo pueden valer 1 o 0.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s16" style="--reveal-delay: 0.75s;">
+    <div class="slide-head"><h2>Operaciones Lógicas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Tabla basada en Mano, M. M. (2003). Diseño digital (3ª ed.). Pearson Educación.</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-02-codigos-binarios/ed1356ad63.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/43a162289f.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/4299d1ea8f.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/3e6ae2aae5.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-02-codigos-binarios/13df6f742c.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s17" style="--reveal-delay: 0.80s;">
+    <div class="slide-head"><h2>Ejercicio en Clase</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Convertir de Hexadecimal a Decimal: 1A3</li>
+<li>Convertir de Decimal a Hexadecimal: 745</li>
+<li>Convertir de Binario a Hexadecimal: 1101101011</li>
+<li>Genera la tabla de verdad  para: Y=(A∧B)∨C</li>
+<ul>
+<li>∧  es la compuerta AND</li>
+<li>∨ es la compuerta OR</li>
+</ul>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-02-codigos-binarios/324c012749.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-1-sistemas-binarios/clase-01-sistemas-binarios.html"><span class="lbl">← Anterior</span>Sistemas Decimales y Binarios</a>
+    <a class="next" href="../unidad-2-algebra-booleana/clase-03-algebra-booleana.html"><span class="lbl">Siguiente →</span>Definiciones, Teoremas y Funciones Booleanas</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

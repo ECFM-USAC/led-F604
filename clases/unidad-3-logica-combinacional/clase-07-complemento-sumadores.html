@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complemento de Funciones, NAND/NOR y Semisumador — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u3); --u-soft: var(--u3-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-3">Lógica Combinacional</a><span class="sep">/</span>
+      Complemento de Funciones, NAND/NOR y Semisumador
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 3 · Lógica Combinacional</div>
+    <h1>Complemento de Funciones, NAND/NOR y Semisumador</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Complemento de una función</a></li>
+      <li><a href="#s2">Encontrar el complemento de las funciones: F1=x´yz´+x´y´z F2=x(y´z´+yz) Aplicando el teorema de DeMorgan</a></li>
+      <li><a href="#s3">Diapositiva 4</a></li>
+      <li><a href="#s4">Diapositiva 5</a></li>
+      <li><a href="#s5">a) F’ = AB + CD + BD’ F = (A’ + B’)(C’ + D’)(B’+ D)</a></li>
+      <li><a href="#s6">Implementación con NAND y NOR</a></li>
+      <li><a href="#s7">Lógica Combinacional</a></li>
+      <li><a href="#s8">Procedimiento de diseño</a></li>
+      <li><a href="#s9">Ejemplo</a></li>
+      <li><a href="#s10">Semisumador</a></li>
+      <li><a href="#s11">Sumador Completo</a></li>
+      <li><a href="#s12">Sumador Completo</a></li>
+      <li><a href="#s13">Sumador Completo</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Complemento de una función</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El complemento de una función F es F’ y se obtiene intercambiando ceros por unos y unos por ceros en el valor de F.</li>
+<li>El complemento de una función podría deducirse algebraicamente empleando el teorema de DeMorgan.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Encontrar el complemento de las funciones: F1=x´yz´+x´y´z F2=x(y´z´+yz) Aplicando el teorema de DeMorgan</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-07-complemento-sumadores/25b4de5900.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 4</span></h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Encontrar el complemento de las funciones:</li>
+<li>F1=x´yz´+x´y´z</li>
+<li>F’1. = (x + y’ + z)(x + y + z’)</li>
+<li>F2=x(y´z´+yz)</li>
+<li>F’2. =x’ + (y + z)(y’ + z’)</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 5</span></h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un procedimiento más sencillo para deducir el complemento de una función consiste en obtener el dual de la función y complementar cada literal.</li>
+<li>Este método es consecuencia del teorema generalizado de DeMorgan. Recuerde que el dual de una función se obtiene intercambiando operadores AND y OR, y unos y ceros.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-07-complemento-sumadores/670cc13fa7.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>a) F’ = AB + CD + BD’ F = (A’ + B’)(C’ + D’)(B’+ D)</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-07-complemento-sumadores/068df56c79.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Implementación con NAND y NOR</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-07-complemento-sumadores/ff352ac21c.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Lógica Combinacional</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Los circuitos lógicos para sistemas digitales pueden ser combinacionales o secuenciales.</li>
+<li>Un circuito combinacional consiste en compuertas lógicas cuyas salidas en cualquier momento están determinadas por la combinación actual de entradas.</li>
+<li>Un circuito combinacional realiza una operación que se puede especificar lógicamente con un conjunto de funciones booleanas.</li>
+<li>Los circuitos secuenciales usan elementos de almacenamiento además de compuertas lógicas, y sus salidas son función de las entradas y del estado de los elementos de almacenamiento.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-07-complemento-sumadores/20b1c23e90.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Procedimiento de diseño</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>De las especificaciones del circuito, deduzca el número requerido de entradas y salidas; asigne un símbolo a cada una.</li>
+<li>Deduzca la tabla de verdad que define la relación requerida entre las entradas y las salidas.</li>
+<li>Obtenga las funciones booleanas simplificadas para cada salida en función de las variables de entrada.</li>
+<li>Dibuje el diagrama lógico y verifique que el diseño sea correcto.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Ejemplo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-07-complemento-sumadores/eb35f6f122.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Semisumador</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-07-complemento-sumadores/eb35f6f122.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-07-complemento-sumadores/f7a1a7e258.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-07-complemento-sumadores/395cbf5196.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Sumador Completo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-07-complemento-sumadores/0d0cdbe058.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Sumador Completo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-07-complemento-sumadores/0d0cdbe058.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-07-complemento-sumadores/6fc0b0131c.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Sumador Completo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-07-complemento-sumadores/c8637b20a5.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-2-algebra-booleana/clase-06-mapas-karnaugh-2.html"><span class="lbl">← Anterior</span>Mapas de Karnaugh: 4 y 5 Variables, Condiciones de Indiferencia</a>
+    <a class="next" href="../unidad-3-logica-combinacional/clase-08-sumador-binario.html"><span class="lbl">Siguiente →</span>Sumador Binario y Propagación del Acarreo</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

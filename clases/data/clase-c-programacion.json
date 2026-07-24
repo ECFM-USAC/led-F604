@@ -1,0 +1,707 @@
+{
+ "slug": "clase-c-programacion",
+ "source": "Programación en C.pptx",
+ "slide_range": [
+  1,
+  23
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Programación en C",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Origen y propósito de C",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "C es un lenguaje de programación de propósito general desarrollado junto con UNIX."
+      },
+      {
+       "level": 0,
+       "text": "Aunque está estrechamente ligado a UNIX, es independiente de cualquier sistema operativo o máquina."
+      },
+      {
+       "level": 0,
+       "text": "Inicialmente diseñado para programación de sistemas, también se utiliza con éxito en aplicaciones numéricas, de texto y bases de datos."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Características del lenguaje",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "C se considera un lenguaje de “bajo nivel” porque trabaja directamente con datos básicos como caracteres, números y direcciones de memoria."
+      },
+      {
+       "level": 0,
+       "text": "No incluye operaciones integradas para estructuras complejas ni administración automática de memoria, lo que lo hace simple y eficiente."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Administración de memoria",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "C otorga al programador control total sobre la memoria mediante las funciones malloc() y free()."
+      },
+      {
+       "level": 0,
+       "text": "Esta flexibilidad permite programas eficientes, pero con riesgos como fugas de memoria y fragmentación, problemas que lenguajes modernos (Java, Python) resuelven con recolección automática de basura."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Simplicidad y portabilidad",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "C omite deliberadamente muchas características de alto nivel (como la recolección de basura o la programación paralela) para mantener su velocidad y simplicidad."
+      },
+      {
+       "level": 0,
+       "text": "Gracias a esto, los compiladores son fáciles de construir y los programas escritos en C son altamente portables entre diferentes máquinas."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Eficiencia y UNIX",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Los programas en C son tan eficientes que reemplazan al lenguaje ensamblador en la mayoría de los casos."
+      },
+      {
+       "level": 0,
+       "text": "El sistema operativo UNIX fue escrito casi por completo en C, demostrando su rendimiento y portabilidad en diversas plataformas de hardware."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Introducción al lenguaje C",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La mejor forma de aprender C es escribiendo programas. El clásico primer programa imprime en pantalla el texto:"
+      },
+      {
+       "level": 0,
+       "text": "#include <stdio.h>"
+      },
+      {
+       "level": 0,
+       "text": "main() {"
+      },
+      {
+       "level": 0,
+       "text": "printf(\"hello, world\\n\");"
+      },
+      {
+       "level": 0,
+       "text": "}"
+      },
+      {
+       "level": 0,
+       "text": "Este ejemplo enseña cómo compilar y ejecutar un programa (por ejemplo, con gcc -ansi hello.c y luego ./a.out) y demuestra la estructura básica de un programa en C."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Introducción al lenguaje C",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un programa en C se compone de una o más funciones, siendo main() el punto de inicio obligatorio."
+      },
+      {
+       "level": 0,
+       "text": "Los bloques de código se encierran entre llaves { }, y los paréntesis () se utilizan para definir los argumentos de una función."
+      },
+      {
+       "level": 0,
+       "text": "La función printf() se usa para mostrar texto en la terminal."
+      },
+      {
+       "level": 0,
+       "text": "#include <stdio.h>"
+      },
+      {
+       "level": 0,
+       "text": "main() {"
+      },
+      {
+       "level": 0,
+       "text": "printf(\"hello, world\\n\");"
+      },
+      {
+       "level": 0,
+       "text": "}"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Cadenas y secuencias de escape",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Las cadenas de caracteres se escriben entre comillas dobles \" \". C utiliza secuencias de escape para representar caracteres especiales:"
+      },
+      {
+       "level": 0,
+       "text": "\\n → nueva línea"
+      },
+      {
+       "level": 0,
+       "text": "\\t → tabulación"
+      },
+      {
+       "level": 0,
+       "text": "\\\\ → barra invertida"
+      },
+      {
+       "level": 0,
+       "text": "\\\" → comillas dobles Estas secuencias permiten controlar el formato de salida en pantalla."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Variables y tipos de datos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Antes de usarse, todas las variables deben declararse con su tipo de dato:"
+      },
+      {
+       "level": 0,
+       "text": "int lower, upper, step;"
+      },
+      {
+       "level": 0,
+       "text": "float fahr, celsius;"
+      },
+      {
+       "level": 0,
+       "text": "int representa números enteros."
+      },
+      {
+       "level": 0,
+       "text": "float representa números con decimales. La precisión y tamaño dependen del hardware; por ejemplo, en el PDP-11, un int tiene 16 bits y un float 32 bits."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Ejemplo práctico: Conversión de temperatura",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Crear un programa en C que genere la siguiente tabla de temperaturas en Fahrenheit y las convierta a Celsius usando la fórmula  C=(5/9)(F-32)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "dc0976ae19.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Ejemplo práctico: Conversión de temperatura",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "1. #include <stdio.h> Incluye la biblioteca estándar que contiene la función printf() usada para mostrar texto en pantalla."
+      },
+      {
+       "level": 0,
+       "text": "2. Comentario entre /* ... */ Describe brevemente la función del programa. Los comentarios son ignorados por el compilador."
+      },
+      {
+       "level": 0,
+       "text": "3. Declaración de variables:"
+      },
+      {
+       "level": 0,
+       "text": "int lower, upper, step;"
+      },
+      {
+       "level": 0,
+       "text": "float fahr, celsius;"
+      },
+      {
+       "level": 0,
+       "text": "int: números enteros (valores sin decimales)."
+      },
+      {
+       "level": 0,
+       "text": "float: números con decimales. Las variables deben declararse antes de usarse."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "a2b9a13fff.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "Ejemplo práctico: Conversión de temperatura",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "4. Asignaciones iniciales:"
+      },
+      {
+       "level": 0,
+       "text": "lower = 0;      // Límite inferior"
+      },
+      {
+       "level": 0,
+       "text": "upper = 300;    // Límite superior"
+      },
+      {
+       "level": 0,
+       "text": "step = 20;      // Incremento entre mediciones"
+      },
+      {
+       "level": 0,
+       "text": "fahr = lower;   // Valor inicial"
+      },
+      {
+       "level": 0,
+       "text": "Estas líneas definen el rango de temperaturas a convertir."
+      },
+      {
+       "level": 0,
+       "text": "5. Bucle while:"
+      },
+      {
+       "level": 0,
+       "text": "while (fahr <= upper) {"
+      },
+      {
+       "level": 0,
+       "text": "..."
+      },
+      {
+       "level": 0,
+       "text": "}"
+      },
+      {
+       "level": 0,
+       "text": "Ejecuta repetidamente el bloque entre llaves mientras la condición sea verdadera. Cada iteración calcula y muestra una fila de la tabla."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "a2b9a13fff.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Ejemplo práctico: Conversión de temperatura",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "6. Cálculo de la conversión:"
+      },
+      {
+       "level": 0,
+       "text": "celsius = (5.0/9.0) * (fahr - 32.0);"
+      },
+      {
+       "level": 0,
+       "text": "Convierte Fahrenheit a Celsius. Se usan valores con punto decimal (5.0, 32.0) para evitar división entera, que truncaría los decimales."
+      },
+      {
+       "level": 0,
+       "text": "7. Impresión formateada:"
+      },
+      {
+       "level": 0,
+       "text": "printf(\"%4.0f %6.1f\\n\", fahr, celsius);"
+      },
+      {
+       "level": 0,
+       "text": "%4.0f: imprime el primer número (Fahrenheit) con 4 espacios y 0 decimales."
+      },
+      {
+       "level": 0,
+       "text": "%6.1f: imprime el segundo número (Celsius) con 6 espacios y 1 decimal."
+      },
+      {
+       "level": 0,
+       "text": "\\n: salto de línea."
+      },
+      {
+       "level": 0,
+       "text": "8. Incremento del valor:"
+      },
+      {
+       "level": 0,
+       "text": "fahr = fahr + step;"
+      },
+      {
+       "level": 0,
+       "text": "Aumenta la temperatura en 20 unidades hasta alcanzar el límite superior."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "a2b9a13fff.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 15,
+   "title": "Ejemplo práctico: Conversión de temperatura",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Comentarios (/* ... */) ayudan a documentar el código."
+      },
+      {
+       "level": 0,
+       "text": "Indentación y llaves { } indican bloques lógicos."
+      },
+      {
+       "level": 0,
+       "text": "printf() formatea la salida; cada % se asocia a una variable."
+      },
+      {
+       "level": 0,
+       "text": "Tipos de datos (int, float, char, double) determinan cómo se almacenan los valores."
+      },
+      {
+       "level": 0,
+       "text": "Evitar divisiones enteras: siempre usar constantes con punto decimal en operaciones de punto flotante."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "a2b9a13fff.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 16,
+   "title": "Ciclo For",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Es el mismo resultado que con while, pero más compacto: inicialización, condición y actualización juntas."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "e19d7f8f38.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 17,
+   "title": "Ciclo For",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Qué hace cada parte:"
+      },
+      {
+       "level": 0,
+       "text": "int fahr; → variable de control (entera) para mostrar %d."
+      },
+      {
+       "level": 0,
+       "text": "for (ini; cond; act) → fahr=0 (una vez), fahr<=300 (condición), fahr=fahr+20 (paso)."
+      },
+      {
+       "level": 0,
+       "text": "printf(...) → imprime Fahrenheit y Celsius; la expresión se pone directo como 3er argumento. Cuándo usar for vs while: usa for cuando ini/cond/actualización están lógicamente relacionadas."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "e19d7f8f38.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 18,
+   "title": "Constantes",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Nombres en MAYÚSCULAS para distinguir constantes.Sin punto y coma al final del #define.Facilita mantenimiento y lectura."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "38a7e31724.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 19,
+   "title": "Entrada y Salida de caracteres",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Concepto: I/O no es parte del lenguaje, sino de la librería estándar (stdio.h)."
+      },
+      {
+       "level": 0,
+       "text": "c = getchar(); → lee siguiente carácter (o EOF al final)."
+      },
+      {
+       "level": 0,
+       "text": "putchar(c); → escribe un carácter."
+      },
+      {
+       "level": 0,
+       "text": "Detalles importantes:"
+      },
+      {
+       "level": 0,
+       "text": "EOF está definido en stdio.h (no lo redefinas)."
+      },
+      {
+       "level": 0,
+       "text": "Utiliza CTRL-D (unix-style) or CTRL-Z (Windows) para enviar el EOF"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "d482396034.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 20,
+   "title": "Arreglos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Es un bloque contiguo de memoria con N elementos del mismo tipo.El índice va de 0 a N−1 (convención C).No hay verificación de límites: si te sales del rango,existe un comportamiento indefinido, generalmente se conocen como \"desbordamiento de búfer\", donde un programa lee más datos de los que caben en un arreglo y es engañado para sobrescribir otros datos o código y comprometer una aplicación."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "5ceb6f9e64.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 21,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "sizeof(a) en un arreglo local devuelve tamaño en bytes de todo el arreglo."
+      },
+      {
+       "level": 0,
+       "text": "sizeof(a)/sizeof(a[0]) es el número de elementos (técnica clásica)."
+      },
+      {
+       "level": 0,
+       "text": "OJO: cuando un arreglo se pasa a función, “se degrada” a puntero y sizeof ya no da el total, sino el tamaño del puntero."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "deef247b00.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 22,
+   "title": "Arreglos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Si no inicializas, el contenido es indefinido (basura) para arreglos automáticos (dentro de una función)."
+      },
+      {
+       "level": 0,
+       "text": "Inicialización parcial rellena con ceros lo que falte."
+      },
+      {
+       "level": 0,
+       "text": "= {0} forza todos a cero."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "164d895360.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 23,
+   "title": "Contar Palabras",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "inword → estado (estoy dentro de una palabra o no)."
+      },
+      {
+       "level": 0,
+       "text": "nl = nw = nc = 0; → asignaciones encadenadas (asocian derecha→izquierda)."
+      },
+      {
+       "level": 0,
+       "text": "|| y && → OR/AND con cortocircuito (deja de evaluar cuando ya sabe el resultado)."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "69675ee00b.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

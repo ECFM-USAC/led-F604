@@ -1,0 +1,329 @@
+{
+ "slug": "clase-13-flip-flops",
+ "source": "Clase 13.pptx",
+ "slide_range": [
+  1,
+  14
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Flip-Flops",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "SR Latch - Entrada de Control",
+   "body": [],
+   "images": [
+    "8b127e6703.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "JK Latch",
+   "body": [],
+   "images": [
+    "316a6952c4.png",
+    "765eddbcae.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Jk Gated Latch",
+   "body": [],
+   "images": [
+    "765eddbcae.png",
+    "3950f011b0.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Condición de Carrera",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "En el contexto de flip-flops tipo JK, una race-around condition ocurre cuando:"
+      },
+      {
+       "level": 0,
+       "text": "Ambas entradas J y K están en alto (1),"
+      },
+      {
+       "level": 0,
+       "text": "El pulso de reloj (clock pulse) tiene una duración mayor que el tiempo de propagación interno del flip-flop."
+      },
+      {
+       "level": 0,
+       "text": "Esto provoca que la salida cambie repetidamente entre 0 y 1 dentro del mismo ciclo de reloj, dando una oscilación inestable."
+      },
+      {
+       "level": 0,
+       "text": "Por eso se llama “condición de carrera”: el 0 y el 1 “compiten” (o “corren”) para establecer el valor final."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "853275c7e1.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Configuración Maestro - Esclavo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "El primer flip-flop se llama maestro (master), y es controlado por el ciclo positivo del reloj."
+      },
+      {
+       "level": 0,
+       "text": "El segundo flip-flop se llama esclavo (slave), y es controlado por el ciclo negativo del reloj."
+      },
+      {
+       "level": 0,
+       "text": "Durante el ciclo positivo del reloj, el flip-flop maestro genera una salida intermedia, pero el flip-flop esclavo no produce la salida final."
+      },
+      {
+       "level": 0,
+       "text": "Durante el ciclo negativo del reloj, el flip-flop esclavo se activa y copia la salida previa del flip-flop maestro, generando así la salida final."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "11be889c0a.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Configuración Maestro - Esclavo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cuando el pulso vuelva a 0, el amo quedará inhabilitado y aislado de la entrada. Al mismo tiempo, el esclavo estará habilitado y el valor de el maestro se transferirá a la salida Q del flip-flop. Así, la salida del flip-flop sólo puede cambiar durante la transición del reloj de 1 a 0."
+      },
+      {
+       "level": 0,
+       "text": "El comportamiento del flip-flop amo-esclavo que acabamos de describir implica que la salida sólo puede cambiar durante el borde negativo del reloj"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "11be889c0a.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Latch D - Maestro Esclavo",
+   "body": [],
+   "images": [
+    "4f0e70d840.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Resumen Latches y Flip-Flops",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Latch"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Latch  - Control"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Flip-Flops Maestro - Esclavo"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "6e45f6d8d3.png",
+    "6e45f6d8d3.png",
+    "256e34be79.png",
+    "3868f35fe3.png",
+    "cde4969af6.png",
+    "6e45f6d8d3.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Ecuaciones Características",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Las propiedades lógicas de un flip-flop descritas en la tabla característica también se pueden expresar algebraicamente con una ecuación característica"
+      },
+      {
+       "level": 0,
+       "text": "En el caso del flip-flop D, tenemos la ecuación característica:"
+      },
+      {
+       "level": 0,
+       "text": "Q(t+1)=D"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "590d301e7f.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Ecuaciones Características",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Q(t + 1) = S + R'.Q(t)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "5f45b56766.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Ejercicio",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Encontrar la ecuación característica de un latch JK"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "1d90ec6521.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "Ejercicio",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Encontrar la ecuación característica de un latch JK"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Q(t + 1) = JQ(t)' + K'Q(t)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "1d90ec6521.png",
+    "b38237ef11.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Entradas Asíncronas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un flip-flop normal (como D, JK o T) cambia su estado solo cuando el reloj realiza una transición (por ejemplo, de 0→1 o de 1→0)."
+      },
+      {
+       "level": 0,
+       "text": "Pero algunos flip-flops incluyen entradas asíncronas llamadas comúnmente:"
+      },
+      {
+       "level": 0,
+       "text": "Preset (PR) o Set (S) → fuerza la salida Q = 1"
+      },
+      {
+       "level": 0,
+       "text": "Clear (CLR) o Reset (R) → fuerza la salida Q = 0"
+      },
+      {
+       "level": 0,
+       "text": "Estas entradas tienen prioridad sobre el reloj y las demás entradas."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "f6b386088b.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

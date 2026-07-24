@@ -1,0 +1,181 @@
+{
+ "slug": "clase-11c-intro-secuencial",
+ "source": "Clase 11.pptx",
+ "slide_range": [
+  22,
+  27
+ ],
+ "slides": [
+  {
+   "num": 22,
+   "title": "Lógica Secuencial",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "En la práctica los sistemas digitales también incluyen elementos de almacenamiento, que requieren que el sistema se describa en términos de lógica secuencial."
+      },
+      {
+       "level": 0,
+       "text": "Un circuito secuencial consiste en un circuito combinacional al que se conectan elementos de almacenamiento para formar una trayectoria de retroalimentación."
+      },
+      {
+       "level": 0,
+       "text": "Los elementos de almacenamiento son dispositivos capaces de guardar información binaria. La información almacenada en estos elementos en cualquier momento dado define el estado del circuito secuencial en ese momento."
+      },
+      {
+       "level": 0,
+       "text": "El circuito secuencial recibe información binaria de entradas externas. Esas entradas, junto con el estado actual de los elementos de almacenamiento, determinan el valor binario de las salidas"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "6ae9031813.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 23,
+   "title": "Lógica Secuencial",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Hay dos tipos principales de circuitos secuenciales, y su clasificación depende de los tiempos de sus señales. Un circuito secuencial sincrónico es un sistema cuyo comportamiento se define conociendo sus señales en instantes discretos."
+      },
+      {
+       "level": 0,
+       "text": "El comportamiento de un circuito secuencial asincrónico depende de las señales de entrada en cualquier instante dado y del orden en que cambian las entradas."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 24,
+   "title": "Lógica Secuencial - Circuitos Asincrónico",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Los elementos de almacenamiento que suelen usarse en los circuitos secuenciales asincrónicos son dispositivos de retardo de tiempo. La capacidad de almacenamiento de un dispositivo de retardo de tiempo se debe al tiempo que la señal tarda en propagarse por el dispositivo."
+      },
+      {
+       "level": 0,
+       "text": "En la práctica, el retardo interno de propagación de las compuertas lógicas tiene la suficiente duración como para producir el retardo requerido, de modo que podrían no ser necesarias unidades de retardo adicionales."
+      },
+      {
+       "level": 0,
+       "text": "En los sistemas asincrónicos tipo compuerta, los elementos de almacenamiento consisten en compuertas lógicas cuyo retardo de propagación hace posible el almacenamiento requerido."
+      },
+      {
+       "level": 0,
+       "text": "Un circuito secuencial asincrónico podría considerarse como un circuito combinacional con retroalimentación. Gracias a la retroalimentación entre compuertas lógicas, el circuito secuencial asincrónico podría volverse inestable ocasionalmente. El problema de inestabilidad impone muchas dificultades al diseñador."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 25,
+   "title": "Lógica Secuencial - Circuitos Sincronico",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un circuito secuencial sincrónico utiliza señales que afectan a los elementos de almacenamiento únicamente en instantes discretos."
+      },
+      {
+       "level": 0,
+       "text": "La sincronización se logra con un dispositivo de temporización llamado generador de reloj, el cual produce un tren periódico de pulsos de reloj."
+      },
+      {
+       "level": 0,
+       "text": "Los pulsos de reloj se distribuyen por todo el sistema de modo que los elementos de almacenamiento sólo se vean afectados al llegar cada pulso."
+      },
+      {
+       "level": 0,
+       "text": "En la práctica, los pulsos de reloj se aplican con otras señales que especifican el cambio requerido en los elementos de almacenamiento."
+      },
+      {
+       "level": 0,
+       "text": "Los circuitos secuenciales sincrónicos que usan pulsos de reloj en las entradas de sus elementos de almacenamiento se denominan circuitos secuenciales con reloj, y son el tipo que se usa más comúnmente en la práctica. Casi nunca manifiestan problemas de estabilidad y es fácil dividir su temporización en pasos discretos independientes, cada uno de los cuales se puede considerar por separado."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 26,
+   "title": null,
+   "body": [],
+   "images": [
+    "e67111a2ad.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 27,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Los elementos de almacenamiento empleados en los circuitos secuenciales con reloj se llaman flip-flops."
+      },
+      {
+       "level": 0,
+       "text": "Un flip-flop es un dispositivo binario de almacenamiento que puede almacenar un bit de información."
+      },
+      {
+       "level": 0,
+       "text": "Los flip-flops reciben sus entradas del circuito combinacional y también de una señal de reloj cuyos pulsos se presentan a intervalos fijos de tiempo,"
+      },
+      {
+       "level": 0,
+       "text": "El estado del flip-flop sólo puede cambiar durante una transición de pulso de reloj."
+      },
+      {
+       "level": 0,
+       "text": "Cuando el pulso de reloj no está activo, el ciclo de retroalimentación se rompe porque las salidas del flip-flop no pueden cambiar aunque cambie el valor de las salidas del circuito combinacional que alimenta sus entradas."
+      },
+      {
+       "level": 0,
+       "text": "Por tanto, la transición de un estado al siguiente se da únicamente a intervalos de tiempo preestablecidos, dictados por los pulsos de reloj."
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Lógica Secuencial - Flip-Flops"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "af352a66fe.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

@@ -1,0 +1,348 @@
+{
+ "slug": "clase-08-sumador-binario",
+ "source": "Clase 8.pptx",
+ "slide_range": [
+  1,
+  18
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Lógica Combinacional",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Circuitos Combinacionales y Secuenciales",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un circuito combinacional consiste en compuertas lógicas cuyas salidas en cualquier momento están determinadas por la combinación actual de entradas."
+      },
+      {
+       "level": 0,
+       "text": "Los circuitos secuenciales usan elementos de almacenamiento además de compuertas lógicas y sus salidas son función de las entradas y del estado de los elementos de almacenamiento."
+      },
+      {
+       "level": 0,
+       "text": "Las salidas de un circuito secuencial dependen no sólo de los valores actuales de las entradas, sino también de entradas anteriores"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Circuitos Combinacionales",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un circuito combinacional consiste en variables de entrada, compuertas lógicas y variables de salida."
+      },
+      {
+       "level": 0,
+       "text": "Las compuertas lógicas aceptan señales de las entradas y generan señales para las salidas"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "ab3866e528.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Circuitos Combinacionales",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Con n variables de entrada, hay 2n posibles combinaciones de entradas binarias."
+      },
+      {
+       "level": 0,
+       "text": "Para cada una de esas combinaciones, hay un posible valor de salida. Por tanto, es posible especificar un circuito combinacional con una tabla de verdad que presenta los valores de salida para cada combinación de variables de entrada"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "ab3866e528.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Procedimiento de diseño",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "De las especificaciones del circuito, deduzca el número requerido de entradas y salidas; asigne un símbolo a cada una."
+      },
+      {
+       "level": 0,
+       "text": "Deduzca la tabla de verdad que define la relación requerida entre las entradas y las salidas."
+      },
+      {
+       "level": 0,
+       "text": "Obtenga las funciones booleanas simplificadas para cada salida en función de las variables de entrada."
+      },
+      {
+       "level": 0,
+       "text": "Dibuje el diagrama lógico y verifique que el diseño sea correcto."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Sumador Completo",
+   "body": [],
+   "images": [
+    "0d0cdbe058.png",
+    "6fc0b0131c.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": null,
+   "body": [],
+   "images": [
+    "fd8e308c40.png",
+    "3ab38ea4ef.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": null,
+   "body": [],
+   "images": [
+    "fd8e308c40.png",
+    "4e53b39c09.png",
+    "c970f680e4.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": null,
+   "body": [],
+   "images": [
+    "fd8e308c40.png",
+    "f42e14c77e.png",
+    "4e53b39c09.png",
+    "c970f680e4.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Sumador Binario",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un sumador binario es un circuito digital que produce la suma aritmética de dos números binarios."
+      },
+      {
+       "level": 0,
+       "text": "Es posible construirlo con sumadores completos dispuestos en cascada, conectando el acarreo de salida de cada sumador completo al acarreo de entrada del siguiente sumador completo de la cadena"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "1011+ 0011"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "A = 1011 y  B= 0011"
+      },
+      {
+       "level": 0,
+       "text": "Si utilizamos el método clásico requeriría una tabla de verdad con 29=512 entradas, ya que el circuito tiene nueve entradas."
+      },
+      {
+       "level": 0,
+       "text": "Al usar un método iterativo de conectar en cascada una función estándar, es posible obtener una implementación sencilla y directa"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "dd6d7bb42d.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "A = 1011 y  B= 0011",
+   "body": [],
+   "images": [
+    "dd6d7bb42d.png",
+    "d28e522660.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "Propagación del Acarreo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La suma de dos números binarios en paralelo implica que todos los bits de los sumandos están disponibles al mismo tiempo para efectuar el cálculo."
+      },
+      {
+       "level": 0,
+       "text": "En un circuito combinacional, la señal tiene que propagarse a través de las compuertas para que la salida correcta (la suma) esté disponible en las terminales de salida."
+      },
+      {
+       "level": 0,
+       "text": "El tiempo total de propagación es igual al retardo de propagación de una compuerta representativa multiplicado por el número de niveles de compuertas del circuito"
+      },
+      {
+       "level": 0,
+       "text": "Dado que cada bit de la suma depende del valor del acarreo de entrada, el valor del bit de la salida de la suma,  en cualquier etapa dada del sumador alcanzará su valor final de estado estable sólo hasta que el acarreo de entrada se haya propagado a esa etapa"
+      },
+      {
+       "level": 0,
+       "text": "El tiempo de propagación del acarreo es un factor que limita la rapidez con que se suman dos números."
+      },
+      {
+       "level": 0,
+       "text": "El sumador, o cualquier circuito combinacional, siempre tendrá algún valor en sus terminales de salida, esos valores no serán correctos si no se da a las señales el tiempo suficiente para propagarse a través de las compuertas conectadas entre las entradas y las salidas"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Propagación del Acarreo",
+   "body": [],
+   "images": [
+    "d86476b421.png",
+    "d86476b421.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 15,
+   "title": "Propagación del Acarreo",
+   "body": [],
+   "images": [
+    "d86476b421.png",
+    "0715c5f675.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 16,
+   "title": "Propagación del Acarreo",
+   "body": [],
+   "images": [
+    "940c327cee.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 17,
+   "title": "Generador de Acarreo anticipado",
+   "body": [],
+   "images": [
+    "940c327cee.png",
+    "80bbb926b7.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 18,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Sumador completo"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Acarreo Anticipado"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "6bad097ae1.png",
+    "d86476b421.png",
+    "80bbb926b7.png",
+    "9b5a157eac.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

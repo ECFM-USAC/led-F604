@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapas de Karnaugh: 4 y 5 Variables, Condiciones de Indiferencia — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u2); --u-soft: var(--u2-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-2">Álgebra Booleana y Compuertas Lógicas</a><span class="sep">/</span>
+      Mapas de Karnaugh: 4 y 5 Variables, Condiciones de Indiferencia
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 2 · Álgebra Booleana y Compuertas Lógicas</div>
+    <h1>Mapas de Karnaugh: 4 y 5 Variables, Condiciones de Indiferencia</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Mapa de 4 variables</a></li>
+      <li><a href="#s2">Diapositiva 3</a></li>
+      <li><a href="#s3">Ejemplo</a></li>
+      <li><a href="#s4">Diapositiva 5</a></li>
+      <li><a href="#s5">Mapa de 5 Variables</a></li>
+      <li><a href="#s6">Mapa de 5 variables</a></li>
+      <li><a href="#s7">Condiciones de Indiferencia</a></li>
+      <li><a href="#s8">Ejemplo</a></li>
+      <li><a href="#s9">Diapositiva 10</a></li>
+      <li><a href="#s10">Hoja de Trabajo</a></li>
+      <li><a href="#s11">Hoja de Trabajo</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Mapa de 4 variables</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-06-mapas-karnaugh-2/103230efc9.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-06-mapas-karnaugh-2/318cbfcfc3.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 3</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-06-mapas-karnaugh-2/103230efc9.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-06-mapas-karnaugh-2/18dc84ed8b.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-06-mapas-karnaugh-2/4f3bf4765b.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Ejemplo</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Simplifique la siguiente función booleana en forma de</li>
+<li>a) suma de productos</li>
+<li>b) producto de sumas</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-06-mapas-karnaugh-2/fdf589312d.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 5</span></h2></div>
+    <div class="slide-body">
+      <ul>
+<li>a)</li>
+<li>F’ = AB + CD + BD’</li>
+<li>b)Al aplicar el teorema de DeMorgan (obteniendo el dual y complementando cada literal) se obtiene la función simplificada en forma de producto de sumas:</li>
+<li>F = (A’ + B’)(C’ + D’)(B’+ D)</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-06-mapas-karnaugh-2/068df56c79.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-06-mapas-karnaugh-2/25b4de5900.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Mapa de 5 Variables</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un mapa de cinco variables necesita 32 cuadrados</li>
+<li>El mapa de cinco variables se muestra en la figura 3-12. Consta de dos mapas de cuatro variables con las variables A, B, C, D y E. La variable A distingue a los dos mapas, como se indica en la parte superior del diagrama. El mapa de cuatro variables de la izquierda representa los 16 cuadrados en los que A=0; el otro representa los cuadrados en los que A=1.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Mapa de 5 variables</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-06-mapas-karnaugh-2/a6107956fe.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Condiciones de Indiferencia</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Hay algunas aplicaciones en las que la función no está especificada para ciertas combinaciones de las variables</li>
+<li>En casi todas las aplicaciones, es irrelevante el valor que asuma la función para los minitérminos no especificados. Por ello, se acostumbra llamar condiciones de indiferencia (don’t care, en inglés) a los minitérminos no especificados de una función. Conviene usar estas condiciones de indiferencia en el mapa para simplificar aún más la</li>
+<li>expresión booleana</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Ejemplo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-06-mapas-karnaugh-2/4195796dad.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 10</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-06-mapas-karnaugh-2/f0cb3d7e90.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-06-mapas-karnaugh-2/ca8460a86d.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Hoja de Trabajo</h2></div>
+    <div class="slide-body">
+      <table class="data-table">
+<tr><th>C</th><th>B</th><th>A</th><th>F</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>x</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td>x</td></tr>
+</table>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Hoja de Trabajo</h2></div>
+    <div class="slide-body">
+      <table class="data-table">
+<tr><th>C</th><th>B</th><th>A</th><th>F</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>x</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td>x</td></tr>
+</table>
+      
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-2-algebra-booleana/clase-05-mapas-karnaugh-1.html"><span class="lbl">← Anterior</span>Mapas de Karnaugh: 2 y 3 Variables</a>
+    <a class="next" href="../unidad-3-logica-combinacional/clase-07-complemento-sumadores.html"><span class="lbl">Siguiente →</span>Complemento de Funciones, NAND/NOR y Semisumador</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flip-Flops JK, Configuración Maestro-Esclavo — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u4); --u-soft: var(--u4-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-4">Lógica Secuencial</a><span class="sep">/</span>
+      Flip-Flops JK, Configuración Maestro-Esclavo
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 4 · Lógica Secuencial</div>
+    <h1>Flip-Flops JK, Configuración Maestro-Esclavo</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">SR Latch - Entrada de Control</a></li>
+      <li><a href="#s2">JK Latch</a></li>
+      <li><a href="#s3">Jk Gated Latch</a></li>
+      <li><a href="#s4">Condición de Carrera</a></li>
+      <li><a href="#s5">Configuración Maestro - Esclavo</a></li>
+      <li><a href="#s6">Configuración Maestro - Esclavo</a></li>
+      <li><a href="#s7">Latch D - Maestro Esclavo</a></li>
+      <li><a href="#s8">Resumen Latches y Flip-Flops</a></li>
+      <li><a href="#s9">Ecuaciones Características</a></li>
+      <li><a href="#s10">Ecuaciones Características</a></li>
+      <li><a href="#s11">Ejercicio</a></li>
+      <li><a href="#s12">Ejercicio</a></li>
+      <li><a href="#s13">Entradas Asíncronas</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>SR Latch - Entrada de Control</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-13-flip-flops/8b127e6703.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>JK Latch</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-13-flip-flops/316a6952c4.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-13-flip-flops/765eddbcae.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Jk Gated Latch</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-13-flip-flops/765eddbcae.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-13-flip-flops/3950f011b0.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Condición de Carrera</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>En el contexto de flip-flops tipo JK, una race-around condition ocurre cuando:</li>
+<li>Ambas entradas J y K están en alto (1),</li>
+<li>El pulso de reloj (clock pulse) tiene una duración mayor que el tiempo de propagación interno del flip-flop.</li>
+<li>Esto provoca que la salida cambie repetidamente entre 0 y 1 dentro del mismo ciclo de reloj, dando una oscilación inestable.</li>
+<li>Por eso se llama “condición de carrera”: el 0 y el 1 “compiten” (o “corren”) para establecer el valor final.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-13-flip-flops/853275c7e1.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Configuración Maestro - Esclavo</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El primer flip-flop se llama maestro (master), y es controlado por el ciclo positivo del reloj.</li>
+<li>El segundo flip-flop se llama esclavo (slave), y es controlado por el ciclo negativo del reloj.</li>
+<li>Durante el ciclo positivo del reloj, el flip-flop maestro genera una salida intermedia, pero el flip-flop esclavo no produce la salida final.</li>
+<li>Durante el ciclo negativo del reloj, el flip-flop esclavo se activa y copia la salida previa del flip-flop maestro, generando así la salida final.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-13-flip-flops/11be889c0a.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Configuración Maestro - Esclavo</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Cuando el pulso vuelva a 0, el amo quedará inhabilitado y aislado de la entrada. Al mismo tiempo, el esclavo estará habilitado y el valor de el maestro se transferirá a la salida Q del flip-flop. Así, la salida del flip-flop sólo puede cambiar durante la transición del reloj de 1 a 0.</li>
+<li>El comportamiento del flip-flop amo-esclavo que acabamos de describir implica que la salida sólo puede cambiar durante el borde negativo del reloj</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-13-flip-flops/11be889c0a.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Latch D - Maestro Esclavo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-13-flip-flops/4f0e70d840.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Resumen Latches y Flip-Flops</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Latch</li>
+</ul>
+<ul>
+<li>Latch  - Control</li>
+</ul>
+<ul>
+<li>Flip-Flops Maestro - Esclavo</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-13-flip-flops/6e45f6d8d3.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-13-flip-flops/6e45f6d8d3.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-13-flip-flops/256e34be79.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-13-flip-flops/3868f35fe3.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-13-flip-flops/cde4969af6.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-13-flip-flops/6e45f6d8d3.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Ecuaciones Características</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Las propiedades lógicas de un flip-flop descritas en la tabla característica también se pueden expresar algebraicamente con una ecuación característica</li>
+<li>En el caso del flip-flop D, tenemos la ecuación característica:</li>
+<li>Q(t+1)=D</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-13-flip-flops/590d301e7f.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Ecuaciones Características</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Q(t + 1) = S + R'.Q(t)</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-13-flip-flops/5f45b56766.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Ejercicio</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Encontrar la ecuación característica de un latch JK</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-13-flip-flops/1d90ec6521.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Ejercicio</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Encontrar la ecuación característica de un latch JK</li>
+</ul>
+<ul>
+<li>Q(t + 1) = JQ(t)' + K'Q(t)</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-13-flip-flops/1d90ec6521.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-13-flip-flops/b38237ef11.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Entradas Asíncronas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un flip-flop normal (como D, JK o T) cambia su estado solo cuando el reloj realiza una transición (por ejemplo, de 0→1 o de 1→0).</li>
+<li>Pero algunos flip-flops incluyen entradas asíncronas llamadas comúnmente:</li>
+<li>Preset (PR) o Set (S) → fuerza la salida Q = 1</li>
+<li>Clear (CLR) o Reset (R) → fuerza la salida Q = 0</li>
+<li>Estas entradas tienen prioridad sobre el reloj y las demás entradas.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-13-flip-flops/f6b386088b.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-4-logica-secuencial/clase-12-latches.html"><span class="lbl">← Anterior</span>Elementos de Memoria: Latches SR y D</a>
+    <a class="next" href="../unidad-4-logica-secuencial/clase-14-registros-contadores.html"><span class="lbl">Siguiente →</span>Registros de Desplazamiento y Contadores de Rizo</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

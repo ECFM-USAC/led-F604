@@ -1,0 +1,282 @@
+{
+ "slug": "clase-09-restador-binario",
+ "source": "Clase 9.pptx",
+ "slide_range": [
+  1,
+  15
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Lógica Combinacional - Restador Binario",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "A = 1011 y  B= 0011",
+   "body": [],
+   "images": [
+    "dd6d7bb42d.png",
+    "d28e522660.png",
+    "d86476b421.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Complementos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "En las computadoras digitales se usan complementos para simplificar la operación de resta y para efectuar manipulaciones lógicas."
+      },
+      {
+       "level": 0,
+       "text": "Hay dos tipos de complementos para cada sistema base r: el complemento a la base y el complemento a la base disminuida."
+      },
+      {
+       "level": 1,
+       "text": "Complemento a r,"
+      },
+      {
+       "level": 1,
+       "text": "complemento a (r-1)."
+      },
+      {
+       "level": 0,
+       "text": "Si sustituimos el valor de la base r en estos nombres, los dos tipos son el complemento a dos y el complemento a uno, en el caso de los números binarios, y el complemento a diez y el complemento a nueve"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Complemento a la base disminuida",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Dado un número N en base r que tiene n dígitos, el complemento a (r-1) de N se define como (rn-1)-N."
+      },
+      {
+       "level": 0,
+       "text": ". En el caso de números decimales, r=10 y r-1=9, así que el complemento a nueve de N es (10n-1)-N"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "3d11b2a51a.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Complemento a la base disminuida",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "En los números binarios, r=2 y r-1=1, así que el complemento a uno de N es (2n-1)-N."
+      },
+      {
+       "level": 0,
+       "text": "2n se representa con un número binario que consiste en un uno seguido de n ceros. 2n-1 es un número binario representado por n unos."
+      },
+      {
+       "level": 0,
+       "text": "Si n=4, tenemos 24 =(10000)2 y 24 -1=(1111)2. Así, el complemento a uno de un número binario se obtiene restando cada dígito a uno. Sin embargo, al restar dígitos binarios a 1 podemos tener 1-0=1 o bien 1-1=0, lo que hace que el bit cambie de 0 a 1 o de 1 a 0. Por tanto, el complemento a uno de un número binario se forma cambiando los unos a ceros y los ceros a unos"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "296df78c2e.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Complemento a la base",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "El complemento a r de un número N de n dígitos en base r se define como rn-N, para N ≠0, y 0 para N=0."
+      },
+      {
+       "level": 0,
+       "text": "Si comparamos con el complemento a (r-1), veremos que el complemento a r se obtiene sumando 1 al complemento a (r-1), ya que  rn-N = [(rn-1)-N]+1."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "6e0de04525.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Resta con complementos",
+   "body": [],
+   "images": [
+    "1916104c78.png",
+    "52d931f4cb.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Resta con complementos",
+   "body": [],
+   "images": [
+    "d77dbe36aa.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Números Binarios Con Signo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Por limitaciones del hardware, las computadoras deben representar todo con dígitos binarios."
+      },
+      {
+       "level": 0,
+       "text": "Se acostumbra representar el signo con un bit colocado en la posición extrema izquierda del número"
+      },
+      {
+       "level": 0,
+       "text": "En esta notación, el número consiste en una magnitud y un símbolo (+o-) o un bit (0 o 1) que indica el signo"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": null,
+   "body": [],
+   "images": [
+    "e243b61eec.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Restador Binario",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La forma más conveniente de efectuar la resta de números binarios sin signo es utilizando complementos."
+      },
+      {
+       "level": 0,
+       "text": "La resta A-B se efectúa obteniendo el complemento a dos de B y sumándolo a A. El complemento a dos se obtiene calculando el complemento a uno y sumando 1 al par de bits menos significativo."
+      },
+      {
+       "level": 0,
+       "text": "El complemento a uno se implementa con inversores, y el 1 se suma a través del acarreo de entrada."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Propiedades XOR",
+   "body": [],
+   "images": [
+    "9747b47b83.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": null,
+   "body": [],
+   "images": [
+    "325d5e2b78.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Restador Binario",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Las operaciones de suma y resta se pueden combinar en un solo circuito que tiene un sumador binario compartido. Esto se hace incluyendo una compuerta OR exclusivo con cada sumador completo."
+      },
+      {
+       "level": 0,
+       "text": "Cada compuerta OR exclusivo recibe la entrada M y una de las entradas de B, cuando M=0, tenemos B ⊕ 0=B, los sumadores completos reciben el valor de B, el acarreo de entrada es 0, y el circuito efectúa A más B."
+      },
+      {
+       "level": 0,
+       "text": "Cuando M=1, tenemos B ⊕1=B’ y C0=1. Todas las entradas de B se complementan y se suma un 1 a través del acarreo de entrada. El circuito efectúa la operación A más el complemento a dos de B."
+      },
+      {
+       "level": 0,
+       "text": "El OR exclusivo con salida V es para detectar un desbordamiento"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 15,
+   "title": null,
+   "body": [],
+   "images": [
+    "ab2b397080.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

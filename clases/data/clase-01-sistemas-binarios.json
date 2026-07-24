@@ -1,0 +1,242 @@
+{
+ "slug": "clase-01-sistemas-binarios",
+ "source": "Clase 1/Clase 1 - Sistemas Binarios.pptx",
+ "slide_range": [
+  1,
+  10
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Sistemas decimales y Sistemas Binarios",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Sistemas Numéricos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Decimal (base 10): usa dígitos del 0 al 9."
+      },
+      {
+       "level": 0,
+       "text": "Binario (base 2): usa solo los dígitos 0 y 1."
+      },
+      {
+       "level": 0,
+       "text": "Hexadecimal(base 16): Usa 16 dígitos"
+      },
+      {
+       "level": 0,
+       "text": "Estos sistemas numéricos representan cantidades usando diferentes bases y potencias."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Sistema Decimal",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Base 10, usado en la vida diaria."
+      },
+      {
+       "level": 0,
+       "text": "Ejemplo: 3210₁₀ = 3×10³ + 2×10² + 1×10¹ + 0×10⁰"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "82afef3614.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Sistema Binario",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Base 2, usado en computadoras."
+      },
+      {
+       "level": 0,
+       "text": "Ejemplo: 10101₂ = 1×2⁴ + 0×2³ + 1×2² + 0×2¹ + 1×2⁰ = 21₁₀"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "8fb23a55c4.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Aplicaciones en Electrónica Digital",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Todos los datos de la computadora está codificada en 0 y 1"
+      },
+      {
+       "level": 0,
+       "text": "Circuitos usan 0 (bajo voltaje) y 1 (alto voltaje)."
+      },
+      {
+       "level": 0,
+       "text": "Transistores actúan como interruptores."
+      },
+      {
+       "level": 0,
+       "text": "Todo sistema digital (memorias, procesadores) opera en binario."
+      },
+      {
+       "level": 0,
+       "text": "Puertas lógicas procesan bits (ej. AND, OR, NOT)."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "ec54fc1970.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Sistema Binario",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Utiliza únicamente dos dígitos (bits): 0,1"
+      },
+      {
+       "level": 0,
+       "text": "Sistema posicional"
+      },
+      {
+       "level": 0,
+       "text": "Para calcular la representación decimal, sumamos los pesos correspondientes a los 1’s de la representación binaria"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "c7aaa1a7ea.png",
+    "777742e670.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Ejercicio",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Convertir a su representación en decimal el siguiente número binario: (101001)2"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Ejercicio",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Convertir a su representación en decimal el siguiente número binario: (101001)2"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "03af6a77fb.png",
+    "fc0f325150.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Conversión de decimal a binario",
+   "body": [],
+   "images": [
+    "b89ad65c1c.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Hoja de Trabajo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cuantos bits necesito para representar en decimal el valor 25610"
+      },
+      {
+       "level": 0,
+       "text": "En el sistema binario con n=6 bits, cuántas diferentes combinaciones se pueden representar."
+      },
+      {
+       "level": 0,
+       "text": "Con n=7 bits, como se representa 9110 en binario"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "e7c8fbe97c.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

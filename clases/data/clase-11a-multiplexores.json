@@ -1,0 +1,116 @@
+{
+ "slug": "clase-11a-multiplexores",
+ "source": "Clase 11.pptx",
+ "slide_range": [
+  1,
+  7
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Lógica Combinacional - Multiplexores",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Multiplexores",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un multiplexor es un circuito combinacional que selecciona información binaria de una de muchas líneas de entrada y la envía a una sola línea de salida."
+      },
+      {
+       "level": 0,
+       "text": "La selección de una línea de entrada dada se controla con un conjunto de líneas de selección."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "0675131aac.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Multiplexores",
+   "body": [],
+   "images": [
+    "a983df4ef6.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": null,
+   "body": [],
+   "images": [
+    "ddc5aa9368.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Multiplexor y funciones booleanas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un multiplexor es básicamente es un decodificador con una compuerta OR incluida en la unidad"
+      },
+      {
+       "level": 0,
+       "text": "Los minitérminos individuales se pueden seleccionar con las entradas de datos."
+      },
+      {
+       "level": 0,
+       "text": "Esto ofrece un método para implementar una función booleana de n variables con un multiplexor que tiene n entradas de selección y 2n entradas de datos, una para cada minitérmino."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": null,
+   "body": [],
+   "images": [
+    "4fc596c1e1.png",
+    "d7fe8c6911.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Multiplexor",
+   "body": [],
+   "images": [
+    "35405f3197.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

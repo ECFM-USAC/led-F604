@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sumador Binario y Propagación del Acarreo — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u3); --u-soft: var(--u3-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-3">Lógica Combinacional</a><span class="sep">/</span>
+      Sumador Binario y Propagación del Acarreo
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 3 · Lógica Combinacional</div>
+    <h1>Sumador Binario y Propagación del Acarreo</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Circuitos Combinacionales y Secuenciales</a></li>
+      <li><a href="#s2">Circuitos Combinacionales</a></li>
+      <li><a href="#s3">Circuitos Combinacionales</a></li>
+      <li><a href="#s4">Procedimiento de diseño</a></li>
+      <li><a href="#s5">Sumador Completo</a></li>
+      <li><a href="#s6">Diapositiva 7</a></li>
+      <li><a href="#s7">Diapositiva 8</a></li>
+      <li><a href="#s8">Diapositiva 9</a></li>
+      <li><a href="#s9">Sumador Binario</a></li>
+      <li><a href="#s10">Diapositiva 11</a></li>
+      <li><a href="#s11">A = 1011 y  B= 0011</a></li>
+      <li><a href="#s12">Propagación del Acarreo</a></li>
+      <li><a href="#s13">Propagación del Acarreo</a></li>
+      <li><a href="#s14">Propagación del Acarreo</a></li>
+      <li><a href="#s15">Propagación del Acarreo</a></li>
+      <li><a href="#s16">Generador de Acarreo anticipado</a></li>
+      <li><a href="#s17">Diapositiva 18</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Circuitos Combinacionales y Secuenciales</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un circuito combinacional consiste en compuertas lógicas cuyas salidas en cualquier momento están determinadas por la combinación actual de entradas.</li>
+<li>Los circuitos secuenciales usan elementos de almacenamiento además de compuertas lógicas y sus salidas son función de las entradas y del estado de los elementos de almacenamiento.</li>
+<li>Las salidas de un circuito secuencial dependen no sólo de los valores actuales de las entradas, sino también de entradas anteriores</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Circuitos Combinacionales</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un circuito combinacional consiste en variables de entrada, compuertas lógicas y variables de salida.</li>
+<li>Las compuertas lógicas aceptan señales de las entradas y generan señales para las salidas</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-08-sumador-binario/ab3866e528.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Circuitos Combinacionales</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Con n variables de entrada, hay 2n posibles combinaciones de entradas binarias.</li>
+<li>Para cada una de esas combinaciones, hay un posible valor de salida. Por tanto, es posible especificar un circuito combinacional con una tabla de verdad que presenta los valores de salida para cada combinación de variables de entrada</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-08-sumador-binario/ab3866e528.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Procedimiento de diseño</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>De las especificaciones del circuito, deduzca el número requerido de entradas y salidas; asigne un símbolo a cada una.</li>
+<li>Deduzca la tabla de verdad que define la relación requerida entre las entradas y las salidas.</li>
+<li>Obtenga las funciones booleanas simplificadas para cada salida en función de las variables de entrada.</li>
+<li>Dibuje el diagrama lógico y verifique que el diseño sea correcto.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Sumador Completo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/0d0cdbe058.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/6fc0b0131c.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 7</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/fd8e308c40.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/3ab38ea4ef.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 8</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/fd8e308c40.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/4e53b39c09.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/c970f680e4.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 9</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/fd8e308c40.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/f42e14c77e.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/4e53b39c09.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/c970f680e4.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Sumador Binario</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un sumador binario es un circuito digital que produce la suma aritmética de dos números binarios.</li>
+<li>Es posible construirlo con sumadores completos dispuestos en cascada, conectando el acarreo de salida de cada sumador completo al acarreo de entrada del siguiente sumador completo de la cadena</li>
+</ul>
+<ul>
+<li>1011+ 0011</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 11</span></h2></div>
+    <div class="slide-body">
+      <ul>
+<li>A = 1011 y  B= 0011</li>
+<li>Si utilizamos el método clásico requeriría una tabla de verdad con 29=512 entradas, ya que el circuito tiene nueve entradas.</li>
+<li>Al usar un método iterativo de conectar en cascada una función estándar, es posible obtener una implementación sencilla y directa</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-08-sumador-binario/dd6d7bb42d.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>A = 1011 y  B= 0011</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/dd6d7bb42d.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/d28e522660.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Propagación del Acarreo</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La suma de dos números binarios en paralelo implica que todos los bits de los sumandos están disponibles al mismo tiempo para efectuar el cálculo.</li>
+<li>En un circuito combinacional, la señal tiene que propagarse a través de las compuertas para que la salida correcta (la suma) esté disponible en las terminales de salida.</li>
+<li>El tiempo total de propagación es igual al retardo de propagación de una compuerta representativa multiplicado por el número de niveles de compuertas del circuito</li>
+<li>Dado que cada bit de la suma depende del valor del acarreo de entrada, el valor del bit de la salida de la suma,  en cualquier etapa dada del sumador alcanzará su valor final de estado estable sólo hasta que el acarreo de entrada se haya propagado a esa etapa</li>
+<li>El tiempo de propagación del acarreo es un factor que limita la rapidez con que se suman dos números.</li>
+<li>El sumador, o cualquier circuito combinacional, siempre tendrá algún valor en sus terminales de salida, esos valores no serán correctos si no se da a las señales el tiempo suficiente para propagarse a través de las compuertas conectadas entre las entradas y las salidas</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Propagación del Acarreo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/d86476b421.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/d86476b421.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s14" style="--reveal-delay: 0.65s;">
+    <div class="slide-head"><h2>Propagación del Acarreo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/d86476b421.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/0715c5f675.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s15" style="--reveal-delay: 0.70s;">
+    <div class="slide-head"><h2>Propagación del Acarreo</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-08-sumador-binario/940c327cee.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s16" style="--reveal-delay: 0.75s;">
+    <div class="slide-head"><h2>Generador de Acarreo anticipado</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/940c327cee.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/80bbb926b7.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s17" style="--reveal-delay: 0.80s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 18</span></h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Sumador completo</li>
+</ul>
+<ul>
+<li>Acarreo Anticipado</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/6bad097ae1.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/d86476b421.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/80bbb926b7.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-08-sumador-binario/9b5a157eac.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-3-logica-combinacional/clase-07-complemento-sumadores.html"><span class="lbl">← Anterior</span>Complemento de Funciones, NAND/NOR y Semisumador</a>
+    <a class="next" href="../unidad-3-logica-combinacional/clase-09-restador-binario.html"><span class="lbl">Siguiente →</span>Complementos y Restador Binario</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

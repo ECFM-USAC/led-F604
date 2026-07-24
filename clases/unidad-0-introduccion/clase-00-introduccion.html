@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electrónica Digital: Sistemas Analógicos vs. Digitales — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u0); --u-soft: var(--u0-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-0">Introducción</a><span class="sep">/</span>
+      Electrónica Digital: Sistemas Analógicos vs. Digitales
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 0 · Introducción</div>
+    <h1>Electrónica Digital: Sistemas Analógicos vs. Digitales</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Sistema Físico</a></li>
+      <li><a href="#s2">Sistema Físico</a></li>
+      <li><a href="#s3">Aspectos de las Señales: Analógicas y Digitales</a></li>
+      <li><a href="#s4">Sistemas analógicos vs. Digitales</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Sistema Físico</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Grupo de objetos o elementos que realizan una función</li>
+<li>Un grupo de señales de entrada</li>
+<li>Un grupo de señales de salida</li>
+<li>Una relación entre las señales de entrada y salida</li>
+</ul>
+<ul>
+<li>Tipo: Voltaje, fuerza, Temperatura</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Sistema Físico</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-00-introduccion/sistema-fisico-diagrama.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Aspectos de las Señales: Analógicas y Digitales</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Señales Análogas</h3>
+          <p>Señales como la posición y la temperatura, que pueden tomar cualquier valor dentro de un rango continuo.</p>
+          <p>Ejemplos: voltaje de un micrófono, temperatura ambiente, velocidad de un motor.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Señales Digitales</h3>
+          <p>Señales como el on/off, cuyos valores pertenecen a un conjunto finito.</p>
+          <p>Ejemplos: 0 V/5 V (niveles TTL), bit 0 y bit 1.</p>
+        </div>
+      </div>
+      <p class="note">Una señal analógica puede convertirse a digital con un ADC (convertidor analógico-digital), y una señal digital puede convertirse a analógica con un DAC (convertidor digital-analógico).</p>
+
+      <div class="slide-images single"><figure><img src="../img/clase-00-introduccion/analog-vs-digital-signal.png" loading="lazy" alt="Comparación de señal analógica continua y señal digital de dos niveles"></figure></div>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Sistemas analógicos vs. Digitales</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Sistema Analógico</h3>
+          <p>Las señales analógicas son señales que pueden ser mecánicas, eléctricas o de cualquier tipo, que sean continuas en el tiempo.</p>
+          <p>Los sistemas analógicos se encargan de procesar, almacenar y transmitir estas señales continuas.</p>
+          <p class="sub-label">Características</p>
+          <ul>
+            <li>Requieren mayor capacidad de almacenamiento</li>
+            <li>Millones de valores en el tiempo</li>
+            <li>Difícil de separar el ruido en la señal</li>
+          </ul>
+        </div>
+        <div class="compare-item">
+          <h3>Sistema Digital</h3>
+          <p>Las señales digitales son aquellas que sólo poseen 2 voltajes únicos (0 V y 5 V, o dos voltajes simétricos dependiendo del sistema) y que son representados por 2 valores en el tiempo (0 y 1). Pueden ser señales generadas por una analógica y convertida a digital.</p>
+          <p>Los sistemas digitales son el conjunto de dispositivos destinados a la generación, transmisión, procesamiento o almacenamiento de señales digitales.</p>
+          <p class="sub-label">Características</p>
+          <ul>
+            <li>Requieren de menor capacidad para almacenamiento</li>
+            <li>Tienen sólo 2 valores en el tiempo</li>
+            <li>Más fácil de separar del ruido</li>
+            <li>No requieren de gran potencia para su amplificación y transmisión</li>
+            <li>Algoritmos de detección de errores</li>
+            <li>Algoritmos de encriptamiento</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="class-pager">
+    
+    <a class="next" href="../unidad-1-sistemas-binarios/clase-01-sistemas-binarios.html"><span class="lbl">Siguiente →</span>Sistemas Decimales y Binarios</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

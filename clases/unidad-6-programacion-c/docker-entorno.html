@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entorno de Desarrollo con Docker — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u6); --u-soft: var(--u6-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-6">Programación en C</a><span class="sep">/</span>
+      Entorno de Desarrollo con Docker
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 6 · Programación en C</div>
+    <h1>Entorno de Desarrollo con Docker</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Docker</a></li>
+      <li><a href="#s2">Arquitectura Docker</a></li>
+      <li><a href="#s3">Diapositiva 4</a></li>
+      <li><a href="#s4">Imagen</a></li>
+      <li><a href="#s5">Diapositiva 6</a></li>
+      <li><a href="#s6">Imagenes</a></li>
+      <li><a href="#s7">Contenedor</a></li>
+      <li><a href="#s8">Contenedor</a></li>
+      <li><a href="#s9">Containers vrs Máquina Virtual</a></li>
+      <li><a href="#s10">Ejecucíon de los containers</a></li>
+      <li><a href="#s11">Docker Volumenes</a></li>
+      <li><a href="#s12">Build &amp; run Image</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Docker</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Docker Permite desplegar aplicaciones en contenedores en forma rápida y portable</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/docker-entorno/a23c20027e.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Arquitectura Docker</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/docker-entorno/77acfa07fd.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 4</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/docker-entorno/78878ad2be.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Imagen</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/docker-entorno/f9f53e52f1.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 6</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/docker-entorno/f0afa823be.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Imagenes</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Imagenes Oficiales</li>
+<ul>
+<li>Están almacenadas en Docker Hub</li>
+<li>Específicas de distribuidores de software</li>
+</ul>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Contenedor</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/docker-entorno/6238da406b.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Contenedor</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/docker-entorno/606358a1fa.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Containers vrs Máquina Virtual</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Docker (contenedores)</h3>
+          <p>Virtualiza el sistema operativo: todos los contenedores comparten el mismo kernel del sistema operativo anfitrión, pero pueden tener sus propias bibliotecas y aplicaciones.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Máquina Virtual</h3>
+          <p>Virtualiza el hardware para ejecutar un sistema operativo completo: cada máquina virtual es una instancia completa del sistema operativo con su propio hardware virtualizado.</p>
+        </div>
+      </div>
+      <div class="slide-images">
+        <figure><img src="../img/docker-entorno/0044e58b00.png" loading="lazy" alt="Tabla comparativa: máquinas virtuales vs. contenedores Docker"></figure>
+        <figure><img src="../img/docker-entorno/6fa7824ce7.png" loading="lazy" alt="Gráfica de tiempo de arranque: Docker vs. VM"></figure>
+      </div>
+      <p class="note">Fuente: <a href="https://www.researchgate.net/figure/Virtual-Machine-versus-Docker-Container_tbl1_341907958" target="_blank" rel="noopener">researchgate.net — Virtual Machine versus Docker Container</a></p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Ejecucíon de los containers</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>docker ps</li>
+<li>docker stop [container_id or name]</li>
+<li>docker start [container_id or name]</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Docker Volumenes</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Los volúmenes de host en Docker son una forma de persistencia de datos en la que se mapea un directorio o archivo específico del sistema operativo</li>
+<li>Como se usa:</li>
+<ul>
+<li>docker run -v /path/en/host:/path/en/contenedor imagen</li>
+</ul>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Build &amp; run Image</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Build:</li>
+<ul>
+<li>docker build -t ecfm_reduccion_datos:latest .</li>
+</ul>
+<li>Run</li>
+<ul>
+<li>docker run -p 8889:8888 -v /home/erick/Documentos/ecfm:/usr/src/app/ ecfm_reduccion_datos</li>
+</ul>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-6-programacion-c/clase-c-programacion.html"><span class="lbl">← Anterior</span>Fundamentos del Lenguaje C</a>
+    <a class="next" href="../unidad-7-fpga/clase-11b-hdl-psoc.html"><span class="lbl">Siguiente →</span>HDL y Diseño con PSoC (Charla invitada — Cristian Sisterna, ICTP-MLAB)</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

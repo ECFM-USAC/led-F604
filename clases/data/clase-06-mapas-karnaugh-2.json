@@ -1,0 +1,319 @@
+{
+ "slug": "clase-06-mapas-karnaugh-2",
+ "source": "Clase 6.pptx",
+ "slide_range": [
+  1,
+  12
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Mapas Karnaugh (K-Maps)",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Mapa de 4 variables",
+   "body": [],
+   "images": [
+    "103230efc9.png",
+    "318cbfcfc3.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": null,
+   "body": [],
+   "images": [
+    "103230efc9.png",
+    "18dc84ed8b.png",
+    "4f3bf4765b.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Ejemplo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Simplifique la siguiente función booleana en forma de"
+      },
+      {
+       "level": 0,
+       "text": "a) suma de productos"
+      },
+      {
+       "level": 0,
+       "text": "b) producto de sumas"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "fdf589312d.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "a)"
+      },
+      {
+       "level": 0,
+       "text": "F’ = AB + CD + BD’"
+      },
+      {
+       "level": 0,
+       "text": "b)Al aplicar el teorema de DeMorgan (obteniendo el dual y complementando cada literal) se obtiene la función simplificada en forma de producto de sumas:"
+      },
+      {
+       "level": 0,
+       "text": "F = (A’ + B’)(C’ + D’)(B’+ D)"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "068df56c79.png",
+    "25b4de5900.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Mapa de 5 Variables",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un mapa de cinco variables necesita 32 cuadrados"
+      },
+      {
+       "level": 0,
+       "text": "El mapa de cinco variables se muestra en la figura 3-12. Consta de dos mapas de cuatro variables con las variables A, B, C, D y E. La variable A distingue a los dos mapas, como se indica en la parte superior del diagrama. El mapa de cuatro variables de la izquierda representa los 16 cuadrados en los que A=0; el otro representa los cuadrados en los que A=1."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Mapa de 5 variables",
+   "body": [],
+   "images": [
+    "a6107956fe.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Condiciones de Indiferencia",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Hay algunas aplicaciones en las que la función no está especificada para ciertas combinaciones de las variables"
+      },
+      {
+       "level": 0,
+       "text": "En casi todas las aplicaciones, es irrelevante el valor que asuma la función para los minitérminos no especificados. Por ello, se acostumbra llamar condiciones de indiferencia (don’t care, en inglés) a los minitérminos no especificados de una función. Conviene usar estas condiciones de indiferencia en el mapa para simplificar aún más la"
+      },
+      {
+       "level": 0,
+       "text": "expresión booleana"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Ejemplo",
+   "body": [],
+   "images": [
+    "4195796dad.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": null,
+   "body": [],
+   "images": [
+    "f0cb3d7e90.png",
+    "ca8460a86d.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Hoja de Trabajo",
+   "body": [
+    {
+     "kind": "table",
+     "rows": [
+      [
+       "C",
+       "B",
+       "A",
+       "F"
+      ],
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ],
+      [
+       "0",
+       "0",
+       "1",
+       "0"
+      ],
+      [
+       "0",
+       "1",
+       "0",
+       "1"
+      ],
+      [
+       "0",
+       "1",
+       "1",
+       "x"
+      ],
+      [
+       "1",
+       "0",
+       "0",
+       "1"
+      ],
+      [
+       "1",
+       "0",
+       "1",
+       "1"
+      ],
+      [
+       "1",
+       "1",
+       "0",
+       "0"
+      ],
+      [
+       "1",
+       "1",
+       "1",
+       "x"
+      ]
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Hoja de Trabajo",
+   "body": [
+    {
+     "kind": "table",
+     "rows": [
+      [
+       "C",
+       "B",
+       "A",
+       "F"
+      ],
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ],
+      [
+       "0",
+       "0",
+       "1",
+       "0"
+      ],
+      [
+       "0",
+       "1",
+       "0",
+       "1"
+      ],
+      [
+       "0",
+       "1",
+       "1",
+       "x"
+      ],
+      [
+       "1",
+       "0",
+       "0",
+       "1"
+      ],
+      [
+       "1",
+       "0",
+       "1",
+       "1"
+      ],
+      [
+       "1",
+       "1",
+       "0",
+       "0"
+      ],
+      [
+       "1",
+       "1",
+       "1",
+       "x"
+      ]
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  }
+ ]
+}

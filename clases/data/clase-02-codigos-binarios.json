@@ -1,0 +1,565 @@
+{
+ "slug": "clase-02-codigos-binarios",
+ "source": "Clase 2/Clase 2 - Sistemas Binarios.pptx",
+ "slide_range": [
+  1,
+  18
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Números Hexadecimales, Códigos Binarios y Lógica Binaria",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Sistema Hexadecimal",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Base 16: usa 0-9 y A-F"
+      },
+      {
+       "level": 0,
+       "text": "1 dígito hexadecimal = 4 bits binarios"
+      },
+      {
+       "level": 0,
+       "text": "Hex se usa en registros, direcciones y puertos"
+      },
+      {
+       "level": 0,
+       "text": "Ejemplo: Decimal 175 -> Hex: AF"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "082c214089.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Conversión a Hexadecimal",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Para convertir a decimal sumamos los dígitos multiplicados por sus pesos correspondientes."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "7b77101257.png",
+    "acef52f508.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Conversión Binario <-> Hexadecimal",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Hexadecimal a binario: 1 dígito hexadecimal —> 4 bits"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Binario a Hexadecimal: 4 bits —> 1 dígito hexadecimal"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "376e444a90.png",
+    "daa77e924d.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Convertir de Decimal a Hexadecimal",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Número decimal: 254"
+      },
+      {
+       "level": 0,
+       "text": "Divide entre 16:"
+      },
+      {
+       "level": 0,
+       "text": "254 ÷ 16 = 15 → residuo 14"
+      },
+      {
+       "level": 0,
+       "text": "15 en hexadecimal = F"
+      },
+      {
+       "level": 0,
+       "text": "14 en hexadecimal = E"
+      },
+      {
+       "level": 0,
+       "text": "254₁₀ = FE"
+      },
+      {
+       "level": 0,
+       "text": "250 ₁₀ = ????"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Códigos Binarios",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "BCD: Binario por dígito decimal (4 bits)"
+      },
+      {
+       "level": 0,
+       "text": "Gray: Solo cambia un bit entre números consecutivos"
+      },
+      {
+       "level": 0,
+       "text": "ASCII: Representa caracteres (7/8 bits)"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Binary-Coded Decimal Code (BCD) o Decimal Codificado en Binario",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Es un sistema de representación de números decimales donde cada dígito decimal (0 a 9) se representa por su equivalente en binario de 4 bits."
+      },
+      {
+       "level": 0,
+       "text": "A diferencia del binario puro, BCD no representa todos los números de 0 a 15 con 4 bits, solo del 0 al 9."
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Tabla basada en Mano, M. M. (2003). Diseño digital (3ª ed.). Pearson Educación."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "fa1883047e.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Suma BCD",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Suma los dígitos BCD como si fueran números binarios de 4 bits"
+      },
+      {
+       "level": 1,
+       "text": "Haz una suma binaria normal entre cada grupo de 4 bits (dígitos decimales)."
+      },
+      {
+       "level": 0,
+       "text": "Verifica si el resultado es un número decimal válido (0–9)"
+      },
+      {
+       "level": 1,
+       "text": "Si el resultado es menor o igual a 9 (es decir, ≤ 1001), no necesitas corrección."
+      },
+      {
+       "level": 1,
+       "text": "Si el resultado es mayor a 9 (es decir, > 1001) o hay acarreo, necesitas corregir."
+      },
+      {
+       "level": 0,
+       "text": "Corrige sumando 6 (0110)"
+      },
+      {
+       "level": 1,
+       "text": "Si el resultado es inválido (por ser >9), súmale 0110 (decimal 6) al grupo de 4 bits."
+      },
+      {
+       "level": 1,
+       "text": "Esto genera un acarreo que se suma al siguiente dígito decimal en la suma."
+      },
+      {
+       "level": 0,
+       "text": "Propaga el acarreo al siguiente dígito si es necesario"
+      },
+      {
+       "level": 1,
+       "text": "Aplica el mismo proceso para los dígitos siguientes."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "e3007273c9.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Suma BCD",
+   "body": [],
+   "images": [
+    "cec34a1229.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Código Gray",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Es un tipo de código binario en el que dos números consecutivos difieren solo en un bit. Esto lo hace muy útil en aplicaciones donde se desea minimizar errores en la transición entre valores, como en:"
+      },
+      {
+       "level": 0,
+       "text": "Sensores rotatorios"
+      },
+      {
+       "level": 0,
+       "text": "Codificadores de posición"
+      },
+      {
+       "level": 0,
+       "text": "Transmisión de datos digitales"
+      },
+      {
+       "level": 0,
+       "text": "El código Gray se emplea en aplicaciones en las que la sucesión normal de números binarios podría generar un error o ambigüedad durante la transición de un número al siguiente. Si se usan números binarios, un cambio de 0111 a 1000 podría producir un número intermedio erróneo, como 1001, si el bit de la extrema derecha tarda más en cambiar su valor que los otros tres bits."
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Tabla basada en Mano, M. M. (2003). Diseño digital (3ª ed.). Pearson Educación."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "4b8bd8265d.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Código Gray",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Pasos para obtener el Código Gray a partir de un número binario:"
+      },
+      {
+       "level": 0,
+       "text": "Se baja el dígito de la izquierda"
+      },
+      {
+       "level": 0,
+       "text": "Se hace la suma del primer dígito con el segundo dígito en forma horizontal"
+      },
+      {
+       "level": 0,
+       "text": "Se hace la suma del segundo dígito con el tercero, etc."
+      },
+      {
+       "level": 0,
+       "text": "Los acarreos no se consideran"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "a7b6f56c49.png",
+    "43d384a950.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "ASCII",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Es un estándar de codificación que asigna un valor numérico a cada carácter, número, símbolo o instrucción de control usado en computadoras y dispositivos electrónicos."
+      },
+      {
+       "level": 0,
+       "text": "Utiliza 7 bits para representar cada carácter (aunque comúnmente se usa en un byte de 8 bits)."
+      },
+      {
+       "level": 0,
+       "text": "Puede representar 128 caracteres (del 0 al 127)."
+      },
+      {
+       "level": 0,
+       "text": "Incluye:"
+      },
+      {
+       "level": 1,
+       "text": "Letras mayúsculas y minúsculas (A–Z, a–z)"
+      },
+      {
+       "level": 1,
+       "text": "Dígitos (0–9)"
+      },
+      {
+       "level": 1,
+       "text": "Signos de puntuación y símbolos especiales"
+      },
+      {
+       "level": 1,
+       "text": "Caracteres de control (como ENTER, TAB, ESC)"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "ACII",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Tabla basada en Mano, M. M. (2003). Diseño digital (3ª ed.). Pearson Educación."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "918e856ba9.png",
+    "a1ad9789e2.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "ACII",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "ASCII es un código de siete bits, pero casi todas las computadoras manipulan una cantidad de ocho bits como una unidad llamada byte."
+      },
+      {
+       "level": 0,
+       "text": "Cuando se desea detectar errores en la comunicación y en el procesamiento de datos, se añade un octavo bit al carácter ASCII para indicar su paridad. El bit de paridad es un bit adicional que se incluye en un mensaje de modo que el número total de unos sea par o impar"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "01c8eb7081.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 15,
+   "title": "Lógica Binaria",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Bloque de construcción básico de los sistemas digitales."
+      },
+      {
+       "level": 0,
+       "text": "La lógica binaria consiste en variables binarias y operaciones lógicas"
+      },
+      {
+       "level": 0,
+       "text": "Las variables se designan con letras del alfabeto, como A, B, C, x, y, z, etcétera, y cada variable tiene dos y sólo dos posibles valores: 1 y 0."
+      },
+      {
+       "level": 0,
+       "text": "Hay tres operaciones lógicas básicas: AND, OR y NOT."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "50a046b632.png",
+    "15efe994fa.png",
+    "91a364ff88.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 16,
+   "title": "Lógica Binaria",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "AND: Esta operación se representa con un punto u omitiendo el operador. Por ejemplo, x  y=z o xy=z se lee “x AND y es igual a z”. La operación lógica AND significa que z=1 si y sólo si x=1 y y=1; de lo contrario, z=0. (Recordemos que x, y y z son variables binarias y sólo pueden valer 1 o 0.)"
+      },
+      {
+       "level": 0,
+       "text": "OR: Esta operación se representa con un signo más. Por ejemplo, x+y=z se lee “x OR y es igual a z”, y significa que z=1 si x=1 o si y=1 o si x=1 y y=1. Si x=0 y y=0, entonces z=0."
+      },
+      {
+       "level": 0,
+       "text": "NOT: x’=z (o ) se lee como “no x es igual a z” y significa que z es lo contrario de x. Dicho de otro modo, si x=1, entonces z=0; pero si x=0, entonces z=1."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "50a046b632.png",
+    "15efe994fa.png",
+    "91a364ff88.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 17,
+   "title": "Operaciones Lógicas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Tabla basada en Mano, M. M. (2003). Diseño digital (3ª ed.). Pearson Educación."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "ed1356ad63.png",
+    "43a162289f.png",
+    "4299d1ea8f.png",
+    "3e6ae2aae5.png",
+    "13df6f742c.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 18,
+   "title": "Ejercicio en Clase",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Convertir de Hexadecimal a Decimal: 1A3"
+      },
+      {
+       "level": 0,
+       "text": "Convertir de Decimal a Hexadecimal: 745"
+      },
+      {
+       "level": 0,
+       "text": "Convertir de Binario a Hexadecimal: 1101101011"
+      },
+      {
+       "level": 0,
+       "text": "Genera la tabla de verdad  para: Y=(A∧B)∨C"
+      },
+      {
+       "level": 1,
+       "text": "∧  es la compuerta AND"
+      },
+      {
+       "level": 1,
+       "text": "∨ es la compuerta OR"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "324c012749.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

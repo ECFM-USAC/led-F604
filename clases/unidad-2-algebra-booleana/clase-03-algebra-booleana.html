@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Definiciones, Teoremas y Funciones Booleanas — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u2); --u-soft: var(--u2-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-2">Álgebra Booleana y Compuertas Lógicas</a><span class="sep">/</span>
+      Definiciones, Teoremas y Funciones Booleanas
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 2 · Álgebra Booleana y Compuertas Lógicas</div>
+    <h1>Definiciones, Teoremas y Funciones Booleanas</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Definiciones básicas</a></li>
+      <li><a href="#s2">Definiciones básicas</a></li>
+      <li><a href="#s3">Definiciones básicas</a></li>
+      <li><a href="#s4">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s5">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s6">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s7">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s8">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s9">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s10">Dualidad</a></li>
+      <li><a href="#s11">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s12">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s13">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s14">Teoremas y propiedades básicos</a></li>
+      <li><a href="#s15">Ley del Consenso</a></li>
+      <li><a href="#s16">Funciones booleanas</a></li>
+      <li><a href="#s17">Funciones booleanas</a></li>
+      <li><a href="#s18">Funciones booleanas</a></li>
+      <li><a href="#s19">Funciones booleanas</a></li>
+      <li><a href="#s20">Hoja de trabajo</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Definiciones básicas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Un álgebra booleana de dos valores se define sobre un conjunto de dos elementos, B={1, 0},</li>
+<li>con las reglas para los dos operadores binarios: AND(*) y OR(+).</li>
+<li>También existe el operador complemento.</li>
+<li>La precedencia de operadores para evaluar expresiones booleanas es</li>
+<li>1) paréntesis, 2) NOT, 3) AND y 4) OR</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-03-algebra-booleana/5bd5f52a41.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Definiciones básicas</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Literal</h3>
+          <p>Una variable booleana o su complemento.</p>
+          <p class="formula">x, x'</p>
+        </div>
+        <div class="compare-item">
+          <h3>Término</h3>
+          <p>Combinación de literales con la operación AND.</p>
+          <p class="formula">x⋅y⋅z'</p>
+        </div>
+        <div class="compare-item">
+          <h3>Expresión</h3>
+          <p>Combinación de términos unidos con OR.</p>
+          <p class="formula">x⋅y + x⋅z'</p>
+        </div>
+      </div>
+      <p class="note">Estos conceptos son la base de las expresiones booleanas usadas para representar funciones lógicas.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Definiciones básicas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Una tabla de verdad es una lista de combinaciones de unos y ceros asignados a las variables binarias y una columna que muestra el valor de la función para cada combinación binaria.</li>
+<li>El número de filas de la tabla es 2n, donde n es el número de variables de la función</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-03-algebra-booleana/3c91d9aa62.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Conmutativa, Asociativa, Distributiva, Leyes de De Morgan.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-03-algebra-booleana/5bd5f52a41.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Ley Conmutativa</h3>
+          <p>El orden de los operandos no afecta el resultado.</p>
+          <p class="formula">A+B=B+A</p>
+          <p class="formula">A⋅B=B⋅A</p>
+        </div>
+        <div class="compare-item">
+          <h3>Ley Asociativa</h3>
+          <p>El agrupamiento de los operandos no altera el resultado.</p>
+          <p class="formula">A+(B+C)=(A+B)+C</p>
+          <p class="formula">A⋅(B⋅C)=(A⋅B)⋅C</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Ley Distributiva:</li>
+<li>Una variable puede "distribuirse" sobre una operación entre otras dos.</li>
+<li>A⋅(B+C)=A⋅B+A⋅C</li>
+<li>A+(B⋅C)=(A+B)⋅(A+C)</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Ley Distributiva:</li>
+<li>x ⋅(y+z)=(x ⋅y)+(x ⋅z)</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-03-algebra-booleana/21de59452b.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Ley de Absorción</h3>
+          <p>Ciertas combinaciones de operaciones se "absorben" y simplifican.</p>
+          <p class="formula">A+A⋅B=A</p>
+          <p class="formula">A⋅(A+B)=A</p>
+        </div>
+        <div class="compare-item">
+          <h3>Teoremas de DeMorgan</h3>
+          <p>Permiten transformar expresiones negadas:</p>
+          <p class="formula">(A * B)' = A' + B'</p>
+          <p class="formula">(A + B)' = A' * B'</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Teoremas de DeMorgan</li>
+<li>(A ⋅ B)' = A' + B'</li>
+<li>(A + B)' = A' ⋅ B'</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-03-algebra-booleana/7effedae32.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Dualidad</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El principio de dualidad  establece que toda expresión algebraica que pueda deducirse de los postulados del álgebra booleana y seguirá siendo válida si se intercambian los operadores y los elementos de identidad.</li>
+<li>En un álgebra booleana de dos valores, los elementos de identidad y los elementos del conjunto, B, son los mismos: 1 y 0.</li>
+<li>El principio de dualidad tiene muchas aplicaciones. Si queremos el dual de una expresión algebraica, simplemente intercambiamos los operadores OR y AND y sustituimos los unos por ceros y los ceros por unos.</li>
+<li>X + X = X</li>
+<li>X ⋅ X = X</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-03-algebra-booleana/1672f599c2.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-03-algebra-booleana/b8e729841f.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-03-algebra-booleana/1672f599c2.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-03-algebra-booleana/d9e65eca55.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-03-algebra-booleana/1672f599c2.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s14" style="--reveal-delay: 0.65s;">
+    <div class="slide-head"><h2>Teoremas y propiedades básicos</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El teorema 1b) es el dual del teorema 1a) y que cada uno de los pasos de la demostración en la parte b) es el dual de la parte a). Cualquier teorema dual se puede deducir de forma similar, partiendo de la demostración de su par correspondiente.</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-03-algebra-booleana/1838a05953.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-03-algebra-booleana/a1be7a81cd.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-03-algebra-booleana/6076837796.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-03-algebra-booleana/f2fb77dc38.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s15" style="--reveal-delay: 0.70s;">
+    <div class="slide-head"><h2>Ley del Consenso</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La Ley del Consenso permite eliminar términos redundantes en expresiones booleanas.</li>
+<li>AB+BC+C’A=AB+C’A</li>
+<li>Demostración:</li>
+<li>=AB+C’A+BC⋅1</li>
+<li>=AB+C’A+BC(A+A’)</li>
+<li>=AB+C’A+BCA+BCA’</li>
+<li>=AB(1+C)+C’A(1+B)</li>
+<li>=AB+C’A</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s16" style="--reveal-delay: 0.75s;">
+    <div class="slide-head"><h2>Funciones booleanas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Una función booleana descrita por una expresión algebraica consta de variables binarias, las constantes 0 y 1, y los símbolos lógicos de operación.</li>
+<li>F1 = x + y⋅z</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-03-algebra-booleana/3dd64f81de.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-03-algebra-booleana/d6e36b8e82.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s17" style="--reveal-delay: 0.80s;">
+    <div class="slide-head"><h2>Funciones booleanas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Una función booleana se puede transformar de una expresión algebraica a un diagrama de circuitos hecho con compuertas lógicas.</li>
+<li>En los diagramas de circuitos lógicos, las variables de la función son las entradas del circuito, y la variable binaria F es la salida del circuito.</li>
+<li>Sólo hay una forma de representar una función booleana en una tabla de verdad, en cambio, cuando la función está en forma algebraica, puede expresarse de varias maneras. La expresión específica empleada para designar la función también determinará la interconexión de compuertas en el diagrama de circuito lógico.</li>
+<li>Manipulando una expresión booleana según las reglas del álgebra booleana, a veces es posible obtener una expresión más simple para la misma función y así reducir el número de compuertas del circuito y el número de entradas de las compuertas</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-03-algebra-booleana/d6e36b8e82.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s18" style="--reveal-delay: 0.85s;">
+    <div class="slide-head"><h2>Funciones booleanas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>F2 = x’y’z + x’yz + xy’</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-03-algebra-booleana/74375d5cee.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s19" style="--reveal-delay: 0.90s;">
+    <div class="slide-head"><h2>Funciones booleanas</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>F2 = x’y’z + x’yz + xy’ = x’z(y + ’y) + xy’ = x’z + xy’</li>
+</ul>
+<ul>
+<li>F2 = x’y’z + x’yz + xy’</li>
+</ul>
+<ul>
+<li>F2 = x’z + xy’</li>
+</ul>
+      <div class="slide-images "><figure><img src="../img/clase-03-algebra-booleana/62695c792f.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-03-algebra-booleana/772b524bf3.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s20" style="--reveal-delay: 0.95s;">
+    <div class="slide-head"><h2>Hoja de trabajo</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Validar que la tabla de verdad para</li>
+<li>F2 = x’y’z + x’yz + xy’</li>
+<li>F2  = x’z + xy’</li>
+<li>Simplificar las siguientes funciones</li>
+<li>x(x’+y)</li>
+<li>x+x’y</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-1-sistemas-binarios/clase-02-codigos-binarios.html"><span class="lbl">← Anterior</span>Hexadecimal, Códigos Binarios (BCD, Gray, ASCII) y Lógica Binaria</a>
+    <a class="next" href="../unidad-2-algebra-booleana/clase-05-mapas-karnaugh-1.html"><span class="lbl">Siguiente →</span>Mapas de Karnaugh: 2 y 3 Variables</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

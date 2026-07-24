@@ -1,0 +1,254 @@
+{
+ "slug": "docker-entorno",
+ "source": "Docker.pptx",
+ "slide_range": [
+  1,
+  14
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Reducción de Datos",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Docker"
+      },
+      {
+       "level": 0,
+       "text": "ECFM 2025"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Docker",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Docker Permite desplegar aplicaciones en contenedores en forma rápida y portable"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "a23c20027e.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Arquitectura Docker",
+   "body": [],
+   "images": [
+    "77acfa07fd.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": null,
+   "body": [],
+   "images": [
+    "78878ad2be.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Imagen",
+   "body": [],
+   "images": [
+    "f9f53e52f1.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": null,
+   "body": [],
+   "images": [
+    "f0afa823be.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Imagenes",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Imagenes Oficiales"
+      },
+      {
+       "level": 1,
+       "text": "Están almacenadas en Docker Hub"
+      },
+      {
+       "level": 1,
+       "text": "Específicas de distribuidores de software"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Contenedor",
+   "body": [],
+   "images": [
+    "6238da406b.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Contenedor",
+   "body": [],
+   "images": [
+    "606358a1fa.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Containers vrs Máquina Virtual",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Docker, virtualiza el sistema operativo, lo que significa que todos los contenedores comparten el mismo kernel del sistema operativo anfitrión, pero pueden tener sus propias bibliotecas y aplicaciones"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Las máquinas virtuales (VMs) virtualizan el hardware para ejecutar un sistema operativo completo, cada máquina virtual es una instancia completa del sistema operativo con su propio hardware virtualizado"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Fuente: https://www.researchgate.net/figure/Virtual-Machine-versus-Docker-Container_tbl1_341907958"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "6fa7824ce7.png",
+    "0044e58b00.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Ejecucíon de los containers",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "docker ps"
+      },
+      {
+       "level": 0,
+       "text": "docker stop [container_id or name]"
+      },
+      {
+       "level": 0,
+       "text": "docker start [container_id or name]"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "Docker Volumenes",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Los volúmenes de host en Docker son una forma de persistencia de datos en la que se mapea un directorio o archivo específico del sistema operativo"
+      },
+      {
+       "level": 0,
+       "text": "Como se usa:"
+      },
+      {
+       "level": 1,
+       "text": "docker run -v /path/en/host:/path/en/contenedor imagen"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Build & run Image",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Build:"
+      },
+      {
+       "level": 1,
+       "text": "docker build -t ecfm_reduccion_datos:latest ."
+      },
+      {
+       "level": 0,
+       "text": "Run"
+      },
+      {
+       "level": 1,
+       "text": "docker run -p 8889:8888 -v /home/erick/Documentos/ecfm:/usr/src/app/ ecfm_reduccion_datos"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  }
+ ]
+}

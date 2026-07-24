@@ -1,0 +1,421 @@
+{
+ "slug": "clase-10-decodificadores",
+ "source": "Clase 10.pptx",
+ "slide_range": [
+  1,
+  21
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Lógica Combinacional - Suma BCD, Decodificador, Codificador",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Desbordamiento",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cuando dos números de n dígitos cada uno se suman y la suma ocupa n+1 dígitos, decimos que hubo un desbordamiento. Esto se cumple con los números binarios y decimales, con y sin signo."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Desbordamiento",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Si se considera que los números tienen signo, el bit V detectará un desbordamiento."
+      },
+      {
+       "level": 0,
+       "text": "Si V=0 después de una suma o resta, querrá decir que no hubo desbordamiento y que el resultado de n bits es correcto."
+      },
+      {
+       "level": 0,
+       "text": "Si V=1, el resultado de la operación tiene n+1 bits,"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "e9e8222594.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Sumador BCD",
+   "body": [],
+   "images": [
+    "1f50e445a0.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Suma BCD",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Suma los dígitos BCD como si fueran números binarios de 4 bits"
+      },
+      {
+       "level": 1,
+       "text": "Haz una suma binaria normal entre cada grupo de 4 bits (dígitos decimales)."
+      },
+      {
+       "level": 0,
+       "text": "Verifica si el resultado es un número decimal válido (0–9)"
+      },
+      {
+       "level": 1,
+       "text": "Si el resultado es menor o igual a 9 (es decir, ≤ 1001), no necesitas corrección."
+      },
+      {
+       "level": 1,
+       "text": "Si el resultado es mayor a 9 (es decir, > 1001) o hay acarreo, necesitas corregir."
+      },
+      {
+       "level": 0,
+       "text": "Corrige sumando 6 (0110)"
+      },
+      {
+       "level": 1,
+       "text": "Si el resultado es inválido (por ser >9), súmale 0110 (decimal 6) al grupo de 4 bits."
+      },
+      {
+       "level": 1,
+       "text": "Esto genera un acarreo que se suma al siguiente dígito decimal en la suma."
+      },
+      {
+       "level": 0,
+       "text": "Propaga el acarreo al siguiente dígito si es necesario"
+      },
+      {
+       "level": 1,
+       "text": "Aplica el mismo proceso para los dígitos siguientes."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "e3007273c9.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Sumador BCD",
+   "body": [],
+   "images": [
+    "a94375c0ad.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Sumador BCD",
+   "body": [],
+   "images": [
+    "6641c80643.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Multiplicador Binario",
+   "body": [],
+   "images": [
+    "66377789cd.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Multiplicador Binario  4 x 3 bits",
+   "body": [],
+   "images": [
+    "dfbe3a1bf8.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Decodificador",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un código binario de n bits puede representar hasta 2n elementos distintos de información codificada."
+      },
+      {
+       "level": 0,
+       "text": "Un decodificador es un circuito combinacional que convierte información binaria de n líneas de entrada a un máximo de 2n líneas de salida distintas."
+      },
+      {
+       "level": 0,
+       "text": "Si la información codificada en n bits tiene combinaciones que no se usan, el decodificador podría tener menos de 2n salidas."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": null,
+   "body": [],
+   "images": [
+    "8238a44ba1.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Decodificador",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Decodificador de 2 a 4 líneas con entrada habilitadora"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "6f8d88a60a.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "Decodificador en lógica combinacional",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un decodificador produce los 2n minitérminos de n variables de entrada. Puesto que cualquier función booleana es susceptible de expresarse como suma de minitérminos, es posible utilizar un decodificador para generar los minitérminos y una compuerta OR externa para formar la suma lógica."
+      },
+      {
+       "level": 0,
+       "text": "De la tabla de verdad del sumador completo , obtenemos las funciones para el circuito combinacional en forma de suma de minitérminos:"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "f574c4b651.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Decodificador",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Implementación de un sumador con un decodificador"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "3e5ecdaf7e.png",
+    "eac725f54d.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 15,
+   "title": "Aplicación decodificador",
+   "body": [],
+   "images": [
+    "cb1c04df87.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 16,
+   "title": "Codificador",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un codificador es un circuito digital que efectúa la operación inversa de la que efectúa un decodificador."
+      },
+      {
+       "level": 0,
+       "text": "El codificador tiene 2n (o menos) líneas de entrada y n líneas de salida."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 17,
+   "title": "Codificador",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Codificador de octal a binario"
+      },
+      {
+       "level": 0,
+       "text": "Tiene ocho entradas (una para cada uno de los dígitos octales) y tres salidas que generan el número binario correspondiente"
+      },
+      {
+       "level": 0,
+       "text": "El codificador se puede implementar con compuertas OR cuyas salidas se determinan directamente de la tabla de verdad"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "2ea9b47abb.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 18,
+   "title": "Codificador",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La salida z es 1 cuando el dígito octal de entrada es 1, 3, 5 o 7."
+      },
+      {
+       "level": 0,
+       "text": "La salida y es 1 para los dígitos octales 2, 3, 6 o 7,"
+      },
+      {
+       "level": 0,
+       "text": "La salida x es 1 para los dígitos 4, 5, 6 o 7. Estas condiciones se expresan con las funciones booleanas de salida siguientes:"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "4361a1ff69.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 19,
+   "title": "Codificador con Prioridad",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un codificador con prioridad es un circuito codificador que incluye la función de prioridad."
+      },
+      {
+       "level": 0,
+       "text": "Su funcionamiento es tal que, si dos o más entradas son 1 al mismo tiempo, la salida prioritaria tendrá precedencia"
+      },
+      {
+       "level": 0,
+       "text": "Además de las dos salidas, x y y, el circuito tiene una tercera salida designada V"
+      },
+      {
+       "level": 0,
+       "text": "V es un indicador de bit válido que adquiere el valor 1 cuando una o más entradas son 1."
+      },
+      {
+       "level": 0,
+       "text": "Si todas las entradas son 0, la entrada no será válida y V será 0"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 20,
+   "title": "Codificador con Prioridad",
+   "body": [],
+   "images": [
+    "578c6edcf4.png",
+    "3cd835a5e5.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 21,
+   "title": "Multiplexores",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un multiplexor es un circuito combinacional que selecciona información binaria de una de muchas líneas de entrada y la envía a una sola línea de salida."
+      },
+      {
+       "level": 0,
+       "text": "La selección de una línea de entrada dada se controla con un conjunto de líneas de selección."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "0675131aac.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

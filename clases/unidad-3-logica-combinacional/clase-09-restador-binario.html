@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complementos y Restador Binario — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u3); --u-soft: var(--u3-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-3">Lógica Combinacional</a><span class="sep">/</span>
+      Complementos y Restador Binario
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 3 · Lógica Combinacional</div>
+    <h1>Complementos y Restador Binario</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">A = 1011 y  B= 0011</a></li>
+      <li><a href="#s2">Complementos</a></li>
+      <li><a href="#s3">Complemento a la base disminuida</a></li>
+      <li><a href="#s4">Complemento a la base disminuida</a></li>
+      <li><a href="#s5">Complemento a la base</a></li>
+      <li><a href="#s6">Resta con complementos</a></li>
+      <li><a href="#s7">Resta con complementos</a></li>
+      <li><a href="#s8">Números Binarios Con Signo</a></li>
+      <li><a href="#s9">Diapositiva 10</a></li>
+      <li><a href="#s10">Restador Binario</a></li>
+      <li><a href="#s11">Propiedades XOR</a></li>
+      <li><a href="#s12">Diapositiva 13</a></li>
+      <li><a href="#s13">Restador Binario</a></li>
+      <li><a href="#s14">Diapositiva 15</a></li>
+    </ol>
+  </div>
+
+  
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>A = 1011 y  B= 0011</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-09-restador-binario/dd6d7bb42d.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-09-restador-binario/d28e522660.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-09-restador-binario/d86476b421.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Complementos</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>En las computadoras digitales se usan complementos para simplificar la operación de resta y para efectuar manipulaciones lógicas.</li>
+<li>Hay dos tipos de complementos para cada sistema base r: el complemento a la base y el complemento a la base disminuida.</li>
+<ul>
+<li>Complemento a r,</li>
+<li>complemento a (r-1).</li>
+</ul>
+<li>Si sustituimos el valor de la base r en estos nombres, los dos tipos son el complemento a dos y el complemento a uno, en el caso de los números binarios, y el complemento a diez y el complemento a nueve</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Complemento a la base disminuida</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Dado un número N en base r que tiene n dígitos, el complemento a (r-1) de N se define como (rn-1)-N.</li>
+<li>. En el caso de números decimales, r=10 y r-1=9, así que el complemento a nueve de N es (10n-1)-N</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-09-restador-binario/3d11b2a51a.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Complemento a la base disminuida</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>En los números binarios, r=2 y r-1=1, así que el complemento a uno de N es (2n-1)-N.</li>
+<li>2n se representa con un número binario que consiste en un uno seguido de n ceros. 2n-1 es un número binario representado por n unos.</li>
+<li>Si n=4, tenemos 24 =(10000)2 y 24 -1=(1111)2. Así, el complemento a uno de un número binario se obtiene restando cada dígito a uno. Sin embargo, al restar dígitos binarios a 1 podemos tener 1-0=1 o bien 1-1=0, lo que hace que el bit cambie de 0 a 1 o de 1 a 0. Por tanto, el complemento a uno de un número binario se forma cambiando los unos a ceros y los ceros a unos</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-09-restador-binario/296df78c2e.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Complemento a la base</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El complemento a r de un número N de n dígitos en base r se define como rn-N, para N ≠0, y 0 para N=0.</li>
+<li>Si comparamos con el complemento a (r-1), veremos que el complemento a r se obtiene sumando 1 al complemento a (r-1), ya que  rn-N = [(rn-1)-N]+1.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-09-restador-binario/6e0de04525.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Resta con complementos</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images "><figure><img src="../img/clase-09-restador-binario/1916104c78.png" loading="lazy" alt="Diagrama"></figure>
+<figure><img src="../img/clase-09-restador-binario/52d931f4cb.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Resta con complementos</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-09-restador-binario/d77dbe36aa.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Números Binarios Con Signo</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Por limitaciones del hardware, las computadoras deben representar todo con dígitos binarios.</li>
+<li>Se acostumbra representar el signo con un bit colocado en la posición extrema izquierda del número</li>
+<li>En esta notación, el número consiste en una magnitud y un símbolo (+o-) o un bit (0 o 1) que indica el signo</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 10</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-09-restador-binario/e243b61eec.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Restador Binario</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>La forma más conveniente de efectuar la resta de números binarios sin signo es utilizando complementos.</li>
+<li>La resta A-B se efectúa obteniendo el complemento a dos de B y sumándolo a A. El complemento a dos se obtiene calculando el complemento a uno y sumando 1 al par de bits menos significativo.</li>
+<li>El complemento a uno se implementa con inversores, y el 1 se suma a través del acarreo de entrada.</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Propiedades XOR</h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-09-restador-binario/9747b47b83.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 13</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-09-restador-binario/325d5e2b78.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Restador Binario</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Las operaciones de suma y resta se pueden combinar en un solo circuito que tiene un sumador binario compartido. Esto se hace incluyendo una compuerta OR exclusivo con cada sumador completo.</li>
+<li>Cada compuerta OR exclusivo recibe la entrada M y una de las entradas de B, cuando M=0, tenemos B ⊕ 0=B, los sumadores completos reciben el valor de B, el acarreo de entrada es 0, y el circuito efectúa A más B.</li>
+<li>Cuando M=1, tenemos B ⊕1=B’ y C0=1. Todas las entradas de B se complementan y se suma un 1 a través del acarreo de entrada. El circuito efectúa la operación A más el complemento a dos de B.</li>
+<li>El OR exclusivo con salida V es para detectar un desbordamiento</li>
+</ul>
+      
+      
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s14" style="--reveal-delay: 0.65s;">
+    <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 15</span></h2></div>
+    <div class="slide-body">
+      
+      <div class="slide-images single"><figure><img src="../img/clase-09-restador-binario/ab2b397080.png" loading="lazy" alt="Diagrama"></figure></div>
+      
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-3-logica-combinacional/clase-08-sumador-binario.html"><span class="lbl">← Anterior</span>Sumador Binario y Propagación del Acarreo</a>
+    <a class="next" href="../unidad-3-logica-combinacional/clase-10-decodificadores.html"><span class="lbl">Siguiente →</span>Suma BCD, Decodificadores y Codificadores</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

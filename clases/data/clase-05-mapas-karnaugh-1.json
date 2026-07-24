@@ -1,0 +1,466 @@
+{
+ "slug": "clase-05-mapas-karnaugh-1",
+ "source": "Clase 5/Clase 5.pptx",
+ "slide_range": [
+  1,
+  11
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Mapas Karnaugh (K-Maps)",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Mapa de Karnaugh",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un mapa de Karnaugh es una representación gráfica de una función booleana. Organiza los valores de verdad en una tabla especial, basada en el código Gray, donde cada celda representa un minitérmino."
+      },
+      {
+       "level": 0,
+       "text": "Facilita la simplificación lógica al permitir agrupar unos (1s) o ceros (0s) adyacentes."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Mapa de dos Variables",
+   "body": [],
+   "images": [
+    "47904a28b0.png",
+    "1a9dd10912.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Mapa de tres variables",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Hay ocho minitérminos para tres variables binarias; por tanto, el mapa consta de ocho cuadrados."
+      },
+      {
+       "level": 0,
+       "text": "Los minitérminos no están acomodados en sucesión binaria, sino en una sucesión similar al código Gray, la característica de esta sucesión es que sólo un bit cambia de valor entre dos columnas adyacentes."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "848c239f3f.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Ejemplo",
+   "body": [
+    {
+     "kind": "table",
+     "rows": [
+      [
+       "C",
+       "B",
+       "A",
+       "F"
+      ],
+      [
+       "0",
+       "0",
+       "0",
+       "1"
+      ],
+      [
+       "0",
+       "0",
+       "1",
+       "1"
+      ],
+      [
+       "0",
+       "1",
+       "0",
+       "0"
+      ],
+      [
+       "0",
+       "1",
+       "1",
+       "0"
+      ],
+      [
+       "1",
+       "0",
+       "0",
+       "0"
+      ],
+      [
+       "1",
+       "0",
+       "1",
+       "1"
+      ],
+      [
+       "1",
+       "1",
+       "0",
+       "1"
+      ],
+      [
+       "1",
+       "1",
+       "1",
+       "1"
+      ]
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Ejemplo",
+   "body": [
+    {
+     "kind": "table",
+     "rows": [
+      [
+       "C",
+       "B",
+       "A",
+       "F"
+      ],
+      [
+       "0",
+       "0",
+       "0",
+       "1"
+      ],
+      [
+       "0",
+       "0",
+       "1",
+       "1"
+      ],
+      [
+       "0",
+       "1",
+       "0",
+       "0"
+      ],
+      [
+       "0",
+       "1",
+       "1",
+       "0"
+      ],
+      [
+       "1",
+       "0",
+       "0",
+       "0"
+      ],
+      [
+       "1",
+       "0",
+       "1",
+       "1"
+      ],
+      [
+       "1",
+       "1",
+       "0",
+       "1"
+      ],
+      [
+       "1",
+       "1",
+       "1",
+       "1"
+      ]
+     ]
+    },
+    {
+     "kind": "table",
+     "rows": [
+      [
+       "C\\AB",
+       "0 0",
+       "0 1",
+       "1 1",
+       "1 0"
+      ],
+      [
+       "0",
+       "1",
+       "",
+       "",
+       "1"
+      ],
+      [
+       "1",
+       "",
+       "1",
+       "1",
+       "1"
+      ]
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Ejemplo",
+   "body": [
+    {
+     "kind": "table",
+     "rows": [
+      [
+       "C",
+       "B",
+       "A",
+       "F"
+      ],
+      [
+       "0",
+       "0",
+       "0",
+       "1"
+      ],
+      [
+       "0",
+       "0",
+       "1",
+       "1"
+      ],
+      [
+       "0",
+       "1",
+       "0",
+       "0"
+      ],
+      [
+       "0",
+       "1",
+       "1",
+       "0"
+      ],
+      [
+       "1",
+       "0",
+       "0",
+       "0"
+      ],
+      [
+       "1",
+       "0",
+       "1",
+       "1"
+      ],
+      [
+       "1",
+       "1",
+       "0",
+       "1"
+      ],
+      [
+       "1",
+       "1",
+       "1",
+       "1"
+      ]
+     ]
+    },
+    {
+     "kind": "table",
+     "rows": [
+      [
+       "C\\AB",
+       "0 0",
+       "0 1",
+       "1 1",
+       "1 0"
+      ],
+      [
+       "0",
+       "1",
+       "",
+       "",
+       "1"
+      ],
+      [
+       "1",
+       "",
+       "1",
+       "1",
+       "1"
+      ]
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "F = C̅ B̅ + CB + CA"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Ejemplo",
+   "body": [],
+   "images": [
+    "f6b5fdac5c.png",
+    "848c239f3f.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Ejemplo",
+   "body": [
+    {
+     "kind": "table",
+     "rows": [
+      [
+       "x\\yz",
+       "0 0",
+       "0 1",
+       "1 1",
+       "1 0"
+      ],
+      [
+       "0",
+       "1",
+       "",
+       "",
+       "1"
+      ],
+      [
+       "1",
+       "1",
+       "1",
+       "",
+       "1"
+      ]
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "F = z̅ + xy̅"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "f6b5fdac5c.png",
+    "e17815358d.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Hoja de Trabajo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Dada la función booleana"
+      },
+      {
+       "level": 0,
+       "text": "F(A,B,C) = Σ(1,2,3,5,7)"
+      },
+      {
+       "level": 0,
+       "text": "Expresar como la suma de miniterminos"
+      },
+      {
+       "level": 0,
+       "text": "Usar k-maps para minimizar la función"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "848c239f3f.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Hoja de Trabajo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Dada la función booleana"
+      },
+      {
+       "level": 0,
+       "text": "F(A,B,C) = Σ(1,2,3,5,7)"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "F = C + A̅B"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "c9141bc64b.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

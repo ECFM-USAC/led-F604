@@ -1,0 +1,413 @@
+{
+ "slug": "clase-14-registros-contadores",
+ "source": "Clase 14.pptx",
+ "slide_range": [
+  1,
+  16
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Registros y Contadores",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Registros y Contadores",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un registro es un grupo de flip-flops, cada flip-flop puede almacenar un bit de información."
+      },
+      {
+       "level": 0,
+       "text": "Un registro de n bits consiste en un grupo de n flip-flops capaces de almacenar n bits de información binaria. Además de los flip-flops, un registro puede tener compuertas combinacionales que realizan ciertas tareas de procesamiento de datos."
+      },
+      {
+       "level": 0,
+       "text": "Un registro consiste en un grupo de flip-flops y compuertas que efectúan su transición. Los flip-flops contienen la información binaria y las compuertas determinan cómo esa información se transfiere al registro."
+      },
+      {
+       "level": 0,
+       "text": "Un contador es básicamente un registro que pasa por una sucesión predeterminada de estados. Las compuertas del contador están conectadas de tal manera que producen la sucesión prescrita de estados binarios. Aunque los contadores son un tipo especial de registros, es común distinguirlos dándoles otro nombre"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Registros",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Hay diversos tipos de registros el más sencillo consiste únicamente en flip-flops, sin compuertas."
+      },
+      {
+       "level": 0,
+       "text": "La entrada de reloj, común a todos los flip-flops, los dispara en el flanco positivo de cada pulso, y los datos binarios disponibles en las cuatro entradas se transfieren en el registro de cuatro bits."
+      },
+      {
+       "level": 0,
+       "text": "Es posible muestrear las cuatro salidas en cualquier momento para obtener la información binaria almacenada en el registro. La entrada de despeje (clear) se conecta a la entrada R (reset) de los cuatro flip-flops."
+      },
+      {
+       "level": 0,
+       "text": "Cuando esta entrada cambia a 0, todos los flip-flops se restablecen asincrónicamente. La entrada clear sirve para poner en ceros el registro antes de que comience a funcionar con reloj."
+      },
+      {
+       "level": 0,
+       "text": "Las entradas R se deben mantener en 1 lógico durante el funcionamiento normal con reloj. Se utiliza tanto clear como reset para indicar la transferencia del registro al estado de ceros."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "323f5c87fa.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Los sistemas digitales sincrónicos tienen un generador maestro de reloj que suministra un tren continuo de pulsos de reloj, estos pulsos se aplican a todos los flip-flops y registros del sistema"
+      },
+      {
+       "level": 0,
+       "text": "Se requiere una señal de control aparte para decidir qué pulso de reloj específico tendrá efecto sobre un registro dado."
+      },
+      {
+       "level": 0,
+       "text": "La transferencia de información nueva a un registro se describe como carga del registro. Si todos los bits del registro se cargan simultáneamente, con un pulso de reloj común, se dice que la carga se efectúa en paralelo."
+      },
+      {
+       "level": 0,
+       "text": "Un borde de reloj aplicado a las entradas C del registro carga las cuatro entradas en paralelo. En esta configuración, el reloj deberá inhibirse del circuito cuando se desee que el registro conserve intacto su contenido."
+      },
+      {
+       "level": 0,
+       "text": "Esto se hace controlando la señal de entrada del reloj con una compuerta habilitadora."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "01f36e97d6.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La inserción de compuertas en la trayectoria del reloj implica que la lógica se efectúa con pulsos de reloj."
+      },
+      {
+       "level": 0,
+       "text": "La inserción de compuertas lógicas produce retardos de propagación desiguales entre el reloj maestro y las entradas de los flip-flops."
+      },
+      {
+       "level": 0,
+       "text": "Para sincronizar plenamente el sistema, hay que cerciorarse de que todos los pulsos de reloj lleguen al mismo tiempo a todos los puntos del sistema, para que todos los flip-flops se disparan en forma simultánea."
+      },
+      {
+       "level": 0,
+       "text": "Hay que controlar el funcionamiento del registro con las entradas D, en vez de controlar el reloj en las entradas C de los flip-flops."
+      },
+      {
+       "level": 0,
+       "text": "La entrada de carga del registro determina la acción que se realizará en cada pulso de reloj."
+      },
+      {
+       "level": 0,
+       "text": "Si la entrada de carga es 1, los datos de las cuatro entradas se transfieren al registro en el siguiente borde positivo del reloj."
+      },
+      {
+       "level": 0,
+       "text": "Si la entrada de carga es 0, las salidas de los flip-flops se conectan a sus respectivas entradas."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "01f36e97d6.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": null,
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La entrada de carga determina si el siguiente pulso va a aceptar nueva información o va a dejar intacta la información que está en el registro."
+      },
+      {
+       "level": 0,
+       "text": "La transferencia de información de las entradas de datos o las salidas del registro se efectúa simultáneamente con los cuatro bits, en respuesta a un borde de reloj."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "01f36e97d6.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Registros de Desplazamiento",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un registro capaz de desplazar su información binaria en una dirección o en la otra se llama registro de desplazamiento."
+      },
+      {
+       "level": 0,
+       "text": "La configuración lógica de un registro de desplazamiento consiste en una cadena de flip-flops en cascada, con la salida de un flip-flop conectada a la entrada del siguiente flip-flop."
+      },
+      {
+       "level": 0,
+       "text": "Todos los flip-flops reciben pulsos de reloj comunes, que activan el desplazamiento de una etapa a la siguiente."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "e1e55a2dad.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Registros de Desplazamiento",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Cada pulso de reloj desplaza el contenido del registro una posición de bit a la derecha. La entrada en serie determina qué sucede en el flip-flop de la extrema izquierda durante el desplazamiento"
+      },
+      {
+       "level": 0,
+       "text": "El tiempo requerido para transferir N Bits de datos es 2N - 1 ciclos del Reloj"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "e1e55a2dad.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Transferencia en serie",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un sistema digital opera en modo en serie cuando la información se transfiere y manipula bit por bit."
+      },
+      {
+       "level": 0,
+       "text": "La información se transfiere bit por bit desplazando los bits del registro de origen hacia el registro de destino."
+      },
+      {
+       "level": 0,
+       "text": "La transferencia en serie de información del registro A al registro B se efectúa con registros de desplazamiento,"
+      },
+      {
+       "level": 0,
+       "text": "La salida en serie (SO) del registro A se conecta a la entrada en serie (SI) del registro B."
+      },
+      {
+       "level": 0,
+       "text": "Para evitar la pérdida de información almacenada en el registro de origen, se hace que la información del registro A circule conectando la salida en serie con la entrada en serie."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "e9602fc4a3.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Transferencia en serie",
+   "body": [],
+   "images": [
+    "603b7f56de.png",
+    "4499b0c746.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Suma en Serie",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Los dos números binarios que se sumarán en serie se almacenan en dos registros de desplazamiento."
+      },
+      {
+       "level": 0,
+       "text": "Los bits se suman par por par utilizando un solo circuito de sumador completo (SC)"
+      },
+      {
+       "level": 0,
+       "text": "El acarreo de salida del sumador completo se transfiere a un flip-flop D. La salida de este flip-flop se utiliza entonces como acarreo de entrada para el siguiente par de bits significativos."
+      },
+      {
+       "level": 0,
+       "text": "El bit de suma de la salida S del sumador completo podría transferirse a un tercer registro de desplazamiento"
+      },
+      {
+       "level": 0,
+       "text": "Al desplazar la suma a A mientras se desplazan hacia afuera los bits de A, es posible utilizar un solo registro para almacenar los bits tanto de un sumando como de la suma"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "7988bb55b2.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Contadores",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Un registro que pasa por una sucesión prescrita de estados cuando se aplican pulsos de entrada se denomina contador."
+      },
+      {
+       "level": 0,
+       "text": "Los pulsos de entrada podrían ser pulsos de reloj u originarse en alguna fuente externa, y podrían presentarse a intervalos fijos de tiempo o al azar."
+      },
+      {
+       "level": 0,
+       "text": "La sucesión de estados podría seguir la sucesión numérica binaria o cualquier otro orden."
+      },
+      {
+       "level": 0,
+       "text": "Un contador que sigue la sucesión numérica binaria es un contador binario. Un contador binario de n bits consiste en n flip-flops y puede contar en binario desde 0 hasta 2n-1."
+      },
+      {
+       "level": 0,
+       "text": "Los contadores se dividen en dos categorías: contadores de rizo y contadores sincrónicos."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "Contador de rizo",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La transición de salida del flip-flop sirve como disparador de otros flip-flops. Dicho de otro modo, la entrada C de algunos flip-flops, o de todos, se dispara, no con los pulsos del reloj común, sino con la transición que se da en otras salidas de flip-flop."
+      },
+      {
+       "level": 0,
+       "text": "En un contador sincrónico, las salidas C de todos los flip-flops reciben el reloj común"
+      },
+      {
+       "level": 0,
+       "text": "El flip-flop que contiene el bit menos significativo recibe los pulsos de conteo que llegan."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "2058520fa1.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Contador de rizo 2 - bits UP",
+   "body": [],
+   "images": [
+    "f0ab4117f5.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 15,
+   "title": "Contador de rizo 2 - bits DOWN",
+   "body": [],
+   "images": [
+    "893b44596e.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 16,
+   "title": "Contador de 3 Bit",
+   "body": [],
+   "images": [
+    "df4850133c.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

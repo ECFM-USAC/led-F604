@@ -1,0 +1,495 @@
+{
+ "slug": "clase-15-analisis-secuencial",
+ "source": "Clase 15.pptx",
+ "slide_range": [
+  1,
+  19
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "Análisis de circuitos Secuenciales",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "T - Latch",
+   "body": [],
+   "images": [
+    "c51a7fc2bf.png",
+    "e565579662.png",
+    "dd58fafe28.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "Análisis de circuitos Secuenciales",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "El comportamiento de un circuito secuencial con reloj está determinado por las entradas, las salidas y el estado de sus flip-flops."
+      },
+      {
+       "level": 0,
+       "text": "Las salidas y el siguiente estado son función de las entradas y del estado actual."
+      },
+      {
+       "level": 0,
+       "text": "El análisis de un circuito secuencial consiste en obtener una tabla o diagrama para la sucesión temporal de entradas, salidas y estados internos."
+      },
+      {
+       "level": 0,
+       "text": "Es posible escribir expresiones booleanas que describen el comportamiento del circuito secuencial."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "Ecuaciones de estado",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "El comportamiento de los circuitos secuenciales con reloj se describe algebraicamente con ecuaciones de estado."
+      },
+      {
+       "level": 0,
+       "text": "Una ecuación de estado (también llamada ecuación de transición) especifica el siguiente estado en función del estado actual y las entradas"
+      },
+      {
+       "level": 0,
+       "text": "En el caso del flip-flop D, tenemos la ecuación característica:"
+      },
+      {
+       "level": 0,
+       "text": "Q(t+1)=D"
+      },
+      {
+       "level": 0,
+       "text": "Ecuación de estado para el flip-flop T ?"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Ecuaciones de estado",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "El comportamiento de los circuitos secuenciales con reloj se describe algebraicamente con ecuaciones de estado."
+      },
+      {
+       "level": 0,
+       "text": "Una ecuación de estado (también llamada ecuación de transición) especifica el siguiente estado en función del estado actual y las entradas"
+      },
+      {
+       "level": 0,
+       "text": "En el caso del flip-flop D, tenemos la ecuación característica:"
+      },
+      {
+       "level": 0,
+       "text": "Q(t+1)=D"
+      },
+      {
+       "level": 0,
+       "text": "Ecuación de estado para el flip-flop T"
+      },
+      {
+       "level": 0,
+       "text": "Q(t+1)= T⊕Q"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": "Tabla de estados",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La sucesión temporal de entradas, salidas y estados de flip-flop se puede presentar de forma compacta en una tabla de estados (también llamada tabla de transición)."
+      },
+      {
+       "level": 0,
+       "text": "La tabla consta de cuatro secciones rotuladas estado actual, entrada, siguiente estado y salida."
+      },
+      {
+       "level": 0,
+       "text": "La sección de estado actual muestra los estados de los flip-flops en cualquier instante dado t."
+      },
+      {
+       "level": 0,
+       "text": "La sección de entrada da un valor de x para cada posible estado actual."
+      },
+      {
+       "level": 0,
+       "text": "La sección de siguiente estado muestra los estados de los flip-flops un ciclo de reloj después, en el tiempo t+1."
+      },
+      {
+       "level": 0,
+       "text": "La sección de salida da el valor de y en el tiempo t para cada estado actual y condición de entrada."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Tabla de Estados",
+   "body": [],
+   "images": [
+    "968977332a.png",
+    "893d23ddd6.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Diagrama de estados",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La información contenida en una tabla de estados se representa gráficamente en forma de diagrama de estados."
+      },
+      {
+       "level": 0,
+       "text": "En este tipo de diagramas, un estado se representa con un círculo, y las transiciones entre estados se indican con flechas que conectan a los círculos."
+      },
+      {
+       "level": 0,
+       "text": "El diagrama de estados proporciona la misma información que la tabla de estados."
+      },
+      {
+       "level": 0,
+       "text": "La tabla de estados se deduce más fácilmente de un diagrama lógico dado y la ecuación de estado."
+      },
+      {
+       "level": 0,
+       "text": "El diagrama de estados se sigue directamente de la tabla de estados."
+      },
+      {
+       "level": 0,
+       "text": "El diagrama de estados muestra una perspectiva gráfica de las transiciones de estado y es la forma más apropiada para interpretar el funcionamiento del circuito"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": "Diagrama de estados",
+   "body": [],
+   "images": [
+    "893d23ddd6.png",
+    "8d9206e1ed.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Procedimiento de Diseño",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "El diseño de un circuito secuencial con reloj parte de un conjunto de especificaciones y culmina en un diagrama lógico o una lista de funciones booleanas de la cual puede obtenerse el diagrama lógico."
+      },
+      {
+       "level": 0,
+       "text": "Un circuito secuencial sincrónico consta de flip-flops y compuertas combinacionales."
+      },
+      {
+       "level": 0,
+       "text": "El diseño del circuito consiste en escoger los flip-flops y luego encontrar una estructura de compuertas combinacionales que, junto con los flip-flops, produzca un circuito que satisfaga las especificaciones planteadas."
+      },
+      {
+       "level": 0,
+       "text": "El número de flip-flops se deduce del número de estados que se requieren en el circuito."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 11,
+   "title": "Procedimiento de Diseño",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Deduzca, de la descripción textual y las especificaciones del funcionamiento deseado, un diagrama de estados para el circuito."
+      },
+      {
+       "level": 0,
+       "text": "Reduzca el número de estados si es necesario."
+      },
+      {
+       "level": 0,
+       "text": "Asigne valores binarios a los estados."
+      },
+      {
+       "level": 0,
+       "text": "Obtenga la tabla de estados codificada en binario."
+      },
+      {
+       "level": 0,
+       "text": "Escoja el tipo de flip-flops que se usarán."
+      },
+      {
+       "level": 0,
+       "text": "Deduzca las ecuaciones simplificadas de entrada y de salida de los flip-flops."
+      },
+      {
+       "level": 0,
+       "text": "Dibuje el diagrama lógico."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 12,
+   "title": "Ejemplo 1, Contador sincrónico 2 bits",
+   "body": [],
+   "images": [
+    "3c488c8197.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 13,
+   "title": "Ejemplo 1, Contador sincrónico 2 bits",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "2 Flip-Flop T"
+      },
+      {
+       "level": 0,
+       "text": "Tabla activación Flip Flop"
+      },
+      {
+       "level": 0,
+       "text": "."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "3c488c8197.png",
+    "4b84265757.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 14,
+   "title": "Ejemplo 1, Contador sincrónico 2 bits",
+   "body": [
+    {
+     "kind": "table",
+     "rows": [
+      [
+       "Estado actual Q1 Q0",
+       "Estado siguiente Q1⁺ Q0⁺",
+       "T0",
+       "T1"
+      ],
+      [
+       "0 0",
+       "0 1",
+       "1",
+       "0"
+      ],
+      [
+       "0 1",
+       "1 0",
+       "1",
+       "1"
+      ],
+      [
+       "1 0",
+       "1 1",
+       "1",
+       "0"
+      ],
+      [
+       "1 1",
+       "0 0",
+       "1",
+       "1"
+      ]
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "00"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "01"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "10"
+      }
+     ]
+    },
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "11"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "3c488c8197.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 15,
+   "title": "Ejemplo 1, Contador sincrónico 2 bits",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Q0+ = Q´0"
+      },
+      {
+       "level": 0,
+       "text": "Q1+ = Q0 ⊕Q1"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "3c488c8197.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 16,
+   "title": "Contador sincrónico 3 bits???",
+   "body": [],
+   "images": [
+    "4b84265757.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 17,
+   "title": "Contador sincrónico 3 bits",
+   "body": [],
+   "images": [
+    "2161a43168.png",
+    "8520ea3984.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 18,
+   "title": "Contador sincrónico 3 bits",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Ejercicio:"
+      },
+      {
+       "level": 0,
+       "text": "Encontrar Ecuaciones del próximo estado y dibujar el diagrama del circuito"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 19,
+   "title": "Contador sincrónico 3 bits",
+   "body": [],
+   "images": [
+    "076eb1c518.png"
+   ],
+   "notes": ""
+  }
+ ]
+}

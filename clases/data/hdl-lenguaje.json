@@ -1,0 +1,256 @@
+{
+ "slug": "hdl-lenguaje",
+ "source": "HDL.pptx",
+ "slide_range": [
+  1,
+  10
+ ],
+ "slides": [
+  {
+   "num": 1,
+   "title": "LENGUAJE DE DESCRIPCIÓN DE HARDWARE (HDL)",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Electrónica Digital -F604"
+      },
+      {
+       "level": 0,
+       "text": "Erick Diaz"
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 2,
+   "title": "Hardware Description Language (HDL)",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Describen el hardware de los sistemas digitales en forma textual"
+      },
+      {
+       "level": 0,
+       "text": "Representan diagramas lógicos, expresiones booleanas y otros circuitos digitales más complejos"
+      },
+      {
+       "level": 0,
+       "text": "Hay dos aplicaciones del procesamiento de HDL: simulación y síntesis"
+      },
+      {
+       "level": 0,
+       "text": "Hay muchos HDL exclusivos en la industria, desarrollados por empresas que diseñan o ayudan a diseñar circuitos integrados. El IEEE (apoya dos HDL estándar: VHDL y Verilog HDL."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 3,
+   "title": "HDL Simulación lógica",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Es la representación de la estructura y el comportamiento de un sistema lógico digital empleando una computadora."
+      },
+      {
+       "level": 0,
+       "text": "El simulador interpreta la descripción en HDL y produce una salida comprensible, digamos un diagrama de temporización, que predice la forma en que se comportará el hardware antes de que se fabrique físicamente."
+      },
+      {
+       "level": 0,
+       "text": "La simulación permite detectar errores funcionales de un diseño sin tener que crear el circuito físico."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "d0ab4ec1e7.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 4,
+   "title": "HDL Síntesis lógica",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "La síntesis lógica es el proceso de deducir una lista de componentes y sus interconexiones (lo que se conoce como lista del circuito) a partir del modelo de un sistema digital descrito en HDL."
+      },
+      {
+       "level": 0,
+       "text": "La lista del circuito en el nivel de compuertas sirve para fabricar un circuito integrado o"
+      },
+      {
+       "level": 0,
+       "text": "para diagramar una tarjeta de circuitos impresos."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "fc9e0866d8.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 5,
+   "title": "Verilog",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Verilog utiliza cerca de 100 palabras clave: identificadores predefinidos, en minúsculas, que definen las construcciones del lenguaje."
+      },
+      {
+       "level": 0,
+       "text": "Como ejemplos de palabras clave podemos citar module, endmodule, input, output, wire, and, or, not."
+      },
+      {
+       "level": 0,
+       "text": "Declaramos un módulo con la palabra clave module y marcamos su final con la palabra clave endmodule"
+      },
+      {
+       "level": 0,
+       "text": "Los identificadores son nombres que se dan a las variables para poder referirse a ellas en el diseño. Constan de caracteres alfanuméricos y el carácter de subraya (_), y hay distinción entre mayúsculas y minúsculas. Los identificadores deben iniciar con un carácter alfabético o subraya; no pueden iniciar con un número"
+      },
+      {
+       "level": 0,
+       "text": "Las conexiones internas se declaran como alambres. El circuito tiene una conexión interna en la terminal e, la cual se declara con la palabra clave wire."
+      },
+      {
+       "level": 0,
+       "text": "La estructura del circuito se especifica empleando las compuertas primitivas predefinidas como palabras clave."
+      }
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": 6,
+   "title": null,
+   "body": [],
+   "images": [
+    "b3277cdfe5.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 7,
+   "title": "Expresiones Booleanas",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Las expresiones booleanas se especifican en Verilog HDL con un enunciado de asignación continuo que consiste en la palabra clave assign seguida de una expresión booleana."
+      },
+      {
+       "level": 0,
+       "text": "Para distinguir el más aritmético del OR lógico, Verilog HDL usa los símbolos:"
+      },
+      {
+       "level": 1,
+       "text": "&  para AND"
+      },
+      {
+       "level": 1,
+       "text": "|   para OR"
+      },
+      {
+       "level": 1,
+       "text": "~  para NOT (complemento)"
+      },
+      {
+       "level": 0,
+       "text": "assign x = (A & B) | ~C);"
+      }
+     ]
+    }
+   ],
+   "images": [
+    "0256b1b913.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 8,
+   "title": "Hoja de Trabajo",
+   "body": [],
+   "images": [
+    "e53fa52feb.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 9,
+   "title": null,
+   "body": [],
+   "images": [
+    "5d58c980ba.png",
+    "e53fa52feb.png"
+   ],
+   "notes": ""
+  },
+  {
+   "num": 10,
+   "title": "Tarea 3",
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {
+       "level": 0,
+       "text": "Implementar en Verilog un sumador completo."
+      },
+      {
+       "level": 0,
+       "text": "Realizar el circuito de un sumador binario de 4 bits, como en el gráfico."
+      },
+      {
+       "level": 0,
+       "text": "En verilog utilizar expresiones booleanas."
+      },
+      {
+       "level": 0,
+       "text": "Se debe relizar en https://circuitverse.org/"
+      },
+      {
+       "level": 0,
+       "text": "En la sección de test bench realizar un test con los valores de la suma en esta diapositiva."
+      }
+     ]
+    }
+   ],
+   "images": [
+    "d28e522660.png",
+    "4e53b39c09.png",
+    "c970f680e4.png",
+    "dd6d7bb42d.png"
+   ],
+   "notes": ""
+  }
+ ]
+}
