@@ -92,7 +92,7 @@ a:hover { text-decoration: underline; }
 img { max-width: 100%; display: block; }
 
 .wrap {
-  max-width: 1320px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 24px 80px;
 }
@@ -107,7 +107,7 @@ img { max-width: 100%; display: block; }
   backdrop-filter: saturate(180%) blur(8px);
 }
 .topbar-inner {
-  max-width: 1320px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 14px 24px;
   display: flex;
@@ -136,6 +136,15 @@ img { max-width: 100%; display: block; }
 }
 .theme-toggle:hover { border-color: var(--accent); transform: scale(1.06); }
 .theme-toggle:active { transform: scale(0.94); }
+
+.pdf-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 34px; padding: 0 14px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--bg);
+  color: var(--ink); font-size: 0.84rem; font-weight: 700; cursor: pointer; line-height: 1;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.pdf-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ---------- text size control ---------- */
 :root[data-text-size="sm"] { font-size: 93.75%; }
@@ -476,4 +485,23 @@ pre.code-block {
   .toc ol { columns: 1; }
   .unit-head { flex-direction: column; }
   .class-list { grid-template-columns: 1fr; }
+}
+
+/* ---------- print / PDF export ---------- */
+@media print {
+  :root, :root[data-theme="dark"], :root[data-theme="light"] {
+    --bg: #ffffff; --bg-alt: #ffffff; --ink: #1b2030; --ink-soft: #4a5168; --ink-faint: #767f99;
+    --border: #d7dae3; --card-shadow: none;
+    --code-bg: #101425; --code-ink: #d6e0ff;
+    --u0-soft: #eef0f3; --u1-soft: #e8f0fe; --u2-soft: #f3e9fd; --u3-soft: #e1f6f2;
+    --u4-soft: #fdece1; --u5-soft: #f7edd8; --u6-soft: #e3f6ea; --u7-soft: #fbe4ec;
+  }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  .topbar, .class-pager, footer.sitefoot, .lightbox-overlay, .theme-toggle, .textsize-control, .pdf-btn {
+    display: none !important;
+  }
+  .wrap { max-width: 100%; padding: 0 8px 20px; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .slide, .compare-item, .toc { box-shadow: none; break-inside: avoid; }
+  a { text-decoration: none; }
 }
