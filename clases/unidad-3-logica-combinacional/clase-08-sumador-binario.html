@@ -46,7 +46,7 @@
       <li><a href="#s8">Diapositiva 9</a></li>
       <li><a href="#s9">Sumador Binario</a></li>
       <li><a href="#s10">Diapositiva 11</a></li>
-      <li><a href="#s11">A = 1011 y  B= 0011</a></li>
+      <li><a href="#s11">A = 1011 y B = 0011</a></li>
       <li><a href="#s12">Propagación del Acarreo</a></li>
       <li><a href="#s13">Propagación del Acarreo</a></li>
       <li><a href="#s14">Propagación del Acarreo</a></li>
@@ -159,7 +159,7 @@
 <li>Es posible construirlo con sumadores completos dispuestos en cascada, conectando el acarreo de salida de cada sumador completo al acarreo de entrada del siguiente sumador completo de la cadena</li>
 </ul>
 <ul>
-<li>1011+ 0011</li>
+<li>1011 + 0011</li>
 </ul>
       
       
@@ -170,7 +170,7 @@
     <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 11</span></h2></div>
     <div class="slide-body">
       <ul>
-<li>A = 1011 y  B= 0011</li>
+<li>A = 1011 y B = 0011</li>
 <li>Si utilizamos el método clásico requeriría una tabla de verdad con 29=512 entradas, ya que el circuito tiene nueve entradas.</li>
 <li>Al usar un método iterativo de conectar en cascada una función estándar, es posible obtener una implementación sencilla y directa</li>
 </ul>
@@ -180,7 +180,7 @@
   </section>
 
   <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
-    <div class="slide-head"><h2>A = 1011 y  B= 0011</h2></div>
+    <div class="slide-head"><h2>A = 1011 y B = 0011</h2></div>
     <div class="slide-body">
       
       <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/dd6d7bb42d.png" loading="lazy" alt="Diagrama"></figure>
@@ -196,7 +196,7 @@
 <li>La suma de dos números binarios en paralelo implica que todos los bits de los sumandos están disponibles al mismo tiempo para efectuar el cálculo.</li>
 <li>En un circuito combinacional, la señal tiene que propagarse a través de las compuertas para que la salida correcta (la suma) esté disponible en las terminales de salida.</li>
 <li>El tiempo total de propagación es igual al retardo de propagación de una compuerta representativa multiplicado por el número de niveles de compuertas del circuito</li>
-<li>Dado que cada bit de la suma depende del valor del acarreo de entrada, el valor del bit de la salida de la suma,  en cualquier etapa dada del sumador alcanzará su valor final de estado estable sólo hasta que el acarreo de entrada se haya propagado a esa etapa</li>
+<li>Dado que cada bit de la suma depende del valor del acarreo de entrada, el valor del bit de la salida de la suma, en cualquier etapa dada del sumador alcanzará su valor final de estado estable sólo hasta que el acarreo de entrada se haya propagado a esa etapa</li>
 <li>El tiempo de propagación del acarreo es un factor que limita la rapidez con que se suman dos números.</li>
 <li>El sumador, o cualquier circuito combinacional, siempre tendrá algún valor en sus terminales de salida, esos valores no serán correctos si no se da a las señales el tiempo suficiente para propagarse a través de las compuertas conectadas entre las entradas y las salidas</li>
 </ul>
@@ -247,17 +247,18 @@
   <section class="slide reveal" id="s17" style="--reveal-delay: 0.80s;">
     <div class="slide-head"><h2><span style="opacity:.5">Diapositiva 18</span></h2></div>
     <div class="slide-body">
-      <ul>
-<li>Sumador completo</li>
-</ul>
-<ul>
-<li>Acarreo Anticipado</li>
-</ul>
-      <div class="slide-images "><figure><img src="../img/clase-08-sumador-binario/6bad097ae1.png" loading="lazy" alt="Diagrama"></figure>
-<figure><img src="../img/clase-08-sumador-binario/d86476b421.png" loading="lazy" alt="Diagrama"></figure>
-<figure><img src="../img/clase-08-sumador-binario/80bbb926b7.png" loading="lazy" alt="Diagrama"></figure>
-<figure><img src="../img/clase-08-sumador-binario/9b5a157eac.png" loading="lazy" alt="Diagrama"></figure></div>
-      
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Sumador completo</h3>
+          <figure><img src="../img/clase-08-sumador-binario/d86476b421.png" loading="lazy" alt="Etapa de sumador completo con señales de propagación (P) y generación (G)"></figure>
+          <figure><img src="../img/clase-08-sumador-binario/9b5a157eac.png" loading="lazy" alt="Ecuaciones: Pi = Ai XOR Bi, Gi = Ai AND Bi"></figure>
+        </div>
+        <div class="compare-item">
+          <h3>Acarreo Anticipado</h3>
+          <figure><img src="../img/clase-08-sumador-binario/6bad097ae1.png" loading="lazy" alt="Generador de acarreo anticipado de 4 bits"></figure>
+          <figure><img src="../img/clase-08-sumador-binario/80bbb926b7.png" loading="lazy" alt="Circuito lógico del generador de acarreo anticipado"></figure>
+        </div>
+      </div>
     </div>
   </section>
 
