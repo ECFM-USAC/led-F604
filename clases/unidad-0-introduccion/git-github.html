@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control de Versiones con Git y GitHub — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u0); --u-soft: var(--u0-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-0">Introducción</a><span class="sep">/</span>
+      Control de Versiones con Git y GitHub
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 0 · Introducción</div>
+    <h1>Control de Versiones con Git y GitHub</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">¿Qué es Git y por qué se utiliza?</a></li>
+      <li><a href="#s2">Ventajas del control de versiones</a></li>
+      <li><a href="#s3">Cómo fluyen los cambios en Git</a></li>
+      <li><a href="#s4">Instalación y configuración inicial de Git</a></li>
+      <li><a href="#s5">¿Qué es GitHub y cómo se relaciona con Git?</a></li>
+      <li><a href="#s6">Colaboración y flujo de trabajo en equipos</a></li>
+      <li><a href="#s7">Comandos esenciales: de clone a push</a></li>
+      <li><a href="#s8">Creación, uso y ventajas de las ramas</a></li>
+      <li><a href="#s9">Ejemplo de ramificación en la práctica</a></li>
+      <li><a href="#s10">Ejemplo práctico: historial, conflictos y reversión</a></li>
+      <li><a href="#s11">Buenas prácticas en la gestión de ramas</a></li>
+      <li><a href="#s12">Causas comunes de conflictos de merge</a></li>
+      <li><a href="#s13">Uso de forks para contribuir a proyectos ajenos</a></li>
+    </ol>
+  </div>
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><span class="eyebrow">Conceptos básicos de Git y su importancia</span><h2>¿Qué es Git y por qué se utiliza?</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>El sistema de control de versiones moderno más utilizado del mundo</li>
+<li>Git es flexible en la capacidad para varios tipos de flujos de trabajo de desarrollo no lineal</li>
+<li>Eficiente en proyectos tanto grandes como pequeños</li>
+<li>Git se ha ideado para posibilitar la ramificación y el etiquetado como procesos de primera importancia</li>
+<li>Gratis!</li>
+<li>Sistema de control de versiones
+<ul><li>Git permite registrar y gestionar cambios en archivos de manera eficiente y segura.</li></ul>
+</li>
+<li>Trabajo colaborativo
+<ul><li>Facilita la colaboración entre desarrolladores permitiendo trabajar simultáneamente en proyectos.</li></ul>
+</li>
+</ul>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Ventajas del control de versiones</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Historial de Modificaciones</h3>
+          <p>El control de versiones mantiene un registro claro de todos los cambios realizados en un proyecto, facilitando su seguimiento.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Colaboración Eficiente</h3>
+          <p>Facilita la colaboración entre múltiples desarrolladores trabajando simultáneamente en el mismo proyecto.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Reversión de Errores</h3>
+          <p>Permite revertir errores fácilmente a versiones anteriores sin perder información importante.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Mejora en la Organización</h3>
+          <p>Ayuda a mantener el proyecto organizado, facilitando la gestión de diferentes versiones y funcionalidades.</p>
+        </div>
+      </div>
+      <div class="slide-images">
+        <figure><img src="../img/git-github/35cef5266e.png" loading="lazy" alt="Chiste clásico sin control de versiones: carpetas 'version final', 'version final 2.0', 'version final final esta sí es'"></figure>
+        <figure><img src="../img/git-github/071275ed34.png" loading="lazy" alt="Meme del proceso interminable de revisiones de una tesis, sin control de versiones"></figure>
+      </div>
+      <p class="note">Así se ve un proyecto sin control de versiones: nombres de carpeta como bitácora de cambios.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Cómo fluyen los cambios en Git</h2></div>
+    <div class="slide-body">
+      <div class="slide-images">
+        <figure><img src="../img/git-github/3c374e0dc2.png" loading="lazy" alt="Diagrama: crear o editar un archivo pasa por Working area, Staging area y Repository con git add y git commit"></figure>
+        <figure><img src="../img/git-github/934ca09faf.png" loading="lazy" alt="Cheat sheet de comandos básicos: git init, git clone, git add, git rm, git status"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Instalación y configuración inicial de Git</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Instalación en sistemas operativos
+<ul>
+<li>Instalar Git en Windows, macOS y Linux es muy simple; en la página oficial de Git (git-scm.com) se especifican los pasos para cada sistema operativo.</li>
+<li>Windows</li>
+<li>Linux</li>
+</ul>
+</li>
+<li>Configuración básica de usuario
+<ul><li>Configuración inicial de nombre de usuario y correo electrónico para identificar los cambios en Git.</li></ul>
+</li>
+</ul>
+      <pre class="code-block">git config --global user.name "Tu Nombre"
+git config --global user.email "tu_correo@email.com"</pre>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><span class="eyebrow">Explorando GitHub: colaboración en proyectos</span><h2>¿Qué es GitHub y cómo se relaciona con Git?</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>Servicio basado en la nube
+<ul><li>GitHub funciona como un servicio en la nube que aloja repositorios Git para facilitar el acceso remoto y almacenamiento seguro.</li></ul>
+</li>
+<li>Colaboración y gestión
+<ul><li>Permite compartir código, colaborar en proyectos, realizar revisiones y gestionar tareas de manera eficiente entre equipos.</li></ul>
+</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/git-github/ff8f8bc11a.png" loading="lazy" alt="Logotipo de GitHub"></figure></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Colaboración y flujo de trabajo en equipos</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Uso de Forks</h3>
+          <p>Los forks permiten a los desarrolladores crear copias independientes del código para trabajar sin afectar el proyecto original.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Pull Requests</h3>
+          <p>Las pull requests facilitan la integración de cambios propuestos, revisados y aprobados, para mantener la calidad del código.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Revisiones de Código</h3>
+          <p>Las revisiones aseguran que el código cumpla con los estándares y mejoran la colaboración y el aprendizaje en equipo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Comandos esenciales: de clone a push</h2></div>
+    <div class="slide-body">
+      <p>El ciclo de trabajo típico con Git combina el área de trabajo local, el área de preparación (staging) y el repositorio, y luego sincroniza con el repositorio remoto.</p>
+      <pre class="code-block">git clone &lt;url&gt;          # copia un repositorio remoto a tu máquina
+git add &lt;archivo&gt;        # agrega cambios al área de preparación (staging)
+git commit -m "mensaje"  # guarda los cambios preparados en el repositorio local
+git status               # muestra el estado de los cambios locales vs. el remoto
+git push                 # envía los commits locales al repositorio remoto</pre>
+      <div class="slide-images">
+        <figure><img src="../img/git-github/3291631132.png" loading="lazy" alt="Diagrama: crear, editar y volver a editar un archivo, pasando por git add y git commit hacia el Repository"></figure>
+        <figure><img src="../img/git-github/66f532cb0f.png" loading="lazy" alt="Cheat sheet: hacer commits con git commit y git commit -am"></figure>
+      </div>
+      <div class="slide-images single"><figure><img src="../img/git-github/3609bfc0ab.png" loading="lazy" alt="Diagrama animado: laptop y servidor remoto sincronizados tras git push"></figure></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><span class="eyebrow">Gestión de cambios: commits y ramas</span><h2>Creación, uso y ventajas de las ramas</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Separación de funcionalidades</h3>
+          <p>Las ramas permiten desarrollar nuevas funcionalidades sin afectar la versión principal, asegurando estabilidad.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Organización eficiente</h3>
+          <p>El uso de ramas facilita la organización del código y la gestión de proyectos complejos.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Experimentación segura</h3>
+          <p>Las ramas permiten experimentar y probar cambios sin riesgo para el código principal.</p>
+        </div>
+      </div>
+      <div class="slide-images single"><figure><img src="../img/git-github/78f7f32268.png" loading="lazy" alt="Diagrama: rama master con 'Your Work' y 'Someone Else's Work' ramificándose y reintegrándose"></figure></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Ejemplo de ramificación en la práctica</h2></div>
+    <div class="slide-body">
+      <div class="slide-images single"><figure><img src="../img/git-github/8d6487de50.png" loading="lazy" alt="Historial de commits: first commit, changes, more changes, fix bug en main, y start new feature / keep working en una rama paralela"></figure></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Ejemplo práctico: historial, conflictos y reversión</h2></div>
+    <div class="slide-body">
+      <ul>
+<li>git log muestra el historial de commits: autor, fecha y mensaje de cada cambio.</li>
+<li>Un conflicto de merge aparece cuando Git no puede combinar automáticamente dos cambios sobre la misma línea; marca ambas versiones con <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> y <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</li>
+<li>git reset --hard &lt;commit&gt; descarta cambios locales y regresa el repositorio a un commit anterior.</li>
+</ul>
+      <pre class="code-block">git log
+
+git reset --hard <commit>
+git reset --hard origin/master</pre>
+      <div class="slide-images">
+        <figure><img src="../img/git-github/a11bdaa810.png" loading="lazy" alt="Salida de git log mostrando dos commits con autor, fecha y mensaje"></figure>
+        <figure><img src="../img/git-github/462930ed4b.png" loading="lazy" alt="Ejemplo de conflicto de merge con marcadores HEAD"></figure>
+        <figure><img src="../img/git-github/9e9d5035cf.png" loading="lazy" alt="Diagrama de git reset --hard regresando a un commit anterior"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Buenas prácticas en la gestión de ramas</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Nombramiento Claro de Ramas</h3>
+          <p>Usar nombres descriptivos para facilitar la identificación y evitar confusiones en el equipo.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Gestión Eficiente de Ramas</h3>
+          <p>Mantener ramas pequeñas y actualizadas para simplificar las integraciones y revisiones.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Fusión Sin Conflictos</h3>
+          <p>Realizar integraciones frecuentes para minimizar conflictos y asegurar un flujo de trabajo fluido.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><span class="eyebrow">Resolución de conflictos y trabajo avanzado</span><h2>Causas comunes de conflictos de merge</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Modificaciones simultáneas</h3>
+          <p>Los conflictos surgen cuando varios desarrolladores cambian las mismas líneas de código a la vez, causando discrepancias.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Falta de sincronización</h3>
+          <p>La ausencia de actualizaciones frecuentes provoca que los cambios locales se solapen con modificaciones remotas.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Edición de archivos compartidos</h3>
+          <p>Modificar archivos comúnmente utilizados por varios desarrolladores incrementa el riesgo de conflictos de merge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Uso de forks para contribuir a proyectos ajenos</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Copiar repositorios públicos</h3>
+          <p>Un fork permite copiar un repositorio público para trabajar de forma independiente sin afectar el original.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Hacer contribuciones</h3>
+          <p>Los desarrolladores pueden realizar cambios propios y mejoras en su fork del proyecto.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Proponer cambios</h3>
+          <p>Los cambios pueden ser propuestos para integrarse en el proyecto original mediante solicitudes de extracción (pull requests).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-0-introduccion/clase-00-introduccion.html"><span class="lbl">← Anterior</span>Electrónica Digital: Sistemas Analógicos vs. Digitales</a>
+    <a class="next" href="../unidad-1-sistemas-binarios/clase-01-sistemas-binarios.html"><span class="lbl">Siguiente →</span>Sistemas Decimales y Binarios</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

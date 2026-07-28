@@ -1,0 +1,229 @@
+{
+ "slug": "git-github",
+ "source": "Programacion1 - Git.pptx",
+ "slide_range": [1, 28],
+ "note": "Slides 29-30 (Tarea 1 y su diagrama de fork) se excluyen de esta página: la tarea se entrega por separado en PDF.",
+ "slides": [
+  {
+   "num": "s1",
+   "title": "¿Qué es Git y por qué se utiliza?",
+   "source_slides": [4],
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {"level": 0, "text": "El sistema de control de versiones moderno más utilizado del mundo"},
+      {"level": 0, "text": "Git es flexible en la capacidad para varios tipos de flujos de trabajo de desarrollo no lineal"},
+      {"level": 0, "text": "Eficiente en proyectos tanto grandes como pequeños"},
+      {"level": 0, "text": "Git se ha ideado para posibilitar la ramificación y el etiquetado como procesos de primera importancia"},
+      {"level": 0, "text": "Gratis!"},
+      {"level": 0, "text": "Sistema de control de versiones"},
+      {"level": 1, "text": "Git permite registrar y gestionar cambios en archivos de manera eficiente y segura."},
+      {"level": 0, "text": "Trabajo colaborativo"},
+      {"level": 1, "text": "Facilita la colaboración entre desarrolladores permitiendo trabajar simultáneamente en proyectos."}
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": "s2",
+   "title": "Ventajas del control de versiones",
+   "source_slides": [5],
+   "body": [
+    {
+     "kind": "compare",
+     "items": [
+      {"h3": "Historial de Modificaciones", "p": "El control de versiones mantiene un registro claro de todos los cambios realizados en un proyecto, facilitando su seguimiento."},
+      {"h3": "Colaboración Eficiente", "p": "Facilita la colaboración entre múltiples desarrolladores trabajando simultáneamente en el mismo proyecto."},
+      {"h3": "Reversión de Errores", "p": "Permite revertir errores fácilmente a versiones anteriores sin perder información importante."},
+      {"h3": "Mejora en la Organización", "p": "Ayuda a mantener el proyecto organizado, facilitando la gestión de diferentes versiones y funcionalidades."}
+     ]
+    }
+   ],
+   "images": ["35cef5266e.png", "071275ed34.png"],
+   "notes": "Las dos imágenes son el chiste clásico de 'sin control de versiones': carpetas 'version_final_final' y el meme de las revisiones interminables de tesis."
+  },
+  {
+   "num": "s3",
+   "title": "Cómo fluyen los cambios en Git",
+   "source_slides": [6, 7],
+   "body": [],
+   "images": ["3c374e0dc2.png", "934ca09faf.png"],
+   "notes": "Slides sin texto propio en el original: el diagrama Working/Staging/Repository y el cheat-sheet oficial de comandos básicos."
+  },
+  {
+   "num": "s4",
+   "title": "Instalación y configuración inicial de Git",
+   "source_slides": [8],
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {"level": 0, "text": "Instalación en sistemas operativos"},
+      {"level": 1, "text": "Instalar Git en Windows, macOS y Linux es muy simple; en la página oficial de Git (git-scm.com) se especifican los pasos para cada sistema operativo."},
+      {"level": 1, "text": "Windows"},
+      {"level": 1, "text": "Linux"},
+      {"level": 0, "text": "Configuración básica de usuario"},
+      {"level": 1, "text": "Configuración inicial de nombre de usuario y correo electrónico para identificar los cambios en Git."}
+     ]
+    }
+   ],
+   "code_blocks": [
+    "git config --global user.name \"Tu Nombre\"\ngit config --global user.email \"tu_correo@email.com\""
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": "s5",
+   "title": "¿Qué es GitHub y cómo se relaciona con Git?",
+   "source_slides": [9],
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {"level": 0, "text": "Servicio basado en la nube"},
+      {"level": 1, "text": "GitHub funciona como un servicio en la nube que aloja repositorios Git para facilitar el acceso remoto y almacenamiento seguro."},
+      {"level": 0, "text": "Colaboración y gestión"},
+      {"level": 1, "text": "Permite compartir código, colaborar en proyectos, realizar revisiones y gestionar tareas de manera eficiente entre equipos."}
+     ]
+    }
+   ],
+   "images": ["ff8f8bc11a.png"],
+   "notes": ""
+  },
+  {
+   "num": "s6",
+   "title": "Colaboración y flujo de trabajo en equipos",
+   "source_slides": [10],
+   "body": [
+    {
+     "kind": "compare",
+     "items": [
+      {"h3": "Uso de Forks", "p": "Los forks permiten a los desarrolladores crear copias independientes del código para trabajar sin afectar el proyecto original."},
+      {"h3": "Pull Requests", "p": "Las pull requests facilitan la integración de cambios propuestos, revisados y aprobados, para mantener la calidad del código."},
+      {"h3": "Revisiones de Código", "p": "Las revisiones aseguran que el código cumpla con los estándares y mejoran la colaboración y el aprendizaje en equipo."}
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": "s7",
+   "title": "Comandos esenciales: de clone a push",
+   "source_slides": [11, 12, 13, 14, 15, 16, 17, 18],
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {"level": 0, "text": "El ciclo de trabajo típico con Git combina el área de trabajo local, el área de preparación (staging) y el repositorio, y luego sincroniza con el repositorio remoto."}
+     ]
+    }
+   ],
+   "code_blocks": [
+    "git clone <url>          # copia un repositorio remoto a tu máquina\ngit add <archivo>        # agrega cambios al área de preparación (staging)\ngit commit -m \"mensaje\"  # guarda los cambios preparados en el repositorio local\ngit status               # muestra el estado de los cambios locales vs. el remoto\ngit push                 # envía los commits locales al repositorio remoto"
+   ],
+   "images": ["3291631132.png", "66f532cb0f.png", "3609bfc0ab.png"],
+   "notes": "Se muestra sólo el cuadro final de la secuencia animada del original (clone→add→commit→status→push) en vez de repetir cada fotograma."
+  },
+  {
+   "num": "s8",
+   "title": "Creación, uso y ventajas de las ramas",
+   "source_slides": [20],
+   "body": [
+    {
+     "kind": "compare",
+     "items": [
+      {"h3": "Separación de funcionalidades", "p": "Las ramas permiten desarrollar nuevas funcionalidades sin afectar la versión principal, asegurando estabilidad."},
+      {"h3": "Organización eficiente", "p": "El uso de ramas facilita la organización del código y la gestión de proyectos complejos."},
+      {"h3": "Experimentación segura", "p": "Las ramas permiten experimentar y probar cambios sin riesgo para el código principal."}
+     ]
+    }
+   ],
+   "images": ["78f7f32268.png"],
+   "notes": ""
+  },
+  {
+   "num": "s9",
+   "title": "Ejemplo de ramificación en la práctica",
+   "source_slides": [21],
+   "body": [],
+   "images": ["8d6487de50.png"],
+   "notes": "Se usa sólo el fotograma final de la animación (main con 'fix bug' y una rama 'start new feature' en paralelo)."
+  },
+  {
+   "num": "s10",
+   "title": "Ejemplo práctico: historial, conflictos y reversión",
+   "source_slides": [22, 23, 24],
+   "body": [
+    {
+     "kind": "paragraphs",
+     "items": [
+      {"level": 0, "text": "git log muestra el historial de commits: autor, fecha y mensaje de cada cambio."},
+      {"level": 0, "text": "Un conflicto de merge aparece cuando Git no puede combinar automáticamente dos cambios sobre la misma línea; marca ambas versiones con <<<<<<<, ======= y >>>>>>>."},
+      {"level": 0, "text": "git reset --hard <commit> descarta cambios locales y regresa el repositorio a un commit anterior."}
+     ]
+    }
+   ],
+   "code_blocks": [
+    "git log\n\ngit reset --hard <commit>\ngit reset --hard origin/master"
+   ],
+   "images": ["a11bdaa810.png", "462930ed4b.png", "9e9d5035cf.png"],
+   "notes": ""
+  },
+  {
+   "num": "s11",
+   "title": "Buenas prácticas en la gestión de ramas",
+   "source_slides": [25],
+   "body": [
+    {
+     "kind": "compare",
+     "items": [
+      {"h3": "Nombramiento Claro de Ramas", "p": "Usar nombres descriptivos para facilitar la identificación y evitar confusiones en el equipo."},
+      {"h3": "Gestión Eficiente de Ramas", "p": "Mantener ramas pequeñas y actualizadas para simplificar las integraciones y revisiones."},
+      {"h3": "Fusión Sin Conflictos", "p": "Realizar integraciones frecuentes para minimizar conflictos y asegurar un flujo de trabajo fluido."}
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": "s12",
+   "title": "Causas comunes de conflictos de merge",
+   "source_slides": [27],
+   "body": [
+    {
+     "kind": "compare",
+     "items": [
+      {"h3": "Modificaciones simultáneas", "p": "Los conflictos surgen cuando varios desarrolladores cambian las mismas líneas de código a la vez, causando discrepancias."},
+      {"h3": "Falta de sincronización", "p": "La ausencia de actualizaciones frecuentes provoca que los cambios locales se solapen con modificaciones remotas."},
+      {"h3": "Edición de archivos compartidos", "p": "Modificar archivos comúnmente utilizados por varios desarrolladores incrementa el riesgo de conflictos de merge."}
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  },
+  {
+   "num": "s13",
+   "title": "Uso de forks para contribuir a proyectos ajenos",
+   "source_slides": [28],
+   "body": [
+    {
+     "kind": "compare",
+     "items": [
+      {"h3": "Copiar repositorios públicos", "p": "Un fork permite copiar un repositorio público para trabajar de forma independiente sin afectar el original."},
+      {"h3": "Hacer contribuciones", "p": "Los desarrolladores pueden realizar cambios propios y mejoras en su fork del proyecto."},
+      {"h3": "Proponer cambios", "p": "Los cambios pueden ser propuestos para integrarse en el proyecto original mediante solicitudes de extracción (pull requests)."}
+     ]
+    }
+   ],
+   "images": [],
+   "notes": ""
+  }
+ ]
+}
