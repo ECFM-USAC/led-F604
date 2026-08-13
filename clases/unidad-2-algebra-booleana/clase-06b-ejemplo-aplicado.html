@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejemplo Aplicado: Sensores y Mapa de Karnaugh — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u2); --u-soft: var(--u2-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-2">Álgebra Booleana y Compuertas Lógicas</a><span class="sep">/</span>
+      Ejemplo Aplicado: Sensores y Mapa de Karnaugh
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 2 · Álgebra Booleana y Compuertas Lógicas</div>
+    <h1>Ejemplo Aplicado: Sensores y Mapa de Karnaugh</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Planteamiento del Problema</a></li>
+      <li><a href="#s2">Tabla de Verdad y Minitérminos</a></li>
+      <li><a href="#s3">Circuito Sin Reducir</a></li>
+      <li><a href="#s4">Mapa de Karnaugh y Agrupación</a></li>
+      <li><a href="#s5">Circuito Reducido</a></li>
+      <li><a href="#s6">Comparación y Conclusión</a></li>
+    </ol>
+  </div>
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Planteamiento del Problema</h2></div>
+    <div class="slide-body">
+      <p>Se quiere automatizar el encendido de una luz artificial usando tres sensores binarios:</p>
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Sensor de Movimiento (M)</h3>
+          <p>Detecta si hay alguien moviéndose dentro de su rango (por ejemplo, un sensor PIR).</p>
+          <p class="formula">M=1 → movimiento detectado</p>
+          <p class="formula">M=0 → sin movimiento</p>
+        </div>
+        <div class="compare-item">
+          <h3>Sensor de Puerta (P)</h3>
+          <p>Detecta si la puerta está abierta o cerrada, normalmente con un interruptor magnético.</p>
+          <p class="formula">P=1 → puerta abierta</p>
+          <p class="formula">P=0 → puerta cerrada</p>
+        </div>
+        <div class="compare-item">
+          <h3>Sensor de Luz (L)</h3>
+          <p>Mide si hay suficiente luz natural en el ambiente (fotorresistencia o fotodiodo).</p>
+          <p class="formula">L=1 → hay luz natural suficiente</p>
+          <p class="formula">L=0 → ambiente oscuro</p>
+        </div>
+      </div>
+      <p class="note">Regla deseada: la luz artificial (F) debe encenderse sólo cuando el ambiente está oscuro (L=0) y, además, hay movimiento (M=1) o la puerta está abierta (P=1). Si ya hay suficiente luz natural, el sistema no debe encender la luz aunque haya movimiento o la puerta esté abierta — así se ahorra energía.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Tabla de Verdad y Minitérminos</h2></div>
+    <div class="slide-body">
+      <p>Con M como bit más significativo, la tabla de verdad de F (encender la luz) es:</p>
+      <div class="table-wrap"><table class="data-table">
+<tr><th>i</th><th>M</th><th>P</th><th>L</th><th>F</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>2</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>3</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>4</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>5</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>6</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>7</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+</table></div>
+      <p>F vale 1 únicamente en las filas i=2, 4 y 6 — exactamente donde L=0 (oscuro) y al menos uno de M o P es 1. Por tanto F=Σ(2,4,6), y la forma canónica de suma de minitérminos es:</p>
+      <p class="formula">F = Σ(2,4,6) = M̅PL̅ + MP̅L̅ + MPL̅</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Circuito Sin Reducir</h2></div>
+    <div class="slide-body">
+      <p>La forma canónica se implementa de manera directa: un inversor por cada variable complementada, una compuerta AND de 3 entradas por cada minitérmino, y una compuerta OR final que las combina.</p>
+      <p class="formula">F = M̅PL̅ + MP̅L̅ + MPL̅</p>
+      <p class="note">3 inversores (M̅, P̅, L̅) + 3 AND de 3 entradas + 1 OR de 3 entradas = <strong>7 compuertas</strong>.</p>
+      <figure class="circuit-diagram">
+        <svg viewBox="0 0 690 275" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama del circuito sin reducir: tres compuertas AND de 3 entradas por cada minitérmino, combinadas con una compuerta OR de 3 entradas">
+          <g fill="none" stroke="var(--ink-soft)" stroke-width="1.6">
+            <path d="M20,40 H200"/>
+            <path d="M20,140 H90"/>
+            <path d="M90,140 H416"/>
+            <path d="M90,140 V90"/>
+            <path d="M20,240 H90"/>
+            <path d="M90,240 H432"/>
+            <path d="M90,240 V190"/>
+            <path d="M238,40 H400 V252 H445"/>
+            <path d="M400,72 H445"/>
+            <path d="M400,162 H445"/>
+            <path d="M128,90 H408 V42 H445"/>
+            <path d="M416,140 V132 H445"/>
+            <path d="M416,140 V222 H445"/>
+            <path d="M128,190 H424 V147 H445"/>
+            <path d="M432,240 V57 H445"/>
+            <path d="M432,240 V237 H445"/>
+            <path d="M499,57 H530 V132 H560"/>
+            <path d="M499,147 H560"/>
+            <path d="M499,237 H530 V162 H560"/>
+            <path d="M614,147 H650"/>
+          </g>
+          <g fill="var(--ink-soft)">
+            <circle cx="400" cy="72" r="2.6"/>
+            <circle cx="400" cy="162" r="2.6"/>
+            <circle cx="416" cy="140" r="2.6"/>
+            <circle cx="432" cy="240" r="2.6"/>
+            <circle cx="90" cy="140" r="2.6"/>
+            <circle cx="90" cy="240" r="2.6"/>
+          </g>
+          <g fill="none" stroke="var(--ink)" stroke-width="1.8">
+            <g transform="translate(200,28)"><path d="M0,0 L30,12 L0,24 Z"/><circle cx="34" cy="12" r="4"/></g>
+            <g transform="translate(90,78)"><path d="M0,0 L30,12 L0,24 Z"/><circle cx="34" cy="12" r="4"/></g>
+            <g transform="translate(90,178)"><path d="M0,0 L30,12 L0,24 Z"/><circle cx="34" cy="12" r="4"/></g>
+            <g transform="translate(445,30)"><path d="M0,0 H27 A27,27 0 0 1 27,54 H0 Z"/></g>
+            <g transform="translate(445,120)"><path d="M0,0 H27 A27,27 0 0 1 27,54 H0 Z"/></g>
+            <g transform="translate(445,210)"><path d="M0,0 H27 A27,27 0 0 1 27,54 H0 Z"/></g>
+            <g transform="translate(560,120)"><path d="M0,0 Q27,0 54,27 Q27,54 0,54 Q13.5,27 0,0 Z"/></g>
+          </g>
+          <circle cx="650" cy="147" r="3.4" fill="var(--ink)"/>
+          <g font-size="14" fill="var(--ink)">
+            <text x="14" y="44" text-anchor="end">L</text>
+            <text x="14" y="144" text-anchor="end">M</text>
+            <text x="14" y="244" text-anchor="end">P</text>
+            <text x="662" y="151">F</text>
+          </g>
+          <g font-size="12" fill="var(--ink-soft)">
+            <text x="242" y="32">L̅</text>
+            <text x="132" y="82">M̅</text>
+            <text x="132" y="182">P̅</text>
+            <text x="472" y="22" text-anchor="middle">m2</text>
+            <text x="472" y="112" text-anchor="middle">m4</text>
+            <text x="472" y="202" text-anchor="middle">m6</text>
+          </g>
+        </svg>
+        <figcaption>Implementación directa de F = M̅PL̅ + MP̅L̅ + MPL̅, sin simplificar — este es el plano para armarlo en CircuitVerse.</figcaption>
+      </figure>
+      <!--
+        Circuito sin reducir — pendiente de embed en vivo.
+        Pasos para completar: 1) construir este circuito en circuitverse.org siguiendo el diagrama de arriba.
+        2) Project → Make Public. 3) Project → Embed → copiar el src del iframe.
+        4) Reemplazar el <div class="embed-todo">...</div> de abajo por:
+           <iframe src="PEGAR_SRC_AQUI" title="Simulación: circuito sin reducir" loading="lazy" allowfullscreen></iframe>
+      -->
+      <figure class="circuit-embed">
+        <div class="embed-todo">Pendiente: simulación interactiva en CircuitVerse (circuito sin reducir)</div>
+        <figcaption>Simulación en vivo del circuito sin reducir — próximamente.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Mapa de Karnaugh y Agrupación</h2></div>
+    <div class="slide-body">
+      <p>Siguiendo los pasos de la clase anterior, cada minitérmino se coloca en su celda: la fila corresponde a L y las columnas a MP en secuencia Gray.</p>
+      <div class="table-wrap"><table class="data-table">
+<tr><th>L\MP</th><th>0 0</th><th>0 1</th><th>1 1</th><th>1 0</th></tr>
+<tr><td>0</td><td>0</td><td style="background: var(--u4-soft);">1</td><td style="background: linear-gradient(135deg, var(--u4-soft) 50%, var(--u6-soft) 50%);">1</td><td style="background: var(--u6-soft);">1</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+</table></div>
+      <div class="kmap-legend">
+        <span class="swatch"><i style="background: var(--u4-soft); border: 1px solid var(--u4);"></i>Grupo 1 (MP=01, MP=11) → P·L̅</span>
+        <span class="swatch"><i style="background: var(--u6-soft); border: 1px solid var(--u6);"></i>Grupo 2 (MP=11, MP=10) → M·L̅</span>
+      </div>
+      <p>Los tres 1 son adyacentes en la fila L=0 y se cubren con dos parejas que se traslapan en la celda MP=11: en el Grupo 1, P y L̅ no cambian de valor (M sí, y se elimina); en el Grupo 2, M y L̅ no cambian (P sí, y se elimina). Sumando ambos términos se obtiene la expresión simplificada:</p>
+      <p class="formula">F = M·L̅ + P·L̅</p>
+      <p class="note">Si se factoriza L̅, queda F = L̅(M+P) — la misma función, con álgebra booleana adicional sobre el resultado del mapa.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Circuito Reducido</h2></div>
+    <div class="slide-body">
+      <p>La expresión que sale directamente de los dos grupos del mapa (sin factorizar) se implementa con muchas menos compuertas que la forma canónica:</p>
+      <p class="formula">F = M·L̅ + P·L̅</p>
+      <p class="note">1 inversor (L̅) + 2 AND de 2 entradas + 1 OR de 2 entradas = <strong>4 compuertas</strong>, casi la mitad de las 7 compuertas del circuito sin reducir — y ambos implementan exactamente la misma función.</p>
+      <figure class="circuit-diagram">
+        <svg viewBox="0 0 470 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama del circuito reducido: dos compuertas AND de 2 entradas combinadas con una compuerta OR de 2 entradas">
+          <g fill="none" stroke="var(--ink-soft)" stroke-width="1.6">
+            <path d="M20,48 H90"/>
+            <path d="M128,48 H230 V140 H260"/>
+            <path d="M230,68 H260"/>
+            <path d="M20,86 H260"/>
+            <path d="M20,158 H260"/>
+            <path d="M304,77 H330 V104 H350"/>
+            <path d="M304,149 H330 V122 H350"/>
+            <path d="M394,113 H430"/>
+          </g>
+          <circle cx="230" cy="68" r="2.6" fill="var(--ink-soft)"/>
+          <g fill="none" stroke="var(--ink)" stroke-width="1.8">
+            <g transform="translate(90,36)"><path d="M0,0 L30,12 L0,24 Z"/><circle cx="34" cy="12" r="4"/></g>
+            <g transform="translate(260,60)"><path d="M0,0 H27 A17,17 0 0 1 27,34 H0 Z"/></g>
+            <g transform="translate(260,132)"><path d="M0,0 H27 A17,17 0 0 1 27,34 H0 Z"/></g>
+            <g transform="translate(350,96)"><path d="M0,0 Q22,0 44,17 Q22,34 0,34 Q11,17 0,0 Z"/></g>
+          </g>
+          <circle cx="430" cy="113" r="3.4" fill="var(--ink)"/>
+          <g font-size="14" fill="var(--ink)">
+            <text x="14" y="52" text-anchor="end">L</text>
+            <text x="14" y="90" text-anchor="end">M</text>
+            <text x="14" y="162" text-anchor="end">P</text>
+            <text x="444" y="117">F</text>
+          </g>
+          <g font-size="12" fill="var(--ink-soft)">
+            <text x="136" y="40">L̅</text>
+            <text x="282" y="52" text-anchor="middle">M·L̅</text>
+            <text x="282" y="188" text-anchor="middle">P·L̅</text>
+          </g>
+        </svg>
+        <figcaption>Implementación de F = M·L̅ + P·L̅, obtenida al agrupar el mapa de Karnaugh — este es el plano para armarlo en CircuitVerse.</figcaption>
+      </figure>
+      <!--
+        Circuito reducido — pendiente de embed en vivo.
+        Pasos para completar: 1) construir este circuito en circuitverse.org siguiendo el diagrama de arriba.
+        2) Project → Make Public. 3) Project → Embed → copiar el src del iframe.
+        4) Reemplazar el <div class="embed-todo">...</div> de abajo por:
+           <iframe src="PEGAR_SRC_AQUI" title="Simulación: circuito reducido" loading="lazy" allowfullscreen></iframe>
+      -->
+      <figure class="circuit-embed">
+        <div class="embed-todo">Pendiente: simulación interactiva en CircuitVerse (circuito reducido)</div>
+        <figcaption>Simulación en vivo del circuito reducido — próximamente.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Comparación y Conclusión</h2></div>
+    <div class="slide-body">
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Sin reducir</h3>
+          <p>Suma de los 3 minitérminos de F=Σ(2,4,6).</p>
+          <p class="formula">7 compuertas</p>
+          <p>3 inversores + 3 AND(3) + 1 OR(3)</p>
+        </div>
+        <div class="compare-item">
+          <h3>Reducido (mapa K)</h3>
+          <p>Dos grupos de 2 celdas leídos directamente del mapa de Karnaugh.</p>
+          <p class="formula">4 compuertas</p>
+          <p>1 inversor + 2 AND(2) + 1 OR(2)</p>
+        </div>
+      </div>
+      <p class="note">El mapa de Karnaugh permitió reducir la cantidad de compuertas sin cambiar el comportamiento del circuito. Menos compuertas significa menor costo, menor consumo de energía y menos espacio en la placa — el mismo beneficio que se busca al simplificar cualquier función booleana antes de implementarla.</p>
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-2-algebra-booleana/clase-06-mapas-karnaugh-2.html"><span class="lbl">← Anterior</span>Mapas de Karnaugh: 4 y 5 Variables, Condiciones de Indiferencia</a>
+    <a class="next" href="../unidad-3-logica-combinacional/clase-07-complemento-sumadores.html"><span class="lbl">Siguiente →</span>Complemento de Funciones, NAND/NOR y Semisumador</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

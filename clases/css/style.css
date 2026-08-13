@@ -18,7 +18,7 @@
 
   --u0: #6b7280; --u0-soft: #eef0f3;
   --u1: #2f6fed; --u1-soft: #e8f0fe;
-  --u2: #8b3fe0; --u2-soft: #f3e9fd;
+  --u2: #0f7b93; --u2-soft: #ddf1f4;
   --u3: #0f9d8b; --u3-soft: #e1f6f2;
   --u4: #e2652a; --u4-soft: #fdece1;
   --u5: #9c6b0f; --u5-soft: #f7edd8;
@@ -37,7 +37,7 @@
     --card-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 30px -14px rgba(0,0,0,0.55);
     --code-bg: #0b0d16;
     --code-ink: #cfe0ff;
-    --u1-soft: #1b2540; --u2-soft: #241a38; --u3-soft: #10312c;
+    --u1-soft: #1b2540; --u2: #4fd3f2; --u2-soft: #0f2f3a; --u3-soft: #10312c;
     --u4-soft: #35211a; --u5-soft: #2e260f; --u6-soft: #123322; --u7-soft: #351622;
     --u0-soft: #23262f;
     --zebra: rgba(255, 255, 255, 0.045);
@@ -55,7 +55,7 @@
   --card-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 30px -14px rgba(0,0,0,0.55);
   --code-bg: #0b0d16;
   --code-ink: #cfe0ff;
-  --u1-soft: #1b2540; --u2-soft: #241a38; --u3-soft: #10312c;
+  --u1-soft: #1b2540; --u2: #4fd3f2; --u2-soft: #0f2f3a; --u3-soft: #10312c;
   --u4-soft: #35211a; --u5-soft: #2e260f; --u6-soft: #123322; --u7-soft: #351622;
   --u0-soft: #23262f;
   --zebra: rgba(255, 255, 255, 0.045);
@@ -71,7 +71,7 @@
   --card-shadow: 0 1px 2px rgba(20, 24, 40, 0.04), 0 8px 24px -12px rgba(20, 24, 40, 0.12);
   --code-bg: #101425;
   --code-ink: #d6e0ff;
-  --u0-soft: #eef0f3; --u1-soft: #e8f0fe; --u2-soft: #f3e9fd; --u3-soft: #e1f6f2;
+  --u0-soft: #eef0f3; --u1-soft: #e8f0fe; --u2: #0f7b93; --u2-soft: #ddf1f4; --u3-soft: #e1f6f2;
   --u4-soft: #fdece1; --u5-soft: #f7edd8; --u6-soft: #e3f6ea; --u7-soft: #fbe4ec;
   --zebra: rgba(15, 23, 42, 0.035);
 }
@@ -371,8 +371,9 @@ footer.sitefoot {
   margin-bottom: 14px;
 }
 .slide h2 { margin: 0; font-size: 1.28rem; }
-.slide-body ul { margin: 0; padding-left: 1.3em; }
+.slide-body ul, .slide-body ol { margin: 0; padding-left: 1.3em; }
 .slide-body li { margin-bottom: 8px; }
+.slide-body ol li { padding-left: 4px; }
 .slide-body li li { list-style: circle; margin-top: 6px; }
 .slide-body p.note {
   margin-top: 14px; padding: 10px 14px; border-radius: var(--radius-sm);
@@ -490,6 +491,31 @@ table.data-table caption {
 .compare-item .table-wrap { margin: 12px 0 0; }
 .slide-images + .table-wrap, .table-wrap + .slide-images { margin-top: 16px; }
 
+/* ---------- K-map group legend ---------- */
+.kmap-legend { display: flex; gap: 20px; flex-wrap: wrap; margin: 10px 0 0; font-size: 0.85rem; color: var(--ink-soft); }
+.kmap-legend .swatch { display: inline-flex; align-items: center; gap: 7px; }
+.kmap-legend .swatch i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+
+/* ---------- static circuit diagrams (SVG) ---------- */
+.circuit-diagram { margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-alt); }
+.circuit-diagram svg { display: block; width: 100%; height: auto; padding: 12px; }
+.circuit-diagram figcaption {
+  padding: 10px 14px; text-align: center; font-size: 0.85rem; color: var(--ink-soft);
+  border-top: 1px solid var(--border); background: var(--bg-alt);
+}
+
+/* ---------- CircuitVerse embeds ---------- */
+.circuit-embed { margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-alt); }
+.circuit-embed iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: 0; background: #fff; }
+.circuit-embed .embed-todo {
+  padding: 36px 20px; text-align: center; color: var(--ink-faint); font-size: 0.9rem;
+  border: 1px dashed var(--border); border-radius: var(--radius-sm); background: var(--u-soft, var(--u1-soft));
+}
+.circuit-embed figcaption {
+  padding: 10px 14px; text-align: center; font-size: 0.85rem; color: var(--ink-soft);
+  border-top: 1px solid var(--border); background: var(--bg-alt);
+}
+
 .data-table.small-table { font-size: 0.88rem; }
 .data-table.ascii-table { font-size: 0.82rem; }
 .data-table.ascii-table th, .data-table.ascii-table td { padding: 5px 8px; }
@@ -535,7 +561,7 @@ pre.code-block {
     --bg: #ffffff; --bg-alt: #ffffff; --ink: #1b2030; --ink-soft: #4a5168; --ink-faint: #767f99;
     --border: #d7dae3; --card-shadow: none;
     --code-bg: #101425; --code-ink: #d6e0ff;
-    --u0-soft: #eef0f3; --u1-soft: #e8f0fe; --u2-soft: #f3e9fd; --u3-soft: #e1f6f2;
+    --u0-soft: #eef0f3; --u1-soft: #e8f0fe; --u2: #0f7b93; --u2-soft: #ddf1f4; --u3-soft: #e1f6f2;
     --u4-soft: #fdece1; --u5-soft: #f7edd8; --u6-soft: #e3f6ea; --u7-soft: #fbe4ec;
     --zebra: rgba(15, 23, 42, 0.035);
   }
