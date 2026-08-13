@@ -159,17 +159,6 @@
         </svg>
         <figcaption>Implementación directa de F = M̅PL̅ + MP̅L̅ + MPL̅, sin simplificar — este es el plano para armarlo en CircuitVerse.</figcaption>
       </figure>
-      <!--
-        Circuito sin reducir — pendiente de embed en vivo.
-        Pasos para completar: 1) construir este circuito en circuitverse.org siguiendo el diagrama de arriba.
-        2) Project → Make Public. 3) Project → Embed → copiar el src del iframe.
-        4) Reemplazar el <div class="embed-todo">...</div> de abajo por:
-           <iframe src="PEGAR_SRC_AQUI" title="Simulación: circuito sin reducir" loading="lazy" allowfullscreen></iframe>
-      -->
-      <figure class="circuit-embed">
-        <iframe src="https://circuitverse.org/simulator/embed/sensores-y-mapa-de-karnaugh?theme=&display_title=false&clock_time=true&fullscreen=true&zoom_in_out=true" style="border-width:; border-style: ; border-color:;" name="myiframe" id="projectPreview" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="500" width="500" allowFullScreen></iframe>
-        <figcaption>Simulación en vivo del circuito sin reducir</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -232,17 +221,6 @@
         </svg>
         <figcaption>Implementación de F = M·L̅ + P·L̅, obtenida al agrupar el mapa de Karnaugh — este es el plano para armarlo en CircuitVerse.</figcaption>
       </figure>
-      <!--
-        Circuito reducido — pendiente de embed en vivo.
-        Pasos para completar: 1) construir este circuito en circuitverse.org siguiendo el diagrama de arriba.
-        2) Project → Make Public. 3) Project → Embed → copiar el src del iframe.
-        4) Reemplazar el <div class="embed-todo">...</div> de abajo por:
-           <iframe src="PEGAR_SRC_AQUI" title="Simulación: circuito reducido" loading="lazy" allowfullscreen></iframe>
-      -->
-      <figure class="circuit-embed">
-        <iframe src="https://circuitverse.org/simulator/embed/sensores-y-mapa-de-karnaugh-reducido?theme=&display_title=false&clock_time=true&fullscreen=true&zoom_in_out=true" style="border-width:; border-style: ; border-color:;" name="myiframe" id="projectPreview" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="500" width="500" allowFullScreen></iframe>
-        <figcaption>Simulación en vivo del circuito reducido</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -264,6 +242,17 @@
         </div>
       </div>
       <p class="note">El mapa de Karnaugh permitió reducir la cantidad de compuertas sin cambiar el comportamiento del circuito. Menos compuertas significa menor costo, menor consumo de energía y menos espacio en la placa — el mismo beneficio que se busca al simplificar cualquier función booleana antes de implementarla.</p>
+      <p>Prueba las mismas combinaciones de L, M y P en ambas simulaciones y verifica que F siempre coincide:</p>
+      <div class="compare">
+        <figure class="circuit-embed">
+          <iframe src="https://circuitverse.org/simulator/embed/sensores-y-mapa-de-karnaugh?theme=&display_title=false&clock_time=true&fullscreen=true&zoom_in_out=true" style="border-width:; border-style: ; border-color:;" name="myiframe" id="projectPreview" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="500" width="500" allowFullScreen></iframe>
+          <figcaption>Simulación en vivo: circuito sin reducir</figcaption>
+        </figure>
+        <figure class="circuit-embed">
+          <iframe src="https://circuitverse.org/simulator/embed/sensores-y-mapa-de-karnaugh-reducido?theme=&display_title=false&clock_time=true&fullscreen=true&zoom_in_out=true" style="border-width:; border-style: ; border-color:;" name="myiframe2" id="projectPreview2" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="500" width="500" allowFullScreen></iframe>
+          <figcaption>Simulación en vivo: circuito reducido</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
