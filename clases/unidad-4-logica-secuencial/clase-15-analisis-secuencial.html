@@ -39,7 +39,7 @@
     <ol>
       <li><a href="#s1">T - Latch</a></li>
       <li><a href="#s2">Análisis de circuitos Secuenciales</a></li>
-      <li><a href="#s3">Ecuaciones de estado</a></li>
+      <li><a href="#s3">Ecuaciones características</a></li>
       <li><a href="#s4">Ecuaciones de estado</a></li>
       <li><a href="#s5">Tabla de estados</a></li>
       <li><a href="#s6">Tabla de Estados</a></li>
@@ -47,10 +47,10 @@
       <li><a href="#s8">Diagrama de estados</a></li>
       <li><a href="#s9">Procedimiento de Diseño</a></li>
       <li><a href="#s10">Procedimiento de Diseño</a></li>
-      <li><a href="#s11">Ejemplo 1, Contador sincrónico 2 bits</a></li>
-      <li><a href="#s12">Ejemplo 1, Contador sincrónico 2 bits</a></li>
-      <li><a href="#s13">Ejemplo 1, Contador sincrónico 2 bits</a></li>
-      <li><a href="#s14">Ejemplo 1, Contador sincrónico 2 bits</a></li>
+      <li><a href="#s11">Ejemplo 1: contador asíncrono (de rizo) de 2 bits</a></li>
+      <li><a href="#s12">Ejemplo 1: tabla de excitación del flip-flop T</a></li>
+      <li><a href="#s13">Ejemplo 1: tabla de estados</a></li>
+      <li><a href="#s14">Ejemplo 1: ecuaciones de estado y efecto rizo</a></li>
     </ol>
   </div>
 
@@ -81,33 +81,50 @@
   </section>
 
   <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
-    <div class="slide-head"><h2>Ecuaciones de estado</h2></div>
+    <div class="slide-head"><h2>Ecuaciones características</h2></div>
     <div class="slide-body">
-      <ul>
-<li>El comportamiento de los circuitos secuenciales con reloj se describe algebraicamente con ecuaciones de estado.</li>
-<li>Una ecuación de estado (también llamada ecuación de transición) especifica el siguiente estado en función del estado actual y las entradas</li>
-<li>En el caso del flip-flop D, tenemos la ecuación característica:</li>
-<li>Q(t+1)=D</li>
-<li>Ecuación de estado para el flip-flop T ?</li>
-</ul>
-      
-      
+      <p>La <strong>ecuación característica</strong> de un flip-flop expresa algebraicamente su tabla característica: da el siguiente estado <span class="formula">Q(t+1)</span> en función de sus entradas y del estado actual <span class="formula">Q</span>. Es una propiedad del flip-flop, no del circuito en el que se usa.</p>
+      <div class="table-wrap"><table class="data-table">
+<tr><th>Flip-flop</th><th>Ecuación característica</th><th>Comportamiento</th></tr>
+<tr><td>D</td><td>Q(t+1) = D</td><td>Copia D en el flanco de reloj</td></tr>
+<tr><td>T</td><td>Q(t+1) = T ⊕ Q = T·Q' + T'·Q</td><td>T = 0 mantiene · T = 1 complementa</td></tr>
+<tr><td>JK</td><td>Q(t+1) = J·Q' + K'·Q</td><td>00 mantiene · 01 borra · 10 pone · 11 complementa</td></tr>
+<tr><td>SR</td><td>Q(t+1) = S + R'·Q  (con S·R = 0)</td><td>S pone · R borra · S = R = 1 prohibido</td></tr>
+</table></div>
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Ejemplo: deducción para el flip-flop T</h3>
+          <div class="table-wrap"><table class="data-table small-table">
+<tr><th>T</th><th>Q</th><th>Q(t+1)</th></tr>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+</table></div>
+        </div>
+        <div class="compare-item">
+          <h3>Suma de minitérminos</h3>
+          <p>Q(t+1) vale 1 en las filas T'Q y TQ', por lo tanto:</p>
+          <p class="formula">Q(t+1) = T'·Q + T·Q' = T ⊕ Q</p>
+          <p>Con T = 0 el flip-flop conserva su estado; con T = 1 lo complementa en cada flanco: <span class="formula">Q(t+1) = Q'</span>.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
     <div class="slide-head"><h2>Ecuaciones de estado</h2></div>
     <div class="slide-body">
-      <ul>
-<li>El comportamiento de los circuitos secuenciales con reloj se describe algebraicamente con ecuaciones de estado.</li>
-<li>Una ecuación de estado (también llamada ecuación de transición) especifica el siguiente estado en función del estado actual y las entradas</li>
-<li>En el caso del flip-flop D, tenemos la ecuación característica:</li>
-<li>Q(t+1)=D</li>
-<li>Ecuación de estado para el flip-flop T</li>
-<li>Q(t+1)= T⊕Q</li>
-</ul>
-      
-      
+      <p>El comportamiento de un circuito secuencial con reloj se describe algebraicamente con <strong>ecuaciones de estado</strong> (también llamadas ecuaciones de transición). Cada una especifica el siguiente estado de un flip-flop en función del estado actual y de las entradas del circuito.</p>
+      <p>Se obtienen en dos pasos:</p>
+      <ol>
+<li>Escribir las <strong>ecuaciones de entrada</strong> de cada flip-flop (la lógica combinacional que llega a D, T, J/K…).</li>
+<li>Sustituirlas en la <strong>ecuación característica</strong> del flip-flop correspondiente.</li>
+</ol>
+      <p>Para el circuito de la siguiente diapositiva (dos flip-flops D, entrada x):</p>
+      <div><p class="formula">D<sub>A</sub> = A·x + B·x &nbsp;&nbsp;⇒&nbsp;&nbsp; A(t+1) = A·x + B·x</p></div>
+      <div><p class="formula">D<sub>B</sub> = A'·x &nbsp;&nbsp;⇒&nbsp;&nbsp; B(t+1) = A'·x</p></div>
+      <p class="note">Con flip-flops D la ecuación de estado coincide con la ecuación de entrada porque Q(t+1) = D. Con flip-flops T o JK hay que hacer la sustitución, por ejemplo con T<sub>A</sub> = x: A(t+1) = x ⊕ A.</p>
     </div>
   </section>
 
@@ -195,63 +212,67 @@
   </section>
 
   <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
-    <div class="slide-head"><h2>Ejemplo 1, Contador sincrónico 2 bits</h2></div>
+    <div class="slide-head"><h2>Ejemplo 1: contador asíncrono (de rizo) de 2 bits</h2></div>
     <div class="slide-body">
-      
-      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Diagrama"></figure></div>
-      
+      <ul>
+<li>Dos flip-flops T con <strong>T<sub>0</sub> = T<sub>1</sub> = 1</strong>: cada uno se complementa en cada flanco activo de <em>su propio</em> reloj.</li>
+<li>El flip-flop 0 recibe el reloj del sistema <strong>CLK</strong> (flanco de bajada).</li>
+<li>El flip-flop 1 <strong>no</strong> recibe CLK: su entrada de reloj está conectada a <strong>Q<sub>0</sub></strong>, de modo que solo cambia cuando Q<sub>0</sub> pasa de 1 a 0.</li>
+<li><strong>CLR'</strong> pone ambos flip-flops en 0 de forma asíncrona antes de empezar a contar.</li>
+</ul>
+      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Contador asíncrono de 2 bits con flip-flops T: el reloj del segundo flip-flop es Q0; diagrama de tiempos con la secuencia 00, 01, 10, 11, 00"></figure></div>
+      <p class="note">Como los flip-flops no comparten el mismo reloj, el circuito es <strong>asíncrono</strong>: el cambio de cada etapa dispara a la siguiente y se propaga "en rizo". En un contador sincrónico todos los flip-flops reciben CLK al mismo tiempo.</p>
     </div>
   </section>
 
   <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
-    <div class="slide-head"><h2>Ejemplo 1, Contador sincrónico 2 bits</h2></div>
+    <div class="slide-head"><h2>Ejemplo 1: tabla de excitación del flip-flop T</h2></div>
     <div class="slide-body">
-      <ul>
-<li>2 Flip-Flop T</li>
-<li>Tabla activación Flip Flop</li>
-</ul>
-      <div class="slide-images "><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Diagrama"></figure>
-<figure><img src="../img/clase-15-analisis-secuencial/4b84265757.png" loading="lazy" alt="Diagrama"></figure></div>
-      
+      <p>Con 2 flip-flops se tienen 2<sup>2</sup> = 4 estados (00, 01, 10, 11). La tabla de excitación indica qué valor debe tener T para producir cada transición Q(t) → Q(t+1):</p>
+      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/4b84265757.png" loading="lazy" alt="Tabla de excitación del flip-flop T: T = 1 cuando el estado debe cambiar"></figure></div>
+      <p class="formula">T = Q(t) ⊕ Q(t+1)</p>
+      <p>Es decir, T = 1 solo cuando el estado debe cambiar. En este contador ambos flip-flops deben cambiar cada vez que se disparan, por eso T<sub>0</sub> = T<sub>1</sub> = 1; quien decide <em>cuándo</em> cambia Q<sub>1</sub> es su reloj (Q<sub>0</sub>), no su entrada T.</p>
     </div>
   </section>
 
   <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
-    <div class="slide-head"><h2>Ejemplo 1, Contador sincrónico 2 bits</h2></div>
+    <div class="slide-head"><h2>Ejemplo 1: tabla de estados</h2></div>
     <div class="slide-body">
-      <table class="data-table">
-<tr><th>Estado actual Q1 Q0</th><th>Estado siguiente Q1⁺ Q0⁺</th><th>T0</th><th>T1</th></tr>
-<tr><td>0 0</td><td>0 1</td><td>1</td><td>0</td></tr>
-<tr><td>0 1</td><td>1 0</td><td>1</td><td>1</td></tr>
-<tr><td>1 0</td><td>1 1</td><td>1</td><td>0</td></tr>
-<tr><td>1 1</td><td>0 0</td><td>1</td><td>1</td></tr>
-</table>
-<ul>
-<li>00</li>
-</ul>
-<ul>
-<li>01</li>
-</ul>
-<ul>
-<li>10</li>
-</ul>
-<ul>
-<li>11</li>
-</ul>
-      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Diagrama"></figure></div>
-      
+      <p>Estado y transición en cada flanco de bajada de CLK:</p>
+      <div class="table-wrap"><table class="data-table">
+<tr><th>Estado actual Q1 Q0</th><th>Estado siguiente Q1⁺ Q0⁺</th><th>Q0 (reloj de FF1)</th><th>FF1</th></tr>
+<tr><td>0 0</td><td>0 1</td><td>0 → 1 (subida)</td><td>mantiene</td></tr>
+<tr><td>0 1</td><td>1 0</td><td>1 → 0 (bajada)</td><td>complementa</td></tr>
+<tr><td>1 0</td><td>1 1</td><td>0 → 1 (subida)</td><td>mantiene</td></tr>
+<tr><td>1 1</td><td>0 0</td><td>1 → 0 (bajada)</td><td>complementa</td></tr>
+</table></div>
+      <p>Diagrama de estados: <span class="formula">00 → 01 → 10 → 11 → 00 → …</span> (cuenta ascendente módulo 4).</p>
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Este circuito (asíncrono)</h3>
+          <p class="formula">T<sub>0</sub> = 1, reloj FF0 = CLK</p>
+          <p class="formula">T<sub>1</sub> = 1, reloj FF1 = Q<sub>0</sub></p>
+          <p>FF1 se complementa solo cuando Q<sub>0</sub> cae de 1 a 0.</p>
+        </div>
+        <div class="compare-item">
+          <h3>Versión sincrónica equivalente</h3>
+          <p class="formula">T<sub>0</sub> = 1, reloj FF0 = CLK</p>
+          <p class="formula">T<sub>1</sub> = Q<sub>0</sub>, reloj FF1 = CLK</p>
+          <p>Con reloj común, la condición "Q<sub>0</sub> = 1 antes del flanco" se lleva a la entrada T<sub>1</sub>.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="slide reveal" id="s14" style="--reveal-delay: 0.65s;">
-    <div class="slide-head"><h2>Ejemplo 1, Contador sincrónico 2 bits</h2></div>
+    <div class="slide-head"><h2>Ejemplo 1: ecuaciones de estado y efecto rizo</h2></div>
     <div class="slide-body">
-      <ul>
-<li>Q0+ = Q´0</li>
-<li>Q1+ = Q0 ⊕Q1</li>
-</ul>
-      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Diagrama"></figure></div>
-      
+      <p>Sustituyendo T = 1 en la ecuación característica Q(t+1) = T ⊕ Q:</p>
+      <p class="formula">Q<sub>0</sub>(t+1) = 1 ⊕ Q<sub>0</sub> = Q<sub>0</sub>'</p>
+      <p>FF1 se complementa únicamente cuando Q<sub>0</sub> estaba en 1 antes del flanco de CLK, así que, observado al ritmo de CLK:</p>
+      <p class="formula">Q<sub>1</sub>(t+1) = Q<sub>1</sub> ⊕ Q<sub>0</sub></p>
+      <div class="slide-images single"><figure><img src="../img/clase-15-analisis-secuencial/3c488c8197.png" loading="lazy" alt="Contador asíncrono de 2 bits y su diagrama de tiempos"></figure></div>
+      <p class="note">Las ecuaciones son las mismas que las del contador sincrónico, pero en el asíncrono Q<sub>1</sub> cambia un retardo de propagación (t<sub>pd</sub>) <em>después</em> de Q<sub>0</sub>. En la transición 11 → 00 el contador pasa brevemente por 10 (11 → 10 → 00). Con n bits el retardo se acumula hasta n·t<sub>pd</sub>, lo que limita la frecuencia máxima y puede producir pulsos espurios en la lógica que decodifica la cuenta.</p>
     </div>
   </section>
 
