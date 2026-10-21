@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejemplos de Verilog: Lógica Combinacional — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u4); --u-soft: var(--u4-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-4">Lógica Secuencial</a><span class="sep">/</span>
+      Ejemplos de Verilog: Lógica Combinacional
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 4 · Lógica Secuencial</div>
+    <h1>Ejemplos de Verilog: Lógica Combinacional</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">De Verilog a circuito</a></li>
+      <li><a href="#s2">Ejemplo 1: sumador completo</a></li>
+      <li><a href="#s3">Ejemplo 2: sumador-restador de 4 bits</a></li>
+      <li><a href="#s4">Ejemplo 3: multiplexor de 4 a 1</a></li>
+      <li><a href="#s5">Ejemplo 4: codificador con prioridad de 4 a 2</a></li>
+    </ol>
+  </div>
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>De Verilog a circuito</h2></div>
+    <div class="slide-body">
+      <p>Los circuitos combinacionales de la Unidad 3 se pueden describir en Verilog con <strong>asignaciones continuas</strong> (<span class="formula">assign</span>). Una herramienta de <strong>síntesis</strong> lee el código y deduce el circuito de compuertas equivalente.</p>
+      <p>Las simulaciones de esta página se generaron así: el código de cada ejemplo se sintetizó con <strong>Yosys</strong> y se dibuja con <strong>DigitalJS</strong>. En cada simulación:</p>
+      <ul>
+<li>Haz clic en los botones de entrada para cambiar entre 0 y 1; en las entradas de varios bits escribe el número.</li>
+<li>Las líneas cambian de color según el valor lógico que transportan, y las lámparas de salida se encienden con 1.</li>
+<li>Puedes arrastrar los componentes para reacomodar el circuito.</li>
+</ul>
+      <p>Para probar tu propio código, pégalo en <a href="https://digitaljs.tilk.eu/" target="_blank" rel="noopener">DigitalJS Online</a> y presiona el botón de sintetizar (<em>Synthesize and simulate!</em>).</p>
+      <p>En cada ejemplo se repasa el circuito de la clase correspondiente, se muestra el módulo en Verilog y se incluye la simulación del circuito sintetizado. Operadores usados:</p>
+      <div class="table-wrap"><table class="data-table small-table">
+<tr><th>Operador</th><th>Significado</th><th>Ejemplo</th></tr>
+<tr><td>&amp;</td><td>AND</td><td>a &amp; b</td></tr>
+<tr><td>|</td><td>OR</td><td>a | b</td></tr>
+<tr><td>~</td><td>NOT</td><td>~a</td></tr>
+<tr><td>^</td><td>XOR</td><td>a ^ b</td></tr>
+<tr><td>? :</td><td>condicional (multiplexor)</td><td>s ? a : b</td></tr>
+<tr><td>[i]</td><td>bit i de un vector</td><td>A[0]</td></tr>
+</table></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Ejemplo 1: sumador completo</h2></div>
+    <div class="slide-body">
+      <p>El sumador completo suma tres bits (a, b y el acarreo de entrada c<sub>in</sub>) y produce la suma S y el acarreo de salida C<sub>out</sub>. En la <a href="../unidad-3-logica-combinacional/clase-08-sumador-binario.html">clase 8</a> se simplificaron con XOR:</p>
+      <div><p class="formula">S = a ⊕ b ⊕ c<sub>in</sub></p></div>
+      <div><p class="formula">C<sub>out</sub> = a·b + c<sub>in</sub>·(a ⊕ b)</p></div>
+<pre class="code-block">module sumador_completo (
+    input  a, b, cin,
+    output s, cout
+);
+    assign s    = a ^ b ^ cin;
+    assign cout = (a &amp; b) | (cin &amp; (a ^ b));
+endmodule</pre>
+      <p>Valores de prueba:</p>
+      <div class="table-wrap"><table class="data-table small-table">
+<tr><th>a</th><th>b</th><th>c<sub>in</sub></th><th>C<sub>out</sub></th><th>S</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+</table></div>
+      <figure class="circuit-embed djs-embed" data-circuit="sumador_completo">
+        <div class="djs-paper"><div class="djs-status">Cargando simulación…</div></div>
+        <figcaption>Circuito sintetizado del sumador completo: haz clic en a, b y c<sub>in</sub> para cambiarlas.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Ejemplo 2: sumador-restador de 4 bits</h2></div>
+    <div class="slide-body">
+      <p>Es el circuito de la <a href="../unidad-3-logica-combinacional/clase-09-restador-binario.html">clase 9</a>: cuatro sumadores completos con una XOR en cada bit de B controlada por M.</p>
+      <ul>
+<li><strong>M = 0:</strong> B ⊕ 0 = B y c<sub>0</sub> = 0, el circuito calcula A + B.</li>
+<li><strong>M = 1:</strong> B ⊕ 1 = B' y c<sub>0</sub> = 1, el circuito calcula A + B' + 1 = A − B (complemento a dos).</li>
+<li><strong>V = c<sub>3</sub> ⊕ c<sub>4</sub></strong> indica desbordamiento cuando A y B se interpretan con signo.</li>
+</ul>
+<pre class="code-block">module sumador_completo (          // el módulo del ejemplo 1
+    input  a, b, cin,
+    output s, cout
+);
+    assign s    = a ^ b ^ cin;
+    assign cout = (a &amp; b) | (cin &amp; (a ^ b));
+endmodule
+
+module sumador_restador (
+    input  [3:0] A, B,
+    input        M,                  // 0: A + B   1: A - B
+    output [3:0] S,
+    output       C, V
+);
+    wire [3:0] Bx = B ^ {4{M}};      // complemento a uno de B cuando M = 1
+    wire c1, c2, c3, c4;
+
+    // cuatro sumadores completos en cascada; M entra como acarreo inicial
+    sumador_completo fa0 (.a(A[0]), .b(Bx[0]), .cin(M),  .s(S[0]), .cout(c1));
+    sumador_completo fa1 (.a(A[1]), .b(Bx[1]), .cin(c1), .s(S[1]), .cout(c2));
+    sumador_completo fa2 (.a(A[2]), .b(Bx[2]), .cin(c2), .s(S[2]), .cout(c3));
+    sumador_completo fa3 (.a(A[3]), .b(Bx[3]), .cin(c3), .s(S[3]), .cout(c4));
+
+    assign C = c4;
+    assign V = c3 ^ c4;
+endmodule</pre>
+      <ul>
+<li><strong>Instanciación:</strong> <span class="formula">sumador_completo fa0 (...)</span> coloca una copia del módulo del ejemplo 1 llamada fa0; <span class="formula">.a(A[0])</span> conecta su puerto a con el bit A[0]. Así se construyen circuitos grandes a partir de bloques probados.</li>
+<li><span class="formula">{4{M}}</span> repite M cuatro veces (MMMM), así que <span class="formula">B ^ {4{M}}</span> son las cuatro XOR del diagrama de la clase 9.</li>
+</ul>
+      <p class="note">En la simulación cada bloque <em>sumador_completo</em> se puede abrir con doble clic para ver sus compuertas.</p>
+      <p>Valores de prueba:</p>
+      <div class="table-wrap"><table class="data-table small-table">
+<tr><th>A</th><th>B</th><th>M</th><th>Operación</th><th>S</th><th>C</th><th>V</th></tr>
+<tr><td>1011</td><td>0011</td><td>0</td><td>11 + 3</td><td>1110</td><td>0</td><td>0</td></tr>
+<tr><td>1011</td><td>0011</td><td>1</td><td>11 − 3</td><td>1000</td><td>1</td><td>0</td></tr>
+<tr><td>0011</td><td>0101</td><td>1</td><td>3 − 5 = −2</td><td>1110</td><td>0</td><td>0</td></tr>
+<tr><td>0111</td><td>0011</td><td>0</td><td>7 + 3 (con signo: desborda)</td><td>1010</td><td>0</td><td>1</td></tr>
+</table></div>
+      <figure class="circuit-embed djs-embed" data-circuit="sumador_restador">
+        <div class="djs-paper"><div class="djs-status">Cargando simulación…</div></div>
+        <figcaption>Circuito sintetizado del sumador-restador: escribe A y B en las entradas numéricas y cambia M con su botón.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Ejemplo 3: multiplexor de 4 a 1</h2></div>
+    <div class="slide-body">
+      <p>El multiplexor de la <a href="../unidad-3-logica-combinacional/clase-11a-multiplexores.html">clase 11a</a> envía a la salida Y una de las cuatro entradas I<sub>0</sub>–I<sub>3</sub>, según las líneas de selección S<sub>1</sub>S<sub>0</sub>. Se puede describir de dos formas equivalentes:</p>
+      <div class="compare">
+        <div class="compare-item">
+          <h3>Con la expresión booleana</h3>
+          <p>Un término AND por cada combinación de S<sub>1</sub>S<sub>0</sub>, igual que el diagrama de compuertas.</p>
+<pre class="code-block">module mux4a1 (
+    input  i0, i1, i2, i3,
+    input  s1, s0,
+    output y
+);
+    assign y = (~s1 &amp; ~s0 &amp; i0) |
+               (~s1 &amp;  s0 &amp; i1) |
+               ( s1 &amp; ~s0 &amp; i2) |
+               ( s1 &amp;  s0 &amp; i3);
+endmodule</pre>
+        </div>
+        <div class="compare-item">
+          <h3>Con el operador condicional</h3>
+          <p><span class="formula">s ? a : b</span> vale a si s = 1 y b si s = 0: es un multiplexor de 2 a 1.</p>
+<pre class="code-block">module mux4a1 (
+    input  i0, i1, i2, i3,
+    input  s1, s0,
+    output y
+);
+    assign y = s1 ? (s0 ? i3 : i2)
+                  : (s0 ? i1 : i0);
+endmodule</pre>
+        </div>
+      </div>
+      <p>Valores de prueba:</p>
+      <div class="table-wrap"><table class="data-table small-table">
+<tr><th>S<sub>1</sub></th><th>S<sub>0</sub></th><th>Y</th></tr>
+<tr><td>0</td><td>0</td><td>I<sub>0</sub></td></tr>
+<tr><td>0</td><td>1</td><td>I<sub>1</sub></td></tr>
+<tr><td>1</td><td>0</td><td>I<sub>2</sub></td></tr>
+<tr><td>1</td><td>1</td><td>I<sub>3</sub></td></tr>
+</table></div>
+      <figure class="circuit-embed djs-embed" data-circuit="mux4a1_booleano">
+        <div class="djs-paper"><div class="djs-status">Cargando simulación…</div></div>
+        <figcaption>Versión booleana: compuertas AND, OR y NOT.</figcaption>
+      </figure>
+      <figure class="circuit-embed djs-embed" data-circuit="mux4a1_condicional">
+        <div class="djs-paper"><div class="djs-status">Cargando simulación…</div></div>
+        <figcaption>Versión condicional: tres multiplexores de 2 a 1.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Ejemplo 4: codificador con prioridad de 4 a 2</h2></div>
+    <div class="slide-body">
+      <p>El codificador con prioridad de la <a href="../unidad-3-logica-combinacional/clase-10-decodificadores.html">clase 10</a> entrega en xy el número de la entrada activa de mayor índice (D<sub>3</sub> tiene la prioridad más alta). V = 1 indica que al menos una entrada está activa. Del mapa de Karnaugh:</p>
+      <div><p class="formula">x = D<sub>2</sub> + D<sub>3</sub></p></div>
+      <div><p class="formula">y = D<sub>3</sub> + D<sub>1</sub>·D<sub>2</sub>'</p></div>
+      <div><p class="formula">V = D<sub>0</sub> + D<sub>1</sub> + D<sub>2</sub> + D<sub>3</sub></p></div>
+<pre class="code-block">module codificador_prioridad (
+    input  d0, d1, d2, d3,
+    output x, y, v
+);
+    assign x = d2 | d3;
+    assign y = d3 | (d1 &amp; ~d2);
+    assign v = d0 | d1 | d2 | d3;
+endmodule</pre>
+      <p>Valores de prueba:</p>
+      <div class="table-wrap"><table class="data-table small-table">
+<tr><th>D<sub>0</sub></th><th>D<sub>1</sub></th><th>D<sub>2</sub></th><th>D<sub>3</sub></th><th>x</th><th>y</th><th>V</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+</table></div>
+      <p class="note">Con todas las entradas en 0, la tabla de la clase 10 marca x y y como indiferentes (X). Con estas ecuaciones el circuito entrega x = y = 0; por eso hay que revisar V antes de usar xy.</p>
+      <figure class="circuit-embed djs-embed" data-circuit="codificador_prioridad">
+        <div class="djs-paper"><div class="djs-status">Cargando simulación…</div></div>
+        <figcaption>Circuito sintetizado del codificador con prioridad: activa varias entradas a la vez y observa x, y y V.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-4-logica-secuencial/hdl-lenguaje.html"><span class="lbl">← Anterior</span>Lenguaje de Descripción de Hardware (HDL) y Verilog</a>
+    <a class="next" href="../unidad-4-logica-secuencial/verilog-secuencial.html"><span class="lbl">Siguiente →</span>Ejemplos de Verilog: Lógica Secuencial</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script type="application/json" id="djs-sumador_completo">{"subcircuits":{},"devices":{"dev0":{"type":"Button","net":"a","order":0,"bits":1,"label":"a"},"dev1":{"type":"Button","net":"b","order":1,"bits":1,"label":"b"},"dev2":{"type":"Button","net":"cin","order":2,"bits":1,"label":"cin"},"dev3":{"type":"Lamp","net":"s","order":3,"bits":1,"label":"s"},"dev4":{"type":"Lamp","net":"cout","order":4,"bits":1,"label":"cout"},"dev5":{"type":"And","hide_label":true,"source_positions":[{"name":"v/sumador_completo.v","from":{"line":6,"column":20},"to":{"line":6,"column":25}}],"bits":1},"dev6":{"type":"And","hide_label":true,"source_positions":[{"name":"v/sumador_completo.v","from":{"line":6,"column":30},"to":{"line":6,"column":43}}],"bits":1},"dev7":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/sumador_completo.v","from":{"line":6,"column":19},"to":{"line":6,"column":44}}],"bits":1},"dev8":{"type":"Xor","hide_label":true,"source_positions":[{"name":"v/sumador_completo.v","from":{"line":5,"column":19},"to":{"line":5,"column":30}}],"bits":1},"dev9":{"type":"Xor","hide_label":true,"source_positions":[{"name":"v/sumador_completo.v","from":{"line":6,"column":37},"to":{"line":6,"column":42}}],"bits":1}},"connectors":[{"to":{"id":"dev5","port":"in1"},"from":{"id":"dev0","port":"out"},"name":"a","source_positions":[{"name":"v/sumador_completo.v","from":{"line":2,"column":12},"to":{"line":2,"column":13}}]},{"to":{"id":"dev9","port":"in1"},"from":{"id":"dev0","port":"out"},"name":"a","source_positions":[{"name":"v/sumador_completo.v","from":{"line":2,"column":12},"to":{"line":2,"column":13}}]},{"to":{"id":"dev5","port":"in2"},"from":{"id":"dev1","port":"out"},"name":"b","source_positions":[{"name":"v/sumador_completo.v","from":{"line":2,"column":15},"to":{"line":2,"column":16}}]},{"to":{"id":"dev9","port":"in2"},"from":{"id":"dev1","port":"out"},"name":"b","source_positions":[{"name":"v/sumador_completo.v","from":{"line":2,"column":15},"to":{"line":2,"column":16}}]},{"to":{"id":"dev6","port":"in1"},"from":{"id":"dev2","port":"out"},"name":"cin","source_positions":[{"name":"v/sumador_completo.v","from":{"line":2,"column":18},"to":{"line":2,"column":21}}]},{"to":{"id":"dev8","port":"in2"},"from":{"id":"dev2","port":"out"},"name":"cin","source_positions":[{"name":"v/sumador_completo.v","from":{"line":2,"column":18},"to":{"line":2,"column":21}}]},{"to":{"id":"dev3","port":"in"},"from":{"id":"dev8","port":"out"},"name":"s","source_positions":[{"name":"v/sumador_completo.v","from":{"line":3,"column":12},"to":{"line":3,"column":13}}]},{"to":{"id":"dev4","port":"in"},"from":{"id":"dev7","port":"out"},"name":"cout","source_positions":[{"name":"v/sumador_completo.v","from":{"line":3,"column":15},"to":{"line":3,"column":19}}]},{"to":{"id":"dev7","port":"in1"},"from":{"id":"dev5","port":"out"},"source_positions":[]},{"to":{"id":"dev6","port":"in2"},"from":{"id":"dev9","port":"out"},"source_positions":[]},{"to":{"id":"dev8","port":"in1"},"from":{"id":"dev9","port":"out"},"source_positions":[]},{"to":{"id":"dev7","port":"in2"},"from":{"id":"dev6","port":"out"},"source_positions":[]}]}</script>
+<script type="application/json" id="djs-sumador_restador">{"subcircuits":{"sumador_completo":{"devices":{"dev0":{"type":"Input","net":"a","order":0,"bits":1},"dev1":{"type":"Input","net":"b","order":1,"bits":1},"dev2":{"type":"Input","net":"cin","order":2,"bits":1},"dev3":{"type":"Output","net":"s","order":3,"bits":1},"dev4":{"type":"Output","net":"cout","order":4,"bits":1},"dev5":{"type":"And","hide_label":true,"source_positions":[{"name":"v/sumador_restador.v","from":{"line":6,"column":20},"to":{"line":6,"column":25}}],"bits":1},"dev6":{"type":"And","hide_label":true,"source_positions":[{"name":"v/sumador_restador.v","from":{"line":6,"column":30},"to":{"line":6,"column":43}}],"bits":1},"dev7":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/sumador_restador.v","from":{"line":6,"column":19},"to":{"line":6,"column":44}}],"bits":1},"dev8":{"type":"Xor","hide_label":true,"source_positions":[{"name":"v/sumador_restador.v","from":{"line":5,"column":19},"to":{"line":5,"column":30}}],"bits":1},"dev9":{"type":"Xor","hide_label":true,"source_positions":[{"name":"v/sumador_restador.v","from":{"line":6,"column":37},"to":{"line":6,"column":42}}],"bits":1}},"connectors":[{"to":{"id":"dev5","port":"in1"},"from":{"id":"dev0","port":"out"},"name":"a","source_positions":[{"name":"v/sumador_restador.v","from":{"line":2,"column":12},"to":{"line":2,"column":13}}]},{"to":{"id":"dev9","port":"in1"},"from":{"id":"dev0","port":"out"},"name":"a","source_positions":[{"name":"v/sumador_restador.v","from":{"line":2,"column":12},"to":{"line":2,"column":13}}]},{"to":{"id":"dev5","port":"in2"},"from":{"id":"dev1","port":"out"},"name":"b","source_positions":[{"name":"v/sumador_restador.v","from":{"line":2,"column":15},"to":{"line":2,"column":16}}]},{"to":{"id":"dev9","port":"in2"},"from":{"id":"dev1","port":"out"},"name":"b","source_positions":[{"name":"v/sumador_restador.v","from":{"line":2,"column":15},"to":{"line":2,"column":16}}]},{"to":{"id":"dev6","port":"in1"},"from":{"id":"dev2","port":"out"},"name":"cin","source_positions":[{"name":"v/sumador_restador.v","from":{"line":2,"column":18},"to":{"line":2,"column":21}}]},{"to":{"id":"dev8","port":"in2"},"from":{"id":"dev2","port":"out"},"name":"cin","source_positions":[{"name":"v/sumador_restador.v","from":{"line":2,"column":18},"to":{"line":2,"column":21}}]},{"to":{"id":"dev3","port":"in"},"from":{"id":"dev8","port":"out"},"name":"s","source_positions":[{"name":"v/sumador_restador.v","from":{"line":3,"column":12},"to":{"line":3,"column":13}}]},{"to":{"id":"dev4","port":"in"},"from":{"id":"dev7","port":"out"},"name":"cout","source_positions":[{"name":"v/sumador_restador.v","from":{"line":3,"column":15},"to":{"line":3,"column":19}}]},{"to":{"id":"dev7","port":"in1"},"from":{"id":"dev5","port":"out"},"source_positions":[]},{"to":{"id":"dev6","port":"in2"},"from":{"id":"dev9","port":"out"},"source_positions":[]},{"to":{"id":"dev8","port":"in1"},"from":{"id":"dev9","port":"out"},"source_positions":[]},{"to":{"id":"dev7","port":"in2"},"from":{"id":"dev6","port":"out"},"source_positions":[]}]}},"devices":{"dev0":{"type":"NumEntry","net":"A","order":0,"bits":4,"label":"A","numbase":"bin"},"dev1":{"type":"NumEntry","net":"B","order":1,"bits":4,"label":"B","numbase":"bin"},"dev2":{"type":"Button","net":"M","order":2,"bits":1,"label":"M"},"dev3":{"type":"NumDisplay","net":"S","order":3,"bits":4,"label":"S","numbase":"bin"},"dev4":{"type":"Lamp","net":"C","order":4,"bits":1,"label":"C"},"dev5":{"type":"Lamp","net":"V","order":5,"bits":1,"label":"V"},"dev6":{"type":"Xor","hide_label":true,"source_positions":[{"name":"v/sumador_restador.v","from":{"line":15,"column":21},"to":{"line":15,"column":31}}],"bits":4},"dev7":{"type":"Xor","hide_label":true,"source_positions":[{"name":"v/sumador_restador.v","from":{"line":25,"column":16},"to":{"line":25,"column":23}}],"bits":1},"dev8":{"label":"fa0","type":"Subcircuit","celltype":"sumador_completo","source_positions":[{"name":"v/sumador_restador.v","from":{"line":19,"column":22},"to":{"line":19,"column":78}}]},"dev9":{"label":"fa1","type":"Subcircuit","celltype":"sumador_completo","source_positions":[{"name":"v/sumador_restador.v","from":{"line":20,"column":22},"to":{"line":20,"column":78}}]},"dev10":{"label":"fa2","type":"Subcircuit","celltype":"sumador_completo","source_positions":[{"name":"v/sumador_restador.v","from":{"line":21,"column":22},"to":{"line":21,"column":78}}]},"dev11":{"label":"fa3","type":"Subcircuit","celltype":"sumador_completo","source_positions":[{"name":"v/sumador_restador.v","from":{"line":22,"column":22},"to":{"line":22,"column":78}}]},"dev12":{"type":"BusGroup","groups":[1,1,1,1]},"dev13":{"type":"BusGroup","groups":[1,1,1,1]},"dev14":{"type":"BusSlice","slice":{"first":0,"count":1,"total":4}},"dev15":{"type":"BusSlice","slice":{"first":0,"count":1,"total":4}},"dev16":{"type":"BusSlice","slice":{"first":1,"count":1,"total":4}},"dev17":{"type":"BusSlice","slice":{"first":1,"count":1,"total":4}},"dev18":{"type":"BusSlice","slice":{"first":2,"count":1,"total":4}},"dev19":{"type":"BusSlice","slice":{"first":2,"count":1,"total":4}},"dev20":{"type":"BusSlice","slice":{"first":3,"count":1,"total":4}},"dev21":{"type":"BusSlice","slice":{"first":3,"count":1,"total":4}}},"connectors":[{"to":{"id":"dev14","port":"in"},"from":{"id":"dev0","port":"out"},"name":"A","source_positions":[{"name":"v/sumador_restador.v","from":{"line":10,"column":18},"to":{"line":10,"column":19}}]},{"to":{"id":"dev16","port":"in"},"from":{"id":"dev0","port":"out"},"name":"A","source_positions":[{"name":"v/sumador_restador.v","from":{"line":10,"column":18},"to":{"line":10,"column":19}}]},{"to":{"id":"dev18","port":"in"},"from":{"id":"dev0","port":"out"},"name":"A","source_positions":[{"name":"v/sumador_restador.v","from":{"line":10,"column":18},"to":{"line":10,"column":19}}]},{"to":{"id":"dev20","port":"in"},"from":{"id":"dev0","port":"out"},"name":"A","source_positions":[{"name":"v/sumador_restador.v","from":{"line":10,"column":18},"to":{"line":10,"column":19}}]},{"to":{"id":"dev6","port":"in1"},"from":{"id":"dev1","port":"out"},"name":"B","source_positions":[{"name":"v/sumador_restador.v","from":{"line":10,"column":21},"to":{"line":10,"column":22}}]},{"to":{"id":"dev8","port":"cin"},"from":{"id":"dev2","port":"out"},"name":"M","source_positions":[{"name":"v/sumador_restador.v","from":{"line":11,"column":18},"to":{"line":11,"column":19}}]},{"to":{"id":"dev13","port":"in0"},"from":{"id":"dev2","port":"out"},"name":"M","source_positions":[{"name":"v/sumador_restador.v","from":{"line":11,"column":18},"to":{"line":11,"column":19}}]},{"to":{"id":"dev13","port":"in1"},"from":{"id":"dev2","port":"out"},"name":"M","source_positions":[{"name":"v/sumador_restador.v","from":{"line":11,"column":18},"to":{"line":11,"column":19}}]},{"to":{"id":"dev13","port":"in2"},"from":{"id":"dev2","port":"out"},"name":"M","source_positions":[{"name":"v/sumador_restador.v","from":{"line":11,"column":18},"to":{"line":11,"column":19}}]},{"to":{"id":"dev13","port":"in3"},"from":{"id":"dev2","port":"out"},"name":"M","source_positions":[{"name":"v/sumador_restador.v","from":{"line":11,"column":18},"to":{"line":11,"column":19}}]},{"to":{"id":"dev3","port":"in"},"from":{"id":"dev12","port":"out"},"name":"S","source_positions":[{"name":"v/sumador_restador.v","from":{"line":12,"column":18},"to":{"line":12,"column":19}}]},{"to":{"id":"dev4","port":"in"},"from":{"id":"dev11","port":"cout"},"name":"C","source_positions":[{"name":"v/sumador_restador.v","from":{"line":13,"column":18},"to":{"line":13,"column":19}},{"name":"v/sumador_restador.v","from":{"line":16,"column":22},"to":{"line":16,"column":24}}]},{"to":{"id":"dev7","port":"in2"},"from":{"id":"dev11","port":"cout"},"name":"C","source_positions":[{"name":"v/sumador_restador.v","from":{"line":13,"column":18},"to":{"line":13,"column":19}},{"name":"v/sumador_restador.v","from":{"line":16,"column":22},"to":{"line":16,"column":24}}]},{"to":{"id":"dev5","port":"in"},"from":{"id":"dev7","port":"out"},"name":"V","source_positions":[{"name":"v/sumador_restador.v","from":{"line":13,"column":21},"to":{"line":13,"column":22}}]},{"to":{"id":"dev6","port":"in2"},"from":{"id":"dev13","port":"out"},"source_positions":[]},{"to":{"id":"dev15","port":"in"},"from":{"id":"dev6","port":"out"},"name":"Bx","source_positions":[{"name":"v/sumador_restador.v","from":{"line":15,"column":16},"to":{"line":15,"column":18}}]},{"to":{"id":"dev17","port":"in"},"from":{"id":"dev6","port":"out"},"name":"Bx","source_positions":[{"name":"v/sumador_restador.v","from":{"line":15,"column":16},"to":{"line":15,"column":18}}]},{"to":{"id":"dev19","port":"in"},"from":{"id":"dev6","port":"out"},"name":"Bx","source_positions":[{"name":"v/sumador_restador.v","from":{"line":15,"column":16},"to":{"line":15,"column":18}}]},{"to":{"id":"dev21","port":"in"},"from":{"id":"dev6","port":"out"},"name":"Bx","source_positions":[{"name":"v/sumador_restador.v","from":{"line":15,"column":16},"to":{"line":15,"column":18}}]},{"to":{"id":"dev7","port":"in1"},"from":{"id":"dev10","port":"cout"},"name":"c3","source_positions":[{"name":"v/sumador_restador.v","from":{"line":16,"column":18},"to":{"line":16,"column":20}}]},{"to":{"id":"dev11","port":"cin"},"from":{"id":"dev10","port":"cout"},"name":"c3","source_positions":[{"name":"v/sumador_restador.v","from":{"line":16,"column":18},"to":{"line":16,"column":20}}]},{"to":{"id":"dev8","port":"a"},"from":{"id":"dev14","port":"out"},"source_positions":[]},{"to":{"id":"dev8","port":"b"},"from":{"id":"dev15","port":"out"},"source_positions":[]},{"to":{"id":"dev9","port":"cin"},"from":{"id":"dev8","port":"cout"},"name":"c1","source_positions":[{"name":"v/sumador_restador.v","from":{"line":16,"column":10},"to":{"line":16,"column":12}}]},{"to":{"id":"dev12","port":"in0"},"from":{"id":"dev8","port":"s"},"source_positions":[]},{"to":{"id":"dev9","port":"a"},"from":{"id":"dev16","port":"out"},"source_positions":[]},{"to":{"id":"dev9","port":"b"},"from":{"id":"dev17","port":"out"},"source_positions":[]},{"to":{"id":"dev10","port":"cin"},"from":{"id":"dev9","port":"cout"},"name":"c2","source_positions":[{"name":"v/sumador_restador.v","from":{"line":16,"column":14},"to":{"line":16,"column":16}}]},{"to":{"id":"dev12","port":"in1"},"from":{"id":"dev9","port":"s"},"source_positions":[]},{"to":{"id":"dev10","port":"a"},"from":{"id":"dev18","port":"out"},"source_positions":[]},{"to":{"id":"dev10","port":"b"},"from":{"id":"dev19","port":"out"},"source_positions":[]},{"to":{"id":"dev12","port":"in2"},"from":{"id":"dev10","port":"s"},"source_positions":[]},{"to":{"id":"dev11","port":"a"},"from":{"id":"dev20","port":"out"},"source_positions":[]},{"to":{"id":"dev11","port":"b"},"from":{"id":"dev21","port":"out"},"source_positions":[]},{"to":{"id":"dev12","port":"in3"},"from":{"id":"dev11","port":"s"},"source_positions":[]}]}</script>
+<script type="application/json" id="djs-mux4a1_booleano">{"subcircuits":{},"devices":{"dev0":{"type":"Button","net":"i0","order":0,"bits":1,"label":"i0"},"dev1":{"type":"Button","net":"i1","order":1,"bits":1,"label":"i1"},"dev2":{"type":"Button","net":"i2","order":2,"bits":1,"label":"i2"},"dev3":{"type":"Button","net":"i3","order":3,"bits":1,"label":"i3"},"dev4":{"type":"Button","net":"s1","order":4,"bits":1,"label":"s1"},"dev5":{"type":"Button","net":"s0","order":5,"bits":1,"label":"s0"},"dev6":{"type":"Lamp","net":"y","order":6,"bits":1,"label":"y"},"dev7":{"type":"And","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":6,"column":17},"to":{"line":6,"column":26}}],"bits":1},"dev8":{"type":"And","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":6,"column":17},"to":{"line":6,"column":31}}],"bits":1},"dev9":{"type":"And","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":7,"column":17},"to":{"line":7,"column":26}}],"bits":1},"dev10":{"type":"And","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":7,"column":17},"to":{"line":7,"column":31}}],"bits":1},"dev11":{"type":"And","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":8,"column":18},"to":{"line":8,"column":26}}],"bits":1},"dev12":{"type":"And","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":8,"column":18},"to":{"line":8,"column":31}}],"bits":1},"dev13":{"type":"And","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":9,"column":18},"to":{"line":9,"column":26}}],"bits":1},"dev14":{"type":"And","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":9,"column":18},"to":{"line":9,"column":31}}],"bits":1},"dev15":{"type":"Not","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":7,"column":17},"to":{"line":7,"column":20}}],"bits":1},"dev16":{"type":"Not","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":8,"column":23},"to":{"line":8,"column":26}}],"bits":1},"dev17":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":6,"column":16},"to":{"line":8,"column":32}}],"bits":1},"dev18":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":6,"column":16},"to":{"line":9,"column":32}}],"bits":1},"dev19":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":6,"column":16},"to":{"line":7,"column":32}}],"bits":1}},"connectors":[{"to":{"id":"dev8","port":"in2"},"from":{"id":"dev0","port":"out"},"name":"i0","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":2,"column":12},"to":{"line":2,"column":14}}]},{"to":{"id":"dev10","port":"in2"},"from":{"id":"dev1","port":"out"},"name":"i1","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":2,"column":16},"to":{"line":2,"column":18}}]},{"to":{"id":"dev12","port":"in2"},"from":{"id":"dev2","port":"out"},"name":"i2","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":2,"column":20},"to":{"line":2,"column":22}}]},{"to":{"id":"dev14","port":"in2"},"from":{"id":"dev3","port":"out"},"name":"i3","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":2,"column":24},"to":{"line":2,"column":26}}]},{"to":{"id":"dev11","port":"in1"},"from":{"id":"dev4","port":"out"},"name":"s1","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":3,"column":12},"to":{"line":3,"column":14}}]},{"to":{"id":"dev13","port":"in1"},"from":{"id":"dev4","port":"out"},"name":"s1","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":3,"column":12},"to":{"line":3,"column":14}}]},{"to":{"id":"dev15","port":"in"},"from":{"id":"dev4","port":"out"},"name":"s1","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":3,"column":12},"to":{"line":3,"column":14}}]},{"to":{"id":"dev9","port":"in2"},"from":{"id":"dev5","port":"out"},"name":"s0","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":3,"column":16},"to":{"line":3,"column":18}}]},{"to":{"id":"dev13","port":"in2"},"from":{"id":"dev5","port":"out"},"name":"s0","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":3,"column":16},"to":{"line":3,"column":18}}]},{"to":{"id":"dev16","port":"in"},"from":{"id":"dev5","port":"out"},"name":"s0","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":3,"column":16},"to":{"line":3,"column":18}}]},{"to":{"id":"dev6","port":"in"},"from":{"id":"dev18","port":"out"},"name":"y","source_positions":[{"name":"v/mux4a1_booleano.v","from":{"line":4,"column":12},"to":{"line":4,"column":13}}]},{"to":{"id":"dev7","port":"in1"},"from":{"id":"dev15","port":"out"},"source_positions":[]},{"to":{"id":"dev9","port":"in1"},"from":{"id":"dev15","port":"out"},"source_positions":[]},{"to":{"id":"dev7","port":"in2"},"from":{"id":"dev16","port":"out"},"source_positions":[]},{"to":{"id":"dev11","port":"in2"},"from":{"id":"dev16","port":"out"},"source_positions":[]},{"to":{"id":"dev8","port":"in1"},"from":{"id":"dev7","port":"out"},"source_positions":[]},{"to":{"id":"dev19","port":"in1"},"from":{"id":"dev8","port":"out"},"source_positions":[]},{"to":{"id":"dev10","port":"in1"},"from":{"id":"dev9","port":"out"},"source_positions":[]},{"to":{"id":"dev19","port":"in2"},"from":{"id":"dev10","port":"out"},"source_positions":[]},{"to":{"id":"dev12","port":"in1"},"from":{"id":"dev11","port":"out"},"source_positions":[]},{"to":{"id":"dev17","port":"in2"},"from":{"id":"dev12","port":"out"},"source_positions":[]},{"to":{"id":"dev14","port":"in1"},"from":{"id":"dev13","port":"out"},"source_positions":[]},{"to":{"id":"dev18","port":"in2"},"from":{"id":"dev14","port":"out"},"source_positions":[]},{"to":{"id":"dev17","port":"in1"},"from":{"id":"dev19","port":"out"},"source_positions":[]},{"to":{"id":"dev18","port":"in1"},"from":{"id":"dev17","port":"out"},"source_positions":[]}]}</script>
+<script type="application/json" id="djs-mux4a1_condicional">{"subcircuits":{},"devices":{"dev0":{"type":"Button","net":"i0","order":0,"bits":1,"label":"i0"},"dev1":{"type":"Button","net":"i1","order":1,"bits":1,"label":"i1"},"dev2":{"type":"Button","net":"i2","order":2,"bits":1,"label":"i2"},"dev3":{"type":"Button","net":"i3","order":3,"bits":1,"label":"i3"},"dev4":{"type":"Button","net":"s1","order":4,"bits":1,"label":"s1"},"dev5":{"type":"Button","net":"s0","order":5,"bits":1,"label":"s0"},"dev6":{"type":"Lamp","net":"y","order":6,"bits":1,"label":"y"},"dev7":{"type":"Mux","hide_label":true,"source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":6,"column":22},"to":{"line":6,"column":34}}],"bits":{"in":1,"sel":1}},"dev8":{"type":"Mux","hide_label":true,"source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":6,"column":16},"to":{"line":7,"column":35}}],"bits":{"in":1,"sel":1}},"dev9":{"type":"Mux","hide_label":true,"source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":7,"column":22},"to":{"line":7,"column":34}}],"bits":{"in":1,"sel":1}}},"connectors":[{"to":{"id":"dev9","port":"in0"},"from":{"id":"dev0","port":"out"},"name":"i0","source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":2,"column":12},"to":{"line":2,"column":14}}]},{"to":{"id":"dev9","port":"in1"},"from":{"id":"dev1","port":"out"},"name":"i1","source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":2,"column":16},"to":{"line":2,"column":18}}]},{"to":{"id":"dev7","port":"in0"},"from":{"id":"dev2","port":"out"},"name":"i2","source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":2,"column":20},"to":{"line":2,"column":22}}]},{"to":{"id":"dev7","port":"in1"},"from":{"id":"dev3","port":"out"},"name":"i3","source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":2,"column":24},"to":{"line":2,"column":26}}]},{"to":{"id":"dev8","port":"sel"},"from":{"id":"dev4","port":"out"},"name":"s1","source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":3,"column":12},"to":{"line":3,"column":14}}]},{"to":{"id":"dev7","port":"sel"},"from":{"id":"dev5","port":"out"},"name":"s0","source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":3,"column":16},"to":{"line":3,"column":18}}]},{"to":{"id":"dev9","port":"sel"},"from":{"id":"dev5","port":"out"},"name":"s0","source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":3,"column":16},"to":{"line":3,"column":18}}]},{"to":{"id":"dev6","port":"in"},"from":{"id":"dev8","port":"out"},"name":"y","source_positions":[{"name":"v/mux4a1_condicional.v","from":{"line":4,"column":12},"to":{"line":4,"column":13}}]},{"to":{"id":"dev8","port":"in1"},"from":{"id":"dev7","port":"out"},"source_positions":[]},{"to":{"id":"dev8","port":"in0"},"from":{"id":"dev9","port":"out"},"source_positions":[]}]}</script>
+<script type="application/json" id="djs-codificador_prioridad">{"subcircuits":{},"devices":{"dev0":{"type":"Button","net":"d0","order":0,"bits":1,"label":"d0"},"dev1":{"type":"Button","net":"d1","order":1,"bits":1,"label":"d1"},"dev2":{"type":"Button","net":"d2","order":2,"bits":1,"label":"d2"},"dev3":{"type":"Button","net":"d3","order":3,"bits":1,"label":"d3"},"dev4":{"type":"Lamp","net":"x","order":4,"bits":1,"label":"x"},"dev5":{"type":"Lamp","net":"y","order":5,"bits":1,"label":"y"},"dev6":{"type":"Lamp","net":"v","order":6,"bits":1,"label":"v"},"dev7":{"type":"And","hide_label":true,"source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":6,"column":22},"to":{"line":6,"column":30}}],"bits":1},"dev8":{"type":"Not","hide_label":true,"source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":6,"column":27},"to":{"line":6,"column":30}}],"bits":1},"dev9":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":5,"column":16},"to":{"line":5,"column":23}}],"bits":1},"dev10":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":6,"column":16},"to":{"line":6,"column":31}}],"bits":1},"dev11":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":7,"column":16},"to":{"line":7,"column":23}}],"bits":1},"dev12":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":7,"column":16},"to":{"line":7,"column":28}}],"bits":1},"dev13":{"type":"Or","hide_label":true,"source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":7,"column":16},"to":{"line":7,"column":33}}],"bits":1}},"connectors":[{"to":{"id":"dev11","port":"in1"},"from":{"id":"dev0","port":"out"},"name":"d0","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":2,"column":12},"to":{"line":2,"column":14}}]},{"to":{"id":"dev7","port":"in1"},"from":{"id":"dev1","port":"out"},"name":"d1","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":2,"column":16},"to":{"line":2,"column":18}}]},{"to":{"id":"dev11","port":"in2"},"from":{"id":"dev1","port":"out"},"name":"d1","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":2,"column":16},"to":{"line":2,"column":18}}]},{"to":{"id":"dev8","port":"in"},"from":{"id":"dev2","port":"out"},"name":"d2","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":2,"column":20},"to":{"line":2,"column":22}}]},{"to":{"id":"dev9","port":"in1"},"from":{"id":"dev2","port":"out"},"name":"d2","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":2,"column":20},"to":{"line":2,"column":22}}]},{"to":{"id":"dev12","port":"in2"},"from":{"id":"dev2","port":"out"},"name":"d2","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":2,"column":20},"to":{"line":2,"column":22}}]},{"to":{"id":"dev9","port":"in2"},"from":{"id":"dev3","port":"out"},"name":"d3","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":2,"column":24},"to":{"line":2,"column":26}}]},{"to":{"id":"dev10","port":"in1"},"from":{"id":"dev3","port":"out"},"name":"d3","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":2,"column":24},"to":{"line":2,"column":26}}]},{"to":{"id":"dev13","port":"in2"},"from":{"id":"dev3","port":"out"},"name":"d3","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":2,"column":24},"to":{"line":2,"column":26}}]},{"to":{"id":"dev4","port":"in"},"from":{"id":"dev9","port":"out"},"name":"x","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":3,"column":12},"to":{"line":3,"column":13}}]},{"to":{"id":"dev5","port":"in"},"from":{"id":"dev10","port":"out"},"name":"y","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":3,"column":15},"to":{"line":3,"column":16}}]},{"to":{"id":"dev6","port":"in"},"from":{"id":"dev13","port":"out"},"name":"v","source_positions":[{"name":"v/codificador_prioridad.v","from":{"line":3,"column":18},"to":{"line":3,"column":19}}]},{"to":{"id":"dev7","port":"in2"},"from":{"id":"dev8","port":"out"},"source_positions":[]},{"to":{"id":"dev10","port":"in2"},"from":{"id":"dev7","port":"out"},"source_positions":[]},{"to":{"id":"dev12","port":"in1"},"from":{"id":"dev11","port":"out"},"source_positions":[]},{"to":{"id":"dev13","port":"in1"},"from":{"id":"dev12","port":"out"},"source_positions":[]}]}</script>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+<script src="../js/digitaljs-embed.js"></script>
+</body>
+</html>

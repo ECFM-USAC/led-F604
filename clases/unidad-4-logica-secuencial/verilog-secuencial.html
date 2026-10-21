@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejemplos de Verilog: Lógica Secuencial — F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u4); --u-soft: var(--u4-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-4">Lógica Secuencial</a><span class="sep">/</span>
+      Ejemplos de Verilog: Lógica Secuencial
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">← Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 4 · Lógica Secuencial</div>
+    <h1>Ejemplos de Verilog: Lógica Secuencial</h1>
+  </div>
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Verilog para circuitos secuenciales</a></li>
+      <li><a href="#s2">Ejemplo 5: flip-flop D con borrado asíncrono</a></li>
+      <li><a href="#s3">Ejemplo 6: contador asíncrono de 2 bits</a></li>
+      <li><a href="#s4">Ejemplo 7: contador síncrono de 2 bits</a></li>
+      <li><a href="#s5">Ejemplo 8: registro de desplazamiento de 4 bits</a></li>
+    </ol>
+  </div>
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Verilog para circuitos secuenciales</h2></div>
+    <div class="slide-body">
+      <p>En los <a href="verilog-ejemplos.html">ejemplos combinacionales</a> cada salida se describió con <span class="formula">assign</span>: la salida cambia en cuanto cambian las entradas. Un circuito secuencial, en cambio, <strong>guarda un estado</strong> que solo cambia en el flanco del reloj. En Verilog eso se describe con un bloque <span class="formula">always</span>:</p>
+      <div class="table-wrap"><table class="data-table small-table">
+<tr><th>Construcción</th><th>Significado</th></tr>
+<tr><td>output reg q</td><td>q guarda un valor entre flancos de reloj (será un flip-flop)</td></tr>
+<tr><td>always @(posedge clk)</td><td>el bloque se ejecuta en cada flanco de subida de clk</td></tr>
+<tr><td>always @(negedge clk)</td><td>el bloque se ejecuta en cada flanco de bajada de clk</td></tr>
+<tr><td>always @(posedge clk or negedge clr_n)</td><td>además reacciona cuando clr_n baja: borrado <strong>asíncrono</strong></td></tr>
+<tr><td>q &lt;= d;</td><td>asignación no bloqueante: todos los flip-flops toman su nuevo valor al mismo tiempo, con los valores que había <em>antes</em> del flanco</td></tr>
+</table></div>
+      <p>En las simulaciones:</p>
+      <ul>
+<li>La entrada <strong>clk</strong> es un reloj que oscila solo.</li>
+<li><strong>clr_n</strong> es el borrado activo en 0 (CLR'). Empieza en 0, así que el circuito arranca borrado: <strong>haz clic en clr_n para ponerlo en 1</strong> y que el circuito empiece a funcionar.</li>
+<li>Debajo de cada circuito se dibuja el <strong>diagrama de tiempos</strong> de sus señales principales.</li>
+</ul>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Ejemplo 5: flip-flop D con borrado asíncrono</h2></div>
+    <div class="slide-body">
+      <p>Es el flip-flop D de la <a href="clase-13-flip-flops.html">clase 13</a>: en cada flanco de subida copia D en Q, con la ecuación característica <span class="formula">Q(t+1) = D</span>. Entre flancos, Q no cambia aunque D cambie.</p>
+<pre class="code-block">module flipflop_d (
+    input      clk,
+    input      clr_n,          // borrado asíncrono, activo en 0
+    input      d,
+    output reg q
+);
+    always @(posedge clk or negedge clr_n)
+        if (!clr_n) q &lt;= 1'b0;   // CLR' = 0: Q se borra sin esperar al reloj
+        else        q &lt;= d;      // en cada flanco de subida: Q(t+1) = D
+endmodule</pre>
+      <figure class="circuit-embed djs-embed" data-circuit="flipflop_d" data-monitor="clk,d,q" data-monitor-scale="0.2">
+        <div class="djs-paper"><div class="djs-status">Cargando simulación…</div></div>
+        <figcaption>Pon clr_n en 1 y cambia d varias veces: q solo copia d en los flancos de subida de clk.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Ejemplo 6: contador asíncrono de 2 bits</h2></div>
+    <div class="slide-body">
+      <p>Es el <a href="clase-15-analisis-secuencial.html#s11">Ejemplo 1 de la clase 15</a>: dos flip-flops T con T = 1. FF0 recibe CLK y FF1 recibe <strong>Q<sub>0</sub></strong> como reloj, por eso cada flip-flop está en su propio bloque <span class="formula">always</span>, con un evento de reloj distinto.</p>
+<pre class="code-block">module contador_asincrono (
+    input      clk,
+    input      clr_n,          // borrado asíncrono, activo en 0
+    output reg q0, q1
+);
+    // FF0: T0 = 1, se dispara con el flanco de bajada de CLK
+    always @(negedge clk or negedge clr_n)
+        if (!clr_n) q0 &lt;= 1'b0;
+        else        q0 &lt;= ~q0;
+
+    // FF1: T1 = 1, su reloj es Q0 (flanco de bajada de Q0)
+    always @(negedge q0 or negedge clr_n)
+        if (!clr_n) q1 &lt;= 1'b0;
+        else        q1 &lt;= ~q1;
+endmodule</pre>
+      <figure class="circuit-embed djs-embed" data-circuit="contador_asincrono" data-monitor="clk,q0,q1" data-monitor-scale="0.2">
+        <div class="djs-paper"><div class="djs-status">Cargando simulación…</div></div>
+        <figcaption>Pon clr_n en 1: Q1 Q0 recorre 00 → 01 → 10 → 11 → 00. Q1 cambia en los flancos de bajada de Q0, no de CLK.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Ejemplo 7: contador síncrono de 2 bits</h2></div>
+    <div class="slide-body">
+      <p>Es la <strong>versión sincrónica equivalente</strong> de la <a href="clase-15-analisis-secuencial.html#s13">clase 15</a>: los dos flip-flops comparten CLK y la condición “Q<sub>0</sub> = 1” pasa a la entrada T<sub>1</sub>. Las líneas del bloque son directamente las ecuaciones de estado.</p>
+<pre class="code-block">module contador_sincrono (
+    input      clk,
+    input      clr_n,          // borrado asíncrono, activo en 0
+    output reg q0, q1
+);
+    // los dos flip-flops comparten el mismo reloj
+    always @(negedge clk or negedge clr_n)
+        if (!clr_n) begin
+            q0 &lt;= 1'b0;
+            q1 &lt;= 1'b0;
+        end else begin
+            q0 &lt;= q0 ^ 1'b1;     // T0 = 1:  Q0(t+1) = Q0 ⊕ 1 = Q0'
+            q1 &lt;= q1 ^ q0;       // T1 = Q0: Q1(t+1) = Q1 ⊕ Q0
+        end
+endmodule</pre>
+      <p class="note">Gracias a la asignación no bloqueante (<span class="formula">&lt;=</span>), <span class="formula">q1 &lt;= q1 ^ q0</span> usa el valor de q0 <em>antes</em> del flanco, aunque la línea anterior lo esté cambiando. Así se comportan los flip-flops reales: todos leen sus entradas antes del flanco y cambian juntos.</p>
+      <figure class="circuit-embed djs-embed" data-circuit="contador_sincrono" data-monitor="clk,q0,q1" data-monitor-scale="0.2">
+        <div class="djs-paper"><div class="djs-status">Cargando simulación…</div></div>
+        <figcaption>Pon clr_n en 1: la secuencia y el diagrama de tiempos son iguales a los del ejemplo 6. La diferencia está en el circuito: aquí los dos flip-flops reciben CLK y la XOR decide cuándo cambia Q1.</figcaption>
+      </figure>
+      <p class="note">En un circuito físico, en el contador asíncrono Q<sub>1</sub> cambia un retardo de propagación (t<sub>pd</sub>) <em>después</em> de Q<sub>0</sub>, y ese retardo se acumula con cada bit (ver la <a href="clase-15-analisis-secuencial.html#s14">clase 15</a>). El simulador usa retardos casi nulos, por eso en los dos diagramas de tiempos parecen cambiar al mismo tiempo.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Ejemplo 8: registro de desplazamiento de 4 bits</h2></div>
+    <div class="slide-body">
+      <p>Es el registro de desplazamiento de la <a href="clase-14-registros-contadores.html">clase 14</a>: en cada flanco de reloj todos los bits se mueven una posición a la derecha, el bit de la entrada serie SI entra por la izquierda (bit 3) y el bit 0 sale por SO.</p>
+<pre class="code-block">module registro_desplazamiento (
+    input            clk,
+    input            clr_n,    // borrado asíncrono, activo en 0
+    input            si,       // entrada serie
+    output reg [3:0] q,
+    output           so        // salida serie
+);
+    always @(posedge clk or negedge clr_n)
+        if (!clr_n) q &lt;= 4'b0000;
+        else        q &lt;= {si, q[3:1]};   // desplaza a la derecha; SI entra por el bit 3
+
+    assign so = q[0];
+endmodule</pre>
+      <p class="note"><span class="formula">{si, q[3:1]}</span> concatena SI con los bits 3, 2 y 1 de q, formando el nuevo valor de 4 bits. Los cuatro flip-flops se describen con un solo <span class="formula">reg [3:0]</span>.</p>
+      <figure class="circuit-embed djs-embed" data-circuit="registro_desplazamiento" data-monitor="clk,si,q,so" data-monitor-scale="0.2">
+        <div class="djs-paper"><div class="djs-status">Cargando simulación…</div></div>
+        <figcaption>Pon clr_n en 1. Activa si, espera a que q cambie a 1000 y desactívalo: en cada flanco el 1 avanza por q (1000 → 0100 → 0010 → 0001) y luego sale por so.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-4-logica-secuencial/verilog-ejemplos.html"><span class="lbl">← Anterior</span>Ejemplos de Verilog: Lógica Combinacional</a>
+    <a class="next" href="../unidad-6-programacion-c/clase-c-programacion.html"><span class="lbl">Siguiente →</span>Fundamentos del Lenguaje C</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script type="application/json" id="djs-flipflop_d">{"subcircuits":{},"devices":{"dev0":{"type":"Clock","net":"clk","order":0,"bits":1,"label":"clk","propagation":250},"dev1":{"type":"Button","net":"clr_n","order":1,"bits":1,"label":"clr_n"},"dev2":{"type":"Button","net":"d","order":2,"bits":1,"label":"d"},"dev3":{"type":"Lamp","net":"q","order":3,"bits":1,"label":"q"},"dev4":{"type":"Dff","hide_label":true,"source_positions":[{"name":"vs/flipflop_d.v","from":{"line":7,"column":5},"to":{"line":9,"column":28}}],"bits":1,"polarity":{"clock":true,"arst":false},"arst_value":"0"}},"connectors":[{"to":{"id":"dev4","port":"clk"},"from":{"id":"dev0","port":"out"},"name":"clk","source_positions":[{"name":"vs/flipflop_d.v","from":{"line":2,"column":16},"to":{"line":2,"column":19}}]},{"to":{"id":"dev4","port":"arst"},"from":{"id":"dev1","port":"out"},"name":"clr_n","source_positions":[{"name":"vs/flipflop_d.v","from":{"line":3,"column":16},"to":{"line":3,"column":21}}]},{"to":{"id":"dev4","port":"in"},"from":{"id":"dev2","port":"out"},"name":"d","source_positions":[{"name":"vs/flipflop_d.v","from":{"line":4,"column":16},"to":{"line":4,"column":17}}]},{"to":{"id":"dev3","port":"in"},"from":{"id":"dev4","port":"out"},"name":"q","source_positions":[{"name":"vs/flipflop_d.v","from":{"line":5,"column":16},"to":{"line":5,"column":17}}]}]}</script>
+<script type="application/json" id="djs-contador_asincrono">{"subcircuits":{},"devices":{"dev0":{"type":"Clock","net":"clk","order":0,"bits":1,"label":"clk","propagation":250},"dev1":{"type":"Button","net":"clr_n","order":1,"bits":1,"label":"clr_n"},"dev2":{"type":"Lamp","net":"q0","order":2,"bits":1,"label":"q0"},"dev3":{"type":"Lamp","net":"q1","order":3,"bits":1,"label":"q1"},"dev4":{"type":"Not","hide_label":true,"source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":14,"column":27},"to":{"line":14,"column":30}}],"bits":1},"dev5":{"type":"Not","hide_label":true,"source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":9,"column":27},"to":{"line":9,"column":30}}],"bits":1},"dev6":{"type":"Dff","hide_label":true,"source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":12,"column":5},"to":{"line":14,"column":31}}],"bits":1,"polarity":{"clock":false,"arst":false},"arst_value":"0"},"dev7":{"type":"Dff","hide_label":true,"source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":7,"column":5},"to":{"line":9,"column":31}}],"bits":1,"polarity":{"clock":false,"arst":false},"arst_value":"0"}},"connectors":[{"to":{"id":"dev7","port":"clk"},"from":{"id":"dev0","port":"out"},"name":"clk","source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":2,"column":16},"to":{"line":2,"column":19}}]},{"to":{"id":"dev6","port":"arst"},"from":{"id":"dev1","port":"out"},"name":"clr_n","source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":3,"column":16},"to":{"line":3,"column":21}}]},{"to":{"id":"dev7","port":"arst"},"from":{"id":"dev1","port":"out"},"name":"clr_n","source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":3,"column":16},"to":{"line":3,"column":21}}]},{"to":{"id":"dev2","port":"in"},"from":{"id":"dev7","port":"out"},"name":"q0","source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":4,"column":16},"to":{"line":4,"column":18}}]},{"to":{"id":"dev5","port":"in"},"from":{"id":"dev7","port":"out"},"name":"q0","source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":4,"column":16},"to":{"line":4,"column":18}}]},{"to":{"id":"dev6","port":"clk"},"from":{"id":"dev7","port":"out"},"name":"q0","source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":4,"column":16},"to":{"line":4,"column":18}}]},{"to":{"id":"dev3","port":"in"},"from":{"id":"dev6","port":"out"},"name":"q1","source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":4,"column":20},"to":{"line":4,"column":22}}]},{"to":{"id":"dev4","port":"in"},"from":{"id":"dev6","port":"out"},"name":"q1","source_positions":[{"name":"vs/contador_asincrono.v","from":{"line":4,"column":20},"to":{"line":4,"column":22}}]},{"to":{"id":"dev6","port":"in"},"from":{"id":"dev4","port":"out"},"source_positions":[]},{"to":{"id":"dev7","port":"in"},"from":{"id":"dev5","port":"out"},"source_positions":[]}]}</script>
+<script type="application/json" id="djs-contador_sincrono">{"subcircuits":{},"devices":{"dev0":{"type":"Clock","net":"clk","order":0,"bits":1,"label":"clk","propagation":250},"dev1":{"type":"Button","net":"clr_n","order":1,"bits":1,"label":"clr_n"},"dev2":{"type":"Lamp","net":"q0","order":2,"bits":1,"label":"q0"},"dev3":{"type":"Lamp","net":"q1","order":3,"bits":1,"label":"q1"},"dev4":{"type":"Not","hide_label":true,"bits":1},"dev5":{"type":"Dff","hide_label":true,"source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":7,"column":5},"to":{"line":14,"column":12}}],"bits":1,"polarity":{"clock":false,"arst":false},"arst_value":"0"},"dev6":{"type":"Dff","hide_label":true,"source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":7,"column":5},"to":{"line":14,"column":12}}],"bits":1,"polarity":{"clock":false,"arst":false},"arst_value":"0"},"dev7":{"type":"Xor","hide_label":true,"source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":13,"column":19},"to":{"line":13,"column":26}}],"bits":1}},"connectors":[{"to":{"id":"dev5","port":"clk"},"from":{"id":"dev0","port":"out"},"name":"clk","source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":2,"column":16},"to":{"line":2,"column":19}}]},{"to":{"id":"dev6","port":"clk"},"from":{"id":"dev0","port":"out"},"name":"clk","source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":2,"column":16},"to":{"line":2,"column":19}}]},{"to":{"id":"dev5","port":"arst"},"from":{"id":"dev1","port":"out"},"name":"clr_n","source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":3,"column":16},"to":{"line":3,"column":21}}]},{"to":{"id":"dev6","port":"arst"},"from":{"id":"dev1","port":"out"},"name":"clr_n","source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":3,"column":16},"to":{"line":3,"column":21}}]},{"to":{"id":"dev2","port":"in"},"from":{"id":"dev6","port":"out"},"name":"q0","source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":4,"column":16},"to":{"line":4,"column":18}}]},{"to":{"id":"dev4","port":"in"},"from":{"id":"dev6","port":"out"},"name":"q0","source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":4,"column":16},"to":{"line":4,"column":18}}]},{"to":{"id":"dev7","port":"in2"},"from":{"id":"dev6","port":"out"},"name":"q0","source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":4,"column":16},"to":{"line":4,"column":18}}]},{"to":{"id":"dev3","port":"in"},"from":{"id":"dev5","port":"out"},"name":"q1","source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":4,"column":20},"to":{"line":4,"column":22}}]},{"to":{"id":"dev7","port":"in1"},"from":{"id":"dev5","port":"out"},"name":"q1","source_positions":[{"name":"vs/contador_sincrono.v","from":{"line":4,"column":20},"to":{"line":4,"column":22}}]},{"to":{"id":"dev6","port":"in"},"from":{"id":"dev4","port":"out"},"source_positions":[]},{"to":{"id":"dev5","port":"in"},"from":{"id":"dev7","port":"out"},"source_positions":[]}]}</script>
+<script type="application/json" id="djs-registro_desplazamiento">{"subcircuits":{},"devices":{"dev0":{"type":"Clock","net":"clk","order":0,"bits":1,"label":"clk","propagation":250},"dev1":{"type":"Button","net":"clr_n","order":1,"bits":1,"label":"clr_n"},"dev2":{"type":"Button","net":"si","order":2,"bits":1,"label":"si"},"dev3":{"type":"NumDisplay","net":"q","order":3,"bits":4,"label":"q","numbase":"bin"},"dev4":{"type":"Lamp","net":"so","order":4,"bits":1,"label":"so"},"dev5":{"type":"Dff","hide_label":true,"source_positions":[{"name":"vs/registro_desplazamiento.v","from":{"line":8,"column":5},"to":{"line":10,"column":39}}],"bits":4,"polarity":{"clock":true,"arst":false},"arst_value":"0000"},"dev6":{"type":"BusGroup","groups":[3,1]},"dev7":{"type":"BusSlice","slice":{"first":0,"count":1,"total":4}},"dev8":{"type":"BusSlice","slice":{"first":1,"count":3,"total":4}}},"connectors":[{"to":{"id":"dev5","port":"clk"},"from":{"id":"dev0","port":"out"},"name":"clk","source_positions":[{"name":"vs/registro_desplazamiento.v","from":{"line":2,"column":22},"to":{"line":2,"column":25}}]},{"to":{"id":"dev5","port":"arst"},"from":{"id":"dev1","port":"out"},"name":"clr_n","source_positions":[{"name":"vs/registro_desplazamiento.v","from":{"line":3,"column":22},"to":{"line":3,"column":27}}]},{"to":{"id":"dev6","port":"in1"},"from":{"id":"dev2","port":"out"},"name":"si","source_positions":[{"name":"vs/registro_desplazamiento.v","from":{"line":4,"column":22},"to":{"line":4,"column":24}}]},{"to":{"id":"dev3","port":"in"},"from":{"id":"dev5","port":"out"},"name":"q","source_positions":[{"name":"vs/registro_desplazamiento.v","from":{"line":5,"column":22},"to":{"line":5,"column":23}}]},{"to":{"id":"dev7","port":"in"},"from":{"id":"dev5","port":"out"},"name":"q","source_positions":[{"name":"vs/registro_desplazamiento.v","from":{"line":5,"column":22},"to":{"line":5,"column":23}}]},{"to":{"id":"dev8","port":"in"},"from":{"id":"dev5","port":"out"},"name":"q","source_positions":[{"name":"vs/registro_desplazamiento.v","from":{"line":5,"column":22},"to":{"line":5,"column":23}}]},{"to":{"id":"dev4","port":"in"},"from":{"id":"dev7","port":"out"},"name":"so","source_positions":[{"name":"vs/registro_desplazamiento.v","from":{"line":6,"column":22},"to":{"line":6,"column":24}}]},{"to":{"id":"dev5","port":"in"},"from":{"id":"dev6","port":"out"},"source_positions":[]},{"to":{"id":"dev6","port":"in0"},"from":{"id":"dev8","port":"out"},"source_positions":[]}]}</script>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+<script src="../js/digitaljs-embed.js"></script>
+</body>
+</html>

@@ -574,3 +574,10 @@ pre.code-block {
   .slide, .compare-item, .toc { box-shadow: none; break-inside: avoid; }
   a { text-decoration: none; }
 }
+
+/* ---------- DigitalJS embeds ---------- */
+.djs-embed .djs-paper { background: #fff; overflow: auto; min-height: 160px; padding: 8px; display: flex; justify-content: safe center; }
+.djs-embed .djs-status { padding: 48px 20px; text-align: center; color: #6b7280; font-size: 0.9rem; }
+.djs-embed .djs-paper > div { flex: 0 0 auto; }
+.djs-embed .djs-monitor { background: #fff; color: #1f2937; border-top: 1px solid #e5e7eb; padding: 6px 8px; font-size: 0.8rem; }
+.djs-embed .djs-monitor select, .djs-embed .djs-monitor button, .djs-embed .djs-monitor input { display: none; }
