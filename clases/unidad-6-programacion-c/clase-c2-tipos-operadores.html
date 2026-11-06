@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tipos de Datos, Variables y Operadores &mdash; F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u6); --u-soft: var(--u6-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-6">Programación en C</a><span class="sep">/</span>
+      Tipos de Datos, Variables y Operadores
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">&larr; Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 6 · Programación en C</div>
+    <h1>Tipos de Datos, Variables y Operadores</h1>
+    <div class="unit-badges"><span class="badge">Clase 2 de 7</span><span class="badge">4 períodos</span><span class="badge">Tipos de variables</span></div>
+  </div>
+
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Variables: declarar antes de usar</a></li>
+      <li><a href="#s2">Tipos enteros y cuántos bits ocupan</a></li>
+      <li><a href="#s3">Punto flotante: float y double</a></li>
+      <li><a href="#s4">Constantes: literales, #define y const</a></li>
+      <li><a href="#s5">Operadores aritméticos y la trampa de la división entera</a></li>
+      <li><a href="#s6">Verdadero y falso en C</a></li>
+      <li><a href="#s7">Operadores a nivel de bits: las compuertas dentro del procesador</a></li>
+      <li><a href="#s8">Máscaras: leer, encender y apagar un bit</a></li>
+      <li><a href="#s9">Asignación compuesta, incremento y decremento</a></li>
+      <li><a href="#s10">Conversiones de tipo y casting</a></li>
+      <li><a href="#s11">Salida con printf</a></li>
+      <li><a href="#s12">Entrada con scanf</a></li>
+      <li><a href="#s13">Ejemplo integrador: compuertas y bits de un número</a></li>
+      <li><a href="#s14">Ejercicios propuestos</a></li>
+    </ol>
+  </div>
+
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Variables: declarar antes de usar</h2></div>
+    <div class="slide-body">
+      
+<p>Una variable es un nombre para un espacio de memoria donde se guarda un valor. En C, <strong>toda variable debe declararse con su tipo antes de usarse</strong>; el tipo le dice al compilador cuántos bytes reservar y cómo interpretar esos bytes.</p>
+<pre class="code-block">int lower, upper, step;      /* tres enteros, sin valor inicial  */
+float fahr, celsius;         /* dos numeros con decimales        */
+int bits = 8;                /* declaracion con inicializacion   */</pre>
+<p>Los nombres pueden llevar letras, dígitos y guion bajo, no pueden empezar con un dígito y distinguen mayúsculas de minúsculas: <code>Suma</code>, <code>suma</code> y <code>SUMA</code> son tres variables distintas. No se pueden usar las palabras reservadas del lenguaje (<code>int</code>, <code>if</code>, <code>while</code>, <code>return</code>, ...).</p>
+<p class="note">Una variable declarada y no inicializada <strong>no vale cero</strong>: contiene lo que hubiera en esa posición de memoria. Leerla antes de asignarle algo es uno de los errores más difíciles de encontrar en C, porque el programa puede funcionar hoy y fallar mañana. Compilando con <code>-Wall</code> el compilador avisa: <em>'x' is used uninitialized</em>.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Tipos enteros y cuántos bits ocupan</h2></div>
+    <div class="slide-body">
+      
+<p>C ofrece varios tipos enteros que se diferencian en el número de bits y en si admiten signo. El estándar fija mínimos, no tamaños exactos: los valores de la tabla son los típicos en una PC de 64 bits con Linux.</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Tipo</th><th>Bits típicos</th><th>Rango</th><th>Para qué se usa</th></tr>
+<tr><td><code>char</code></td><td>8</td><td>&minus;128 a 127</td><td>Un carácter o un byte de datos</td></tr>
+<tr><td><code>unsigned char</code></td><td>8</td><td>0 a 255</td><td>Un byte &laquo;crudo&raquo;: el estado de 8 líneas de un bus</td></tr>
+<tr><td><code>short</code></td><td>16</td><td>&minus;32 768 a 32 767</td><td>Enteros pequeños con signo</td></tr>
+<tr><td><code>int</code></td><td>32</td><td>&plusmn;2 147 483 647</td><td>El tipo entero por omisión</td></tr>
+<tr><td><code>long</code></td><td>64</td><td>&plusmn;9,2&times;10¹⁸</td><td>Contadores grandes</td></tr>
+<tr><td><code>unsigned int</code></td><td>32</td><td>0 a 4 294 967 295</td><td>Cuando el valor nunca es negativo</td></tr>
+</table></div>
+<p>El rango sale directamente de la Unidad 1: con <em>n</em> bits sin signo se representan 2ⁿ valores, de 0 a 2ⁿ&minus;1; con signo, en complemento a dos, de &minus;2ⁿ⁻¹ a 2ⁿ⁻¹&minus;1. <code>unsigned char</code> es, literalmente, el registro de 8 bits del que hablamos en la Unidad 4.</p>
+<p>El operador <code>sizeof</code> da el tamaño en <strong>bytes</strong> de un tipo o variable en la máquina donde se compila:</p>
+<pre class="code-block">/* tamanos.c -- cuantos bytes ocupa cada tipo */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf("char        : %zu byte(s)\n", sizeof(char));
+    printf("short       : %zu byte(s)\n", sizeof(short));
+    printf("int         : %zu byte(s)\n", sizeof(int));
+    printf("long        : %zu byte(s)\n", sizeof(long));
+    printf("float       : %zu byte(s)\n", sizeof(float));
+    printf("double      : %zu byte(s)\n", sizeof(double));
+    printf("un int tiene %zu bits\n", sizeof(int) * 8);
+    return 0;
+}</pre><p class="note">Si necesita un tamaño garantizado &mdash;por ejemplo, modelar un registro de exactamente 8 o 16 bits&mdash; incluya <code>&lt;stdint.h&gt;</code> y use <code>uint8_t</code>, <code>uint16_t</code>, <code>uint32_t</code>. Es la práctica normal en firmware, donde el ancho del dato debe coincidir con el del hardware.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Punto flotante: float y double</h2></div>
+    <div class="slide-body">
+      
+<p>Para valores con parte decimal, C ofrece <code>float</code> (32 bits, unas 7 cifras significativas) y <code>double</code> (64 bits, unas 15). <strong>Use <code>double</code> salvo que tenga una razón para no hacerlo</strong>: es el tipo por omisión de los literales y de las funciones de <code>math.h</code>.</p>
+<pre class="code-block">float  v1 = 3.14f;      /* la f final lo hace literal float */
+double v2 = 3.141592653589793;
+double e  = 1.6e-19;    /* notacion cientifica: 1.6 x 10^-19 */</pre>
+<p>El punto flotante es una aproximación binaria: <code>0.1 + 0.2</code> no da exactamente <code>0.3</code>. De ahí una regla que volverá en la clase de condicionales: <strong>nunca compare dos flotantes con <code>==</code></strong>; compare la diferencia absoluta contra una tolerancia.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Constantes: literales, #define y const</h2></div>
+    <div class="slide-body">
+      
+<p>Un número escrito directamente en el código es un <em>literal</em>. C reconoce varias bases, lo cual es cómodo cuando se trabaja con bits:</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Literal</th><th>Base / tipo</th><th>Observación</th></tr>
+<tr><td><code>202</code></td><td>decimal</td><td>base 10, el caso normal</td></tr>
+<tr><td><code>0xCA</code></td><td>hexadecimal</td><td>prefijo <code>0x</code>; cada dígito son 4 bits</td></tr>
+<tr><td><code>0312</code></td><td>octal</td><td>prefijo <code>0</code>; cuidado: <code>012</code> no es 12</td></tr>
+<tr><td><code>'A'</code></td><td>carácter</td><td>vale 65, su código ASCII</td></tr>
+<tr><td><code>3.5</code></td><td>punto flotante</td><td>es <code>double</code>; <code>3.5f</code> es <code>float</code></td></tr>
+</table></div>
+<p>Escribir números &laquo;mágicos&raquo; repartidos por el programa es mala práctica. Hay dos formas de darles nombre:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3><code>#define</code> (preprocesador)</h3>
+                <pre class="code-block">#define LOWER   0
+#define UPPER 300
+#define STEP   20</pre><p>Sustitución de texto antes de compilar. Por convención va en MAYÚSCULAS y <strong>no lleva punto y coma</strong> ni signo <code>=</code>.</p>
+              </div>
+              <div class="compare-item">
+                <h3><code>const</code> (lenguaje)</h3>
+                <pre class="code-block">const int LOWER = 0;
+const int UPPER = 300;</pre><p>Es una variable real que el compilador protege contra escritura. Tiene tipo, y por eso el compilador puede verificarla mejor.</p>
+              </div>
+            </div><p class="note">Ambas se usan en la práctica. <code>#define</code> domina en código heredado y en firmware; <code>const</code> es preferible cuando el valor tiene un tipo claro. Lo importante es que el 300 no aparezca disperso en diez líneas distintas.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Operadores aritméticos y la trampa de la división entera</h2></div>
+    <div class="slide-body">
+      
+<p>Los cinco operadores aritméticos son <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> y <code>%</code> (módulo o residuo). El módulo solo se aplica a enteros.</p>
+<pre class="code-block">int a = 17, b = 5;
+
+a + b    /*  22 */
+a - b    /*  12 */
+a * b    /*  85 */
+a / b    /*   3   &lt;-- division ENTERA: se trunca, no se redondea */
+a % b    /*   2   &lt;-- lo que sobra */</pre>
+<p>Que <code>17 / 5</code> valga 3 no es un error del lenguaje: cuando <strong>ambos</strong> operandos son enteros, la división es entera. El problema aparece cuando no se espera:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Mal</h3>
+                <pre class="code-block">celsius = 5 / 9 * (fahr - 32);</pre><p><code>5 / 9</code> se evalúa primero y vale <strong>0</strong>. Todo el resultado es 0, para cualquier temperatura.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Bien</h3>
+                <pre class="code-block">celsius = 5.0 / 9.0 * (fahr - 32.0);</pre><p>Con al menos un operando flotante, la división es flotante y el resultado es correcto.</p>
+              </div>
+            </div>
+<p>Lejos de ser un estorbo, <code>/</code> y <code>%</code> sobre enteros son la herramienta exacta para la conversión a binario que se estudió en la Unidad 1: <code>n % 2</code> da el bit menos significativo y <code>n / 2</code> desplaza el número una posición a la derecha. Ese es el algoritmo de divisiones sucesivas, escrito en dos operadores.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Verdadero y falso en C</h2></div>
+    <div class="slide-body">
+      
+<p>C no tuvo un tipo booleano hasta C99, y aun hoy el convenio sigue siendo el original:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Falso</h3>
+                <p>El valor <strong>0</strong>, y nada más.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Verdadero</h3>
+                <p><strong>Cualquier valor distinto de 0</strong>: 1, &minus;7, 3.5 o un puntero no nulo.</p>
+              </div>
+            </div>
+<p>Los operadores relacionales comparan y <em>producen</em> un entero: 1 si la relación se cumple, 0 si no.</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Operador</th><th>Significado</th><th>Ejemplo</th></tr>
+<tr><td><code>==</code></td><td>igual a</td><td><code>a == b</code></td></tr>
+<tr><td><code>!=</code></td><td>distinto de</td><td><code>a != b</code></td></tr>
+<tr><td><code>&lt;</code> &nbsp; <code>&lt;=</code></td><td>menor que, menor o igual</td><td><code>fahr &lt;= 300</code></td></tr>
+<tr><td><code>&gt;</code> &nbsp; <code>&gt;=</code></td><td>mayor que, mayor o igual</td><td><code>n &gt; 0</code></td></tr>
+</table></div>
+<p>Los operadores lógicos combinan condiciones completas: <code>&amp;&amp;</code> (AND), <code>||</code> (OR) y <code>!</code> (NOT). Tienen una propiedad importante llamada <strong>evaluación de cortocircuito</strong>: se evalúan de izquierda a derecha y se detienen apenas el resultado está decidido.</p>
+<pre class="code-block">if (n != 0 &amp;&amp; 100 / n &gt; 5)   /* si n es 0, la division NUNCA se evalua */
+if (listo || calcular())     /* si listo es verdadero, calcular() no se llama */</pre>
+<p>Si prefiere escribir <code>true</code> y <code>false</code>, incluya <code>&lt;stdbool.h&gt;</code> y use el tipo <code>bool</code>. Por debajo sigue siendo un entero.</p>
+<p class="note"><strong>El error clásico de C:</strong> escribir <code>=</code> (asignación) donde va <code>==</code> (comparación). <code>if (x = 0)</code> asigna 0 a <code>x</code> y la condición resulta falsa siempre; el compilador lo acepta. Con <code>-Wall</code> aparece como <em>suggest parentheses around assignment used as truth value</em>.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Operadores a nivel de bits: las compuertas dentro del procesador</h2></div>
+    <div class="slide-body">
+      
+<p>Aquí C se encuentra con el resto del curso. Mientras <code>&amp;&amp;</code> y <code>||</code> trabajan con la <em>condición completa</em>, los operadores a nivel de bits aplican la compuerta <strong>a cada par de bits</strong> de los operandos, en paralelo, exactamente como lo haría un arreglo de compuertas en hardware.</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Operador</th><th>Operación</th><th>Ejemplo</th><th>Uso típico</th></tr>
+<tr><td><code>&amp;</code></td><td>AND bit a bit</td><td><code>0xCA &amp; 0x0F</code> = <code>0x0A</code></td><td>Aislar bits (enmascarar)</td></tr>
+<tr><td><code>|</code></td><td>OR bit a bit</td><td><code>0xC0 | 0x0A</code> = <code>0xCA</code></td><td>Encender bits</td></tr>
+<tr><td><code>^</code></td><td>XOR bit a bit</td><td><code>0xCA ^ 0xFF</code> = <code>0x35</code></td><td>Invertir bits seleccionados; detectar diferencias</td></tr>
+<tr><td><code>~</code></td><td>NOT bit a bit</td><td><code>~0x0F</code> = <code>0xFFFFFFF0</code></td><td>Complemento a uno de todos los bits</td></tr>
+<tr><td><code>&lt;&lt;</code></td><td>desplazar a la izquierda</td><td><code>1 &lt;&lt; 3</code> = <code>8</code></td><td>Multiplicar por 2ⁿ; construir máscaras</td></tr>
+<tr><td><code>&gt;&gt;</code></td><td>desplazar a la derecha</td><td><code>0xCA &gt;&gt; 4</code> = <code>0x0C</code></td><td>Dividir entre 2ⁿ; extraer el bit <em>n</em></td></tr>
+</table></div>
+<p>Visto bit a bit, <code>0xCA &amp; 0x0F</code> es el mismo dibujo de la Unidad 3:</p>
+<pre class="code-block">   1100 1010      (0xCA)
+ &amp; 0000 1111      (0x0F = mascara del nibble bajo)
+   ---------
+   0000 1010      (0x0A)</pre>
+<p>La distinción entre lógico y bit a bit es la fuente de confusión más común al empezar:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3><code>!</code> &mdash; NOT lógico</h3>
+                <pre class="code-block">int a = 1;
+!a      /* vale 0 */
+!0      /* vale 1 */</pre><p>Convierte cualquier valor a 0 o 1 y lo invierte. Es el que se usa en condiciones.</p>
+              </div>
+              <div class="compare-item">
+                <h3><code>~</code> &mdash; NOT bit a bit</h3>
+                <pre class="code-block">int a = 1;          /* ...0000 0001 */
+~a      /* vale -2:  ...1111 1110 */
+~a &amp; 1  /* vale 0: el bit 0 invertido */</pre><p>Invierte los 32 bits. Para quedarse con un solo bit hay que enmascarar con <code>&amp; 1</code>.</p>
+              </div>
+            </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Máscaras: leer, encender y apagar un bit</h2></div>
+    <div class="slide-body">
+      
+<p>Tres recetas que se usan todos los días en programación de hardware. En todas, <code>(1 &lt;&lt; n)</code> construye una máscara con un único 1 en la posición <em>n</em>.</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Operación</th><th>Expresión en C</th><th>Por qué funciona</th></tr>
+<tr><td>Leer el bit <em>n</em></td><td><code>(x &gt;&gt; n) &amp; 1</code></td><td>Desplaza el bit hasta la posición 0 y borra el resto</td></tr>
+<tr><td>Encender el bit <em>n</em></td><td><code>x |= (1 &lt;&lt; n)</code></td><td>OR con la máscara: ese bit pasa a 1, los demás no cambian</td></tr>
+<tr><td>Apagar el bit <em>n</em></td><td><code>x &amp;= ~(1 &lt;&lt; n)</code></td><td>AND con la máscara invertida: ese bit pasa a 0</td></tr>
+<tr><td>Invertir el bit <em>n</em></td><td><code>x ^= (1 &lt;&lt; n)</code></td><td>XOR con la máscara: ese bit cambia de estado</td></tr>
+</table></div>
+<p>Estas cuatro líneas son, por ejemplo, la forma en que un microcontrolador enciende un LED sin alterar los otros siete pines del mismo puerto.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Asignación compuesta, incremento y decremento</h2></div>
+    <div class="slide-body">
+      
+<p>C ofrece abreviaturas para la forma &laquo;modificar una variable a partir de sí misma&raquo;. <code>x += 3</code> es idéntico a <code>x = x + 3</code>, y lo mismo vale para <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>, <code>&amp;=</code>, <code>|=</code>, <code>^=</code>, <code>&lt;&lt;=</code> y <code>&gt;&gt;=</code>.</p>
+<pre class="code-block">fahr += STEP;        /* fahr = fahr + STEP        */
+mask &lt;&lt;= 1;          /* mask = mask &lt;&lt; 1          */
+puerto &amp;= ~(1 &lt;&lt; 3); /* apaga el bit 3 del puerto */</pre>
+<p>Sumar o restar uno tiene su propio operador, y aparece en dos formas que <strong>no son equivalentes cuando el resultado se usa</strong>:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3><code>++n</code> &mdash; prefijo</h3>
+                <p>Incrementa <em>y luego</em> entrega el valor nuevo.</p><pre class="code-block">int n = 5;
+int m = ++n;   /* n = 6, m = 6 */</pre>
+              </div>
+              <div class="compare-item">
+                <h3><code>n++</code> &mdash; sufijo</h3>
+                <p>Entrega el valor viejo <em>y luego</em> incrementa.</p><pre class="code-block">int n = 5;
+int m = n++;   /* n = 6, m = 5 */</pre>
+              </div>
+            </div><p class="note">Como sentencia aislada &mdash;<code>n++;</code> o <code>++n;</code> en una línea propia&mdash; las dos formas hacen exactamente lo mismo. La diferencia importa solo cuando el valor se usa dentro de una expresión mayor.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Conversiones de tipo y casting</h2></div>
+    <div class="slide-body">
+      
+<p>Cuando una expresión mezcla tipos, el compilador convierte automáticamente el &laquo;menor&raquo; al &laquo;mayor&raquo;: <code>char</code> &rarr; <code>int</code> &rarr; <code>long</code> &rarr; <code>float</code> &rarr; <code>double</code>. Por eso <code>5.0 / 9</code> funciona: el 9 se convierte a <code>double</code>.</p>
+<p>La conversión también ocurre al asignar, y ahí puede perder información sin aviso:</p>
+<pre class="code-block">int   n = 3.9;        /* n vale 3: se TRUNCA, no se redondea */
+char  c = 300;        /* desbordamiento: no cabe en 8 bits   */
+float f = 1 / 2;      /* f vale 0.0: la division fue entera  */</pre>
+<p>Cuando la conversión es intencional se escribe explícitamente con un <em>cast</em>, poniendo el tipo entre paréntesis:</p>
+<pre class="code-block">int aciertos = 7, total = 9;
+
+double razon = aciertos / total;            /* 0.0  -- mal  */
+double buena = (double) aciertos / total;   /* 0.777... bien */</pre><p class="note">El cast se aplica solo al operando que le sigue. En <code>(double) aciertos / total</code> basta con convertir el primero: el segundo se promueve solo.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Salida con printf</h2></div>
+    <div class="slide-body">
+      
+<p><code>printf</code> recibe una <em>cadena de formato</em> y, después, un valor por cada marca <code>%</code> que aparezca en ella. Cada marca indica cómo interpretar e imprimir el valor correspondiente.</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Marca</th><th>Tipo esperado</th><th>Imprime</th></tr>
+<tr><td><code>%d</code></td><td><code>int</code></td><td>entero decimal con signo</td></tr>
+<tr><td><code>%u</code></td><td><code>unsigned</code></td><td>entero decimal sin signo</td></tr>
+<tr><td><code>%ld</code></td><td><code>long</code></td><td>entero largo</td></tr>
+<tr><td><code>%f</code></td><td><code>double</code></td><td>punto flotante, 6 decimales por omisión</td></tr>
+<tr><td><code>%c</code></td><td><code>char</code></td><td>un carácter</td></tr>
+<tr><td><code>%s</code></td><td>cadena</td><td>texto terminado en <code>'\0'</code></td></tr>
+<tr><td><code>%x</code> / <code>%o</code></td><td><code>int</code></td><td>hexadecimal / octal</td></tr>
+<tr><td><code>%zu</code></td><td><code>size_t</code></td><td>el tipo que devuelve <code>sizeof</code></td></tr>
+<tr><td><code>%%</code></td><td>&mdash;</td><td>imprime un signo de porcentaje literal</td></tr>
+</table></div>
+<p>Entre el <code>%</code> y la letra se puede indicar <strong>ancho</strong> y <strong>precisión</strong>, que es lo que permite alinear tablas:</p>
+<pre class="code-block">printf("%4d %6.1f\n", fahr, celsius);
+/*      |     |
+        |     +-- %6.1f : 6 columnas de ancho, 1 decimal
+        +-------- %4d   : 4 columnas de ancho, alineado a la derecha */</pre><p class="note">Si el tipo de la marca no coincide con el del valor, el programa imprime basura o falla. <code>printf("%d", 3.5)</code> es un error que <code>-Wall</code> detecta: <em>format '%d' expects argument of type 'int'</em>.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Entrada con scanf</h2></div>
+    <div class="slide-body">
+      
+<p><code>scanf</code> es la contraparte de <code>printf</code>: lee de la terminal según una cadena de formato. La diferencia crítica es que necesita saber <strong>dónde</strong> guardar lo leído, y por eso se le pasa la <em>dirección</em> de la variable con el operador <code>&amp;</code>.</p>
+<pre class="code-block">/* leer.c -- leer un entero y un numero real */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int n;
+    double x;
+
+    printf("Ingrese un entero: ");
+    if (scanf("%d", &amp;n) != 1) {          /* verificar que SI leyo */
+        printf("entrada invalida\n");
+        return 1;
+    }
+
+    printf("Ingrese un real: ");
+    scanf("%lf", &amp;x);                    /* ojo: %lf para double  */
+
+    printf("leidos: n = %d, x = %.3f\n", n, x);
+    return 0;
+}</pre>
+<p>Tres detalles que causan problemas a todo el mundo la primera vez:</p>
+<ul>
+<li><strong>Olvidar el <code>&amp;</code>.</strong> <code>scanf("%d", n)</code> compila con advertencia y provoca una falla de segmentación. El <code>&amp;</code> es obligatorio para variables simples (no para arreglos ni cadenas, como se verá más adelante).</li>
+<li><strong>Las marcas no son iguales que en <code>printf</code>.</strong> Para <code>double</code> se usa <code>%lf</code> al leer, aunque se imprima con <code>%f</code>.</li>
+<li><strong><code>scanf</code> devuelve cuántos valores logró leer.</strong> Ignorar ese valor es asumir que el usuario siempre teclea lo que se le pide.</li>
+</ul>
+<p class="note"><code>scanf</code> deja el salto de línea pendiente en la entrada, lo que estorba al mezclarlo con lectura de caracteres o de líneas. En la clase de arreglos y cadenas se verá <code>fgets</code>, que es la forma robusta de leer texto.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Ejemplo integrador: compuertas y bits de un número</h2></div>
+    <div class="slide-body">
+      
+<p>El programa lee un valor de 0 a 15, lo descompone en sus cuatro bits con desplazamientos y máscaras, y aplica las compuertas básicas a los dos bits menos significativos.</p>
+<pre class="code-block">/* bits.c -- descomponer un numero en bits y aplicar compuertas */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int n;
+
+    printf("Ingrese un valor de 0 a 15: ");
+    if (scanf("%d", &amp;n) != 1 || n &lt; 0 || n &gt; 15) {
+        printf("valor fuera de rango\n");
+        return 1;
+    }
+
+    int b3 = (n &gt;&gt; 3) &amp; 1;
+    int b2 = (n &gt;&gt; 2) &amp; 1;
+    int b1 = (n &gt;&gt; 1) &amp; 1;
+    int b0 = (n &gt;&gt; 0) &amp; 1;
+
+    printf("\n%2d decimal = %d%d%d%d binario = 0x%X hex\n", n, b3, b2, b1, b0, n);
+
+    printf("\nCompuertas aplicadas a b1 = %d y b0 = %d:\n", b1, b0);
+    printf("  AND : %d\n", b1 &amp; b0);
+    printf("  OR  : %d\n", b1 | b0);
+    printf("  XOR : %d\n", b1 ^ b0);
+    printf("  NOT b0 : %d\n", !b0);
+
+    return 0;
+}</pre>
+<p>Una corrida de ejemplo:</p>
+<pre class="code-block">$ ./bits
+Ingrese un valor de 0 a 15: 10
+
+10 decimal = 1010 binario = 0xA hex
+
+Compuertas aplicadas a b1 = 1 y b0 = 0:
+  AND : 0
+  OR  : 1
+  XOR : 1
+  NOT b0 : 1</pre><p class="note">El programa repite cuatro veces la misma línea para extraer los bits. Esa repetición es exactamente lo que un bucle elimina: en la clase de estructuras de bucle el mismo programa funcionará para cualquier número de bits con tres líneas de código.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s14" style="--reveal-delay: 0.65s;">
+    <div class="slide-head"><h2>Ejercicios propuestos</h2></div>
+    <div class="slide-body">
+      
+<ol>
+<li>Compile y ejecute <code>tamanos.c</code>. Compare el resultado con la tabla de la clase y calcule, a partir de los bytes reportados, el rango de <code>short</code> y de <code>unsigned short</code> en su máquina.</li>
+<li>Escriba un programa que lea una temperatura en Fahrenheit y muestre su equivalente en Celsius con un decimal. Escríbalo primero con <code>5/9</code> y observe el resultado erróneo; corríjalo después.</li>
+<li>Modifique <code>bits.c</code> para que acepte valores de 0 a 255 y muestre los ocho bits, separando los dos nibbles con un espacio (por ejemplo <code>1100 1010</code>).</li>
+<li>Escriba un programa que lea un entero y, usando máscaras, imprima: el valor con el bit 2 encendido, con el bit 5 apagado y con el bit 0 invertido. Muestre los tres resultados en hexadecimal con <code>%X</code>.</li>
+<li>Prediga en papel el valor de cada expresión y luego verifíquelo con un programa: <code>7 / 2</code>, <code>7 % 2</code>, <code>7.0 / 2</code>, <code>-7 / 2</code>, <code>1 &lt;&lt; 5</code>, <code>0xF0 &gt;&gt; 4</code>, <code>~0</code>, <code>!5</code>, <code>5 &amp; 3</code>, <code>5 &amp;&amp; 3</code>.</li>
+<li>Escriba un programa que lea dos valores de 0 a 255 y muestre el resultado de <code>&amp;</code>, <code>|</code>, <code>^</code> entre ellos, tanto en decimal como en hexadecimal. Verifique a mano, en binario, que los resultados sean correctos.</li>
+<li>Un sensor entrega un byte donde los 4 bits altos son la temperatura y los 4 bits bajos un código de error. Escriba un programa que lea el byte y separe ambos campos.</li>
+</ol>
+
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-6-programacion-c/docker-entorno.html"><span class="lbl">&larr; Anterior</span>Entorno de Desarrollo con Docker</a>
+    <a class="next" href="../unidad-6-programacion-c/clase-c3-condicionales.html"><span class="lbl">Siguiente &rarr;</span>Estructuras Condicionales</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

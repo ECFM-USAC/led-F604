@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estructuras de Bucle &mdash; F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u6); --u-soft: var(--u6-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-6">Programación en C</a><span class="sep">/</span>
+      Estructuras de Bucle
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">&larr; Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 6 · Programación en C</div>
+    <h1>Estructuras de Bucle</h1>
+    <div class="unit-badges"><span class="badge">Clase 4 de 7</span><span class="badge">4 períodos</span><span class="badge">Bucles</span></div>
+  </div>
+
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Por qué un bucle</a></li>
+      <li><a href="#s2">El ciclo while</a></li>
+      <li><a href="#s3">El ciclo for</a></li>
+      <li><a href="#s4">El ciclo do ... while</a></li>
+      <li><a href="#s5">break y continue</a></li>
+      <li><a href="#s6">Bucles anidados: la tabla de verdad completa</a></li>
+      <li><a href="#s7">Ejemplo: de decimal a binario</a></li>
+      <li><a href="#s8">Ejemplo: contar los bits en 1</a></li>
+      <li><a href="#s9">Entrada y salida de caracteres</a></li>
+      <li><a href="#s10">Ejemplo: contar líneas, palabras y caracteres</a></li>
+      <li><a href="#s11">Bucles infinitos</a></li>
+      <li><a href="#s12">Errores frecuentes con bucles</a></li>
+      <li><a href="#s13">Ejercicios propuestos</a></li>
+    </ol>
+  </div>
+
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Por qué un bucle</h2></div>
+    <div class="slide-body">
+      
+<p>El programa <code>bits.c</code> de la clase de operadores extraía cuatro bits con cuatro líneas casi idénticas. Para ocho bits harían falta ocho, y para 32 el programa sería absurdo. Un <strong>bucle</strong> (o ciclo) ejecuta un bloque repetidamente mientras una condición se cumpla, y es lo que convierte un programa de longitud fija en un algoritmo.</p>
+<p>Todo bucle tiene tres piezas, aunque no siempre estén escritas juntas:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Inicialización</h3>
+                <p>El estado antes de la primera vuelta: <code>i = 0</code>, <code>fahr = LOWER</code>.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Condición</h3>
+                <p>Se evalúa antes de cada vuelta. Mientras sea distinta de cero, el cuerpo se ejecuta otra vez.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Actualización</h3>
+                <p>El cambio que, vuelta a vuelta, acerca la condición a ser falsa. Si falta, el bucle no termina.</p>
+              </div>
+            </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>El ciclo while</h2></div>
+    <div class="slide-body">
+      
+<p><code>while</code> evalúa la condición <strong>antes</strong> de cada vuelta. Si la condición es falsa desde el principio, el cuerpo no se ejecuta ni una vez.</p>
+<pre class="code-block">while (condicion) {
+    /* cuerpo: se repite mientras condicion sea distinta de cero */
+}</pre>
+<p>El ejemplo clásico del K&amp;R imprime una tabla de temperaturas en Fahrenheit con su equivalente en Celsius, según <code>C = (5/9)(F &minus; 32)</code>:</p>
+<pre class="code-block">/* temp_while.c -- tabla Fahrenheit-Celsius con while */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int   lower = 0, upper = 300, step = 20;
+    float fahr, celsius;
+
+    fahr = lower;                        /* inicializacion */
+
+    printf(" F     C\n");
+    printf("----------\n");
+
+    while (fahr &lt;= upper) {              /* condicion      */
+        celsius = (5.0 / 9.0) * (fahr - 32.0);
+        printf("%4.0f %6.1f\n", fahr, celsius);
+        fahr = fahr + step;              /* actualizacion  */
+    }
+
+    return 0;
+}</pre>
+<p>Su salida, que ya es una tabla presentable:</p>
+<pre class="code-block"> F     C
+----------
+   0  -17.8
+  20   -6.7
+  40    4.4
+  60   15.6
+  ...
+ 300  148.9</pre><p class="note">Las constantes se escriben <code>5.0</code> y <code>9.0</code>, no <code>5</code> y <code>9</code>: con enteros, <code>5/9</code> vale 0 y toda la tabla saldría en cero. Es la trampa de la división entera de la clase anterior, en su forma más famosa.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>El ciclo for</h2></div>
+    <div class="slide-body">
+      
+<p><code>for</code> es el mismo bucle con las tres piezas <strong>reunidas en una sola línea</strong>, lo que hace evidente de un vistazo cuántas vueltas dará:</p>
+<pre class="code-block">for (inicializacion; condicion; actualizacion) {
+    /* cuerpo */
+}</pre>
+<p>La misma tabla, ahora con <code>for</code> y con un contador entero:</p>
+<pre class="code-block">/* temp_for.c -- tabla Fahrenheit-Celsius con for */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int fahr;
+
+    for (fahr = 0; fahr &lt;= 300; fahr = fahr + 20) {
+        printf("%4d %6.1f\n", fahr, (5.0 / 9.0) * (fahr - 32));
+    }
+
+    return 0;
+}</pre>
+<p>Desde C99 la variable de control puede declararse dentro del propio <code>for</code>, y entonces solo existe dentro del bucle. Es la forma preferible, porque impide usarla por error después:</p>
+<pre class="code-block">for (int i = 0; i &lt; 8; i++) {
+    printf("bit %d\n", i);
+}
+/* aqui i ya no existe */</pre><div class="compare">
+              <div class="compare-item">
+                <h3>Use <code>for</code> cuando...</h3>
+                <p>...el número de vueltas se conoce o depende de un contador: recorrer bits, filas de una tabla, elementos de un arreglo.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Use <code>while</code> cuando...</h3>
+                <p>...la repetición depende de un evento y no de un contador: leer hasta fin de archivo, repetir hasta que el usuario acierte.</p>
+              </div>
+            </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>El ciclo do ... while</h2></div>
+    <div class="slide-body">
+      
+<p>La tercera variante evalúa la condición <strong>al final</strong>, por lo que el cuerpo se ejecuta <strong>al menos una vez</strong>. Nótese el punto y coma final, que es obligatorio.</p>
+<pre class="code-block">do {
+    /* cuerpo */
+} while (condicion);</pre>
+<p>Es la estructura natural para validar entrada: hay que pedir el dato antes de poder juzgarlo.</p>
+<pre class="code-block">int n;
+
+do {
+    printf("Ingrese un valor de 0 a 15: ");
+    scanf("%d", &amp;n);
+} while (n &lt; 0 || n &gt; 15);
+
+printf("valor aceptado: %d\n", n);</pre><p class="note">En la práctica <code>do...while</code> es el menos usado de los tres. Si duda, use <code>while</code> o <code>for</code>: un bucle que siempre debe ejecutarse una vez es menos frecuente de lo que parece.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>break y continue</h2></div>
+    <div class="slide-body">
+      
+<p>Dos sentencias alteran el flujo normal de un bucle, y conviene no confundirlas:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3><code>break</code></h3>
+                <p>Abandona el bucle de inmediato y continúa después de la llave de cierre. En un <code>switch</code>, termina el <code>switch</code>.</p><pre class="code-block">for (int i = 0; i &lt; 100; i++) {
+    if (dato[i] &lt; 0) {
+        break;      /* sale del bucle */
+    }
+}</pre>
+              </div>
+              <div class="compare-item">
+                <h3><code>continue</code></h3>
+                <p>Salta el resto del cuerpo y pasa a la siguiente vuelta. En un <code>for</code>, la actualización sí se ejecuta.</p><pre class="code-block">for (int i = 0; i &lt; 100; i++) {
+    if (i % 2 != 0) {
+        continue;   /* ignora los impares */
+    }
+    printf("%d ", i);
+}</pre>
+              </div>
+            </div>
+<p>Ambas afectan únicamente al bucle <strong>más interno</strong> que las contiene. En bucles anidados, un <code>break</code> en el bucle interior no sale del exterior.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Bucles anidados: la tabla de verdad completa</h2></div>
+    <div class="slide-body">
+      
+<p>Un bucle dentro de otro recorre todas las combinaciones de dos variables. Con eso, la tabla de verdad que en la primera clase se escribió a mano con cuatro <code>printf</code> ahora se <strong>calcula</strong>:</p>
+<pre class="code-block">/* tabla_and.c -- tabla de verdad generada, no escrita a mano */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf(" A | B | AND | OR | XOR\n");
+    printf("---+---+-----+----+-----\n");
+
+    for (int a = 0; a &lt;= 1; a++) {
+        for (int b = 0; b &lt;= 1; b++) {
+            printf(" %d | %d |  %d  | %d  |  %d\n",
+                   a, b, a &amp; b, a | b, a ^ b);
+        }
+    }
+
+    return 0;
+}</pre>
+<p>El bucle exterior fija <code>A</code> y el interior recorre <code>B</code> completo: las filas salen en el mismo orden que en la tabla de verdad del libro (00, 01, 10, 11). Para tres variables se agrega un tercer nivel, y así se verifica cualquier función booleana de la Unidad 2:</p>
+<pre class="code-block">/* verifica.c -- tabla de verdad de F = A.B + C' */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf(" A B C | F\n");
+    printf("-------+---\n");
+
+    for (int a = 0; a &lt;= 1; a++) {
+        for (int b = 0; b &lt;= 1; b++) {
+            for (int c = 0; c &lt;= 1; c++) {
+                int f = (a &amp; b) | (!c);
+                printf(" %d %d %d | %d\n", a, b, c, f);
+            }
+        }
+    }
+
+    return 0;
+}</pre><p class="note">Este programa es una herramienta de estudio, no solo un ejercicio: permite comprobar en segundos si una simplificación por álgebra booleana o por mapa de Karnaugh produce la misma tabla de verdad que la expresión original.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Ejemplo: de decimal a binario</h2></div>
+    <div class="slide-body">
+      
+<p>Con un bucle, imprimir los ocho bits de un número deja de ser repetir ocho líneas. Se recorre de la posición 7 a la 0 y se extrae cada bit con el desplazamiento y la máscara ya conocidos:</p>
+<pre class="code-block">/* a_binario.c -- imprime un byte en binario */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int n;
+
+    printf("Ingrese un valor de 0 a 255: ");
+    scanf("%d", &amp;n);
+
+    printf("%3d = ", n);
+    for (int i = 7; i &gt;= 0; i--) {
+        printf("%d", (n &gt;&gt; i) &amp; 1);
+        if (i == 4) {
+            printf(" ");          /* separa los dos nibbles */
+        }
+    }
+    printf(" (0x%02X)\n", n);
+
+    return 0;
+}</pre>
+<p>El método de <strong>divisiones sucesivas</strong> de la Unidad 1 también se programa con un bucle, pero produce los bits en orden inverso (primero el menos significativo):</p>
+<pre class="code-block">int t = n;
+while (t &gt; 0) {
+    printf("%d", t % 2);   /* bit menos significativo primero */
+    t = t / 2;
+}</pre><p class="note">Para imprimirlos en el orden correcto habría que guardarlos y recorrerlos al revés; eso necesita un arreglo, que es el tema de la clase 6. Por ahora, el recorrido con <code>&gt;&gt;</code> resuelve el problema sin almacenar nada.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Ejemplo: contar los bits en 1</h2></div>
+    <div class="slide-body">
+      
+<p>Contar cuántos bits valen 1 &mdash;el <em>peso</em> de la palabra, que determina por ejemplo el bit de paridad de la Unidad 1&mdash; es un bucle de cuatro líneas:</p>
+<pre class="code-block">/* peso.c -- cuenta bits en 1 y calcula la paridad */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int n, cuenta = 0;
+
+    printf("Ingrese un valor de 0 a 255: ");
+    scanf("%d", &amp;n);
+
+    for (int t = n; t != 0; t &gt;&gt;= 1) {
+        cuenta += t &amp; 1;        /* suma 1 si el bit actual esta en 1 */
+    }
+
+    printf("%d tiene %d bits en 1\n", n, cuenta);
+    printf("paridad par: bit de paridad = %d\n", cuenta &amp; 1);
+
+    return 0;
+}</pre>
+<p>El bucle termina solo: cada <code>t &gt;&gt;= 1</code> acerca a <code>t</code> a cero, y cuando no quedan bits en 1 la condición es falsa. Es un buen ejemplo de bucle cuyo número de vueltas depende del dato, no de un contador fijo.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Entrada y salida de caracteres</h2></div>
+    <div class="slide-body">
+      
+<p>La entrada/salida no es parte del lenguaje C: es parte de la biblioteca estándar. El modelo más simple trata la entrada como un <strong>flujo de caracteres</strong>, leído de a uno:</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Función</th><th>Qué hace</th></tr>
+<tr><td><code>c = getchar();</code></td><td>Lee el siguiente carácter del flujo de entrada y lo devuelve; al terminar la entrada devuelve <code>EOF</code>.</td></tr>
+<tr><td><code>putchar(c);</code></td><td>Escribe un carácter en la salida.</td></tr>
+<tr><td><code>EOF</code></td><td>Constante definida en <code>stdio.h</code> (normalmente &minus;1) que marca el final del flujo. <strong>No la redefina.</strong></td></tr>
+</table></div>
+<p>El bucle que copia la entrada a la salida es uno de los idiomas más reconocibles de C:</p>
+<pre class="code-block">/* copia.c -- copia la entrada a la salida, caracter por caracter */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int c;                       /* int, NO char: debe poder valer EOF */
+
+    while ((c = getchar()) != EOF) {
+        putchar(c);
+    }
+
+    return 0;
+}</pre>
+<p>La condición merece leerse despacio: <code>(c = getchar()) != EOF</code> hace tres cosas en orden &mdash;llama a <code>getchar</code>, guarda el resultado en <code>c</code> y compara ese resultado con <code>EOF</code>&mdash;. Los paréntesis interiores son obligatorios: sin ellos, <code>c = getchar() != EOF</code> guardaría en <code>c</code> el valor 0 o 1 de la comparación.</p>
+<p class="note">Para terminar la entrada desde el teclado se envía el fin de archivo: <strong>Ctrl&#8209;D</strong> en Linux y macOS, <strong>Ctrl&#8209;Z</strong> seguido de Enter en Windows. También puede alimentar el programa desde un archivo: <code>./copia &lt; texto.txt</code>.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Ejemplo: contar líneas, palabras y caracteres</h2></div>
+    <div class="slide-body">
+      
+<p>Este programa, tomado del K&amp;R, reúne casi todo lo visto hasta aquí: un bucle de lectura, condicionales encadenados, operadores lógicos y una variable de <strong>estado</strong> que recuerda si se viene leyendo una palabra. Esa variable de estado es la misma idea que un flip-flop en la Unidad 4: la salida depende de la entrada y de lo que ocurrió antes.</p>
+<pre class="code-block">/* contar.c -- cuenta lineas, palabras y caracteres de la entrada */
+#include &lt;stdio.h&gt;
+
+#define DENTRO 1    /* estamos dentro de una palabra */
+#define FUERA  0    /* estamos fuera de una palabra  */
+
+int main(void)
+{
+    int c;
+    int nl = 0, nw = 0, nc = 0;     /* lineas, palabras, caracteres */
+    int estado = FUERA;
+
+    while ((c = getchar()) != EOF) {
+        nc++;
+
+        if (c == '\n') {
+            nl++;
+        }
+
+        if (c == ' ' || c == '\n' || c == '\t') {
+            estado = FUERA;
+        } else if (estado == FUERA) {
+            estado = DENTRO;
+            nw++;                   /* cuenta la palabra al ENTRAR */
+        }
+    }
+
+    printf("lineas: %d  palabras: %d  caracteres: %d\n", nl, nw, nc);
+    return 0;
+}</pre>
+<p>La clave está en <em>cuándo</em> se incrementa <code>nw</code>: no al ver una letra, sino en la transición de FUERA a DENTRO. Contar en cada letra daría el número de caracteres; contar en cada espacio fallaría con espacios consecutivos. El cambio de estado es el evento correcto, igual que en un detector de flanco.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Bucles infinitos</h2></div>
+    <div class="slide-body">
+      
+<p>Un bucle sin condición de salida se escribe deliberadamente así:</p>
+<pre class="code-block">while (1) {
+    /* ... */
+}
+
+for (;;) {
+    /* ... */
+}</pre>
+<p>Lejos de ser un error, es la estructura normal de un programa empotrado: un microcontrolador arranca, configura sus puertos y entra en un lazo que no termina nunca, leyendo entradas y actualizando salidas.</p>
+<pre class="code-block">int main(void)
+{
+    /* configuracion inicial del hardware */
+
+    for (;;) {
+        /* leer entradas, procesar, escribir salidas */
+    }
+}</pre><p class="note">El bucle infinito <em>accidental</em> es otra cosa: casi siempre se debe a una condición que nunca cambia porque falta la actualización. Si su programa se cuelga, interrúmpalo con <strong>Ctrl&#8209;C</strong> y revise qué variable debía modificarse dentro del cuerpo.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Errores frecuentes con bucles</h2></div>
+    <div class="slide-body">
+      
+<div class="table-wrap"><table class="data-table">
+<tr><th>Error</th><th>Se ve así</th><th>Qué ocurre</th></tr>
+<tr><td>Punto y coma tras el <code>for</code></td><td><code>for (i = 0; i &lt; 10; i++);</code></td><td>El cuerpo es el <code>;</code> vacío: el bloque siguiente se ejecuta una sola vez, con <code>i</code> ya en 10.</td></tr>
+<tr><td>Error por uno (<em>off-by-one</em>)</td><td><code>for (i = 0; i &lt;= 8; i++)</code> sobre 8 bits</td><td>Da nueve vueltas. Con índices desde 0, la condición correcta es <code>i &lt; 8</code>.</td></tr>
+<tr><td>Falta la actualización</td><td><code>while (n &gt; 0) { suma += n; }</code></td><td><code>n</code> nunca cambia: bucle infinito.</td></tr>
+<tr><td>Modificar el contador dentro del cuerpo</td><td><code>for (i = 0; i &lt; n; i++) { ... i++; ... }</code></td><td>Avanza de dos en dos sin que se note al leer el encabezado.</td></tr>
+<tr><td><code>char</code> en el bucle de lectura</td><td><code>char c; while ((c = getchar()) != EOF)</code></td><td><code>char</code> puede no representar &minus;1: el bucle nunca termina o corta antes. Use <code>int</code>.</td></tr>
+<tr><td>Comparar flotantes como contador</td><td><code>for (x = 0.0; x != 1.0; x += 0.1)</code></td><td>La suma acumula error y <code>x</code> nunca vale exactamente 1.0. Use <code>&lt;</code> o un contador entero.</td></tr>
+</table></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Ejercicios propuestos</h2></div>
+    <div class="slide-body">
+      
+<ol>
+<li>Modifique <code>temp_for.c</code> para que imprima la tabla al revés, de 300 a 0 grados Fahrenheit, y agregue un encabezado a las columnas.</li>
+<li>Escriba un programa que genere la tabla de conversión inversa, de Celsius a Fahrenheit, de &minus;40 a 100 grados en pasos de 10.</li>
+<li>Escriba un programa que imprima la tabla de verdad completa de un <strong>sumador completo</strong> (entradas <code>A</code>, <code>B</code>, <code>Cin</code>; salidas <code>S</code> y <code>Cout</code>) usando tres bucles anidados y las expresiones <code>S = A ^ B ^ Cin</code> y <code>Cout = (A &amp; B) | (Cin &amp; (A ^ B))</code>. Compárela con la tabla del libro.</li>
+<li>Escriba un programa que imprima, para los valores de 0 a 15, una tabla con cuatro columnas: decimal, binario de 4 bits, hexadecimal y código Gray. Recuerde que el código Gray se obtiene con <code>n ^ (n &gt;&gt; 1)</code>.</li>
+<li>Escriba un programa que lea caracteres hasta <code>EOF</code> y cuente cuántos son dígitos, cuántos espacios en blanco y cuántos son otra cosa.</li>
+<li>Escriba un programa que copie su entrada a la salida reemplazando toda secuencia de uno o más espacios por un solo espacio. Pruébelo con <code>./programa &lt; archivo.txt</code>.</li>
+<li>Escriba un programa que imprima todas las líneas de la entrada que tengan más de 80 caracteres.</li>
+<li>Escriba un programa que, para cada número de 0 a 255, cuente sus bits en 1 e imprima únicamente los que tengan paridad impar.</li>
+<li>Escriba un programa que simule un <strong>contador binario de 4 bits</strong>: imprima los estados de 0000 a 1111 en orden, uno por línea, indicando en cuáles cambia el bit más significativo.</li>
+</ol>
+
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-6-programacion-c/clase-c3-condicionales.html"><span class="lbl">&larr; Anterior</span>Estructuras Condicionales</a>
+    <a class="next" href="../unidad-6-programacion-c/clase-c5-funciones.html"><span class="lbl">Siguiente &rarr;</span>Funciones</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

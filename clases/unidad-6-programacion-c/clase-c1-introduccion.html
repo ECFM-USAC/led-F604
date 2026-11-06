@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introducción al Lenguaje C y el Compilador &mdash; F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u6); --u-soft: var(--u6-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-6">Programación en C</a><span class="sep">/</span>
+      Introducción al Lenguaje C y el Compilador
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">&larr; Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 6 · Programación en C</div>
+    <h1>Introducción al Lenguaje C y el Compilador</h1>
+    <div class="unit-badges"><span class="badge">Clase 1 de 7</span><span class="badge">3 períodos</span><span class="badge">Compilador</span></div>
+  </div>
+
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">¿Por qué C en un curso de Electrónica Digital?</a></li>
+      <li><a href="#s2">Origen y propósito de C</a></li>
+      <li><a href="#s3">Qué significa que C sea un lenguaje de &laquo;bajo nivel&raquo;</a></li>
+      <li><a href="#s4">Del código fuente al ejecutable</a></li>
+      <li><a href="#s5">El primer programa</a></li>
+      <li><a href="#s6">Compilar y ejecutar</a></li>
+      <li><a href="#s7">Anatomía de un programa en C</a></li>
+      <li><a href="#s8">printf y las secuencias de escape</a></li>
+      <li><a href="#s9">Ejemplo: la tabla de verdad de una compuerta AND</a></li>
+      <li><a href="#s10">Errores frecuentes al compilar</a></li>
+      <li><a href="#s11">Ejercicios propuestos</a></li>
+    </ol>
+  </div>
+
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>¿Por qué C en un curso de Electrónica Digital?</h2></div>
+    <div class="slide-body">
+      
+<p>Durante las primeras cinco unidades el circuito fue el protagonista: compuertas, mapas de Karnaugh, sumadores, flip-flops y, al final, una descripción en Verilog. Esta unidad cambia el punto de vista, no el tema. El mismo sistema digital que se construye con compuertas puede <em>describirse</em>, <em>simularse</em> y <em>controlarse</em> desde un programa.</p>
+<p>C es el lenguaje natural para hacer ese puente por tres razones:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Está pegado al hardware</h3>
+                <p>Trabaja con bytes, bits y direcciones de memoria. Los operadores <code>&amp;</code>, <code>|</code>, <code>^</code> y <code>~</code> son literalmente AND, OR, XOR y NOT aplicados bit a bit sobre un registro.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Es el lenguaje del firmware</h3>
+                <p>Los microcontroladores que leerán sus sensores y manejarán sus displays se programan en C. Un FPGA se configura con HDL, pero el sistema que lo acompaña casi siempre se escribe en C.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Enseña lo que otros ocultan</h3>
+                <p>Python o MATLAB administran la memoria por usted. En C la memoria es suya: eso duele al principio y es exactamente lo que hace entender qué pasa dentro de la máquina.</p>
+              </div>
+            </div>
+<p>A lo largo de la unidad los ejemplos no serán genéricos: programaremos tablas de verdad, conversiones decimal&ndash;binario, sumadores completos, registros de desplazamiento y decodificadores, es decir, los mismos circuitos de las unidades anteriores, ahora en software.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Origen y propósito de C</h2></div>
+    <div class="slide-body">
+      
+<p>C fue desarrollado por <strong>Dennis Ritchie</strong> en los Laboratorios Bell alrededor de 1972, junto con el sistema operativo UNIX. La referencia clásica es <em>The C Programming Language</em> de Brian Kernighan y Dennis Ritchie (el &laquo;K&amp;R&raquo;), de donde provienen varios de los ejemplos de esta unidad.</p>
+<p>Aunque nació ligado a UNIX, el lenguaje es independiente de cualquier sistema operativo o máquina: fue diseñado para ser portado. De hecho, UNIX fue reescrito casi por completo en C, y ese fue el argumento que demostró que un lenguaje de alto nivel podía reemplazar al ensamblador sin perder eficiencia.</p>
+<p>Hoy C se usa en sistemas operativos, firmware, controladores de dispositivos, instrumentación científica y en el núcleo de lenguajes más modernos: el intérprete de Python (CPython) está escrito en C.</p>
+<p>El lenguaje está normalizado. Las versiones que importan en la práctica son <strong>C89/ANSI</strong>, <strong>C99</strong> (comentarios <code>//</code>, declarar variables donde se usan, <code>bool</code>) y <strong>C11</strong>. En este curso usaremos <strong>C11</strong>, que es el estándar que asume el compilador del entorno de trabajo.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Qué significa que C sea un lenguaje de &laquo;bajo nivel&raquo;</h2></div>
+    <div class="slide-body">
+      
+<p>Decir que C es de bajo nivel no es un insulto ni significa que sea difícil: significa que los tipos y operaciones del lenguaje corresponden directamente a lo que la máquina sabe hacer. C manipula caracteres, números y direcciones; no sabe nada de listas, diccionarios, cadenas dinámicas ni objetos.</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Lo que C sí le da</h3>
+                <p>Control total sobre la memoria (<code>malloc()</code> y <code>free()</code>), acceso bit a bit, aritmética de punteros, ejecutables pequeños y rápidos, y un modelo de costos predecible: cada línea se traduce a unas pocas instrucciones de máquina.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Lo que C no le da</h3>
+                <p>No hay recolector de basura, ni verificación de límites en los arreglos, ni cadenas como tipo propio, ni manejo de excepciones. Si el programa escribe fuera de un arreglo, el compilador no lo detiene.</p>
+              </div>
+            </div>
+<p>Esa ausencia es deliberada: mantiene el lenguaje pequeño, los compiladores simples de construir y los programas portables. El precio es que la responsabilidad de que el programa sea correcto recae en quien lo escribe.</p>
+<p class="note">Lo que en Python es un error en tiempo de ejecución (<code>IndexError</code>), en C suele ser un programa que &laquo;funciona&raquo; pero corrompe memoria. Por eso en esta unidad se insiste tanto en compilar con advertencias activadas.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Del código fuente al ejecutable</h2></div>
+    <div class="slide-body">
+      
+<p>Escribir el programa es solo el primer paso. Lo que la computadora ejecuta no es el archivo <code>.c</code>, sino un archivo binario producido por una cadena de cuatro herramientas. <code>gcc</code> las invoca todas por usted, pero conviene saber qué hace cada una, porque los mensajes de error vienen de etapas distintas.</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Etapa</th><th>Herramienta</th><th>Qué hace</th><th>Cómo verla sola</th></tr>
+<tr><td>1. Preprocesador</td><td><code>cpp</code></td><td>Resuelve <code>#include</code> y <code>#define</code>; produce un <code>.c</code> expandido</td><td><code>gcc -E prog.c</code></td></tr>
+<tr><td>2. Compilador</td><td><code>cc1</code></td><td>Traduce C a lenguaje ensamblador y reporta errores de sintaxis y de tipos</td><td><code>gcc -S prog.c</code></td></tr>
+<tr><td>3. Ensamblador</td><td><code>as</code></td><td>Convierte el ensamblador en código objeto (<code>prog.o</code>), binario pero incompleto</td><td><code>gcc -c prog.c</code></td></tr>
+<tr><td>4. Enlazador</td><td><code>ld</code></td><td>Une su código objeto con las bibliotecas (por ejemplo <code>printf</code>) y produce el ejecutable</td><td><code>gcc prog.c -o prog</code></td></tr>
+</table></div>
+<p>La distinción es práctica: <em>&laquo;undefined reference to <code>sqrt</code>&raquo;</em> no es un error de sintaxis, es el enlazador diciendo que no encontró la implementación de la función (falta <code>-lm</code>). <em>&laquo;expected ';'&raquo;</em>, en cambio, viene del compilador.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>El primer programa</h2></div>
+    <div class="slide-body">
+      
+<p>La mejor forma de aprender C es escribiendo programas. El primero, por tradición, imprime un saludo:</p>
+<pre class="code-block">/* hello.c -- el primer programa */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf("hola, mundo\n");
+    return 0;
+}</pre>
+<p>Son siete líneas y cada una enseña algo:</p>
+<ul>
+<li><code>#include &lt;stdio.h&gt;</code> le dice al preprocesador que incorpore las declaraciones de la biblioteca estándar de entrada/salida. Sin ella el compilador no sabe qué es <code>printf</code>.</li>
+<li><code>int main(void)</code> declara la función donde el programa empieza a ejecutarse. Todo programa en C tiene exactamente una función <code>main</code>. El <code>int</code> indica que devuelve un entero al sistema operativo y <code>(void)</code> que no recibe argumentos.</li>
+<li>Las llaves <code>{ }</code> delimitan el cuerpo de la función; cada sentencia termina en punto y coma.</li>
+<li><code>return 0;</code> le informa al sistema operativo que el programa terminó sin errores. Un valor distinto de cero señala falla.</li>
+</ul>
+<p class="note">Textos antiguos (incluido el K&amp;R original) escriben <code>main()</code> sin <code>int</code> y sin <code>return</code>. Eso era válido en C89 y hoy genera advertencias. En este curso escribimos siempre <code>int main(void)</code> y terminamos con <code>return 0;</code>.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Compilar y ejecutar</h2></div>
+    <div class="slide-body">
+      
+<p>Con el archivo <code>hello.c</code> guardado, en la terminal del entorno de desarrollo:</p>
+<pre class="code-block">$ gcc -std=c11 -Wall -Wextra hello.c -o hello
+$ ./hello
+hola, mundo</pre>
+<p>Si se omite <code>-o hello</code>, el ejecutable se llama <code>a.out</code>. Las banderas que usaremos durante toda la unidad son:</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Bandera</th><th>Para qué sirve</th></tr>
+<tr><td><code>-std=c11</code></td><td>Fija la versión del estándar; evita que el código dependa del compilador.</td></tr>
+<tr><td><code>-Wall -Wextra</code></td><td>Activa las advertencias. <strong>No son opcionales:</strong> la mayoría de los errores de un principiante en C aparecen aquí como <em>warning</em>, no como error.</td></tr>
+<tr><td><code>-o nombre</code></td><td>Nombre del ejecutable producido.</td></tr>
+<tr><td><code>-g</code></td><td>Incluye información de depuración, necesaria para usar <code>gdb</code>.</td></tr>
+<tr><td><code>-lm</code></td><td>Enlaza la biblioteca matemática; requerida si usa <code>math.h</code> (<code>sqrt</code>, <code>pow</code>).</td></tr>
+</table></div>
+<p>Conviene acostumbrarse desde ahora a compilar así, aunque sea más largo de escribir:</p>
+<pre class="code-block">$ gcc -std=c11 -Wall -Wextra -g programa.c -o programa</pre>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Anatomía de un programa en C</h2></div>
+    <div class="slide-body">
+      
+<p>Un programa en C se compone de <strong>una o más funciones</strong>, y <code>main</code> es el punto de entrada obligatorio. La estructura general que seguiremos es siempre la misma:</p>
+<pre class="code-block">#include &lt;stdio.h&gt;        /* 1. directivas del preprocesador */
+
+#define BITS 4            /* 2. constantes simbolicas        */
+
+int paridad(int x);       /* 3. prototipos de funciones      */
+
+int main(void)            /* 4. funcion principal            */
+{
+    int valor = 0;        /*    declaraciones y sentencias   */
+    printf("%d\n", paridad(valor));
+    return 0;
+}
+
+int paridad(int x)        /* 5. definiciones de funciones    */
+{
+    return x % 2;
+}</pre>
+<p>Dos reglas de escritura que valen por todo el curso:</p>
+<ul>
+<li><strong>Comentarios.</strong> <code>/* ... */</code> abarca varias líneas y <code>//</code> llega hasta el final de la línea (desde C99). El compilador los ignora; el lector no.</li>
+<li><strong>Indentación.</strong> C no la exige &mdash;a diferencia de Python&mdash;, pero un bloque mal indentado esconde errores. Use cuatro espacios por nivel y sea consistente.</li>
+</ul>
+<p>El espacio en blanco es libre: el compilador aceptaría todo el programa en una sola línea. Que lo acepte no significa que sea legible.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>printf y las secuencias de escape</h2></div>
+    <div class="slide-body">
+      
+<p><code>printf</code> no es una palabra reservada del lenguaje: es una función de la biblioteca estándar, declarada en <code>stdio.h</code>. Recibe una cadena de caracteres entre comillas dobles y la escribe en la terminal.</p>
+<p>Dentro de una cadena, la barra invertida introduce caracteres que no se pueden teclear directamente:</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Secuencia</th><th>Significado</th><th>Uso típico</th></tr>
+<tr><td><code>\n</code></td><td>nueva línea</td><td>Termina la línea actual. Sin ella, dos <code>printf</code> escriben seguido.</td></tr>
+<tr><td><code>\t</code></td><td>tabulación</td><td>Alinea columnas en una tabla.</td></tr>
+<tr><td><code>\\</code></td><td>barra invertida</td><td>Para imprimir una <code>\</code> literal.</td></tr>
+<tr><td><code>\"</code></td><td>comilla doble</td><td>Para imprimir una <code>"</code> dentro de la cadena.</td></tr>
+<tr><td><code>\0</code></td><td>carácter nulo</td><td>Marca el final de una cadena; volverá en la clase de arreglos.</td></tr>
+</table></div>
+<pre class="code-block">printf("A\tB\tF\n");      /* tres columnas separadas por tabuladores */
+printf("ruta: C:\\temp\n");
+printf("el \"bit\" menos significativo\n");</pre>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Ejemplo: la tabla de verdad de una compuerta AND</h2></div>
+    <div class="slide-body">
+      
+<p>Con lo visto hasta aquí &mdash;<code>printf</code> y secuencias de escape&mdash; ya se puede escribir el primer programa con contenido del curso: imprimir la tabla de verdad de <code>F = A &middot; B</code>.</p>
+<pre class="code-block">/* and_tabla.c -- tabla de verdad de una compuerta AND */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf("Tabla de verdad: F = A . B\n\n");
+    printf(" A | B | F\n");
+    printf("---+---+---\n");
+    printf(" 0 | 0 | 0\n");
+    printf(" 0 | 1 | 0\n");
+    printf(" 1 | 0 | 0\n");
+    printf(" 1 | 1 | 1\n");
+
+    return 0;
+}</pre>
+<p>Al compilar y ejecutar:</p>
+<pre class="code-block">$ gcc -std=c11 -Wall -Wextra and_tabla.c -o and_tabla
+$ ./and_tabla
+Tabla de verdad: F = A . B
+
+ A | B | F
+---+---+---
+ 0 | 0 | 0
+ 0 | 1 | 0
+ 1 | 0 | 0
+ 1 | 1 | 1</pre><p class="note">El programa <em>dibuja</em> la tabla, pero no la <em>calcula</em>: los ceros y unos están escritos a mano. En la clase de operadores el valor de F saldrá de una operación, y en la de bucles las cuatro filas se generarán solas. Guarde este archivo: lo iremos mejorando.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Errores frecuentes al compilar</h2></div>
+    <div class="slide-body">
+      
+<p>Los mensajes del compilador son largos pero dicen exactamente dónde está el problema. Conviene leer <strong>siempre el primero</strong>: los siguientes suelen ser consecuencia de él.</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Causa</th><th>Mensaje típico de gcc</th><th>Qué hacer</th></tr>
+<tr><td>Falta el <code>;</code> al final de una sentencia</td><td><code>error: expected ';' before '}' token</code></td><td>El error se reporta en la línea <em>siguiente</em> a la que falta el punto y coma.</td></tr>
+<tr><td>Falta <code>#include &lt;stdio.h&gt;</code></td><td><code>warning: implicit declaration of function 'printf'</code></td><td>Compila igual, pero es un error a punto de ocurrir. Nunca ignore esta advertencia.</td></tr>
+<tr><td>Llave sin cerrar</td><td><code>error: expected declaration or statement at end of input</code></td><td>Revise la indentación: casi siempre delata el bloque que quedó abierto.</td></tr>
+<tr><td>Nombre mal escrito</td><td><code>error: 'printff' undeclared</code></td><td>C distingue mayúsculas de minúsculas: <code>Printf</code> no es <code>printf</code>.</td></tr>
+<tr><td>Falta <code>-lm</code> usando <code>math.h</code></td><td><code>undefined reference to 'sqrt'</code></td><td>Es un error del enlazador, no del compilador: el prototipo existía, la implementación no se enlazó.</td></tr>
+</table></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Ejercicios propuestos</h2></div>
+    <div class="slide-body">
+      
+<ol>
+<li>Compile y ejecute <code>hello.c</code>. Modifíquelo para que imprima su nombre, su número de carné y el nombre del curso en tres líneas distintas, usando un solo <code>printf</code>.</li>
+<li>Borre a propósito el punto y coma de una línea, compile y lea el mensaje de error completo. Anote en qué línea lo reporta <code>gcc</code> y en cuál estaba realmente el problema. Repita quitando el <code>#include</code>.</li>
+<li>Escriba <code>or_tabla.c</code> y <code>xor_tabla.c</code>, análogos al ejemplo de la compuerta AND, para <code>F = A + B</code> y <code>F = A &oplus; B</code>.</li>
+<li>Escriba un programa que imprima la tabla de verdad de las <strong>tres</strong> compuertas a la vez, con encabezado <code>A | B | AND | OR | XOR</code>, usando <code>\t</code> para alinear las columnas en lugar de espacios.</li>
+<li>Investigue con <code>gcc -E hello.c | wc -l</code> cuántas líneas tiene su programa después del preprocesador y explique por qué son tantas.</li>
+<li>Compile con <code>gcc -S hello.c</code> y abra el archivo <code>hello.s</code>. No hace falta entenderlo: identifique la línea donde se llama a <code>printf</code>.</li>
+</ol>
+
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-4-logica-secuencial/verilog-secuencial.html"><span class="lbl">&larr; Anterior</span>Ejemplos de Verilog: Lógica Secuencial</a>
+    <a class="next" href="../unidad-6-programacion-c/docker-entorno.html"><span class="lbl">Siguiente &rarr;</span>Entorno de Desarrollo con Docker</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

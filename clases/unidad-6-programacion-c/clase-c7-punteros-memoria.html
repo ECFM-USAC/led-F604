@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Punteros y Manejo de Memoria &mdash; F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u6); --u-soft: var(--u6-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-6">Programación en C</a><span class="sep">/</span>
+      Punteros y Manejo de Memoria
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">&larr; Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 6 · Programación en C</div>
+    <h1>Punteros y Manejo de Memoria</h1>
+    <div class="unit-badges"><span class="badge">Clase 7 de 7</span><span class="badge">3 períodos</span><span class="badge">Manejo de memoria</span></div>
+  </div>
+
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">La memoria es un arreglo de bytes con dirección</a></li>
+      <li><a href="#s2">Los operadores &amp; y *</a></li>
+      <li><a href="#s3">El puntero nulo</a></li>
+      <li><a href="#s4">Punteros como salida: el sumador completo, por fin</a></li>
+      <li><a href="#s5">Punteros y arreglos</a></li>
+      <li><a href="#s6">Cadenas vistas como punteros</a></li>
+      <li><a href="#s7">Dónde vive la memoria: estática, pila y montículo</a></li>
+      <li><a href="#s8">malloc, calloc y free</a></li>
+      <li><a href="#s9">Ejemplo: tabla de verdad de N variables</a></li>
+      <li><a href="#s10">Los cuatro errores de memoria</a></li>
+      <li><a href="#s11">Cierre: del programa al hardware</a></li>
+      <li><a href="#s12">Ejercicios propuestos</a></li>
+    </ol>
+  </div>
+
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>La memoria es un arreglo de bytes con dirección</h2></div>
+    <div class="slide-body">
+      
+<p>En la Unidad 4 una memoria se describió como un conjunto de celdas, cada una identificada por una dirección que llega por el bus de direcciones. La memoria de un programa en C es exactamente eso: un arreglo gigantesco de bytes numerados desde 0.</p>
+<p>Toda variable vive en alguna de esas celdas. El nombre <code>x</code> es una comodidad del compilador; lo que la máquina maneja es la dirección donde <code>x</code> está guardada. Un <strong>puntero</strong> es, simplemente, una variable que guarda una dirección.</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Variable ordinaria</h3>
+                <p>Contiene un <em>valor</em>: <code>int x = 202;</code> guarda el número 202.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Puntero</h3>
+                <p>Contiene una <em>dirección</em>: <code>int *p = &amp;x;</code> guarda dónde vive <code>x</code>.</p>
+              </div>
+            </div>
+<p>Los punteros son la razón por la que C puede hacer cosas que otros lenguajes no: devolver varios resultados, recorrer arreglos sin copiarlos, pedir memoria durante la ejecución y escribir directamente en un registro de hardware mapeado a una dirección fija.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Los operadores &amp; y *</h2></div>
+    <div class="slide-body">
+      
+<p>Dos operadores bastan para todo el tema, y son inversos uno del otro:</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Operador</th><th>Se lee</th><th>Qué hace</th></tr>
+<tr><td><code>&amp;x</code></td><td>dirección de</td><td>Entrega la dirección donde está <code>x</code>. Es el mismo <code>&amp;</code> que ya usaba <code>scanf</code>.</td></tr>
+<tr><td><code>*p</code></td><td>contenido de</td><td>Entrega el valor guardado en la dirección <code>p</code>. Se llama <em>desreferenciar</em>.</td></tr>
+</table></div>
+<pre class="code-block">/* punteros.c -- lo minimo indispensable */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int x = 202;
+    int *p;             /* p es un puntero a int */
+
+    p = &amp;x;             /* p guarda la direccion de x */
+
+    printf("x        = %d\n", x);
+    printf("&amp;x       = %p\n", (void *) &amp;x);     /* la direccion */
+    printf("p        = %p\n", (void *) p);      /* la misma     */
+    printf("*p       = %d\n", *p);              /* el valor: 202 */
+
+    *p = 7;             /* escribe en x A TRAVES del puntero */
+    printf("ahora x  = %d\n", x);               /* 7 */
+
+    return 0;
+}</pre>
+<p>El asterisco aparece en dos papeles distintos, y confundirlos es normal al principio: en <code>int *p;</code> forma parte de la <strong>declaración</strong> (&laquo;p es un puntero a int&raquo;); en <code>*p = 7;</code> es el <strong>operador</strong> que accede al contenido.</p>
+<p class="note">Un puntero tiene tipo: <code>int *</code>, <code>char *</code>, <code>double *</code>. El tipo no cambia la dirección, pero sí cómo se interpretan los bytes que hay allí y cuánto avanza la aritmética de punteros. <code>void *</code> es un puntero genérico, sin tipo asociado.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>El puntero nulo</h2></div>
+    <div class="slide-body">
+      
+<p>La constante <code>NULL</code> (definida en <code>stdio.h</code> y otros encabezados) representa &laquo;este puntero no apunta a nada&raquo;. Es el valor que devuelven las funciones cuando fallan, y el que conviene dar a un puntero que todavía no tiene destino.</p>
+<pre class="code-block">int *p = NULL;
+
+if (p != NULL) {
+    printf("%d\n", *p);    /* solo se desreferencia si es valido */
+}</pre>
+<p>Desreferenciar un puntero nulo termina el programa con una violación de segmento. Eso es, paradójicamente, lo bueno: el error se ve de inmediato. Desreferenciar un puntero <em>sin inicializar</em> es peor, porque contiene una dirección cualquiera y el programa puede seguir corriendo con memoria corrompida.</p>
+<p class="note">Regla práctica: todo puntero debe tener un valor desde el momento en que se declara &mdash;una dirección válida o <code>NULL</code>&mdash;, y debe comprobarse antes de desreferenciarlo cuando pudo haber fallado.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Punteros como salida: el sumador completo, por fin</h2></div>
+    <div class="slide-body">
+      
+<p>En la clase 5 el sumador completo tuvo que empaquetar sus dos salidas en un solo entero, porque una función devuelve un único valor. Con punteros el problema desaparece: la función recibe <strong>dónde</strong> escribir cada salida.</p>
+<pre class="code-block">/* sumador_ptr.c -- sumador completo con dos salidas reales */
+#include &lt;stdio.h&gt;
+
+void sumador_completo(int a, int b, int cin, int *s, int *cout)
+{
+    *s    = a ^ b ^ cin;
+    *cout = (a &amp; b) | (cin &amp; (a ^ b));
+}
+
+int main(void)
+{
+    int s, cout;
+
+    printf(" A B Cin | S Cout\n");
+    printf("---------+-------\n");
+
+    for (int a = 0; a &lt;= 1; a++) {
+        for (int b = 0; b &lt;= 1; b++) {
+            for (int cin = 0; cin &lt;= 1; cin++) {
+                sumador_completo(a, b, cin, &amp;s, &amp;cout);
+                printf(" %d %d  %d  | %d   %d\n", a, b, cin, s, cout);
+            }
+        }
+    }
+
+    return 0;
+}</pre>
+<p>La firma de la función ahora se lee como la hoja de datos de un bloque lógico: tres entradas por valor, dos salidas por dirección. Es el patrón estándar en C para una función con varios resultados, y el que usan casi todas las bibliotecas de sistema.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Punteros y arreglos</h2></div>
+    <div class="slide-body">
+      
+<p>Aquí se explica la frase que quedó pendiente en la clase anterior. En C, el nombre de un arreglo usado en una expresión <strong>se convierte en la dirección de su primer elemento</strong>. De ahí que estas dos notaciones sean equivalentes:</p>
+<pre class="code-block">int a[4] = {10, 20, 30, 40};
+
+a        /* equivale a  &amp;a[0]        */
+a[i]     /* equivale a  *(a + i)     */
+&amp;a[i]    /* equivale a   a + i       */</pre>
+<p>Y de ahí también que pasar un arreglo a una función no copie nada: lo que viaja son 8 bytes con una dirección. Por eso la función <em>sí</em> puede modificar el arreglo del llamador, y por eso <code>sizeof</code> ya no da el tamaño del bloque.</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Un arreglo NO es un puntero</h3>
+                <p><code>int a[4];</code> reserva 16 bytes de datos. El nombre <code>a</code> no es una variable que se pueda reasignar: <code>a = p;</code> es un error de compilación.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Pero se comporta como uno</h3>
+                <p>En casi toda expresión, y siempre al pasarlo a una función, <code>a</code> se degrada a <code>&amp;a[0]</code>. Dentro de la función, el parámetro <code>int a[]</code> <em>es</em> un <code>int *</code>.</p>
+              </div>
+            </div>
+<p>La <strong>aritmética de punteros</strong> respeta el tipo: sumar 1 a un <code>int *</code> avanza 4 bytes, no 1, porque avanza <em>un elemento</em>. Esto permite recorrer un arreglo sin índices:</p>
+<pre class="code-block">int a[4] = {10, 20, 30, 40};
+
+for (int *p = a; p &lt; a + 4; p++) {
+    printf("%d ", *p);        /* 10 20 30 40 */
+}</pre><p class="note">Ambas formas son correctas y producen el mismo código máquina. La notación con índices (<code>a[i]</code>) suele ser más legible; la de punteros aparece mucho en código de bibliotecas y conviene saber leerla.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Cadenas vistas como punteros</h2></div>
+    <div class="slide-body">
+      
+<p>Una cadena literal es un arreglo de caracteres en memoria, y <code>char *s = \"hola\";</code> guarda la dirección de su primer carácter. Esto explica una distinción que confunde a menudo:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3><code>char s[] = "hola";</code></h3>
+                <p>Reserva 5 bytes <strong>propios</strong> y copia el texto allí. El contenido se puede modificar: <code>s[0] = 'H';</code> es válido.</p>
+              </div>
+              <div class="compare-item">
+                <h3><code>char *s = "hola";</code></h3>
+                <p>Guarda la dirección del literal, que está en memoria de solo lectura. <code>s[0] = 'H';</code> compila pero <strong>falla en ejecución</strong>.</p>
+              </div>
+            </div>
+<p>Por eso los literales se declaran como <code>const char *</code> cuando no se van a modificar. Recorrer una cadena con un puntero es el idioma clásico de C:</p>
+<pre class="code-block">int longitud(const char *s)
+{
+    const char *inicio = s;
+
+    while (*s != '\0') {      /* avanza hasta el terminador */
+        s++;
+    }
+
+    return s - inicio;        /* la resta de punteros da la distancia */
+}</pre>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Dónde vive la memoria: estática, pila y montículo</h2></div>
+    <div class="slide-body">
+      
+<p>Un programa en ejecución reparte su memoria en tres zonas con comportamientos muy distintos:</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Zona</th><th>Qué guarda</th><th>Cuánto vive</th><th>Tamaño</th><th>Quién la administra</th></tr>
+<tr><td>Estática</td><td>Variables globales y <code>static</code></td><td>Todo el programa</td><td>Fija al compilar</td><td>El compilador</td></tr>
+<tr><td>Pila (<em>stack</em>)</td><td>Variables locales y parámetros</td><td>Mientras dura la llamada</td><td>Limitada (unos pocos MB)</td><td>Automática: se libera al salir</td></tr>
+<tr><td>Montículo (<em>heap</em>)</td><td>Lo pedido con <code>malloc</code></td><td>Hasta que usted la libere</td><td>Grande, limitada por el sistema</td><td><strong>Usted</strong>, con <code>free</code></td></tr>
+</table></div>
+<p>La pila explica dos errores ya mencionados: por qué una variable local contiene basura (es memoria reutilizada de llamadas anteriores) y por qué devolver la dirección de una variable local es un error (el espacio se reutiliza en cuanto la función retorna). También explica el desbordamiento de pila de una recursión sin caso base.</p>
+<p>El montículo es la única zona cuyo tamaño puede decidirse <strong>durante la ejecución</strong>, y por eso es la que se usa cuando no se sabe de antemano cuántos datos habrá.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>malloc, calloc y free</h2></div>
+    <div class="slide-body">
+      
+<p><code>malloc</code> recibe un número de <strong>bytes</strong> y devuelve la dirección del bloque reservado, o <code>NULL</code> si no hay memoria. Están declaradas en <code>&lt;stdlib.h&gt;</code>.</p>
+<pre class="code-block">#include &lt;stdlib.h&gt;
+
+int *v = malloc(n * sizeof(int));     /* n enteros, sin inicializar */
+if (v == NULL) {                      /* SIEMPRE verificar          */
+    printf("sin memoria\n");
+    return 1;
+}
+
+v[0] = 5;                             /* se usa como un arreglo normal */
+
+free(v);                              /* devolver la memoria */
+v = NULL;                             /* evitar el puntero colgante */</pre><div class="table-wrap"><table class="data-table">
+<tr><th>Función</th><th>Qué hace</th><th>Detalle</th></tr>
+<tr><td><code>malloc(n)</code></td><td>Reserva <em>n</em> bytes sin inicializar</td><td>Contiene basura hasta que usted escriba</td></tr>
+<tr><td><code>calloc(n, tam)</code></td><td>Reserva <em>n</em> elementos de <em>tam</em> bytes</td><td>Los pone todos en <strong>cero</strong></td></tr>
+<tr><td><code>realloc(p, n)</code></td><td>Cambia el tamaño de un bloque</td><td>Puede moverlo: use siempre el puntero devuelto</td></tr>
+<tr><td><code>free(p)</code></td><td>Devuelve el bloque al sistema</td><td>Después de esto, <code>p</code> ya no es válido</td></tr>
+</table></div>
+<p>Escribir <code>sizeof(int)</code> en lugar de 4 no es pedantería: es lo que hace que el programa siga siendo correcto en otra máquina o con otro tipo. La forma más robusta de escribirlo evita incluso nombrar el tipo:</p>
+<pre class="code-block">int *v = malloc(n * sizeof *v);       /* "n veces el tamano de lo que v apunta" */</pre><p class="note">Por cada <code>malloc</code> debe existir exactamente un <code>free</code>. Ni cero (fuga de memoria) ni dos (corrupción del montículo). En programas largos conviene decidir desde el diseño <em>quién</em> es responsable de liberar cada bloque.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Ejemplo: tabla de verdad de N variables</h2></div>
+    <div class="slide-body">
+      
+<p>Un programa que genera la tabla de verdad de una función de <em>n</em> variables no puede declarar el arreglo de antemano: necesita 2ⁿ filas y <em>n</em> se conoce hasta la ejecución. Este es el caso que justifica la memoria dinámica.</p>
+<pre class="code-block">/* tabla_dinamica.c -- tabla de verdad de n variables (n leido en ejecucion) */
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    int n;
+
+    printf("Numero de variables (1 a 10): ");
+    if (scanf("%d", &amp;n) != 1 || n &lt; 1 || n &gt; 10) {
+        printf("valor invalido\n");
+        return 1;
+    }
+
+    int filas = 1 &lt;&lt; n;                        /* 2^n */
+
+    int *tabla = malloc(filas * sizeof *tabla);
+    if (tabla == NULL) {
+        printf("sin memoria para %d filas\n", filas);
+        return 1;
+    }
+
+    /* F = (x0 AND x1) OR (NOT x2)  usando los bits del indice */
+    for (int i = 0; i &lt; filas; i++) {
+        int x0 = (i &gt;&gt; (n - 1)) &amp; 1;
+        int x1 = (n &gt;= 2) ? (i &gt;&gt; (n - 2)) &amp; 1 : 0;
+        int x2 = (n &gt;= 3) ? (i &gt;&gt; (n - 3)) &amp; 1 : 0;
+
+        tabla[i] = (x0 &amp; x1) | (!x2);
+    }
+
+    printf("\nindice | entradas | F\n");
+    printf("-------+----------+---\n");
+    for (int i = 0; i &lt; filas; i++) {
+        printf("  %3d  | ", i);
+        for (int b = n - 1; b &gt;= 0; b--) {
+            printf("%d", (i &gt;&gt; b) &amp; 1);
+        }
+        printf("     | %d\n", tabla[i]);
+    }
+
+    int unos = 0;
+    for (int i = 0; i &lt; filas; i++) {
+        unos += tabla[i];
+    }
+    printf("\nF vale 1 en %d de %d combinaciones\n", unos, filas);
+
+    free(tabla);                               /* devolver la memoria */
+    tabla = NULL;
+
+    return 0;
+}</pre>
+<p>El índice de la fila <em>es</em> el valor binario de las entradas: el bit <em>b</em> del índice da el valor de la variable correspondiente. Ese truco &mdash;recorrer <code>i</code> de 0 a 2ⁿ&minus;1 y extraer sus bits&mdash; genera cualquier tabla de verdad sin escribir bucles anidados.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Los cuatro errores de memoria</h2></div>
+    <div class="slide-body">
+      
+<div class="table-wrap"><table class="data-table">
+<tr><th>Error</th><th>Qué se hizo</th><th>Consecuencia</th></tr>
+<tr><td>Fuga de memoria</td><td>Se pide con <code>malloc</code> y nunca se libera</td><td>El programa crece hasta agotar la memoria. No falla de inmediato, lo que lo hace difícil de notar.</td></tr>
+<tr><td>Puntero colgante</td><td>Se usa un puntero después de <code>free</code></td><td>La memoria ya pertenece a otro. Se leen o escriben datos ajenos.</td></tr>
+<tr><td>Doble liberación</td><td><code>free(p)</code> dos veces sobre el mismo bloque</td><td>Corrompe las estructuras internas del montículo; el programa falla más adelante, lejos del error.</td></tr>
+<tr><td>Puntero sin inicializar</td><td><code>int *p; *p = 5;</code></td><td>Escribe en una dirección arbitraria. Es el error más destructivo porque puede no fallar nunca.</td></tr>
+</table></div>
+<p>Ninguno de los cuatro produce un error de compilación. Por eso en C se usan herramientas que vigilan la memoria en ejecución:</p>
+<pre class="code-block">$ gcc -std=c11 -Wall -Wextra -g -fsanitize=address programa.c -o programa
+$ ./programa
+    # aborta en la linea exacta del acceso invalido
+
+$ valgrind --leak-check=full ./programa
+    # reporta cada bloque no liberado y donde se habia pedido</pre><p class="note">Acostúmbrese a compilar con <code>-fsanitize=address</code> mientras desarrolla y a quitarlo solo en la versión final. Encuentra en segundos errores que de otro modo cuestan horas.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Cierre: del programa al hardware</h2></div>
+    <div class="slide-body">
+      
+<p>Esta unidad empezó con un <code>printf</code> que imprimía una tabla de verdad escrita a mano y termina con un programa que genera la de cualquier función de <em>n</em> variables en memoria pedida durante la ejecución. En el camino, cada estructura del lenguaje tuvo un equivalente en lo que ya se había construido con compuertas:</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>En C</th><th>En el curso</th></tr>
+<tr><td>Operadores <code>&amp;</code> <code>|</code> <code>^</code> <code>~</code></td><td>Compuertas AND, OR, XOR, NOT (Unidad 2)</td></tr>
+<tr><td><code>if</code> / <code>switch</code></td><td>Multiplexores y decodificadores (Unidad 3)</td></tr>
+<tr><td>Bucles anidados</td><td>Recorrido exhaustivo de una tabla de verdad (Unidad 2)</td></tr>
+<tr><td>Funciones</td><td>Bloques lógicos reutilizables: medio sumador, sumador completo (Unidad 3)</td></tr>
+<tr><td>Variables <code>static</code></td><td>Elementos con estado: latches y flip-flops (Unidad 4)</td></tr>
+<tr><td>Arreglos</td><td>Registros, registros de desplazamiento y memorias (Unidad 4)</td></tr>
+<tr><td>Punteros</td><td>Direcciones y bus de direcciones</td></tr>
+</table></div>
+<p>La continuación natural es la Unidad 7: un FPGA se describe con HDL, pero las herramientas que lo sintetizan, el software que carga el bitstream y el firmware que acompaña al sistema están escritos en C. Saber ambos lados es lo que permite diseñar un sistema digital completo.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Ejercicios propuestos</h2></div>
+    <div class="slide-body">
+      
+<ol>
+<li>Escriba una función <code>void intercambia(int *a, int *b)</code> que intercambie dos enteros, y compruebe desde <code>main</code> que los valores realmente cambiaron.</li>
+<li>Escriba una función <code>void divide(int n, int divisor, int *cociente, int *residuo)</code> que devuelva ambos resultados por puntero.</li>
+<li>Escriba una función <code>void separa_nibbles(int byte, int *alto, int *bajo)</code> que separe un byte en sus dos mitades de 4 bits.</li>
+<li>Modifique el sumador de 4 bits de la clase 5 para que use la versión con punteros de <code>sumador_completo</code> y devuelva el resultado y el acarreo de salida por separado.</li>
+<li>Escriba un programa que pida <em>n</em>, reserve con <code>malloc</code> un arreglo de <em>n</em> enteros, lo llene con los valores leídos del teclado, calcule el promedio y libere la memoria.</li>
+<li>Escriba una función <code>int *gray_tabla(int bits)</code> que reserve y devuelva un arreglo con la secuencia completa de código Gray de <em>bits</em> bits. El llamador es responsable de liberarla.</li>
+<li>Modifique <code>tabla_dinamica.c</code> para que la función booleana se lea como una lista de mintérminos desde el teclado, en lugar de estar escrita en el código.</li>
+<li>Escriba una función <code>void invierte(char *s)</code> que invierta una cadena usando dos punteros que avanzan desde los extremos hacia el centro.</li>
+<li>Compile un programa con una fuga de memoria deliberada y ejecútelo bajo <code>valgrind</code>. Interprete el reporte y luego corrija la fuga.</li>
+<li>Escriba un programa que simule una memoria de 16 posiciones de 8 bits reservada dinámicamente, con operaciones de lectura y escritura por dirección, y un menú que las ofrezca en un bucle.</li>
+</ol>
+
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-6-programacion-c/clase-c6-arreglos-cadenas.html"><span class="lbl">&larr; Anterior</span>Arreglos y Cadenas</a>
+    <a class="next" href="../unidad-7-fpga/clase-11b-hdl-psoc.html"><span class="lbl">Siguiente &rarr;</span>HDL y Diseño con PSoC (Charla invitada — Cristian Sisterna, ICTP-MLAB)</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

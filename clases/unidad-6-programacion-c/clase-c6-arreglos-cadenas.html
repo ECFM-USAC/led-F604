@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arreglos y Cadenas &mdash; F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u6); --u-soft: var(--u6-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-6">Programación en C</a><span class="sep">/</span>
+      Arreglos y Cadenas
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">&larr; Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 6 · Programación en C</div>
+    <h1>Arreglos y Cadenas</h1>
+    <div class="unit-badges"><span class="badge">Clase 6 de 7</span><span class="badge">3 períodos</span><span class="badge">Arreglos</span></div>
+  </div>
+
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Un arreglo es un registro de N posiciones</a></li>
+      <li><a href="#s2">Inicialización</a></li>
+      <li><a href="#s3">sizeof y el número de elementos</a></li>
+      <li><a href="#s4">Sin verificación de límites</a></li>
+      <li><a href="#s5">Ejemplo: registro de desplazamiento de 8 bits</a></li>
+      <li><a href="#s6">Arreglos bidimensionales</a></li>
+      <li><a href="#s7">Cadenas de caracteres</a></li>
+      <li><a href="#s8">Leer texto de forma segura</a></li>
+      <li><a href="#s9">Funciones de string.h</a></li>
+      <li><a href="#s10">Ejemplo: de cadena binaria a número y de vuelta</a></li>
+      <li><a href="#s11">Errores frecuentes con arreglos y cadenas</a></li>
+      <li><a href="#s12">Ejercicios propuestos</a></li>
+    </ol>
+  </div>
+
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Un arreglo es un registro de N posiciones</h2></div>
+    <div class="slide-body">
+      
+<p>Un <strong>arreglo</strong> es un bloque contiguo de memoria que guarda <em>N</em> elementos del mismo tipo, accesibles por un índice. Si un <code>unsigned char</code> modela un registro de 8 bits, un arreglo modela un banco de registros, una memoria o los ocho biestables de un registro de desplazamiento tratados uno por uno.</p>
+<pre class="code-block">int   a[4];                           /* 4 enteros: a[0] a[1] a[2] a[3] */
+char  buf[128];                       /* 128 bytes, util como "buffer"  */
+double v[3] = {0.5, 1.0, 1.5};        /* declaracion con inicializacion */</pre>
+<p>Dos reglas que no cambian nunca en C:</p>
+<ul>
+<li>El índice va de <strong>0 a N&minus;1</strong>. Un arreglo de 4 elementos tiene como último índice válido el 3.</li>
+<li>El tamaño entre corchetes debe ser conocido al declarar, y los elementos quedan uno a continuación del otro en memoria.</li>
+</ul>
+<p class="note">Que el índice empiece en 0 no es un capricho: el índice es el <em>desplazamiento</em> desde el inicio del bloque. El primer elemento está a distancia cero del principio. En la clase 7 esto dejará de ser una convención para volverse aritmética explícita.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Inicialización</h2></div>
+    <div class="slide-body">
+      
+<div class="table-wrap"><table class="data-table">
+<tr><th>Declaración</th><th>Caso</th><th>Qué ocurre</th></tr>
+<tr><td><code>int a[4] = {1, 2, 3, 4};</code></td><td>Completa</td><td>Cada elemento recibe su valor.</td></tr>
+<tr><td><code>int a[4] = {1, 2};</code></td><td>Parcial</td><td><code>a[0]=1</code>, <code>a[1]=2</code> y el resto se rellena con <strong>ceros</strong>.</td></tr>
+<tr><td><code>int a[4] = {0};</code></td><td>Todo en cero</td><td>Idioma habitual para limpiar un arreglo completo.</td></tr>
+<tr><td><code>int a[] = {1, 2, 3};</code></td><td>Tamaño deducido</td><td>El compilador cuenta los valores: el arreglo tiene 3 elementos.</td></tr>
+<tr><td><code>int a[4];</code></td><td>Sin inicializar</td><td>Si es local, contiene <strong>basura</strong>. Leerlo antes de escribirlo es un error.</td></tr>
+</table></div>
+<p>El recorrido se hace con un <code>for</code> cuyo índice va de 0 a N&minus;1:</p>
+<pre class="code-block">int reg[8] = {0};
+
+for (int i = 0; i &lt; 8; i++) {
+    reg[i] = i * i;
+}
+
+for (int i = 0; i &lt; 8; i++) {
+    printf("reg[%d] = %d\n", i, reg[i]);
+}</pre>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>sizeof y el número de elementos</h2></div>
+    <div class="slide-body">
+      
+<p><code>sizeof</code> aplicado a un arreglo devuelve el tamaño <strong>de todo el bloque</strong> en bytes. Dividiéndolo entre el tamaño de un elemento se obtiene la cantidad de elementos, sin repetir el número 8 por todo el programa:</p>
+<pre class="code-block">int a[10];
+
+printf("%zu bytes en total\n", sizeof(a));              /* 40 */
+printf("%zu bytes por elemento\n", sizeof(a[0]));       /*  4 */
+printf("%zu elementos\n", sizeof(a) / sizeof(a[0]));    /* 10 */</pre>
+<p>Esta técnica es muy usada, pero tiene una trampa importante: <strong>solo funciona donde el arreglo fue declarado</strong>. Al pasarlo a una función, lo que viaja no es el bloque completo sino la dirección de su primer elemento, y <code>sizeof</code> pasa a dar el tamaño de esa dirección (8 bytes en una máquina de 64 bits), no el del arreglo.</p>
+<pre class="code-block">void mal(int a[])
+{
+    printf("%zu\n", sizeof(a) / sizeof(a[0]));   /* NO es el numero de elementos */
+}
+
+void bien(int a[], int n)                        /* el tamano se pasa aparte */
+{
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", a[i]);
+    }
+}</pre><p class="note">Por eso toda función que recibe un arreglo recibe también su tamaño como parámetro adicional. Es una regla sin excepciones en C, y el motivo profundo se verá en la clase 7: un arreglo pasado a una función &laquo;se degrada&raquo; a un puntero.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Sin verificación de límites</h2></div>
+    <div class="slide-body">
+      
+<p>C <strong>no comprueba</strong> que el índice esté dentro del arreglo. Escribir en <code>a[10]</code> de un arreglo de 4 elementos compila sin una sola advertencia y, en ejecución, modifica la memoria que esté en esa dirección: otra variable, la dirección de retorno de la función, cualquier cosa.</p>
+<pre class="code-block">int a[4] = {0};
+
+a[4] = 99;        /* FUERA DE RANGO: el ultimo indice valido es 3 */
+a[-1] = 7;        /* tambien fuera: escribe antes del arreglo     */</pre>
+<p>Esto es el <strong>desbordamiento de búfer</strong> (<em>buffer overflow</em>): el programa lee o escribe más allá del espacio reservado. En el mejor caso el programa falla con una violación de segmento; en el peor, sigue corriendo con datos corrompidos. Es, además, la familia de vulnerabilidades más explotada de la historia del software, porque permite sobrescribir código y desviar la ejecución.</p>
+<p class="note">Compile con <code>gcc -fsanitize=address -g</code> durante el desarrollo: el programa aborta en el instante exacto del acceso fuera de rango e indica la línea. Es la forma más rápida de encontrar estos errores.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Ejemplo: registro de desplazamiento de 8 bits</h2></div>
+    <div class="slide-body">
+      
+<p>El registro de desplazamiento de la Unidad 4 &mdash;ocho biestables en cadena, cada uno entregando su valor al siguiente en cada flanco de reloj&mdash; se modela con un arreglo de ocho posiciones y un bucle.</p>
+<pre class="code-block">/* shift.c -- registro de desplazamiento de 8 bits, entrada serie */
+#include &lt;stdio.h&gt;
+
+void imprime(int reg[], int n)
+{
+    for (int i = n - 1; i &gt;= 0; i--) {
+        printf("%d", reg[i]);
+    }
+    printf("\n");
+}
+
+int main(void)
+{
+    int reg[8] = {0};
+    int entrada[8] = {1, 0, 1, 1, 0, 0, 1, 0};   /* datos en serie */
+
+    printf("pulso | registro\n");
+    printf("------+----------\n");
+
+    for (int pulso = 0; pulso &lt; 8; pulso++) {
+
+        for (int i = 7; i &gt; 0; i--) {    /* desplaza hacia el MSB */
+            reg[i] = reg[i - 1];
+        }
+        reg[0] = entrada[pulso];         /* entrada serie en el LSB */
+
+        printf("  %d   | ", pulso + 1);
+        imprime(reg, 8);
+    }
+
+    return 0;
+}</pre>
+<p>El bucle interior debe recorrerse <strong>de 7 hacia 0</strong>: si se hiciera al revés, cada posición se sobrescribiría antes de copiarse y el registro se llenaría con el mismo valor. Es el mismo razonamiento que explica por qué los biestables necesitan capturar el valor <em>anterior</em> del vecino en el flanco de reloj.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Arreglos bidimensionales</h2></div>
+    <div class="slide-body">
+      
+<p>Un arreglo puede tener dos índices, y entonces se comporta como una matriz: el primero selecciona la fila y el segundo la columna. En memoria sigue siendo un bloque contiguo, almacenado fila por fila.</p>
+<pre class="code-block">int m[2][3] = {
+    {1, 2, 3},      /* fila 0 */
+    {4, 5, 6}       /* fila 1 */
+};
+
+printf("%d\n", m[1][2]);      /* imprime 6 */</pre>
+<p>El mapa de Karnaugh de 4 variables de la Unidad 2 es una matriz 4&times;4 cuyas filas y columnas están en código Gray. Guardarlo en un arreglo bidimensional permite imprimirlo tal como se dibuja a mano:</p>
+<pre class="code-block">/* kmap.c -- dibuja el mapa de Karnaugh de una funcion de 4 variables */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    /* F = suma de minterminos (0,1,2,5,8,9,10) */
+    int f[16] = {1,1,1,0, 0,1,0,0, 1,1,1,0, 0,0,0,0};
+
+    int gray[4] = {0, 1, 3, 2};        /* orden Gray: 00 01 11 10 */
+    int kmap[4][4];
+
+    for (int fila = 0; fila &lt; 4; fila++) {
+        for (int col = 0; col &lt; 4; col++) {
+            int minterm = gray[fila] * 4 + gray[col];
+            kmap[fila][col] = f[minterm];
+        }
+    }
+
+    printf("AB\\CD  00  01  11  10\n");
+    for (int fila = 0; fila &lt; 4; fila++) {
+        printf("  %02d   ", (gray[fila] / 2) * 10 + gray[fila] % 2);
+        for (int col = 0; col &lt; 4; col++) {
+            printf(" %d  ", kmap[fila][col]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}</pre><p class="note">El arreglo <code>gray</code> contiene el orden 00, 01, 11, 10 que hace que celdas vecinas difieran en un solo bit. Esa es toda la magia del mapa de Karnaugh, y aquí queda escrita en una sola línea de código.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Cadenas de caracteres</h2></div>
+    <div class="slide-body">
+      
+<p>C no tiene un tipo &laquo;cadena&raquo;. Una cadena es simplemente un <strong>arreglo de <code>char</code> terminado por el carácter nulo <code>'\0'</code></strong>. Ese cero final es lo que permite a las funciones saber dónde termina el texto sin que nadie les pase la longitud.</p>
+<pre class="code-block">char saludo[] = "hola";
+/*  en memoria:  'h' 'o' 'l' 'a' '\0'   -&gt; 5 bytes, no 4 */</pre>
+<p>De ahí se desprenden las consecuencias prácticas:</p>
+<ul>
+<li>Un arreglo que vaya a guardar <em>n</em> caracteres debe declararse de tamaño <em>n</em>+1, para que quepa el terminador.</li>
+<li><code>sizeof(saludo)</code> da 5 (los bytes reservados) mientras que <code>strlen(saludo)</code> da 4 (los caracteres antes del <code>'\0'</code>).</li>
+<li>Recorrer una cadena no requiere saber su longitud: se avanza hasta encontrar el terminador.</li>
+</ul>
+<pre class="code-block">char s[] = "F604";
+
+for (int i = 0; s[i] != '\0'; i++) {
+    printf("s[%d] = '%c' (codigo %d)\n", i, s[i], s[i]);
+}</pre>
+<p>Como cada carácter es en realidad su código ASCII, la aritmética sobre caracteres funciona: <code>'7' - '0'</code> vale 7, y <code>'0' + 5</code> es el carácter <code>'5'</code>. Es la forma estándar de convertir entre dígitos y números.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Leer texto de forma segura</h2></div>
+    <div class="slide-body">
+      
+<p>Para leer una línea completa se usa <code>fgets</code>, que recibe el arreglo destino, <strong>su tamaño</strong> y el flujo de entrada. Al conocer el tamaño, nunca escribe fuera del arreglo.</p>
+<pre class="code-block">/* leer_linea.c */
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void)
+{
+    char linea[64];
+
+    printf("Escriba algo: ");
+    if (fgets(linea, sizeof(linea), stdin) == NULL) {
+        return 1;                       /* no habia nada que leer */
+    }
+
+    linea[strcspn(linea, "\n")] = '\0'; /* quita el salto de linea final */
+
+    printf("leido: \"%s\" (%zu caracteres)\n", linea, strlen(linea));
+    return 0;
+}</pre><div class="compare">
+              <div class="compare-item">
+                <h3>Nunca use <code>gets</code></h3>
+                <p>No recibe el tamaño del arreglo, así que no hay forma de evitar el desbordamiento. Fue <strong>eliminada del estándar</strong> en C11 por insegura.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Use <code>fgets</code></h3>
+                <p>Recibe el tamaño y corta la lectura si no cabe. Deja el <code>'\n'</code> final dentro de la cadena, por eso se elimina a mano.</p>
+              </div>
+            </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Funciones de string.h</h2></div>
+    <div class="slide-body">
+      
+<p>Las operaciones habituales sobre cadenas están en la biblioteca estándar, declaradas en <code>&lt;string.h&gt;</code>:</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Función</th><th>Qué hace</th><th>Advertencia</th></tr>
+<tr><td><code>strlen(s)</code></td><td>Longitud sin contar el <code>'\0'</code></td><td><code>strlen("hola")</code> &rarr; 4</td></tr>
+<tr><td><code>strcpy(dst, src)</code></td><td>Copia <code>src</code> en <code>dst</code></td><td><code>dst</code> debe tener espacio suficiente</td></tr>
+<tr><td><code>strncpy(dst, src, n)</code></td><td>Copia a lo sumo <em>n</em> caracteres</td><td>Más seguro, pero puede no poner el <code>'\0'</code></td></tr>
+<tr><td><code>strcmp(a, b)</code></td><td>Compara alfabéticamente</td><td>Devuelve <strong>0 si son iguales</strong>, no 1</td></tr>
+<tr><td><code>strcat(dst, src)</code></td><td>Concatena <code>src</code> al final de <code>dst</code></td><td>El espacio sigue siendo responsabilidad suya</td></tr>
+<tr><td><code>strchr(s, c)</code></td><td>Busca un carácter</td><td>Devuelve la posición o <code>NULL</code></td></tr>
+</table></div>
+<p class="note">Dos cadenas <strong>no</strong> se comparan con <code>==</code> ni se copian con <code>=</code>: eso compara o copia direcciones, no contenido. Se usa <code>strcmp</code> y <code>strcpy</code>. Y recuerde que <code>strcmp</code> devuelve 0 cuando son iguales, así que la condición es <code>if (strcmp(a, b) == 0)</code>.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Ejemplo: de cadena binaria a número y de vuelta</h2></div>
+    <div class="slide-body">
+      
+<p>Un programa que lee <code>\"11001010\"</code> escrito como texto y lo convierte al valor 202, y luego hace el camino inverso. Es la rutina que usaría un intérprete de comandos para un circuito digital.</p>
+<pre class="code-block">/* bin_cadena.c -- conversion entre cadena binaria y entero */
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int cadena_a_entero(const char s[])
+{
+    int valor = 0;
+
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (s[i] != '0' &amp;&amp; s[i] != '1') {
+            return -1;                      /* caracter invalido */
+        }
+        valor = valor * 2 + (s[i] - '0');   /* desplaza y agrega el bit */
+    }
+
+    return valor;
+}
+
+void entero_a_cadena(int n, int bits, char s[])
+{
+    for (int i = 0; i &lt; bits; i++) {
+        s[i] = '0' + ((n &gt;&gt; (bits - 1 - i)) &amp; 1);
+    }
+    s[bits] = '\0';                         /* terminador: imprescindible */
+}
+
+int main(void)
+{
+    char entrada[33];
+    char salida[33];
+
+    printf("Ingrese un numero en binario: ");
+    if (fgets(entrada, sizeof(entrada), stdin) == NULL) {
+        return 1;
+    }
+    entrada[strcspn(entrada, "\n")] = '\0';
+
+    int v = cadena_a_entero(entrada);
+    if (v &lt; 0) {
+        printf("eso no es un numero binario\n");
+        return 1;
+    }
+
+    printf("%s en binario = %d decimal = 0x%X hex\n", entrada, v, v);
+
+    entero_a_cadena(v * 2, 12, salida);     /* el mismo valor desplazado */
+    printf("multiplicado por 2 (12 bits): %s\n", salida);
+
+    return 0;
+}</pre>
+<p>Nótese <code>const char s[]</code> en el primer parámetro: le dice al compilador &mdash;y a quien lea el código&mdash; que la función <strong>no modificará</strong> la cadena recibida. Es buena práctica marcarlo siempre que sea cierto.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Errores frecuentes con arreglos y cadenas</h2></div>
+    <div class="slide-body">
+      
+<div class="table-wrap"><table class="data-table">
+<tr><th>Error</th><th>Se ve así</th><th>Qué ocurre</th></tr>
+<tr><td>Índice fuera de rango</td><td><code>for (i = 0; i &lt;= n; i++)</code></td><td>Toca <code>a[n]</code>, que ya no existe. La condición es <code>i &lt; n</code>.</td></tr>
+<tr><td>Olvidar el <code>'\0'</code></td><td>Construir una cadena a mano sin terminarla</td><td><code>printf("%s")</code> sigue imprimiendo memoria hasta encontrar un cero por casualidad.</td></tr>
+<tr><td>Reservar un byte de menos</td><td><code>char s[4] = "hola";</code></td><td>Caben los 4 caracteres pero no el terminador. Declare <code>char s[5]</code> o <code>char s[]</code>.</td></tr>
+<tr><td>Comparar cadenas con <code>==</code></td><td><code>if (s == "fin")</code></td><td>Compara direcciones, nunca contenido. Use <code>strcmp(s, "fin") == 0</code>.</td></tr>
+<tr><td>Asignar cadenas con <code>=</code></td><td><code>s = "hola";</code></td><td><code>error: assignment to expression with array type</code>. Use <code>strcpy</code>.</td></tr>
+<tr><td><code>sizeof</code> dentro de una función</td><td><code>sizeof(a)/sizeof(a[0])</code> sobre un parámetro</td><td>Da el tamaño del puntero. Pase la longitud como parámetro.</td></tr>
+<tr><td>Usar <code>gets</code></td><td><code>gets(buf);</code></td><td>Desbordamiento garantizado si la entrada es larga. Eliminada en C11.</td></tr>
+</table></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Ejercicios propuestos</h2></div>
+    <div class="slide-body">
+      
+<ol>
+<li>Escriba un programa que llene un arreglo de 16 enteros con los valores de 0 a 15 y lo imprima junto con su código Gray, usando funciones para cada tarea.</li>
+<li>Modifique <code>shift.c</code> para que el registro desplace hacia la derecha, y para que se comporte como un <strong>registro circular</strong>: el bit que sale por un extremo entra por el otro.</li>
+<li>Escriba un programa que guarde en un arreglo de 16 posiciones la tabla de verdad de una función de 4 variables leída desde el teclado, y luego imprima la lista de sus mintérminos.</li>
+<li>Amplíe <code>kmap.c</code> para que lea los 16 valores de la función desde la entrada en lugar de tenerlos escritos en el código.</li>
+<li>Escriba una función <code>int cuenta_unos(int a[], int n)</code> y úsela para verificar cuántas celdas en 1 tiene el mapa de Karnaugh del ejercicio anterior.</li>
+<li>Escriba un programa que lea una línea de texto y la imprima al revés. Luego conviértalo en una función <code>void invierte(char s[])</code> que invierta la cadena en el mismo arreglo.</li>
+<li>Escriba un programa que lea una línea y cuente cuántas veces aparece cada letra del alfabeto, usando un arreglo de 26 contadores.</li>
+<li>Escriba un programa que lea una cadena en hexadecimal (por ejemplo <code>\"CA\"</code>) y la convierta a decimal y a binario de 8 bits.</li>
+<li>Escriba un programa que elimine los espacios y tabulaciones al final de cada línea de la entrada, y que descarte las líneas que queden vacías.</li>
+<li>Escriba un programa que imprima un histograma horizontal con la longitud de las palabras de la entrada, usando un arreglo de contadores.</li>
+</ol>
+
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-6-programacion-c/clase-c5-funciones.html"><span class="lbl">&larr; Anterior</span>Funciones</a>
+    <a class="next" href="../unidad-6-programacion-c/clase-c7-punteros-memoria.html"><span class="lbl">Siguiente &rarr;</span>Punteros y Manejo de Memoria</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

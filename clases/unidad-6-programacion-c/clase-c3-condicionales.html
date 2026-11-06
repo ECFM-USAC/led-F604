@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estructuras Condicionales &mdash; F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u6); --u-soft: var(--u6-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-6">Programación en C</a><span class="sep">/</span>
+      Estructuras Condicionales
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">&larr; Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 6 · Programación en C</div>
+    <h1>Estructuras Condicionales</h1>
+    <div class="unit-badges"><span class="badge">Clase 3 de 7</span><span class="badge">3 períodos</span><span class="badge">Condicionales</span></div>
+  </div>
+
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Del multiplexor al <code>if</code></a></li>
+      <li><a href="#s2">La sentencia if</a></li>
+      <li><a href="#s3">if ... else</a></li>
+      <li><a href="#s4">Cadenas else if: el comparador de magnitud</a></li>
+      <li><a href="#s5">La sentencia switch</a></li>
+      <li><a href="#s6">Ejemplo: un multiplexor 4&rarr;1 en software</a></li>
+      <li><a href="#s7">Ejemplo: selector de operación de una ALU</a></li>
+      <li><a href="#s8">El operador condicional <code>?:</code></a></li>
+      <li><a href="#s9">Errores clásicos con condicionales</a></li>
+      <li><a href="#s10">Ejercicios propuestos</a></li>
+    </ol>
+  </div>
+
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Del multiplexor al <code>if</code></h2></div>
+    <div class="slide-body">
+      
+<p>Hasta ahora los programas se ejecutaban línea por línea, de arriba abajo, sin alternativas. Una <strong>estructura condicional</strong> permite que el programa elija qué camino seguir según el valor de una expresión. Es el equivalente en software de algo que ya se construyó en hardware: un multiplexor selecciona una de varias entradas según las líneas de selección; un <code>if</code> selecciona uno de varios bloques de código según una condición.</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>En hardware (Unidad 3)</h3>
+                <p>Un MUX 2&rarr;1 entrega <code>D0</code> o <code>D1</code> según <code>S</code>. Las dos entradas <em>existen siempre</em>; la selección solo decide cuál se propaga a la salida.</p>
+              </div>
+              <div class="compare-item">
+                <h3>En software</h3>
+                <p>Un <code>if/else</code> ejecuta uno de dos bloques según la condición. El bloque no elegido <em>no se ejecuta</em>: no consume tiempo ni produce efectos.</p>
+              </div>
+            </div>
+<p>Esa es la diferencia conceptual que conviene tener clara: el circuito evalúa todo en paralelo y descarta; el programa decide y evalúa solo lo necesario.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>La sentencia if</h2></div>
+    <div class="slide-body">
+      
+<p>La forma más simple ejecuta un bloque solo si la condición es verdadera, es decir, si la expresión entre paréntesis vale <strong>cualquier cosa distinta de cero</strong>:</p>
+<pre class="code-block">if (expresion) {
+    /* se ejecuta si expresion != 0 */
+}</pre>
+<p>Un ejemplo con contenido del curso: determinar si un número es par mirando su bit menos significativo, que es justo lo que haría un circuito con una sola línea.</p>
+<pre class="code-block">/* paridad.c -- par o impar segun el bit 0 */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int n;
+
+    printf("Ingrese un entero: ");
+    scanf("%d", &amp;n);
+
+    if ((n &amp; 1) == 0) {
+        printf("%d es par  (bit 0 = 0)\n", n);
+    }
+
+    return 0;
+}</pre><p class="note"><code>n &amp; 1</code> aísla el bit menos significativo, igual que <code>n % 2</code> pero sin división. Es la forma habitual de probar paridad en firmware.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>if ... else</h2></div>
+    <div class="slide-body">
+      
+<p>Para cubrir también el caso contrario se agrega <code>else</code>. Se ejecuta exactamente uno de los dos bloques, nunca los dos ni ninguno.</p>
+<pre class="code-block">if ((n &amp; 1) == 0) {
+    printf("%d es par\n", n);
+} else {
+    printf("%d es impar\n", n);
+}</pre>
+<p>Las llaves son opcionales cuando el bloque tiene <strong>una sola sentencia</strong>, pero omitirlas es una fuente conocida de errores:</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Peligroso</h3>
+                <pre class="code-block">if (n &gt; 0)
+    printf("positivo\n");
+    printf("siempre se imprime\n");</pre><p>La indentación sugiere que ambas líneas dependen del <code>if</code>. No es así: solo la primera. El compilador no mira los espacios.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Recomendado</h3>
+                <pre class="code-block">if (n &gt; 0) {
+    printf("positivo\n");
+    printf("tambien condicional\n");
+}</pre><p>Con llaves siempre, el bloque es explícito y agregar una línea después no cambia el significado del programa.</p>
+              </div>
+            </div><p class="note">En este curso se usan llaves incluso para una sola sentencia. Cuesta dos caracteres y evita el error más común al modificar código ajeno.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Cadenas else if: el comparador de magnitud</h2></div>
+    <div class="slide-body">
+      
+<p>Cuando hay más de dos alternativas se encadenan: cada <code>else</code> lleva otro <code>if</code>. Las condiciones se evalúan en orden y <strong>se ejecuta solo la primera que resulte verdadera</strong>; el <code>else</code> final atrapa todo lo que no encajó.</p>
+<pre class="code-block">if (condicion1) {
+    /* ... */
+} else if (condicion2) {
+    /* ... */
+} else if (condicion3) {
+    /* ... */
+} else {
+    /* ninguna de las anteriores */
+}</pre>
+<p>El comparador de magnitud de la Unidad 3 &mdash;el circuito con salidas <code>A&gt;B</code>, <code>A=B</code> y <code>A&lt;B</code>&mdash; se escribe así:</p>
+<pre class="code-block">/* comparador.c -- comparador de magnitud de dos numeros de 2 bits */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int a, b;
+
+    printf("Ingrese A (0-3): ");
+    scanf("%d", &amp;a);
+    printf("Ingrese B (0-3): ");
+    scanf("%d", &amp;b);
+
+    if (a &gt; b) {
+        printf("A &gt; B   -&gt;  salidas: 1 0 0\n");
+    } else if (a == b) {
+        printf("A = B   -&gt;  salidas: 0 1 0\n");
+    } else {
+        printf("A &lt; B   -&gt;  salidas: 0 0 1\n");
+    }
+
+    return 0;
+}</pre>
+<p>Nótese que las tres salidas son mutuamente excluyentes, igual que en el circuito: la estructura <code>else if</code> garantiza esa exclusividad sin escribir ninguna condición adicional.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>La sentencia switch</h2></div>
+    <div class="slide-body">
+      
+<p>Cuando la decisión depende de <strong>el valor de un entero</strong> y no de una comparación, <code>switch</code> es más claro que una cadena de <code>else if</code>. Compara la expresión contra una lista de valores constantes:</p>
+<pre class="code-block">switch (expresion_entera) {
+    case valor1:
+        /* ... */
+        break;
+    case valor2:
+        /* ... */
+        break;
+    default:
+        /* si ninguno coincide */
+        break;
+}</pre>
+<p>Tres reglas, y las tres importan:</p>
+<ul>
+<li>Los <code>case</code> deben ser <strong>constantes enteras</strong> (o caracteres). No se puede escribir <code>case n &gt; 5:</code> ni usar <code>double</code>.</li>
+<li>El <code>break</code> termina el <code>switch</code>. <strong>Si se omite, la ejecución continúa en el siguiente <code>case</code></strong>; eso se llama <em>fall-through</em> y casi siempre es un error.</li>
+<li><code>default</code> es opcional pero recomendable: cubre el caso no previsto, igual que las entradas &laquo;no importa&raquo; de un mapa de Karnaugh deben decidirse explícitamente.</li>
+</ul>
+<p class="note">El <em>fall-through</em> es útil cuando varios valores comparten la misma acción: <code>case 2: case 3: case 5: printf("primo\n"); break;</code> agrupa tres casos deliberadamente, sin código repetido.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Ejemplo: un multiplexor 4&rarr;1 en software</h2></div>
+    <div class="slide-body">
+      
+<p>El MUX 4&rarr;1 toma cuatro entradas de datos y dos líneas de selección. En software, las líneas de selección forman un número de 2 bits y cada <code>case</code> es una de las cuatro entradas.</p>
+<pre class="code-block">/* mux4.c -- multiplexor 4 a 1 */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int d0 = 1, d1 = 0, d2 = 1, d3 = 1;   /* entradas de datos */
+    int s1, s0, sel, y;
+
+    printf("Entradas: D0=%d D1=%d D2=%d D3=%d\n", d0, d1, d2, d3);
+    printf("Seleccion S1 S0 (0 o 1 cada una): ");
+    scanf("%d %d", &amp;s1, &amp;s0);
+
+    sel = (s1 &lt;&lt; 1) | s0;        /* dos bits -&gt; un numero de 0 a 3 */
+
+    switch (sel) {
+        case 0:  y = d0;  break;
+        case 1:  y = d1;  break;
+        case 2:  y = d2;  break;
+        case 3:  y = d3;  break;
+        default:
+            printf("seleccion invalida\n");
+            return 1;
+    }
+
+    printf("S1 S0 = %d%d  -&gt;  Y = D%d = %d\n", s1, s0, sel, y);
+    return 0;
+}</pre>
+<p>La línea <code>sel = (s1 &lt;&lt; 1) | s0;</code> es la misma idea de la clase anterior: dos bits sueltos se arman en un solo número con un desplazamiento y un OR. A partir de ahí, el <code>switch</code> reproduce exactamente la tabla de selección del multiplexor.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Ejemplo: selector de operación de una ALU</h2></div>
+    <div class="slide-body">
+      
+<p>Una unidad aritmético-lógica recibe dos operandos y un código de operación. El código de operación es, en software, el valor sobre el que decide el <code>switch</code>.</p>
+<pre class="code-block">/* alu.c -- ALU de 4 operaciones sobre dos valores de 4 bits */
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int a, b, op, y;
+
+    printf("A (0-15): ");   scanf("%d", &amp;a);
+    printf("B (0-15): ");   scanf("%d", &amp;b);
+    printf("Operacion  0=SUMA  1=RESTA  2=AND  3=OR : ");
+    scanf("%d", &amp;op);
+
+    switch (op) {
+        case 0:  y = a + b;  printf("SUMA  : ");  break;
+        case 1:  y = a - b;  printf("RESTA : ");  break;
+        case 2:  y = a &amp; b;  printf("AND   : ");  break;
+        case 3:  y = a | b;  printf("OR    : ");  break;
+        default:
+            printf("codigo de operacion invalido\n");
+            return 1;
+    }
+
+    printf("%d (0x%X)\n", y, y &amp; 0xF);
+    return 0;
+}</pre><p class="note"><code>y &amp; 0xF</code> recorta el resultado a cuatro bits, que es lo que haría una ALU de 4 bits al descartar el acarreo de salida. Sin esa máscara, <code>12 + 9</code> daría 21 en lugar de 5 con acarreo.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>El operador condicional <code>?:</code></h2></div>
+    <div class="slide-body">
+      
+<p>C tiene un operador que elige entre dos <em>valores</em> (no entre dos bloques). Se escribe <code>condicion ? valor_si_verdadero : valor_si_falso</code> y es el único operador de C con tres operandos.</p>
+<pre class="code-block">int mayor = (a &gt; b) ? a : b;        /* el maximo de a y b */
+
+int y = s ? d1 : d0;                /* un MUX 2-&gt;1 en una linea */
+
+printf("%d es %s\n", n, (n &amp; 1) ? "impar" : "par");</pre>
+<p>Es compacto y, usado con mesura, legible: la segunda línea es la definición misma de un multiplexor 2&rarr;1. Anidado varias veces se vuelve ilegible; en ese caso use <code>if/else</code>.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Errores clásicos con condicionales</h2></div>
+    <div class="slide-body">
+      
+<div class="table-wrap"><table class="data-table">
+<tr><th>Error</th><th>Se ve así</th><th>Qué ocurre realmente</th></tr>
+<tr><td><code>=</code> en lugar de <code>==</code></td><td><code>if (x = 0)</code></td><td>Asigna en vez de comparar. La condición vale lo asignado, así que <code>if (x = 5)</code> es <em>siempre</em> verdadero. <code>-Wall</code> lo reporta.</td></tr>
+<tr><td>Punto y coma de más</td><td><code>if (n &gt; 0);</code></td><td>El <code>;</code> es el cuerpo completo del <code>if</code>: el bloque que sigue se ejecuta siempre. No produce error de compilación.</td></tr>
+<tr><td>Comparar flotantes con <code>==</code></td><td><code>if (x == 0.1)</code></td><td>Casi nunca se cumple. Use <code>if (fabs(x - 0.1) &lt; 1e-9)</code> con <code>math.h</code>.</td></tr>
+<tr><td>Confundir <code>&amp;</code> con <code>&amp;&amp;</code></td><td><code>if (a &amp; b)</code></td><td><code>2 &amp; 1</code> vale 0 (falso) aunque ambos sean distintos de cero. Para condiciones use <code>&amp;&amp;</code>; para bits, <code>&amp;</code>.</td></tr>
+<tr><td>Encadenar comparaciones</td><td><code>if (0 &lt; x &lt; 10)</code></td><td>Se evalúa <code>(0 &lt; x)</code>, que da 0 o 1, y luego <code>&lt; 10</code>: siempre verdadero. Escriba <code>if (0 &lt; x &amp;&amp; x &lt; 10)</code>.</td></tr>
+<tr><td><code>break</code> olvidado</td><td><code>case 1: y = a;</code></td><td>La ejecución cae al siguiente <code>case</code>. Revise cada <code>case</code> antes de dar por terminado un <code>switch</code>.</td></tr>
+</table></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Ejercicios propuestos</h2></div>
+    <div class="slide-body">
+      
+<ol>
+<li>Modifique <code>paridad.c</code> para que además indique si el número es cero, positivo o negativo, usando una cadena <code>else if</code>.</li>
+<li>Escriba un programa que lea tres bits <code>A</code>, <code>B</code> y <code>C</code> y evalúe la función <code>F = A&middot;B + C'</code> usando únicamente <code>if</code> y operadores lógicos. Compruebe las ocho combinaciones a mano.</li>
+<li>Escriba un decodificador BCD a 7 segmentos: lea un dígito de 0 a 9 y muestre qué segmentos (<code>a</code> a <code>g</code>) se encienden, usando <code>switch</code>. Para dígitos fuera de rango, apague todos los segmentos.</li>
+<li>Amplíe <code>mux4.c</code> a un multiplexor 8&rarr;1 con tres líneas de selección. Verifique que <code>sel = (s2 &lt;&lt; 2) | (s1 &lt;&lt; 1) | s0</code> recorre los ocho casos.</li>
+<li>Escriba un <strong>sumador completo de un bit</strong>: lea <code>A</code>, <code>B</code> y <code>Cin</code>, y calcule <code>S</code> y <code>Cout</code> con <code>if</code>. Compare su resultado con la expresión booleana <code>S = A &oplus; B &oplus; Cin</code> implementada con <code>^</code>.</li>
+<li>Agregue a <code>alu.c</code> las operaciones XOR, NOT A, desplazamiento a la izquierda y desplazamiento a la derecha. Indique además si el resultado desbordó los 4 bits.</li>
+<li>Escriba un programa que lea una calificación de 0 a 100 e imprima la letra correspondiente (A, B, C, D, F). Hágalo dos veces: con <code>else if</code> y con <code>switch</code> sobre <code>nota / 10</code>. Comente cuál resulta más claro.</li>
+</ol>
+
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-6-programacion-c/clase-c2-tipos-operadores.html"><span class="lbl">&larr; Anterior</span>Tipos de Datos, Variables y Operadores</a>
+    <a class="next" href="../unidad-6-programacion-c/clase-c4-bucles.html"><span class="lbl">Siguiente &rarr;</span>Estructuras de Bucle</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>

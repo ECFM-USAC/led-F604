@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funciones &mdash; F604 Electrónica Digital</title>
+<script>(function(){try{var t=localStorage.getItem("f604-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem("f604-text-size");if(s&&s!=="md")document.documentElement.setAttribute("data-text-size",s);}catch(e){}})();</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="--u-color: var(--u6); --u-soft: var(--u6-soft);">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="crumbs">
+      <img class="brand-logo" src="../img/logo-ecfm.png" alt="Escuela de Ciencias Físicas y Matemáticas">
+      <a href="../index.html">F604</a><span class="sep">/</span>
+      <a href="../index.html#unidad-6">Programación en C</a><span class="sep">/</span>
+      Funciones
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">&larr; Índice del curso</a>
+      <div class="textsize-control" role="group" aria-label="Tamaño del texto">
+        <button id="textsize-dec" class="textsize-btn" type="button" aria-label="Reducir tamaño de texto">A−</button>
+        <button id="textsize-inc" class="textsize-btn" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+      <button id="print-pdf" class="pdf-btn" type="button" aria-label="Descargar esta clase en PDF">⤓ PDF</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="class-hero">
+    <div class="unit-tag"><span class="dot"></span>Unidad 6 · Programación en C</div>
+    <h1>Funciones</h1>
+    <div class="unit-badges"><span class="badge">Clase 5 de 7</span><span class="badge">4 períodos</span><span class="badge">Funciones</span></div>
+  </div>
+
+
+  <div class="toc">
+    <h3>Contenido de la clase</h3>
+    <ol>
+      <li><a href="#s1">Una función es un bloque lógico</a></li>
+      <li><a href="#s2">Definir y llamar una función</a></li>
+      <li><a href="#s3">Prototipos: declarar antes de usar</a></li>
+      <li><a href="#s4">Paso por valor</a></li>
+      <li><a href="#s5">Funciones sin retorno y sin parámetros</a></li>
+      <li><a href="#s6">Ámbito de las variables</a></li>
+      <li><a href="#s7">Ejemplo: las compuertas como funciones</a></li>
+      <li><a href="#s8">Ejemplo: medio sumador y sumador completo</a></li>
+      <li><a href="#s9">Ejemplo: sumador de 4 bits con acarreo en cascada</a></li>
+      <li><a href="#s10">Recursión</a></li>
+      <li><a href="#s11">Dividir el programa en varios archivos</a></li>
+      <li><a href="#s12">Errores frecuentes con funciones</a></li>
+      <li><a href="#s13">Ejercicios propuestos</a></li>
+    </ol>
+  </div>
+
+
+  <section class="slide reveal" id="s1" style="--reveal-delay: 0.00s;">
+    <div class="slide-head"><h2>Una función es un bloque lógico</h2></div>
+    <div class="slide-body">
+      
+<p>En la Unidad 3 ningún circuito se dibujó compuerta por compuerta de principio a fin. Se construyó un medio sumador, luego un sumador completo <em>a partir</em> de dos medios sumadores, y luego un sumador de 4 bits conectando cuatro sumadores completos. Cada bloque se diseñó una vez, se verificó una vez y se reutilizó.</p>
+<p>Una <strong>función</strong> es exactamente eso en software: un trozo de código con un nombre, unas entradas (los <em>parámetros</em>) y una salida (el valor de <em>retorno</em>). Quien la usa solo necesita saber qué hace, no cómo lo hace.</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Bloque lógico</h3>
+                <p>Entradas, salida, una tabla de verdad que lo describe y una caja que oculta las compuertas internas.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Función en C</h3>
+                <p>Parámetros, valor de retorno, un nombre que describe lo que hace y un cuerpo que oculta la implementación.</p>
+              </div>
+            </div>
+<p>Dividir un programa en funciones no es una formalidad: hace el código comprobable por partes, elimina la repetición y permite cambiar una implementación sin tocar a quien la llama. <code>printf</code> es una función escrita por otra persona y usada sin conocer su interior.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s2" style="--reveal-delay: 0.05s;">
+    <div class="slide-head"><h2>Definir y llamar una función</h2></div>
+    <div class="slide-body">
+      
+<p>Una definición de función tiene cuatro partes: el tipo de lo que devuelve, el nombre, la lista de parámetros con sus tipos, y el cuerpo entre llaves.</p>
+<pre class="code-block">int cuadrado(int x)      /* tipo | nombre | parametros */
+{
+    return x * x;        /* cuerpo: devuelve un valor  */
+}</pre>
+<p>La llamada aparece dentro de una expresión. El control salta a la función, se ejecuta su cuerpo y, al llegar a <code>return</code>, vuelve al punto de llamada <em>con un valor</em>:</p>
+<pre class="code-block">/* cuadrado.c -- definicion y uso de una funcion */
+#include &lt;stdio.h&gt;
+
+int cuadrado(int x)
+{
+    return x * x;
+}
+
+int main(void)
+{
+    int n = 7;
+    int r = cuadrado(n);          /* llamada: r recibe 49 */
+
+    printf("%d al cuadrado es %d\n", n, r);
+    printf("y 3 al cuadrado es %d\n", cuadrado(3));
+
+    return 0;
+}</pre>
+<p><code>return</code> termina la función de inmediato, aunque queden líneas por debajo. Una función puede tener varios <code>return</code>, uno por cada camino de salida.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s3" style="--reveal-delay: 0.10s;">
+    <div class="slide-head"><h2>Prototipos: declarar antes de usar</h2></div>
+    <div class="slide-body">
+      
+<p>El compilador lee el archivo de arriba abajo. Si encuentra una llamada a una función que todavía no conoce, no puede verificar ni el número ni el tipo de los argumentos. Por eso una función debe <strong>declararse</strong> antes de usarse, aunque se <strong>defina</strong> después.</p>
+<p>Esa declaración adelantada se llama <em>prototipo</em>: es el encabezado de la función seguido de punto y coma.</p>
+<pre class="code-block">#include &lt;stdio.h&gt;
+
+int cuadrado(int x);          /* PROTOTIPO: solo la firma */
+
+int main(void)
+{
+    printf("%d\n", cuadrado(5));   /* el compilador ya sabe que existe */
+    return 0;
+}
+
+int cuadrado(int x)           /* DEFINICION: el cuerpo */
+{
+    return x * x;
+}</pre>
+<p>Poner los prototipos arriba y <code>main</code> primero permite leer el programa de lo general a lo particular. Es la organización que se usará en adelante.</p>
+<p class="note">Si se omite el prototipo, los compiladores antiguos suponían que la función devolvía <code>int</code>. C11 ya no lo permite y <code>gcc -Wall</code> avisa: <em>implicit declaration of function</em>. Esa advertencia significa casi siempre que falta un <code>#include</code> o un prototipo.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s4" style="--reveal-delay: 0.15s;">
+    <div class="slide-head"><h2>Paso por valor</h2></div>
+    <div class="slide-body">
+      
+<p>En C los argumentos se pasan <strong>por valor</strong>: la función recibe una <em>copia</em>. Modificar el parámetro dentro de la función no afecta a la variable del llamador.</p>
+<pre class="code-block">/* por_valor.c -- la funcion recibe una copia */
+#include &lt;stdio.h&gt;
+
+void intenta_cambiar(int x)
+{
+    x = 100;                            /* modifica la copia local */
+    printf("dentro:  x = %d\n", x);     /* 100 */
+}
+
+int main(void)
+{
+    int n = 5;
+
+    intenta_cambiar(n);
+    printf("afuera:  n = %d\n", n);     /* 5, no 100 */
+
+    return 0;
+}</pre>
+<p>Esto es una ventaja: una función no puede alterar por accidente las variables de quien la llama. Pero también impone un límite &mdash;una función devuelve <strong>un solo valor</strong>&mdash; que se nota en cuanto se quiere modelar un bloque con dos salidas, como un sumador completo con <code>S</code> y <code>Cout</code>.</p>
+<div class="compare">
+              <div class="compare-item">
+                <h3>Solución de hoy</h3>
+                <p>Empaquetar las dos salidas en un solo entero, un bit cada una, tal como viajarían por un bus de dos líneas.</p>
+              </div>
+              <div class="compare-item">
+                <h3>Solución de la clase 7</h3>
+                <p>Pasar la <em>dirección</em> de las variables de salida con punteros, para que la función escriba directamente en ellas.</p>
+              </div>
+            </div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s5" style="--reveal-delay: 0.20s;">
+    <div class="slide-head"><h2>Funciones sin retorno y sin parámetros</h2></div>
+    <div class="slide-body">
+      
+<p>Cuando una función no devuelve nada &mdash;porque su trabajo es imprimir, configurar o modificar un estado&mdash; su tipo de retorno es <code>void</code>. Cuando no recibe nada, su lista de parámetros es <code>void</code>.</p>
+<pre class="code-block">#include &lt;stdio.h&gt;
+
+void encabezado(void)
+{
+    printf(" A | B | S | Cout\n");
+    printf("---+---+---+-----\n");
+}
+
+int main(void)
+{
+    encabezado();          /* la llamada es una sentencia completa */
+    return 0;
+}</pre><p class="note">Escribir <code>int main()</code> con los paréntesis vacíos no es lo mismo que <code>int main(void)</code>: lo primero significa &laquo;lista de parámetros no especificada&raquo; y desactiva una verificación del compilador. Use siempre <code>void</code> cuando no haya parámetros.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s6" style="--reveal-delay: 0.25s;">
+    <div class="slide-head"><h2>Ámbito de las variables</h2></div>
+    <div class="slide-body">
+      
+<p>El lugar donde se declara una variable determina quién puede verla y cuánto vive.</p>
+<div class="table-wrap"><table class="data-table">
+<tr><th>Clase</th><th>Dónde se declara</th><th>Quién la ve</th><th>Cuánto vive</th></tr>
+<tr><td>Local (automática)</td><td>Dentro de una función o bloque</td><td>Solo ese bloque</td><td>Nace al entrar y muere al salir. Su valor inicial es basura si no se inicializa.</td></tr>
+<tr><td>Parámetro</td><td>En la lista de la función</td><td>Solo esa función</td><td>Es una variable local inicializada con la copia del argumento.</td></tr>
+<tr><td>Global (externa)</td><td>Fuera de toda función</td><td>Todo el archivo</td><td>Vive durante todo el programa y se inicializa en cero. Úselas con moderación.</td></tr>
+<tr><td><code>static</code> local</td><td>Dentro de una función, con <code>static</code></td><td>Solo esa función</td><td>Conserva su valor entre llamadas, como un registro que recuerda el estado anterior.</td></tr>
+</table></div>
+<p>Una variable <code>static</code> local es el equivalente en software de un flip-flop dentro de un bloque: la función &laquo;recuerda&raquo; sin que nadie afuera pueda tocar ese estado.</p>
+<pre class="code-block">int contador(void)
+{
+    static int n = 0;     /* se inicializa UNA sola vez */
+    n++;
+    return n;
+}
+/* llamadas sucesivas devuelven 1, 2, 3, ... */</pre><p class="note">Las variables globales parecen cómodas porque evitan pasar parámetros, pero cualquier función puede modificarlas y eso hace imposible razonar sobre el programa por partes. Prefiera siempre parámetros y valores de retorno.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s7" style="--reveal-delay: 0.30s;">
+    <div class="slide-head"><h2>Ejemplo: las compuertas como funciones</h2></div>
+    <div class="slide-body">
+      
+<p>El primer paso para construir circuitos en software es dar nombre a las compuertas básicas. Cada una es una función de una línea:</p>
+<pre class="code-block">/* compuertas.c -- las compuertas basicas como funciones */
+#include &lt;stdio.h&gt;
+
+int and_g(int a, int b)  { return a &amp; b; }
+int or_g (int a, int b)  { return a | b; }
+int xor_g(int a, int b)  { return a ^ b; }
+int not_g(int a)         { return !a;    }
+
+int main(void)
+{
+    printf(" A | B | AND | OR | XOR | NOT A\n");
+    printf("---+---+-----+----+-----+------\n");
+
+    for (int a = 0; a &lt;= 1; a++) {
+        for (int b = 0; b &lt;= 1; b++) {
+            printf(" %d | %d |  %d  | %d  |  %d  |   %d\n",
+                   a, b, and_g(a, b), or_g(a, b), xor_g(a, b), not_g(a));
+        }
+    }
+
+    return 0;
+}</pre>
+<p>El programa no es más corto que usar <code>&amp;</code>, <code>|</code> y <code>^</code> directamente, pero ahora existe un vocabulario: a partir de aquí se construyen bloques mayores llamando a estas funciones, igual que se dibuja un circuito a partir de símbolos de compuerta.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s8" style="--reveal-delay: 0.35s;">
+    <div class="slide-head"><h2>Ejemplo: medio sumador y sumador completo</h2></div>
+    <div class="slide-body">
+      
+<p>El medio sumador tiene dos salidas: la suma (<code>A &oplus; B</code>) y el acarreo (<code>A &middot; B</code>). Como una función devuelve un solo valor, se empaquetan los dos bits en un entero: el bit 0 es la suma y el bit 1 el acarreo.</p>
+<pre class="code-block">/* sumador.c -- medio sumador, sumador completo y sumador de 4 bits */
+#include &lt;stdio.h&gt;
+
+/* devuelve (Cout &lt;&lt; 1) | S */
+int medio_sumador(int a, int b)
+{
+    int s    = a ^ b;
+    int cout = a &amp; b;
+    return (cout &lt;&lt; 1) | s;
+}
+
+/* sumador completo construido con DOS medios sumadores y un OR,
+   igual que el circuito de la Unidad 3                          */
+int sumador_completo(int a, int b, int cin)
+{
+    int h1 = medio_sumador(a, b);
+    int h2 = medio_sumador(h1 &amp; 1, cin);      /* suma de h1 con Cin */
+
+    int s    = h2 &amp; 1;
+    int cout = ((h1 &gt;&gt; 1) &amp; 1) | ((h2 &gt;&gt; 1) &amp; 1);
+
+    return (cout &lt;&lt; 1) | s;
+}
+
+int main(void)
+{
+    printf(" A B Cin | S Cout\n");
+    printf("---------+-------\n");
+
+    for (int a = 0; a &lt;= 1; a++) {
+        for (int b = 0; b &lt;= 1; b++) {
+            for (int cin = 0; cin &lt;= 1; cin++) {
+                int r = sumador_completo(a, b, cin);
+                printf(" %d %d  %d  | %d   %d\n",
+                       a, b, cin, r &amp; 1, (r &gt;&gt; 1) &amp; 1);
+            }
+        }
+    }
+
+    return 0;
+}</pre>
+<p>La salida reproduce, línea por línea, la tabla de verdad del sumador completo del libro. Y la función <code>sumador_completo</code> no usa las fórmulas booleanas finales: <strong>compone dos llamadas a <code>medio_sumador</code></strong>, exactamente como el circuito compone dos bloques.</p>
+
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s9" style="--reveal-delay: 0.40s;">
+    <div class="slide-head"><h2>Ejemplo: sumador de 4 bits con acarreo en cascada</h2></div>
+    <div class="slide-body">
+      
+<p>Con el sumador completo ya disponible, el sumador de 4 bits es un bucle que lo llama cuatro veces, pasando el acarreo de salida de una etapa como acarreo de entrada de la siguiente. Es literalmente el <em>ripple carry adder</em>.</p>
+<pre class="code-block">/* suma4.c -- sumador de 4 bits por acarreo en cascada */
+#include &lt;stdio.h&gt;
+
+int sumador_completo(int a, int b, int cin);   /* definido en el ejemplo anterior */
+
+int suma4(int a, int b)
+{
+    int resultado = 0;
+    int carry = 0;
+
+    for (int i = 0; i &lt; 4; i++) {
+        int ai = (a &gt;&gt; i) &amp; 1;
+        int bi = (b &gt;&gt; i) &amp; 1;
+
+        int r = sumador_completo(ai, bi, carry);
+
+        resultado |= (r &amp; 1) &lt;&lt; i;      /* coloca el bit S en su posicion */
+        carry = (r &gt;&gt; 1) &amp; 1;           /* el acarreo pasa a la etapa siguiente */
+    }
+
+    return (carry &lt;&lt; 4) | resultado;    /* bit 4 = acarreo de salida */
+}
+
+int main(void)
+{
+    int a = 9, b = 7;                   /* 1001 + 0111 */
+    int r = suma4(a, b);
+
+    printf("%2d + %2d = %2d  (suma de 4 bits = %d, Cout = %d)\n",
+           a, b, a + b, r &amp; 0xF, (r &gt;&gt; 4) &amp; 1);
+    return 0;
+}</pre><p class="note"><code>9 + 7 = 16</code> no cabe en cuatro bits: el programa imprime suma <code>0</code> y <code>Cout = 1</code>, que es justo lo que haría el circuito. Probar casos de desbordamiento es la mejor forma de verificar que la implementación corresponde al hardware.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s10" style="--reveal-delay: 0.45s;">
+    <div class="slide-head"><h2>Recursión</h2></div>
+    <div class="slide-body">
+      
+<p>Una función puede llamarse a sí misma. Para que eso termine hacen falta dos cosas: un <strong>caso base</strong> que no se llama a sí mismo, y que cada llamada se acerque a ese caso.</p>
+<p>La conversión a binario por divisiones sucesivas quedó pendiente en la clase anterior porque producía los bits al revés. Con recursión el orden se resuelve solo: primero se imprime el resto del número, y al final el último bit.</p>
+<pre class="code-block">/* binario_rec.c -- imprime un numero en binario, recursivamente */
+#include &lt;stdio.h&gt;
+
+void imprime_binario(int n)
+{
+    if (n &gt; 1) {                       /* caso recursivo */
+        imprime_binario(n / 2);
+    }
+    putchar('0' + (n % 2));            /* caso base incluido */
+}
+
+int main(void)
+{
+    int n = 202;
+    printf("%d en binario es ", n);
+    imprime_binario(n);
+    putchar('\n');
+    return 0;
+}</pre>
+<p>Para <code>n = 202</code> la cadena de llamadas baja hasta <code>imprime_binario(1)</code> y, al regresar, cada nivel imprime su bit: <code>11001010</code>. Las llamadas pendientes se guardan en la <em>pila</em>, una zona de memoria que volverá en la clase 7.</p>
+<p class="note">Toda función recursiva puede escribirse con un bucle, y viceversa. La recursión gana cuando el problema es naturalmente recursivo (recorrer un árbol, dividir y vencer); el bucle gana en velocidad y uso de memoria.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s11" style="--reveal-delay: 0.50s;">
+    <div class="slide-head"><h2>Dividir el programa en varios archivos</h2></div>
+    <div class="slide-body">
+      
+<p>Cuando el conjunto de funciones crece, se separa en módulos: un archivo <code>.h</code> con los prototipos (la &laquo;hoja de datos&raquo; del bloque) y un <code>.c</code> con las definiciones (el circuito interno).</p>
+<pre class="code-block">/* ---- compuertas.h : la interfaz ---- */
+#ifndef COMPUERTAS_H
+#define COMPUERTAS_H
+
+int and_g(int a, int b);
+int or_g (int a, int b);
+int xor_g(int a, int b);
+int sumador_completo(int a, int b, int cin);
+
+#endif</pre><pre class="code-block">/* ---- compuertas.c : la implementacion ---- */
+#include "compuertas.h"
+
+int and_g(int a, int b) { return a &amp; b; }
+int or_g (int a, int b) { return a | b; }
+int xor_g(int a, int b) { return a ^ b; }
+
+int sumador_completo(int a, int b, int cin)
+{
+    int s    = xor_g(xor_g(a, b), cin);
+    int cout = or_g(and_g(a, b), and_g(cin, xor_g(a, b)));
+    return (cout &lt;&lt; 1) | s;
+}</pre><pre class="code-block">/* ---- main.c : el programa ---- */
+#include &lt;stdio.h&gt;
+#include "compuertas.h"
+
+int main(void)
+{
+    int r = sumador_completo(1, 1, 1);
+    printf("S = %d, Cout = %d\n", r &amp; 1, (r &gt;&gt; 1) &amp; 1);
+    return 0;
+}</pre>
+<p>La compilación une los dos archivos objeto en un solo ejecutable:</p>
+<pre class="code-block">$ gcc -std=c11 -Wall -Wextra -c compuertas.c    # -&gt; compuertas.o
+$ gcc -std=c11 -Wall -Wextra -c main.c          # -&gt; main.o
+$ gcc compuertas.o main.o -o programa           # enlaza</pre><p class="note">Las líneas <code>#ifndef</code> / <code>#define</code> / <code>#endif</code> son un <em>guardia de inclusión</em>: evitan que el contenido del encabezado se inserte dos veces si varios archivos lo incluyen. Los comillas en <code>#include "compuertas.h"</code> indican un archivo propio; los ángulos, uno del sistema.</p>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s12" style="--reveal-delay: 0.55s;">
+    <div class="slide-head"><h2>Errores frecuentes con funciones</h2></div>
+    <div class="slide-body">
+      
+<div class="table-wrap"><table class="data-table">
+<tr><th>Error</th><th>Mensaje o síntoma</th><th>Qué hacer</th></tr>
+<tr><td>Falta el prototipo</td><td><code>warning: implicit declaration of function 'f'</code></td><td>Declare la función antes de <code>main</code> o defínala antes de usarla.</td></tr>
+<tr><td>Olvidar <code>return</code></td><td><code>warning: control reaches end of non-void function</code></td><td>Una función <code>int</code> que no devuelve nada entrega basura. Revise todos los caminos.</td></tr>
+<tr><td>Devolver un valor en <code>void</code></td><td><code>error: 'return' with a value, in function returning void</code></td><td>O cambie el tipo de retorno, o quite el valor.</td></tr>
+<tr><td>Esperar que cambie el argumento</td><td><code>f(n)</code> no modifica <code>n</code></td><td>El paso es por valor. Para modificar hace falta un puntero (clase 7).</td></tr>
+<tr><td>Devolver la dirección de una local</td><td><code>warning: function returns address of local variable</code></td><td>La variable muere al salir de la función. El puntero queda colgando.</td></tr>
+<tr><td>Mismo nombre, dos funciones</td><td><code>error: redefinition of 'f'</code></td><td>C no admite sobrecarga: cada función necesita un nombre distinto.</td></tr>
+</table></div>
+    </div>
+  </section>
+
+  <section class="slide reveal" id="s13" style="--reveal-delay: 0.60s;">
+    <div class="slide-head"><h2>Ejercicios propuestos</h2></div>
+    <div class="slide-body">
+      
+<ol>
+<li>Escriba las funciones <code>nand_g</code>, <code>nor_g</code> y <code>xnor_g</code> a partir de las ya definidas, y agregue sus columnas a la tabla de verdad de <code>compuertas.c</code>.</li>
+<li>Escriba una función <code>int nand3(int a, int b, int c)</code> usando <strong>solo</strong> llamadas a <code>nand_g</code>. Verifique con una tabla de verdad que es correcta. (Es el ejercicio de compuertas universales de la Unidad 2, resuelto en software.)</li>
+<li>Escriba una función <code>int paridad(int n)</code> que devuelva el bit de paridad par de un byte, y úsela en un programa que la calcule para los valores de 0 a 255.</li>
+<li>Escriba una función <code>int cuenta_bits(int n)</code> y una función <code>int gray(int n)</code>. Imprima una tabla de 0 a 15 con el valor, su código Gray y cuántos bits en 1 tiene cada uno.</li>
+<li>Escriba una función <code>int resta4(int a, int b)</code> que reste dos números de 4 bits usando <code>suma4</code> y complemento a dos (invertir <code>b</code> y sumar 1). Compruebe varios casos, incluyendo resultados negativos.</li>
+<li>Escriba una función recursiva <code>int potencia(int base, int exp)</code> y otra iterativa equivalente. Compare el resultado de ambas para <code>2¹⁰</code>.</li>
+<li>Escriba una función recursiva que imprima un número en cualquier base de 2 a 16, usando los dígitos <code>0-9</code> y <code>A-F</code>.</li>
+<li>Reorganice su solución del ejercicio 5 en tres archivos (<code>aritmetica.h</code>, <code>aritmetica.c</code>, <code>main.c</code>) y compílelos por separado.</li>
+</ol>
+
+    </div>
+  </section>
+
+  <div class="class-pager">
+    <a class="prev" href="../unidad-6-programacion-c/clase-c4-bucles.html"><span class="lbl">&larr; Anterior</span>Estructuras de Bucle</a>
+    <a class="next" href="../unidad-6-programacion-c/clase-c6-arreglos-cadenas.html"><span class="lbl">Siguiente &rarr;</span>Arreglos y Cadenas</a>
+  </div>
+</div>
+<footer class="sitefoot wrap">Laboratorio de Electrónica Digital · F604 · ECFM, USAC</footer>
+<script src="../js/theme.js"></script>
+<script src="../js/print.js"></script>
+<script src="../js/textsize.js"></script>
+<script src="../js/reveal.js"></script>
+<script src="../js/lightbox.js"></script>
+</body>
+</html>
